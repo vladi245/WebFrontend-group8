@@ -62,7 +62,7 @@
 .signup-button {
     text-decoration: none;
     padding: 0.5rem 1rem;
-    border-radius: 6px;
+    border-radius: 15px;
     font-size: 0.9rem;
     font-family: 'Inter', sans-serif;
     font-weight: 800;
@@ -76,7 +76,7 @@
 }
 
 .login-button:hover {
-    background: #007BFF;
+    background: #0196FF;
     color: white;
 }
 
@@ -87,7 +87,7 @@
 }
 
 .signup-button:hover {
-    background: #0056b3;
+    background: #0196FF;
     border-color: #ffffff;
     color: black;
 }

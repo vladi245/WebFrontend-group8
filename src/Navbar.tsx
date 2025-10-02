@@ -21,10 +21,10 @@ const Navbar = () => {
             </div>
             <div className="navbar-right">
                 <a href="/login" className="login-button">
-                    <i className="login-class">Login</i>
+                    Login
                 </a>
                 <a href="/sign-up" className="signup-button">
-                    <i className="signup-class">Sign Up</i>
+                    Sign Up
                 </a>
             </div>
         </nav>
