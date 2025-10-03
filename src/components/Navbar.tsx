@@ -1,5 +1,5 @@
 import './Navbar.css';
-import GetStandingLogo from './assets/GetStanding.png';
+import GetStandingLogo from '../assets/GetStanding.png';
 
 const Navbar = () => {
     return (
