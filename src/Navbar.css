@@ -1,0 +1,93 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5rem;
+    background-color: #ffffff00;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    z-index: 1000;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* logo if image fails and its just  text*/
+.navbar-left .logo {
+    font-size: 1.5rem;
+    padding-right: 1.5rem;
+    font-weight: bold;
+}
+
+/* actual logo */
+.navbar-left .logo img {
+    height: 40px;
+    width: auto;
+}
+
+/* tabs */
+.navbar-center .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 8rem;
+    margin: 0;
+    padding-right: 2rem;
+}
+
+.navbar-center .nav-links li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    transition: color 0.3s ease;
+}
+
+.navbar-center .nav-links li a:hover {
+    color: #007BFF;
+    /* blue hover can change later idk how to make the line under when u hover*/
+}
+
+.navbar-right {
+    display: flex;
+    gap: 1rem;
+}
+
+.login-button,
+.signup-button {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.login-button {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+}
+
+.login-button:hover {
+    background: #0196FF;
+    color: white;
+}
+
+.signup-button {
+    background: #ffffff;
+    color: rgb(0, 0, 0);
+    border: 1px solid #ffffff;
+}
+
+.signup-button:hover {
+    background: #0196FF;
+    border-color: #ffffff;
+    color: black;
+}
