@@ -1,9 +1,9 @@
-import Navbar from '../../components/Navbar/Navbar'
+import Logo from '../../components/Logo/Logo'
 
-export default function Home() {
+export default function Login() {
     return (
         <>
-            <Navbar/>
+            <Logo />
         </>
 	);
 };
