@@ -1,0 +1,239 @@
+.login-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+    width: 100vw;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Left Column - Welcome/Signup Section */
+.left-column {
+    background: linear-gradient(180deg, #0d1326 0%, #1e40af 100%);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    position: relative;
+}
+
+.logo-container {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+}
+
+.welcome-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    padding: 2rem;
+}
+
+.welcome-heading {
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.hey-there {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #3b82f6;
+    margin-bottom: 0.5rem;
+}
+
+.welcome-back {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+}
+
+.welcome-subtext {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    max-width: 400px;
+    line-height: 1.5;
+}
+
+.feature-icons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    justify-content: center;
+}
+
+.icon-square {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.signup-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.signup-question {
+    color: white;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.signup-button {
+    background-color: white;
+    color: #1e40af;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.signup-button:hover {
+    background-color: #f8fafc;
+    transform: translateY(-1px);
+}
+
+/* Right Column - Login Section */
+.right-column {
+    background-color: #091118;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.login-content {
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-heading {
+    margin-bottom: 2.5rem;
+    line-height: 1.2;
+}
+
+.login-title {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #3b82f6;
+    margin-bottom: 0.5rem;
+}
+
+.to-account {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    color: white;
+    z-index: 1;
+}
+
+.form-input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    border: 2px solid #3b82f6;
+    border-radius: 8px;
+    background-color: transparent;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.form-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.form-input:focus {
+    border-color: #60a5fa;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 1rem;
+    color: white;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.login-button {
+    background-color: #1f2937;
+    color: white;
+    border: 2px solid #3b82f6;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 1rem;
+}
+
+.login-button:hover {
+    background-color: #3b82f6;
+    transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .login-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+    }
+    
+    .left-column {
+        min-height: 40vh;
+    }
+    
+    .welcome-content {
+        padding: 1rem;
+    }
+    
+    .hey-there,
+    .welcome-back,
+    .login-title,
+    .to-account {
+        font-size: 2rem;
+    }
+    
+    .feature-icons {
+        gap: 0.5rem;
+    }
+    
+    .icon-square {
+        width: 40px;
+        height: 40px;
+    }
+}
