@@ -1,0 +1,95 @@
+.mainpanel {
+    border: transparent;
+    border-radius: 20px;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.2) 0%, rgba(0, 107, 182, 0.2) 71%, rgba(0, 112, 190, 0.2) 74%, rgba(0, 150, 255, 0.2) 100%);
+    padding: 3rem 5rem 5rem 3rem;
+    position: fixed;
+    top: 8rem;
+    left: 3rem;
+    right: 3rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    z-index: 999;
+}
+
+.content {
+    max-width: 1200px;
+    width: 100%;
+    text-align: left;
+    font-weight: 800;
+    align-self: flex-start;
+}
+
+.title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: white;
+    font-family: 'Inter', sans-serif;
+}
+
+.highlight {
+    color: #0096FF;
+}
+
+.description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Inter', sans-serif;
+    max-width: 800px;
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.primaryButton {
+    background: #0096FF;
+    color: black;
+    border: none;
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 800;
+    font-style: bold;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 150, 255, 0.4);
+}
+
+.primaryButton:hover {
+    background: #007ACC;
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(0, 150, 255, 0.7), 0 0 60px rgba(0, 150, 255, 0.3);
+}
+
+.secondaryButton {
+    background: transparent;
+    color: white;
+    border: 2px solid #0096FF;
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 800;
+    font-style: bold;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 150, 255, 0.3);
+    /* Subtle blue glow */
+}
+
+.secondaryButton:hover {
+    background: #0096FF;
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(0, 150, 255, 0.6), 0 0 50px rgba(0, 150, 255, 0.2);
+
+}
