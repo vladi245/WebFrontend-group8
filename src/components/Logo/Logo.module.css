@@ -17,17 +17,20 @@
     -ms-user-select: none;
 }
 
+/* logo if image fails and its just  text*/
 .navbar-left .logo {
     font-size: 1.5rem;
     padding-right: 1.5rem;
     font-weight: bold;
 }
 
+/* actual logo */
 .navbar-left .logo img {
     height: 40px;
     width: auto;
 }
 
+/* tabs */
 .navbar-center .nav-links {
     list-style: none;
     display: flex;
@@ -47,6 +50,7 @@
 
 .navbar-center .nav-links li a:hover {
     color: #007BFF;
+    /* blue hover can change later idk how to make the line under when u hover*/
 }
 
 .navbar-right {
