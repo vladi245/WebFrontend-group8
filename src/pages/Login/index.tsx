@@ -1,7 +1,14 @@
 import Logo from '../../components/Logo/Logo'
 import './Login.css'
+import { useNavigate } from 'react-router-dom'
 
 export default function Login() {
+    const navigate = useNavigate();
+
+    const handleSignUpRedirect = () => {
+        navigate('/sign-up');
+    };
+
     return (
         <div className="login-container">
             <div className="left-column">
@@ -39,7 +46,7 @@ export default function Login() {
                     </div>
                     <div className="signup-section">
                         <p className="signup-question">Don't have an account?</p>
-                        <button className="signup-button">Sign Up</button>
+                        <button className="signup-button" onClick={handleSignUpRedirect}>Sign Up</button>
                     </div>
                 </div>
             </div>
