@@ -1,0 +1,158 @@
+.container {
+    background-color: #0D0D0D;
+    padding: 80px 0;
+    margin-left: 4.5rem;
+    margin-right: 4.5rem;
+    color: #ffffff;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.title {
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: #ffffff;
+}
+
+.highlight {
+    color: #0096FF;
+}
+
+.subtitle {
+    font-size: 18px;
+    font-weight: 0;
+    color: #ffffff;
+    margin: 0;
+}
+
+.plansContainer {
+    display: flex;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    box-sizing: border-box;
+}
+
+.planCard {
+    flex: 1;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 107, 182, 0.2) 71%, rgba(0, 112, 190, 0.2) 74%, rgba(0, 150, 255, 0.2) 100%);
+    border: 1px solid #000000;
+    border-radius: 16px;
+    padding: 40px 32px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.planCard.planCardHover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 150, 255, 0.3);
+}
+
+.planHeader {
+    margin-bottom: 32px;
+}
+
+.planName {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 0 16px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.planPrice {
+    font-size: 48px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 20px 0;
+    line-height: 1;
+}
+
+.priceUnit {
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.planIncludes {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+.featuresList {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 40px 0;
+    flex: 1;
+}
+
+.featureItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.featureItem:last-child {
+    margin-bottom: 0;
+}
+
+.checkIcon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    color: #0096FF;
+    margin-top: 2px;
+}
+
+.choosePlanButton {
+    width: 100%;
+    padding: 16px 32px;
+    background: transparent;
+    border: 2px solid #0096FF;
+    border-radius: 50px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+.choosePlanButton:hover {
+    background: #0096FF;
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 150, 255, 0.4);
+}
+
+@media (max-width: 768px) {
+    .plansContainer {
+        flex-direction: column;
+        padding: 0 1.5rem;
+    }
+
+    .container {
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+    .title {
+        font-size: 36px;
+    }
+
+    .planPrice {
+        font-size: 36px;
+    }
+}

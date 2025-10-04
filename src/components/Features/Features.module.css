@@ -1,0 +1,179 @@
+.container {
+    background-color: #00000000;
+    padding: 80px 0;
+    margin-left: 4.5rem;
+    margin-right: 4.5rem;
+    color: #ffffff;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 60px;
+    padding: 0 3rem 0 3rem;
+}
+
+.title {
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    color: #ffffff;
+}
+
+.highlight {
+    color: #0096FF;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+.gridContainer {
+    width: 100%;
+    margin: 0;
+    padding: 0 3rem 0 3rem;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+}
+
+.card {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.2) 0%, rgba(0, 107, 182, 0.2) 71%, rgba(0, 112, 190, 0.2) 74%, rgba(0, 150, 255, 0.2) 100%);
+    border-radius: 16px;
+    padding: 32px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid #000000;
+    display: flex;
+    flex-direction: column;
+}
+
+.card.cardHover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 150, 255, 0.3);
+    border: 1px solid #000000;
+}
+
+.card.cardBlue {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.2) 0%, rgba(0, 107, 182, 0.2) 71%, rgba(0, 112, 190, 0.2) 74%, rgba(0, 150, 255, 0.2) 100%);
+    border: 1px solid #000000;
+}
+
+.col3 {
+    grid-column: span 3;
+}
+
+.col4 {
+    grid-column: span 4;
+}
+
+.col5 {
+    grid-column: span 5;
+}
+
+.card0 {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.2) 0%, rgba(0, 107, 182, 0.2) 71%, rgba(0, 112, 190, 0.2) 74%, rgba(0, 150, 255, 0.2) 100%);
+}
+
+.card1 {
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.2) 0%, rgba(0, 107, 182, 0.2) 71%, rgba(0, 112, 190, 0.2) 74%, rgba(0, 150, 255, 0.2) 100%);
+}
+
+.card2 {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 107, 182, 0.2) 71%, rgba(0, 112, 190, 0.2) 74%, rgba(0, 150, 255, 0.2) 100%);
+}
+
+.card3 {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 107, 182, 0.2) 71%, rgba(0, 112, 190, 0.2) 74%, rgba(0, 150, 255, 0.2) 100%);
+}
+
+.card4 {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 107, 182, 0.2) 71%, rgba(0, 112, 190, 0.2) 74%, rgba(0, 150, 255, 0.2) 100%);
+}
+
+.card5 {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 107, 182, 0.2) 71%, rgba(0, 112, 190, 0.2) 74%, rgba(0, 150, 255, 0.2) 100%);
+}
+
+.iconWrapper {
+    width: 56px;
+    height: 56px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon svg {
+    width: 32px;
+    height: 32px;
+    color: #000000;
+}
+
+.cardTitle {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    color: #ffffff;
+}
+
+.cardDescription {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 0 20px 0;
+    flex: 1;
+}
+
+.learnMore {
+    color: #0096FF;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.3s ease;
+}
+
+.learnMore.learnMoreHover {
+    gap: 12px;
+}
+
+@media (max-width: 1024px) {
+    .gridContainer {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .col3,
+    .col4,
+    .col5 {
+        grid-column: span 6;
+    }
+}
+
+@media (max-width: 768px) {
+    .gridContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .col3,
+    .col4,
+    .col5 {
+        grid-column: span 1;
+    }
+
+    .title {
+        font-size: 36px;
+    }
+}
