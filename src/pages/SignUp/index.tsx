@@ -11,10 +11,10 @@ export default function SignUp() {
                 <div className="welcome-content">
                     <h1 className="welcome-heading">
                         <span className="hey-there">Hey There!</span>
-                        <span className="welcome-back">Welcome Back.</span>
+                        <span className="welcome-back">Join Us.</span>
                     </h1>
                     <p className="welcome-subtext">
-                        Get back to tracking, monitoring and be proud of your progress!
+                        Start tracking, monitoring and earn rewards by making progress!
                     </p>
                     {/*all icons here are from this link https://icon-sets.iconify.design/material-symbols/page-3.html?icon-filter=pers  license is apache 2 so we are good*/ }
                     <div className="feature-icons">
@@ -38,8 +38,8 @@ export default function SignUp() {
                         </div>
                     </div>
                     <div className="signup-section">
-                        <p className="signup-question">Don't have an account?</p>
-                        <button className="signup-button">Sign Up</button>
+                        <p className="signup-question">Already have an account?</p>
+                        <button className="signup-button">Login</button>
                     </div>
                 </div>
             </div>
@@ -50,13 +50,23 @@ export default function SignUp() {
                         <span className="to-account">To Your Account.</span>
                     </h1>
                     <form className="login-form">
+                    <div className="input-group">
+                            <div className="input-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 18q3.35 0 5.675-2.337T20 10q0-.775-.125-1.487t-.4-1.388q-.675.425-1.425.65T16.5 8q-1.35 0-2.537-.612T12 5.65q-.775 1.125-1.963 1.738T7.5 8q-.8 0-1.55-.225t-1.425-.65q-.275.675-.4 1.388T4 10q0 3.325 2.338 5.663T12 18m-3-5.75q.525 0 .888-.363T10.25 11t-.363-.888T9 9.75t-.888.363T7.75 11t.363.888t.887.362m6 0q.525 0 .888-.363T16.25 11t-.363-.888T15 9.75t-.888.363t-.362.887t.363.888t.887.362M2.2 22q-.875 0-1.475-.65T.2 19.825l.9-9.875q.2-2.1 1.138-3.925t2.4-3.162t3.35-2.1T12 0t4.013.763t3.35 2.1t2.4 3.162T22.9 9.95l.9 9.875q.075.875-.525 1.525T21.8 22z"/></svg>
+                            </div>
+                            <input 
+                                type="text" 
+                                placeholder="Enter your name"
+                                className="form-input"
+                            />
+                        </div>
                         <div className="input-group">
                             <div className="input-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 12q-1.65 0-2.825-1.175T8 8t1.175-2.825T12 4t2.825 1.175T16 8t-1.175 2.825T12 12m-8 6v-.8q0-.85.438-1.562T5.6 14.55q1.55-.775 3.15-1.162T12 13t3.25.388t3.15 1.162q.725.375 1.163 1.088T20 17.2v.8q0 .825-.587 1.413T18 20H6q-.825 0-1.412-.587T4 18"/></svg>
                             </div>
                             <input 
                                 type="text" 
-                                placeholder="Enter your username"
+                                placeholder="Create your username"
                                 className="form-input"
                             />
                         </div>
@@ -66,7 +76,7 @@ export default function SignUp() {
                             </div>
                             <input 
                                 type="password" 
-                                placeholder="Enter your password"
+                                placeholder="Create password"
                                 className="form-input"
                             />
                             <div className="password-toggle">
@@ -74,7 +84,31 @@ export default function SignUp() {
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M11.5 18c4 0 7.46-2.22 9.24-5.5C18.96 9.22 15.5 7 11.5 7s-7.46 2.22-9.24 5.5C4.04 15.78 7.5 18 11.5 18m0-12c4.56 0 8.5 2.65 10.36 6.5C20 16.35 16.06 19 11.5 19S3 16.35 1.14 12.5C3 8.65 6.94 6 11.5 6m0 2C14 8 16 10 16 12.5S14 17 11.5 17S7 15 7 12.5S9 8 11.5 8m0 1A3.5 3.5 0 0 0 8 12.5a3.5 3.5 0 0 0 3.5 3.5a3.5 3.5 0 0 0 3.5-3.5A3.5 3.5 0 0 0 11.5 9"/></svg>
                             </div>
                         </div>
-                        <button type="submit" className="login-button">Login</button>
+                        <div className="input-group">
+                            <div className="input-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 22q-3.475-.875-5.738-3.988T4 11.1V5l8-3l8 3v6.1q0 3.8-2.262 6.913T12 22m0-2.1q2.6-.825 4.3-3.3t1.7-5.5V6.375l-6-2.25l-6 2.25V11.1q0 3.025 1.7 5.5t4.3 3.3M10 16h4q.425 0 .713-.288T15 15v-3q0-.425-.288-.712T14 11v-1q0-.825-.587-1.412T12 8t-1.412.588T10 10v1q-.425 0-.712.288T9 12v3q0 .425.288.713T10 16m1-5v-1q0-.425.288-.712T12 9t.713.288T13 10v1z"/></svg>
+                            </div>
+                            <input 
+                                type="password" 
+                                placeholder="Repeat password"
+                                className="form-input"
+                            />
+                            <div className="password-toggle">
+                                {/*this one is from here https://icon-sets.iconify.design/mdi-light/?icon-filter=eye   TODO place into documentation*/}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M11.5 18c4 0 7.46-2.22 9.24-5.5C18.96 9.22 15.5 7 11.5 7s-7.46 2.22-9.24 5.5C4.04 15.78 7.5 18 11.5 18m0-12c4.56 0 8.5 2.65 10.36 6.5C20 16.35 16.06 19 11.5 19S3 16.35 1.14 12.5C3 8.65 6.94 6 11.5 6m0 2C14 8 16 10 16 12.5S14 17 11.5 17S7 15 7 12.5S9 8 11.5 8m0 1A3.5 3.5 0 0 0 8 12.5a3.5 3.5 0 0 0 3.5 3.5a3.5 3.5 0 0 0 3.5-3.5A3.5 3.5 0 0 0 11.5 9"/></svg>
+                            </div>
+                        </div>
+                        <div className="checkbox-group">
+                            <input 
+                                type="checkbox" 
+                                id="terms-checkbox"
+                                className="terms-checkbox"
+                            />
+                            <label htmlFor="terms-checkbox" className="terms-label">
+                                I agree to terms and conditions
+                            </label>
+                        </div>
+                        <button type="submit" className="login-button">Sign Up</button>
                     </form>
                 </div>
             </div>
