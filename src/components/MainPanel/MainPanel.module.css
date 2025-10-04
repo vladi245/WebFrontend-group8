@@ -3,22 +3,21 @@
     border-radius: 20px;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.2) 0%, rgba(0, 107, 182, 0.2) 71%, rgba(0, 112, 190, 0.2) 74%, rgba(0, 150, 255, 0.2) 100%);
     padding: 3rem 5rem 5rem 3rem;
-    position: fixed;
-    top: 8rem;
-    left: 3rem;
-    right: 3rem;
+    margin-top: 7.5rem;
+    margin-left: 7.5rem;
+    margin-right: 7.5rem;
+    margin-bottom: 1rem;
+    min-height: 500px;
     box-sizing: border-box;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    z-index: 999;
 }
 
 .content {
     max-width: 1200px;
     width: 100%;
     text-align: left;
-    font-weight: 800;
     align-self: flex-start;
 }
 
@@ -84,7 +83,6 @@
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 0 15px rgba(0, 150, 255, 0.3);
-    /* Subtle blue glow */
 }
 
 .secondaryButton:hover {
