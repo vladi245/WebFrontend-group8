@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import ErrorPage from './pages/Errors'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
+import AboutUs from './pages/AboutUs'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/error" element={<ErrorPage />} />
+          <Route path="/about" element={<AboutUs />} />
           <Route path="*" element={<Navigate to="/error" replace />} />
         </Routes>
       </BrowserRouter>
