@@ -1,0 +1,138 @@
+\documentclass[12pt,a4paper]{article}
+
+% Encoding and font
+\usepackage[utf8]{inputenc}
+\usepackage{times} % ensures same font everywhere
+
+% Layout and formatting
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\geometry{margin=1in}
+\setstretch{1.2}
+\titleformat{\section}{\normalsize\bfseries}{\thesection.}{1em}{} % consistent font size for sections
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{1em}{}
+
+\begin{document}
+
+\begin{center}
+\textbf{\Large Project Proposal} \\[1em]
+\textbf{Desk Usage Supervision} \\[1em]
+\textbf{Date: 23.09.2025} \\[1em]
+\textit{Semester Project Distributed Software Systems with Embedded Elements (E25)} \\[0.5em]
+(SE3-PRO Internal Course Code/ T630011401 Course ID) \\[0.5em]
+University of Southern Denmark, The Faculty of Engineering, \\ 
+Sønderborg Campus \\[0.5em]
+Semester 3, September - January \\[0.5em]
+BSc in Engineering (Software Engineering) - Sønderborg \\[2em]
+
+\textbf{Team:} \\[0.5em]
+Piotr Szczesny – \texttt{piszc24@student.sdu.dk} \\ 
+Vlad-Alexandru Ionita - \texttt{vlion24@student.sdu.dk} \\ 
+Karolina Malik - \texttt{kamal24@student.sdu.dk} \\ 
+Bartosz Bobkiewicz - \texttt{babob24@student.sdu.dk} \\ 
+Viktor Barabás - \texttt{vibar24@student.sdu.dk} \\ 
+Azra Talum - \texttt{aztal24@student.sdu.dk}
+\end{center}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Project Background}
+In recent years, we have seen an explosion in sedentary lifestyles, which negatively impacts the health of office workers in many ways, ranging from increased blood pressure to unhealthy cholesterol levels. A study stated that people who predominantly sit at work have a 16\% higher risk of mortality from all causes, and a 34\% higher risk of mortality from cardiovascular disease [\ref{appendix:research}]. To counteract the increased risk, individuals who sit a lot at work would have to engage in an additional 15 to 30 minutes of physical activity per day to reduce their risk to that of individuals who do not predominantly sit, researchers estimated. This project will serve as a preventive health solution, aiming to encourage the users to adopt healthier habits during their workday. By using technology to monitor sitting time and providing reminders to stand up, the project addresses both the physical and mental well-being of workers. The proposed solution will not only help improve posture and reduce physical strain but may also boost alertness and workplace satisfaction, since physical activity is linked to mental well-being.
+
+\section{Aim}
+The aim of this project is to design and implement a software-based reminder system that helps office workers reduce the negative effects of prolonged sitting by encouraging regular adjustments. The system will track desk positions and, from that, determine the user's current position, provide customizable alerts, and offer simple health-oriented recommendations to promote better posture, reduce strain, and improve overall workplace well-being. Furthermore, this project aims to give managers of large organizations a way to easily overview and manage the desks inside the office space, making it easier to adjust the height of the desks during cleaning periods, closings and openings of the office.
+
+\section{Objectives}
+\begin{itemize}
+    \item Control the desk’s height through the WiFi2BLE Box Web API
+    \item Determine the adjustment of the desk according to the user’s height
+    \item Connect the Fitness WebApp to the desk through the API
+    \item Pull data from the user’s Fitness profile database
+\end{itemize}
+
+\section{Possible Solutions}
+This project will directly incorporate components from the Web Technologies course project to demonstrate how knowledge and skills gained from different lectures can be combined into a single integrated solution for the semester project. The intention is to use it as a foundation that works alongside newly developed components. This approach highlights the team’s ability to connect theoretical learning with practical application across multiple subject areas.
+
+The solution will consist of:
+\begin{itemize}
+    \item \textbf{Front-end:} User interface for data input, taken directly from the Web Technologies project.
+    \item \textbf{Back-end:} Server-side processing and adjustments using the data provided by the user.
+    \item \textbf{Database:} Stores user-specific information such as users’ height, making use of the existing database from the Web Technologies project.
+    \item \textbf{APIs:} Provides communication between the Desk Management REST API and the back-end logic.
+\end{itemize}
+
+\section{Initial Requirements Analysis}
+\textbf{High Priority:} Access user data from Fitness WebApp, control the desk height using the WiFi2BLE Box Web API, track the desk’s current height and position. \\
+\textbf{Medium Priority:} Determine adjustment of the desk according to user’s optimal height. \\
+\textbf{Low Priority:} Advanced analytics.
+
+\subsection{Functional requirements}
+\begin{itemize}
+    \item The system shall be able to control the desk’s height via the WIFI2BLE Box Web API.
+    \item The system shall retrieve and display the current desk height and position.
+    \item The system shall fetch and process user data from the Fitness Webapp Database.
+    \item The UI shall be allowing input of user data.
+    \item The system shall provide reminders to switch posture based on tracking position and time spent in that position.
+    \item The system shall generate health recommendations based on the tracked data.
+    \item The system shall log desk usage data.
+    \item The system shall store and retrieve user settings from a database.
+\end{itemize}
+
+\subsection{Non-functional requirements}
+\begin{itemize}
+    \item The system shall support multiple users.
+    \item The User Interface shall be intuitive and user-friendly.
+    \item Reminders shall be customizable and non-intrusive.
+    \item User data shall be protected with secure authentication.
+    \item The app shall be compatible with major modern browsers.
+    \item The system shall provide clear, user-friendly error messages (in plain English).
+\end{itemize}
+
+\section{Methods}
+\begin{itemize}
+    \item \textbf{Development Methodology:} Agile/Scrum with 2-week sprints, sprint reviews, and retrospectives
+    \item \textbf{Organization:} Jira
+    \item \textbf{Version control:} Git, GitHub
+    \item \textbf{Front-end:} React Vite
+    \item \textbf{Back-end:} node.js with Express.js
+    \item \textbf{Database:} PostgreSQL
+\end{itemize}
+
+\section{Risks}
+\begin{itemize}
+    \item \textbf{Team Coordination Issues:} Minimized through regular Scrum meetings and documentation.
+    \item \textbf{Technical Complexity:} Divide tasks based on team members' strengths
+    \item \textbf{Integration Issues:} Keep in mind the semester project during the web technologies project's development.
+\end{itemize}
+
+\section{Project Organization}
+Our team is going to opt into using the scrum/agile methodology. All members will take part in writing the code and the report. The Product owner, who is also the group's leader, is Piotr. His task is to make sure there is a clear timeline for our tasks, so we stay on track with the project’s progress. The Scrum master is Karolina. Her task is to guide the team in the values and practices of Scrum/Agile.
+
+The tools we are going to use to organize our project are:
+\begin{itemize}
+    \item Jira, for keeping track of our tasks
+    \item GitHub and Git, for code sharing
+    \item WhatsApp and Microsoft Teams, for communication
+    \item OneDrive, for file sharing.
+\end{itemize}
+
+\section{Project plan}
+The project is going to be divided into four main stages: Project Kickoff, Project Analysis, Project Development and Completion \& Submission. The first two weeks are designated for Project Kickoff, during which the team will receive the Semester Project topic. While the Project Analysis phase is ongoing the team will begin working on establishing the idea for the System. Weeks 43 – 50 are for Project Development during which the team will divide the eight weeks into four two-week sprints and work on developing the application. The last two weeks are going to focus on the Completion and Submission of the Project. During this phase, the team will put the finishing touches to the program and finish the report. After fulfilling the above, the software will be ready for submission.
+
+\newpage
+\section{Appendix}
+\appendix
+\section*{Reference: Chi-Pang Wen, MD, PhD, Institute of Population Health Science, National Health Research Institute, No. 35 Keyan Rd, Zhunan Township, Miaoli County 350, Miaoli, Zhunan, Taiwan (ROC) (cwengood@nhri.edu.tw); Min-Kuang Tsai, PhD, Division of Nephrology, Department of Internal Medicine, Shuang Ho Hospital, Taipei Medical University, 250 Wuxing St, Taipei City, Taiwan (minlight@tmu.edu.tw).}\label{appendix:research}
+\addcontentsline{toc}{subsection}{Reference}
+
+
+
+\end{document}
