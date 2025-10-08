@@ -52,21 +52,22 @@ The aim of this project is to design and implement a software-based reminder sys
 
 \section{Objectives}
 \begin{itemize}
-    \item Control the desk’s height through the WiFi2BLE Box Web API
-    \item Determine the adjustment of the desk according to the user’s height
-    \item Connect the Fitness WebApp to the desk through the API
-    \item Pull data from the user’s Fitness profile database
+    \item Control the desk's height through the WiFi2BLE Box Web API.
+    \item Determine the adjustment of the desk according to the user's height.
+    \item Connect the GetStanding Web application to the desk through the API.
+    \item Pull data from the user's Fitness profile database.
 \end{itemize}
 
 \section{Possible Solutions}
-This project will directly incorporate components from the Web Technologies course project to demonstrate how knowledge and skills gained from different lectures can be combined into a single integrated solution for the semester project. The intention is to use it as a foundation that works alongside newly developed components. This approach highlights the team’s ability to connect theoretical learning with practical application across multiple subject areas.
+This project will directly incorporate components from the Web Technologies course project to demonstrate how knowledge and skills gained from different lectures can be combined into a single integrated solution for the semester project. The intention is to use it as a foundation that works alongside newly developed components. This approach highlights the team's ability to connect theoretical learning with practical application across multiple subject areas.
 
 The solution will consist of:
 \begin{itemize}
     \item \textbf{Front-end:} User interface for data input, taken directly from the Web Technologies project.
     \item \textbf{Back-end:} Server-side processing and adjustments using the data provided by the user.
     \item \textbf{Database:} Stores user-specific information such as users’ height, making use of the existing database from the Web Technologies project.
-    \item \textbf{APIs:} Provides communication between the Desk Management REST API and the back-end logic.
+    \item \textbf{Gateway:} Raspberry Pi used as intermediary between the WiFi2BLE Box Web API and Backend API endpoints, to keep the local network secure.
+   \item \textbf{APIs:} Provides communication between the Gateway and the back-end logic.
 \end{itemize}
 
 \section{Initial Requirements Analysis}
