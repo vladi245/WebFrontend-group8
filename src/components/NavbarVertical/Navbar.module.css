@@ -1,0 +1,61 @@
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 3rem 3rem;
+    background-color: transparent;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    z-index: 1000;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    background: linear-gradient(180deg, #0D0D0D 10%, #0096FF 100%);
+    height: 100vh;
+    width: 220px;
+}
+
+.navbar-left .logo {
+    font-size: 1.5rem;
+    padding-right: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-left .logo img {
+    height: 45px;
+    width: auto;
+}
+
+
+h3{
+    color: #5C5C5C;
+    font-weight: 700;
+    font-size: 18;
+}
+
+.navlink  {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 1.7rem;
+  cursor: pointer;
+  padding: 0.5rem 0rem;
+  color: #fff;
+  border-radius: 0.5rem;
+  transition: background 0.2s ease;
+  margin-bottom: 30px;
+}
+
+.navlink:hover {
+    color: inherit;
+}
+
+.icon {
+  width: 2rem;
+  height: 2rem;
+}
