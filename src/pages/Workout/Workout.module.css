@@ -8,7 +8,6 @@
     padding-bottom: 4rem;
 }
 
-/* Override Logo fixed positioning for this page */
 .container> :first-child {
     position: static !important;
     margin-bottom: 3rem;
