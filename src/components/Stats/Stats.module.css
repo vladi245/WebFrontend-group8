@@ -1,0 +1,125 @@
+.statsContainer {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    max-width: 1470px;
+    padding: 0 2rem;
+}
+
+.statCard {
+    flex: 1;
+    background-color: #0D0D0D;
+    border: 2px solid #0096FF;
+    border-radius: 12px;
+    padding: 24px 28px;
+    transition: all 0.3s ease;
+    border-width: thin;
+}
+
+.statCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 150, 255, 0.3);
+}
+
+.statContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.statInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.statLabel {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+.statValue {
+    font-size: 32px;
+    font-weight: 700;
+    color: #0096FF;
+    margin: 0;
+    line-height: 1;
+}
+
+.statIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0096FF;
+}
+
+.statIcon svg {
+    width: 40px;
+    height: 40px;
+}
+
+.workoutsCard {
+    border-color: #0096FF;
+}
+
+.workoutsCard:hover {
+    box-shadow: 0 8px 24px rgba(0, 150, 255, 0.3);
+}
+
+.workoutsValue {
+    color: #0096FF;
+}
+
+.workoutsIcon {
+    color: #0096FF;
+}
+
+.caloriesCard {
+    border-color: #0096FF;
+}
+
+.caloriesCard:hover {
+    box-shadow: 0 8px 24px rgba(0, 150, 255, 0.3);
+}
+
+.caloriesValue {
+    color: #FF6E6E;
+}
+
+.caloriesIcon {
+    color: #FF6E6E;
+}
+
+.daysActiveCard {
+    border-color: #0096FF;
+}
+
+.daysActiveCard:hover {
+    box-shadow: 0 8px 24px rgba(0, 150, 255, 0.3);
+}
+
+.daysActiveValue {
+    color: #72B4FF;
+}
+
+.daysActiveIcon {
+    color: #72B4FF;
+}
+
+@media (max-width: 1024px) {
+    .statsContainer {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .statsContainer {
+        padding: 0 1rem;
+    }
+
+    .statValue {
+        font-size: 24px;
+    }
+}

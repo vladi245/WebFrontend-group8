@@ -1,0 +1,121 @@
+.exercisesContainer {
+    width: 100%;
+    max-width: 1400px;
+    padding: 32px;
+    margin-top: 40px;
+    background-color: #0D0D0D;
+    border: 2px solid #0096FF;
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    border-width: thin;
+}
+
+.exercisesSection,
+.completedSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.sectionTitle {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 24px 0;
+}
+
+.exerciseList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: 400px;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: rgba(0, 150, 255, 0.05);
+    border-width: thin;
+}
+
+.exerciseCard {
+    background-color: #0D0D0D;
+    border: 2px solid #0096FF;
+    border-radius: 12px;
+    padding: 20px;
+    cursor: grab;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-width: thin;
+}
+
+.exerciseCard:active {
+    cursor: grabbing;
+    opacity: 0.7;
+}
+
+.exerciseCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 150, 255, 0.3);
+}
+
+.exerciseInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.exerciseName {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+}
+
+.exerciseDetails {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+}
+
+.muscleTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.muscleTag {
+    padding: 6px 12px;
+    background-color: transparent;
+    border: 1px solid #0096FF;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #0096FF;
+    font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+    .exercisesContainer {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .exercisesContainer {
+        padding: 20px;
+    }
+
+    .sectionTitle {
+        font-size: 20px;
+    }
+
+    .exerciseName {
+        font-size: 18px;
+    }
+
+    .exerciseList {
+        min-height: 300px;
+        padding: 12px;
+    }
+}
