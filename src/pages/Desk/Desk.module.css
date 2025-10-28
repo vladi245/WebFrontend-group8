@@ -1,4 +1,4 @@
-.container {
+.logoContainer {
     background-color: #0D0D0D;
     min-height: 100vh;
     display: flex;
@@ -8,36 +8,42 @@
     padding-bottom: 4rem;
 }
 
-.container> :first-child {
+.logoContainer> :first-child {
     position: static !important;
     margin-bottom: 3rem;
     width: 100%;
     align-self: flex-start;
 }
+
+.gridContainer {
+    margin-left: 80px;
+    margin-right: 80px;
+    display: flex;
+    align-items: center;
+}
+
 .parent {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: auto auto auto auto auto;
     gap: 8px;
 }
-    
 
 .div1 {
     grid-column: span 2 / span 2;
-    grid-row-start: 3;
+    grid-row-start: 1;
 }
 
 .div2 {
     grid-column: span 2 / span 2;
     grid-row: span 2 / span 2;
     grid-column-start: 1;
-    grid-row-start: 4;
+    grid-row-start: 2;
 }
 
 .div3 {
     grid-column: span 2 / span 2;
     grid-row: span 3 / span 3;
     grid-column-start: 3;
-    grid-row-start: 3;
+    grid-row-start: 1;
 }
-        

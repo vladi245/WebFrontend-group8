@@ -1,6 +1,6 @@
 .SliderContainer {
     background-color: #0D0D0D;
-    border-radius: 12%;
+    border-radius: 10px;
     height: 300px;
     width: 400px;
     font-family: 'Inter', sans-serif;
@@ -9,31 +9,32 @@
     border: 2px solid #0070BE;
     padding: 5px 10px;
     font-size: 14px;
-    margin-bottom: 20px;
-};
+}
 
-.DeskSlider{
+
+
+.DeskSlider {
     -webkit-appearance: none;
     appearance: none;
     width: 220px;
     height: 8px;
-    transform: rotate(90deg);
+    transform: translate(-50%, -50%) rotate(180deg);
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
-    background-color: linear-gradient(
-        to right,
-        #FF3300,
-        #D9D9D9,
-        #0096FF
-    );
+    background-color: linear-gradient(to right,
+            #FF3300,
+            #D9D9D9,
+            #0096FF);
 
-    border-radius:15px;
-    
-};
+    border-radius: 15px;
 
-.DeskSlider:hover{
+}
+
+
+
+.DeskSlider:hover {
     opacity: 1;
 }
 
@@ -42,7 +43,7 @@
     appearance: none;
     width: 25px;
     height: 25px;
-    background-color:#D9D9D9;
+    background-color: #D9D9D9;
     cursor: pointer;
     border-radius: 50%;
 }
@@ -52,7 +53,7 @@
     appearance: none;
     width: 25px;
     height: 25px;
-    background-color:#D9D9D9;
+    background-color: #D9D9D9;
     cursor: pointer;
     border-radius: 50%;
 }
