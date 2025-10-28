@@ -1,0 +1,15 @@
+.settingsContainer {
+    padding-top: 200px;
+    display: grid;
+    place-items: center;
+
+}
+
+.settingText {
+
+    display: grid;
+    place-items: center;
+
+}
+
+;

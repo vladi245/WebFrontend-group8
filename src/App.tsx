@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import AboutUs from './pages/AboutUs'
 import Desk from './pages/Desk'
+import Settings from './pages/Settings'
 
 function App() {
 
@@ -19,7 +20,9 @@ function App() {
           <Route path="/error" element={<ErrorPage />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/desk" element={<Desk />} />
+          <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<Navigate to="/error" replace />} />
+
         </Routes>
       </BrowserRouter>
     </>
