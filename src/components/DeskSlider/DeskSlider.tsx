@@ -24,8 +24,11 @@ const DeskSlider = () => {
     }
 
     return (
-        <div className={style.SliderContainer}>
-            <div>
+        <div className={style.Container}>
+            <div className={style.ImageContainer}>
+                <img src={currentImage} alt="Desk Position" className={style.DeskImage} />
+            </div>
+            <div className={style.SliderContainer}>
                 <input
                     type="range"
                     min="60"
@@ -34,13 +37,8 @@ const DeskSlider = () => {
                     className={style.DeskSlider}
                     onChange={Change}
                 />
-                <label>{value} cm</label>
+                <label className={style.Label}>{value} cm</label>
             </div>
-            <div>
-                <img src={currentImage} alt="Desk Position" className={style.DeskImage} />
-
-            </div>
-
         </div>
 
 
