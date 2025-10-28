@@ -1,46 +1,51 @@
 import { useState, type ChangeEvent } from 'react';
 import style from './DeskSlider.module.css';
+import desk_high from '../../assets/desk_high.png';
+import desk_medium from '../../assets/desk_low.png';
+import desk_low from '../../assets/desk_normal.png';
 
-//const images = []
 
 const DeskSlider = () => {
     const [value, setValue] = useState<number>(1);
 
-    const Change =(e: ChangeEvent<HTMLInputElement>): void =>{
+    const Change = (e: ChangeEvent<HTMLInputElement>): void => {
         setValue(Number(e.target.value));
     };
-    /*
-    let currentImage: string; 
-    if (value < 80){
-        currentImage = images[0];}
-    else if (value > 120){
-        currentImage = images[2];}
+
+    let currentImage: string;
+    if (value < 80) {
+        currentImage = desk_medium;
+    }
+    else if (value >= 80 && value <= 120) {
+        currentImage = desk_low;
+    }
     else {
-        currentImage = images[1];}
-    */    
+        currentImage = desk_high;
+    }
 
-    return(
+    return (
         <div className={style.SliderContainer}>
-            <input 
-                type="range"
-                min="60"
-                max="140"
-                value={value}
-                className={style.DeskSliderz}
-                onChange={Change}
-            />
+            <div>
+                <input
+                    type="range"
+                    min="60"
+                    max="140"
+                    value={value}
+                    className={style.DeskSlider}
+                    onChange={Change}
+                />
+                <label>{value} cm</label>
+            </div>
+            <div>
+                <img src={currentImage} alt="Desk Position" className={style.DeskImage} />
 
-            <div>   
-                <img>
-                    {/*<source src={currentImage} />*/}                
-                </img>
             </div>
 
         </div>
-        
 
-        
-        
+
+
+
     );
 };
 export default DeskSlider;
