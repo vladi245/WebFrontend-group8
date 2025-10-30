@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import AboutUs from './pages/AboutUs'
 import Settings from './pages/Settings'
+import Dashboard from './pages/Dashboard'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/error" element={<ErrorPage />} />
           <Route path="/about" element={<AboutUs />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<Navigate to="/error" replace />} />
 
