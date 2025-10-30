@@ -1,7 +1,12 @@
 import style from './UserProfile.module.css';
 import { User } from 'lucide-react';
+import Counter from './Counter';
+
 
 const UserProfile = () => {
+
+    const following = 0;
+    const followers = 0;
     return (
         <div className={style.profileContainer}>
             <div className={style.avatarContainer}>
@@ -15,15 +20,9 @@ const UserProfile = () => {
             </div>
             
             <div className={style.statsContainer}>
-                <div className={style.statBox}>
-                    <div className={style.statNumber}>1</div>
-                    <div className={style.statLabel}>Following</div>
-                </div>
+                <Counter label="Following" number={following} />             
                 <div className={style.statDivider}></div>
-                <div className={style.statBox}>
-                    <div className={style.statNumber}>1</div>
-                    <div className={style.statLabel}>Followers</div>
-                </div>
+                <Counter label="Followers" number={followers} />   
             </div>
             <div className={style.dividerBelow}></div>
         </div>
