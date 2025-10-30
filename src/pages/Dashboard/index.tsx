@@ -20,17 +20,13 @@ export default function Home() {
                     <Seperator variant="accent"/>
                 </div>
                 <h2 style={{ color: 'white', marginTop: '20px' }}>Today's stats</h2>
-                <CalorieIntake current={1331} goal={2500} />
-                <WaterCard current={1.5} goal={3} />
-                <WorkoutCard data={[
-                    { day: 'Mon', minutes: 30 },
-                    { day: 'Tue', minutes: 45 },
-                    { day: 'Wed', minutes: 20 },
-                    { day: 'Thu', minutes: 60 },
-                    { day: 'Fri', minutes: 50 },
-                    { day: 'Sat', minutes: 40 },
-                    { day: 'Sun', minutes: 70 },
-                ]} />
+
+                <div style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}>
+                    <CalorieIntake current={1331} goal={2500} />
+                    <WaterCard current={1.5} goal={3} />
+
+                </div>
+                <WorkoutStatsCard calories={1560} />;
                 <StandingStats data={[
                     { day: 'Mon', minutes: 120 },
                     { day: 'Tue', minutes: 150 },
@@ -40,25 +36,37 @@ export default function Home() {
                     { day: 'Sat', minutes: 1040 },
                     { day: 'Sun', minutes: 200 },
                 ]} />
-
+                <div style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}>
+                    
+                    <WorkoutCard data={[
+                        { day: 'Mon', minutes: 30 },
+                        { day: 'Tue', minutes: 45 },
+                        { day: 'Wed', minutes: 20 },
+                        { day: 'Thu', minutes: 60 },
+                        { day: 'Fri', minutes: 50 },
+                        { day: 'Sat', minutes: 40 },
+                        { day: 'Sun', minutes: 70 },
+                    ]} />
                 <FriendsActivity activities={[
-                    {
-                    id: 1,
-                    username: 'washington',
-                    action: 'added a new activity',
-                    timeAgo: '10m ago',
-                    },
-                    {
-                    id: 2,
-                    username: 'gmail',
-                    action: 'reached the goal',
-                    timeAgo: '17m ago',
-                    },
+                        {
+                        id: 1,
+                        username: 'washington',
+                        action: 'added a new activity',
+                        timeAgo: '10m ago',
+                        },
+                        {
+                        id: 2,
+                        username: 'gmail',
+                        action: 'reached the goal',
+                        timeAgo: '17m ago',
+                        },
 
-                ]}/>
+                    ]}/>
 
-                <WorkoutStatsCard calories={1560} />;
+                </div>
+
                 
+
             </div>
         </>
     );
