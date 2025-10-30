@@ -21,12 +21,10 @@ export default function Home() {
                 </div>
                 <h2 style={{ color: 'white', marginTop: '20px' }}>Today's stats</h2>
 
-                <div style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}>
                     <CalorieIntake current={1331} goal={2500} />
                     <WaterCard current={1.5} goal={3} />
 
-                </div>
-                <WorkoutStatsCard calories={1560} />;
+                <WorkoutStatsCard calories={1560} />
                 <StandingStats data={[
                     { day: 'Mon', minutes: 120 },
                     { day: 'Tue', minutes: 150 },
@@ -36,7 +34,6 @@ export default function Home() {
                     { day: 'Sat', minutes: 1040 },
                     { day: 'Sun', minutes: 200 },
                 ]} />
-                <div style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}>
                     
                     <WorkoutCard data={[
                         { day: 'Mon', minutes: 30 },
@@ -63,9 +60,6 @@ export default function Home() {
 
                     ]}/>
 
-                </div>
-
-                
 
             </div>
         </>
