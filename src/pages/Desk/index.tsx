@@ -9,14 +9,14 @@ export default function Desk() {
             <div className={style.logoContainer}>
                 <Logo />
                 <div className={style.gridContainer}>
-                    <div className={style.parent}>
-                        <div className={style.div1}>
+                    <div className={style.deskComponentsGridSetup}>
+                        <div className={style.deskConnectionStatus}>
                             <ConnectionStatus />
                         </div>
-                        <div className={style.div2}>
+                        <div className={style.deskImageAndSlider}>
                             <DeskSlider />
                         </div>
-                        <div className={style.div3}>
+                        <div className={style.deskSettings}>
                             <DeskSettings />
                         </div>
                     </div>

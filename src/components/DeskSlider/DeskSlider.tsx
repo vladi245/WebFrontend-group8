@@ -6,7 +6,7 @@ import desk_low from '../../assets/desk_normal.png';
 
 
 const DeskSlider = () => {
-    const [value, setValue] = useState<number>(1);
+    const [value, setValue] = useState<number>(60);
 
     const Change = (e: ChangeEvent<HTMLInputElement>): void => {
         setValue(Number(e.target.value));

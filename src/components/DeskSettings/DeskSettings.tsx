@@ -2,7 +2,7 @@ import { useState } from 'react';
 import style from './DeskSettings.module.css';
 
 const DeskSettings = () => {
-    const [defaultValue, setDefaultValue] = useState<number>(120.1);
+    const [defaultValue, setDefaultValue] = useState<number>(120);
 
     const addOne = () => {
         setDefaultValue(prev => prev + 1);
@@ -18,7 +18,7 @@ const DeskSettings = () => {
             <p className={style.SettingsText}> Save Current Height As Preferred </p>
             <button className={style.SaveButton}>confirm</button>
             <p className={style.SettingsText}> Preferred Height (Cm) - Manual</p>
-            <div className={style.parent}>
+            <div className={style.valueAndChangeButtonsGrid}>
                 <label className={style.Label}> {defaultValue} </label>
                 <button className={style.PlusButton} onClick={addOne}>+</button>
                 <button className={style.MinusButton} onClick={subractOne}>-</button>

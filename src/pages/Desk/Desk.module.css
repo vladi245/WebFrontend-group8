@@ -25,24 +25,24 @@
     padding-left: 10rem;
 }
 
-.parent {
+.deskComponentsGridSetup {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto auto auto;
     gap: 20px;
 }
 
-.div1 {
+.deskConnectionStatus {
     grid-column: 1 / 3;
     grid-row: 1;
 }
 
-.div2 {
+.deskImageAndSlider {
     grid-column: 1 / 3;
     grid-row: 2 / 4;
 }
 
-.div3 {
+.deskSettings {
     grid-column: 3 / 5;
     grid-row: 1 / 4;
 }
