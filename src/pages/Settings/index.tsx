@@ -1,32 +1,16 @@
 import style from './Settings.module.css'
 import Logo from '../../components/Logo/Logo'
-import Popup from 'reactjs-popup';
+import Modal from '../../components/DeletePopUp/DeletePopUp.module.css';
 import 'reactjs-popup/dist/index.css';
 
-
-const DeleteButton = () => {
-    return (
-        <div className={style.buttonContainer}>
-            <button className={style.DeleteButton}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7 21q-.825 0-1.412-.587T5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413T17 21zm2-4h2V8H9zm4 0h2V8h-2z" />
-                </svg>
-                Delete account
-            </button>
-
-        </div>
-
-    );
-};
-
-
 export default function Settings() {
-    return (
-        <div className={style.settingsContainer}>
-            <Logo />
-            <h1 className={style.settingsText}>
-                Settings
-            </h1>
-            <DeleteButton />
-        </div>
-    )
+    return
+    <div className={style.settingsContainer}>
+        <Logo />
+        <h1 className={style.settingsText}>
+            Settings
+        </h1>
+        <Modal />
+    </div>
+
 };

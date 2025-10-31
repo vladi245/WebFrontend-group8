@@ -1,0 +1,35 @@
+.btnmodal {
+    background-color: red;
+    color: white;
+    font-size: 24px;
+    padding: 10px;
+}
+
+.modal {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+}
+
+
+.closemodal {
+    background-color: white;
+    color: black;
+    font-size: 24px;
+    padding: 10px;
+}
+
+.DeleteAccount {
+    background-color: red;
+    color: white;
+    font-size: 24px;
+    padding: 10px;
+}
+
+.modalcontent {
+    color: black;
+    font-size: 18px;
+    padding: 10px;
+}
+
+;
