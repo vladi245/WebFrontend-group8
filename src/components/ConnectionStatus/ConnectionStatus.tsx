@@ -5,7 +5,7 @@ const ConnectionStatus = () => {
   // the isConnected is just a placeholder for now, later when api will be integrated it will be displaying real status
   let currentDesk: string = "";
   let StatusColor: string = "red";
-  const isConnected = true;
+  const isConnected = false;
   if (isConnected) {
     connection = "Connected: ";
     currentDesk = "desk_23";
