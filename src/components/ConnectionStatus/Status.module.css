@@ -11,3 +11,21 @@
     font-size: 14px;
     border-radius: 10px;
 }
+
+.StatusCircle {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    display: flex;
+    margin-right: 20px;
+    align-self: center;
+}
+
+.StatusText {
+    font-size: 14px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+}

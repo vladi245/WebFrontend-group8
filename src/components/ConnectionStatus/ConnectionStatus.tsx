@@ -1,17 +1,17 @@
 import style from './ConnectionStatus.module.css';
-
+import Status from './Status';
 const ConnectionStatus = () => {
   let connection: string = "Disconnected";
   // the isConnected is just a placeholder for now, later when api will be integrated it will be displaying real status
   let currentDesk: string = "";
   let StatusColor: string = "red";
-  const isConnected = false;
+  const isConnected = true;
   if (isConnected) {
-    connection = "Connected";
+    connection = "Connected: ";
     currentDesk = "desk_23";
     StatusColor = "green";
   } else {
-    connection = "Disconnected";
+    connection = "Disconnected:";
     currentDesk = "";
     StatusColor = "red";
   }
@@ -19,9 +19,7 @@ const ConnectionStatus = () => {
 
   return (
     <div className={style.ConnectionContainer}>
-      <span className={style.StatusCircle} style={{ backgroundColor: StatusColor }}></span>
-      <p> <span className={style.StatusText} style={{ color: StatusColor }}>{connection}</span> {currentDesk}</p>
-
+      <Status statusColor={StatusColor} connectionLabel={connection} currentDeskLabel={currentDesk} />
     </div>
   );
 };
