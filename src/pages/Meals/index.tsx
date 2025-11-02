@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Logo from "../../components/Logo/Logo";
 import FoodStats from "../../components/Stats/FoodStats"; 
+import FoodPerformance from '../../components/Performance/FoodPerformance';
 import style from "./Meals.module.css";
 
 interface StatsData {
@@ -9,14 +10,21 @@ interface StatsData {
   averageIntake: number;
 }
 
+interface FoodPerformanceData {
+    day: string;
+    caloriesEaten: number;
+}
+
 export default function Meals() {
   const [statsData, setStatsData] = useState<StatsData>({
     totalMeals: 0,
     caloriesEaten: 0,
     averageIntake: 0,
   });
+  const [foodPerformanceData, setFoodPerformanceData] = useState<FoodPerformanceData[]>([]);
+      const [loading, setLoading] = useState(true);
 
-  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     const fetchMealsData = async () => {
@@ -28,7 +36,19 @@ export default function Meals() {
           averageIntake: 1789,
         };
 
+        const mockFoodPerformanceData: FoodPerformanceData[] = [
+                    { day: 'Mon', caloriesEaten: 1678 },
+                    { day: 'Tue', caloriesEaten: 1567 },
+                    { day: 'Wed', caloriesEaten: 1207 },
+                    { day: 'Thu', caloriesEaten: 1345 },
+                    { day: 'Fri', caloriesEaten: 1123 },
+                    { day: 'Sat', caloriesEaten: 2897 },
+                    { day: 'Sun', caloriesEaten: 1964 },
+                ];
+
         setStatsData(mockStatsData);
+        setFoodPerformanceData(mockFoodPerformanceData);
+
         setLoading(false);
       } catch (error) {
         console.error("Failed to fetch meals data:", error);
@@ -43,6 +63,7 @@ export default function Meals() {
     <div className={style.container}>
       <Logo />
       {!loading && <FoodStats data={statsData} />}
+      {!loading && <FoodPerformance data={foodPerformanceData} />}
     </div>
   );
 }
