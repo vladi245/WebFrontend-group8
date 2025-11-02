@@ -1,18 +1,16 @@
 import style from './Performance.module.css'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-const Performance = () => {
-    // Mock data for the chart
-    const data = [
-        { day: 'Mon', calories: 420 },
-        { day: 'Tue', calories: 280 },
-        { day: 'Wed', calories: 520 },
-        { day: 'Thu', calories: 680 },
-        { day: 'Fri', calories: 920 },
-        { day: 'Sat', calories: 450 },
-        { day: 'Sun', calories: 1250 },
-    ];
+interface PerformanceData {
+    day: string;
+    calories: number;
+}
 
+interface PerformanceProps {
+    data: PerformanceData[];
+}
+
+const Performance = ({ data }: PerformanceProps) => {
     return (
         <div className={style.performanceContainer}>
             <div className={style.header}>
