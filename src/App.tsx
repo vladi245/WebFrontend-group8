@@ -8,6 +8,7 @@ import AboutUs from './pages/AboutUs'
 import Workout from './pages/Workout'
 import Settings from './pages/Settings'
 import Friends from './pages/Friends'
+import Dashboard from './pages/Dashboard'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/error" element={<ErrorPage />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/workout" element={<Workout />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/friends" element={<Friends />} />
           <Route path="*" element={<Navigate to="/error" replace />} />

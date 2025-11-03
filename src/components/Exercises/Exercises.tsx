@@ -10,77 +10,61 @@ interface Exercise {
 }
 
 const Exercises = () => {
-    // Mock data
+    // mock data
     const [availableExercises, setAvailableExercises] = useState<Exercise[]>([
         { id: 1, name: 'Leg Press', sets: 3, reps: 15, muscleGroups: ['Glutes', 'Hamstrings', 'Quadriceps'] },
         { id: 2, name: 'Bench Press', sets: 4, reps: 10, muscleGroups: ['Chest', 'Triceps', 'Shoulders'] },
         { id: 3, name: 'Deadlift', sets: 3, reps: 8, muscleGroups: ['Back', 'Hamstrings', 'Glutes'] },
         { id: 4, name: 'Squats', sets: 4, reps: 12, muscleGroups: ['Quadriceps', 'Glutes', 'Hamstrings'] },
         { id: 5, name: 'Pull-ups', sets: 3, reps: 10, muscleGroups: ['Back', 'Biceps', 'Shoulders'] },
+        { id: 6, name: 'Shoulder Press', sets: 3, reps: 12, muscleGroups: ['Shoulders', 'Triceps'] },
+        { id: 7, name: 'Bicep Curls', sets: 3, reps: 15, muscleGroups: ['Biceps'] },
+        { id: 8, name: 'Tricep Dips', sets: 3, reps: 12, muscleGroups: ['Triceps', 'Chest'] },
     ]);
 
     const [completedExercises, setCompletedExercises] = useState<Exercise[]>([]);
-    const [draggedExercise, setDraggedExercise] = useState<Exercise | null>(null);
-    const [dragSource, setDragSource] = useState<'available' | 'completed' | null>(null);
 
-    const handleDragStart = (exercise: Exercise, source: 'available' | 'completed') => {
-        setDraggedExercise(exercise);
-        setDragSource(source);
+    const addToCompleted = (exercise: Exercise) => {
+        setCompletedExercises([...completedExercises, exercise]);
+        setAvailableExercises(availableExercises.filter(ex => ex.id !== exercise.id));
     };
 
-    const handleDragOver = (e: React.DragEvent) => {
-        e.preventDefault();
-    };
-
-    const handleDropToCompleted = () => {
-        if (draggedExercise && dragSource === 'available') {
-            setCompletedExercises([...completedExercises, draggedExercise]);
-            setAvailableExercises(availableExercises.filter(ex => ex.id !== draggedExercise.id));
-        }
-        setDraggedExercise(null);
-        setDragSource(null);
-    };
-
-    const handleDropToAvailable = () => {
-        if (draggedExercise && dragSource === 'completed') {
-            setAvailableExercises([...availableExercises, draggedExercise]);
-            setCompletedExercises(completedExercises.filter(ex => ex.id !== draggedExercise.id));
-        }
-        setDraggedExercise(null);
-        setDragSource(null);
+    const removeFromCompleted = (exercise: Exercise) => {
+        setAvailableExercises([...availableExercises, exercise]);
+        setCompletedExercises(completedExercises.filter(ex => ex.id !== exercise.id));
     };
 
     return (
         <div className={style.exercisesContainer}>
             <div className={style.exercisesSection}>
                 <h2 className={style.sectionTitle}>Exercises</h2>
-                <div
-                    className={style.exerciseList}
-                    onDragOver={handleDragOver}
-                    onDrop={handleDropToAvailable}
-                >
+                <div className={style.exerciseList}>
                     {availableExercises.map((exercise) => (
-                        <div
-                            key={exercise.id}
-                            className={style.exerciseCard}
-                            draggable
-                            onDragStart={() => handleDragStart(exercise, 'available')}
-                        >
-                            <div className={style.exerciseInfo}>
-                                <h3 className={style.exerciseName}>{exercise.name}</h3>
-                                <p className={style.exerciseDetails}>
-                                    {exercise.sets} sets x {exercise.reps} reps
-                                </p>
-                            </div>
-                            {exercise.muscleGroups.length > 0 && (
-                                <div className={style.muscleTags}>
-                                    {exercise.muscleGroups.map((muscle, index) => (
-                                        <span key={index} className={style.muscleTag}>
-                                            {muscle}
-                                        </span>
-                                    ))}
+                        <div key={exercise.id} className={style.exerciseCard}>
+                            <div className={style.exerciseContent}>
+                                <div className={style.exerciseInfo}>
+                                    <h3 className={style.exerciseName}>{exercise.name}</h3>
+                                    <p className={style.exerciseDetails}>
+                                        {exercise.sets} sets x {exercise.reps} reps
+                                    </p>
                                 </div>
-                            )}
+                                {exercise.muscleGroups.length > 0 && (
+                                    <div className={style.muscleTags}>
+                                        {exercise.muscleGroups.map((muscle, index) => (
+                                            <span key={index} className={style.muscleTag}>
+                                                {muscle}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                            <button
+                                className={style.addButton}
+                                onClick={() => addToCompleted(exercise)}
+                                title="Add to completed"
+                            >
+                                +
+                            </button>
                         </div>
                     ))}
                 </div>
@@ -88,24 +72,24 @@ const Exercises = () => {
 
             <div className={style.completedSection}>
                 <h2 className={style.sectionTitle}>Exercises Done</h2>
-                <div
-                    className={style.exerciseList}
-                    onDragOver={handleDragOver}
-                    onDrop={handleDropToCompleted}
-                >
+                <div className={style.exerciseList}>
                     {completedExercises.map((exercise) => (
-                        <div
-                            key={exercise.id}
-                            className={style.exerciseCard}
-                            draggable
-                            onDragStart={() => handleDragStart(exercise, 'completed')}
-                        >
-                            <div className={style.exerciseInfo}>
-                                <h3 className={style.exerciseName}>{exercise.name}</h3>
-                                <p className={style.exerciseDetails}>
-                                    {exercise.sets} sets x {exercise.reps} reps
-                                </p>
+                        <div key={exercise.id} className={style.exerciseCard}>
+                            <div className={style.exerciseContent}>
+                                <div className={style.exerciseInfo}>
+                                    <h3 className={style.exerciseName}>{exercise.name}</h3>
+                                    <p className={style.exerciseDetails}>
+                                        {exercise.sets} sets x {exercise.reps} reps
+                                    </p>
+                                </div>
                             </div>
+                            <button
+                                className={style.removeButton}
+                                onClick={() => removeFromCompleted(exercise)}
+                                title="Remove from completed"
+                            >
+                                −
+                            </button>
                         </div>
                     ))}
                 </div>
