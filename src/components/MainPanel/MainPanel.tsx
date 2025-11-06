@@ -1,6 +1,17 @@
+import { useNavigate } from 'react-router-dom';
 import style from './MainPanel.module.css';
 
 const MainPanel = () => {
+    const navigate = useNavigate();
+
+    const handleStartJourney = () => {
+        navigate('/login');
+    };
+
+    const handleExplorePrograms = () => {
+        navigate('/login');
+    };
+
     return (
         <div className={style.mainpanel}>
             <div className={style.content}>
@@ -15,10 +26,10 @@ const MainPanel = () => {
                 </p>
 
                 <div className={style.buttonContainer}>
-                    <button className={style.primaryButton}>
+                    <button className={style.primaryButton} onClick={handleStartJourney}>
                         Start Your Journey
                     </button>
-                    <button className={style.secondaryButton}>
+                    <button className={style.secondaryButton} onClick={handleExplorePrograms}>
                         Explore Programs
                     </button>
                 </div>
