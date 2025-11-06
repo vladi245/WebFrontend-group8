@@ -3,16 +3,23 @@ import desk_high from '../../assets/desk_high.png';
 import desk_medium from '../../assets/desk_low.png';
 import desk_low from '../../assets/desk_normal.png';
 import SliderValue from './SliderValue';
-import { useState, type ChangeEvent } from 'react';
+import React, { useState, useEffect, type ChangeEvent } from 'react';
 
+interface DeskSliderProps {
+    initialHeight?: number;
+}
 
-const DeskSlider = () => {
-    const preferredHeight = 100;
-    const max_height = 140;
-    const min_height = 60;
+const DeskSlider: React.FC<DeskSliderProps> = ({ initialHeight = 100 }) => {
+    const max_height = initialHeight + 5;
+    const min_height = initialHeight - 5;
     const type = "range";
 
-    const [value, setValue] = useState(preferredHeight);
+    const [value, setValue] = useState(initialHeight);
+
+    // Update slider value when initialHeight changes
+    useEffect(() => {
+        setValue(initialHeight);
+    }, [initialHeight]);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
         setValue(Number(e.target.value));

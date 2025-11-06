@@ -1,9 +1,17 @@
+import { useState } from 'react';
 import Logo from '../../components/Logo/Logo'
 import ConnectionStatus from "../../components/ConnectionStatus/ConnectionStatus";
 import DeskSlider from '../../components/DeskSlider/DeskSlider';
 import style from './Desk.module.css';
 import DeskSettings from '../../components/DeskSettings/DeskSettings';
+
 export default function Desk() {
+    const [currentHeight, setCurrentHeight] = useState<number>(100);
+
+    const handleHeightChange = (height: number) => {
+        setCurrentHeight(height);
+    };
+
     return (
         <>
             <div className={style.logoContainer}>
@@ -14,10 +22,10 @@ export default function Desk() {
                             <ConnectionStatus />
                         </div>
                         <div className={style.deskImageAndSlider}>
-                            <DeskSlider />
+                            <DeskSlider initialHeight={currentHeight} />
                         </div>
                         <div className={style.deskSettings}>
-                            <DeskSettings />
+                            <DeskSettings onHeightChange={handleHeightChange} />
                         </div>
                     </div>
                 </div>
