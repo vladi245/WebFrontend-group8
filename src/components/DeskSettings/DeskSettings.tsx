@@ -17,41 +17,28 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
         if (onModeChange) {
             onModeChange(standing);
         }
+    };
+
+    const handleConfirm = () => {
         if (onHeightChange) {
-            onHeightChange(standing ? standingHeight : sittingHeight);
+            onHeightChange(isStanding ? standingHeight : sittingHeight);
         }
     };
 
     const addOneSitting = () => {
-        const newHeight = sittingHeight + 1;
-        setSittingHeight(newHeight);
-        if (!isStanding && onHeightChange) {
-            onHeightChange(newHeight);
-        }
+        setSittingHeight(prev => prev + 1);
     };
 
     const subtractOneSitting = () => {
-        const newHeight = sittingHeight - 1;
-        setSittingHeight(newHeight);
-        if (!isStanding && onHeightChange) {
-            onHeightChange(newHeight);
-        }
+        setSittingHeight(prev => prev - 1);
     };
 
     const addOneStanding = () => {
-        const newHeight = standingHeight + 1;
-        setStandingHeight(newHeight);
-        if (isStanding && onHeightChange) {
-            onHeightChange(newHeight);
-        }
+        setStandingHeight(prev => prev + 1);
     };
 
     const subtractOneStanding = () => {
-        const newHeight = standingHeight - 1;
-        setStandingHeight(newHeight);
-        if (isStanding && onHeightChange) {
-            onHeightChange(newHeight);
-        }
+        setStandingHeight(prev => prev - 1);
     };
 
     return (
@@ -71,7 +58,7 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
                 </div>
             </div>
             <p className={style.SettingsText}> Save Current Height As Preferred </p>
-            <button className={style.SaveButton}>confirm</button>
+            <button className={style.SaveButton} onClick={handleConfirm}>confirm</button>
             <p className={style.SettingsText}> Preferred Sitting Height (Cm) - Manual</p>
             <div className={style.valueAndChangeButtonsGrid}>
                 <label className={style.Label}> {sittingHeight} </label>
