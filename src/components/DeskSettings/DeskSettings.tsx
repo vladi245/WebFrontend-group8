@@ -10,6 +10,7 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
     const [sittingHeight, setSittingHeight] = useState<number>(100);
     const [standingHeight, setStandingHeight] = useState<number>(120);
     const [isStanding, setIsStanding] = useState<boolean>(false);
+    let position = isStanding ? "Sitting" : "Standing";
 
     const handleToggleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const standing = e.target.checked;
@@ -18,6 +19,7 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
             onModeChange(standing);
         }
     };
+
 
     const handleConfirm = () => {
         if (onHeightChange) {
@@ -54,7 +56,7 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
                         checked={isStanding}
                         onChange={handleToggleChange}
                     />
-                    <label htmlFor="switch1">Standing</label>
+                    <label htmlFor="switch1">{position}</label>
                 </div>
             </div>
             <p className={style.SettingsText}> Save Current Height As Preferred </p>

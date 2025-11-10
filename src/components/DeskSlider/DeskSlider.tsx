@@ -26,9 +26,9 @@ const DeskSlider: React.FC<DeskSliderProps> = ({ initialHeight = 100 }) => {
     };
 
     let currentImage: string;
-    if (value < 80) {
+    if (value < initialHeight - 2) {
         currentImage = desk_medium;
-    } else if (value >= 80 && value <= 120) {
+    } else if (value >= initialHeight - 2 && value <= initialHeight + 2) {
         currentImage = desk_low;
     } else {
         currentImage = desk_high;
