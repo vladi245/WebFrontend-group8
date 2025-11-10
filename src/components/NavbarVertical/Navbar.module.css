@@ -1,9 +1,10 @@
 .navbar {
-    position: absolute;
+    /* Pin the vertical navbar to the left and make it span the full viewport height */
+    position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    padding: 3rem 3rem;
+    bottom: 0;
+    padding: 3rem 1.5rem;
     background-color: transparent;
     font-family: 'Inter', sans-serif;
     font-weight: 800;
@@ -13,7 +14,6 @@
     -moz-user-select: none;
     -ms-user-select: none;
     background: linear-gradient(180deg, #0D0D0D 10%, #0096FF 100%);
-    max-height: 150vh;
     width: 220px;
 }
 
