@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import style from './Exercises.module.css';
 
 interface Exercise {
@@ -23,6 +23,14 @@ const Exercises = () => {
     ]);
 
     const [completedExercises, setCompletedExercises] = useState<Exercise[]>([]);
+    const [searchTerm, setSearchTerm] = useState<string>('');
+
+    // Filtered list derived from available exercises and the search term
+    const filteredAvailable = useMemo(() => {
+        const q = searchTerm.trim().toLowerCase();
+        if (!q) return availableExercises;
+        return availableExercises.filter((ex) => ex.name.toLowerCase().includes(q));
+    }, [availableExercises, searchTerm]);
 
     const addToCompleted = (exercise: Exercise) => {
         setCompletedExercises([...completedExercises, exercise]);
@@ -39,34 +47,48 @@ const Exercises = () => {
             <div className={style.exercisesSection}>
                 <h2 className={style.sectionTitle}>Exercises</h2>
                 <div className={style.exerciseList}>
-                    {availableExercises.map((exercise) => (
-                        <div key={exercise.id} className={style.exerciseCard}>
-                            <div className={style.exerciseContent}>
-                                <div className={style.exerciseInfo}>
-                                    <h3 className={style.exerciseName}>{exercise.name}</h3>
-                                    <p className={style.exerciseDetails}>
-                                        {exercise.sets} sets x {exercise.reps} reps
-                                    </p>
-                                </div>
-                                {exercise.muscleGroups.length > 0 && (
-                                    <div className={style.muscleTags}>
-                                        {exercise.muscleGroups.map((muscle, index) => (
-                                            <span key={index} className={style.muscleTag}>
-                                                {muscle}
-                                            </span>
-                                        ))}
+                    <div className={style.searchContainer}>
+                        <input
+                            className={style.searchInput}
+                            placeholder="Search exercises..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            aria-label="Search exercises by name"
+                        />
+                    </div>
+
+                    {filteredAvailable.length === 0 ? (
+                        <p className={style.noResults}>No exercises match "{searchTerm}"</p>
+                    ) : (
+                        filteredAvailable.map((exercise) => (
+                            <div key={exercise.id} className={style.exerciseCard}>
+                                <div className={style.exerciseContent}>
+                                    <div className={style.exerciseInfo}>
+                                        <h3 className={style.exerciseName}>{exercise.name}</h3>
+                                        <p className={style.exerciseDetails}>
+                                            {exercise.sets} sets x {exercise.reps} reps
+                                        </p>
                                     </div>
-                                )}
+                                    {exercise.muscleGroups.length > 0 && (
+                                        <div className={style.muscleTags}>
+                                            {exercise.muscleGroups.map((muscle, index) => (
+                                                <span key={index} className={style.muscleTag}>
+                                                    {muscle}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                                <button
+                                    className={style.addButton}
+                                    onClick={() => addToCompleted(exercise)}
+                                    title="Add to completed"
+                                >
+                                    +
+                                </button>
                             </div>
-                            <button
-                                className={style.addButton}
-                                onClick={() => addToCompleted(exercise)}
-                                title="Add to completed"
-                            >
-                                +
-                            </button>
-                        </div>
-                    ))}
+                        ))
+                    )}
                 </div>
             </div>
 

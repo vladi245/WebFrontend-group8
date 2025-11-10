@@ -116,6 +116,36 @@
     font-weight: 500;
 }
 
+.searchContainer {
+    margin-bottom: 12px;
+}
+
+.searchInput {
+    width: 96%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.02);
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.searchInput::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.searchInput:focus {
+    border-color: #0096FF;
+    box-shadow: 0 4px 12px rgba(0, 150, 255, 0.12);
+}
+
+.noResults {
+    color: rgba(255, 255, 255, 0.6);
+    padding: 12px 4px;
+}
+
 .addButton,
 .removeButton {
     flex-shrink: 0;
