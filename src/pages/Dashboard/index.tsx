@@ -5,6 +5,7 @@ import Seperator from '../../components/ui/Seperator/Seperator';
 import CalorieIntake from '../../components/CalorieIntake/CalorieIntake';
 import WaterCard from '../../components/WaterCard/WaterCard';
 import WorkoutCard from '../../components/WorkoutCard/WorkoutCard';
+import ConnectionStatus from "../../components/ConnectionStatus/ConnectionStatus";
 
 import StandingStats from '../../components/StandingStatsCard/StandingStatsCard';
 import FriendsActivity from '../../components/FriendsActivity/FriendsActivity';
@@ -14,27 +15,24 @@ export default function Home() {
     return (
         <>
             <Navbar />
-            <div style={{ marginLeft: '350px', padding: '20px' }}>
+            <div style={{ marginLeft: '350px', padding: '20px', overflowY: 'hidden'}}>
                 <Greeting name='Washington '/>
                 <div style={{ width: '50%' }}>
                     <Seperator variant="accent"/>
                 </div>
                 <h2 style={{ color: 'white', marginTop: '20px' }}>Today's stats</h2>
+                <div style={{display: 'flex', columnGap: '20px', marginBottom: '20px',  width: '80%'}}>
+                    <ConnectionStatus/>
+                </div>
 
+                <div style={{display: 'flex', columnGap: '20px', marginBottom: '20px',  width: '80%'}}>
                     <CalorieIntake current={1331} goal={2500} />
                     <WaterCard current={1.5} goal={3} />
+                    <WorkoutStatsCard calories={1560} />
 
-                <WorkoutStatsCard calories={1560} />
-                <StandingStats data={[
-                    { day: 'Mon', minutes: 120 },
-                    { day: 'Tue', minutes: 150 },
-                    { day: 'Wed', minutes: 90 },
-                    { day: 'Thu', minutes: 180 },
-                    { day: 'Fri', minutes: 160 },
-                    { day: 'Sat', minutes: 1040 },
-                    { day: 'Sun', minutes: 200 },
-                ]} />
-                    
+                </div>
+                <div style={{display: 'flex', columnGap: '20px', marginBottom: '20px',  width: '80%'}}>
+
                     <WorkoutCard data={[
                         { day: 'Mon', minutes: 30 },
                         { day: 'Tue', minutes: 45 },
@@ -44,7 +42,7 @@ export default function Home() {
                         { day: 'Sat', minutes: 40 },
                         { day: 'Sun', minutes: 70 },
                     ]} />
-                <FriendsActivity activities={[
+                    <FriendsActivity activities={[
                         {
                         id: 1,
                         username: 'washington',
@@ -59,6 +57,17 @@ export default function Home() {
                         },
 
                     ]}/>
+                    <StandingStats data={[
+                        { day: 'Mon', minutes: 120 },
+                        { day: 'Tue', minutes: 150 },
+                        { day: 'Wed', minutes: 90 },
+                        { day: 'Thu', minutes: 180 },
+                        { day: 'Fri', minutes: 160 },
+                        { day: 'Sat', minutes: 1040 },
+                        { day: 'Sun', minutes: 200 },
+                    ]} />
+                </div>
+
 
 
             </div>
