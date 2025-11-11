@@ -26,7 +26,7 @@ const StandingStats = ({ data }: StandingStatsProps) => {
       </div>
       <div className={styles.content}>
         <div className={styles.chartContainer}>
-          <ResponsiveContainer width="100%" height={200}>
+          <ResponsiveContainer width="100%" height={400}>
             <BarChart data={data}>
               <CartesianGrid stroke="#222" strokeDasharray="3 3" />
               <XAxis dataKey="day" stroke="#888" />
