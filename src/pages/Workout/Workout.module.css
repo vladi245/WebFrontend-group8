@@ -7,10 +7,3 @@
     padding-top: 2rem;
     padding-bottom: 4rem;
 }
-
-.container> :first-child {
-    position: static !important;
-    margin-bottom: 3rem;
-    width: 100%;
-    align-self: flex-start;
-}

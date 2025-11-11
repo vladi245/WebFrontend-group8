@@ -1,6 +1,5 @@
 import DeleteButton from "../../components/DeleteButton/DeleteButton";
 import style from './Settings.module.css'
-import Logo from '../../components/Logo/Logo'
 import Navbar from "../../components/NavbarVertical/Navbar";
 export default function Settings() {
     return (
