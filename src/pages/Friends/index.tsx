@@ -7,14 +7,22 @@ import FriendsActivityFeed from '../../components/Friends/FriendsActivityFeed/Fr
 import FriendsTopNav from '../../components/Friends/FriendsTopNav/FriendsTopNav';
 import FriendSuggestions from '../../components/Friends/FriendSuggestions/FriendSuggestions';
 import { User } from 'lucide-react';
+import Navbar from '../../components/NavbarVertical/Navbar';
 
 const FriendsPage = () => {
     const userIcon = <User size={24} />;
 
     return (
+        <>
+        <Navbar />
+
         <div className={style.friendsPage}>
-            <Logo />
+            <div style={{background: 'transparent', height: '10px'}}>
+
+            </div>
+
             <div className={style.leftColumn}>
+
                 <UserProfile />
                 <FollowRequests />
                 
@@ -42,6 +50,7 @@ const FriendsPage = () => {
                 <FriendSuggestions />
             </div>
         </div>
+        </>
     );
 };
 

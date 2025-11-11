@@ -3,8 +3,8 @@
     grid-template-columns: 30% 45% 25%;
     gap: 24px;
     padding: 40px;
-    min-height: 100vh;
-    background: #000000;
+    min-height: 90vh;
+    margin-left: 300px;
     color: #ffffff;
 }
 

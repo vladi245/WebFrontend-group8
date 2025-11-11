@@ -5,6 +5,7 @@ import Stats from '../../components/Stats/Stats';
 import Performance from '../../components/Performance/Performance';
 import Exercises from '../../components/Exercises/Exercises';
 import MuscleGroup from '../../components/MuscleGroup/MuscleGroup';
+import Navbar from '../../components/NavbarVertical/Navbar';
 
 interface StatsData {
     totalWorkouts: number;
@@ -66,12 +67,17 @@ export default function Workout() {
     }, []);
 
     return (
+        <>
+        <Navbar />
         <div className={style.container}>
-            <Logo />
+            <div style={{background: 'transparent', height: '40px'}}>
+
+            </div>
             {!loading && <Stats data={statsData} />}
             {!loading && <Performance data={performanceData} />}
             <Exercises />
             <MuscleGroup />
         </div>
+        </>
     );
 }
