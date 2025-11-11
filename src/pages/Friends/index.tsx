@@ -6,37 +6,39 @@ import ActivitySection from '../../components/Friends/ActivitySection/ActivitySe
 import FriendsActivityFeed from '../../components/Friends/FriendsActivityFeed/FriendsActivityFeed';
 import FriendsTopNav from '../../components/Friends/FriendsTopNav/FriendsTopNav';
 import FriendSuggestions from '../../components/Friends/FriendSuggestions/FriendSuggestions';
+import Navbar from '../../components/NavbarVertical/Navbar';
 import { User } from 'lucide-react';
 
 const FriendsPage = () => {
     const userIcon = <User size={24} />;
 
     return (
+
         <div className={style.friendsPage}>
-            <Logo />
+            <Navbar />
             <div className={style.leftColumn}>
                 <UserProfile />
                 <FollowRequests />
-                
-                <ActivitySection 
+
+                <ActivitySection
                     title="Last 7 Days"
                     icon={userIcon}
                     text="@user name started to following you."
                     timestamp="1d"
                 />
-                
-                <ActivitySection 
+
+                <ActivitySection
                     title="Your Latest Activity"
                     icon={userIcon}
                     text="Completed a 20 min desk workout"
                     timestamp="Mar 17, 2025"
                 />
             </div>
-            
+
             <div className={style.middleColumn}>
                 <FriendsActivityFeed />
             </div>
-            
+
             <div className={style.rightColumn}>
                 <FriendsTopNav />
                 <FriendSuggestions />

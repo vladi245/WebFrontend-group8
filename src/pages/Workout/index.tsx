@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import Logo from '../../components/Logo/Logo';
 import style from './Workout.module.css';
 import Stats from '../../components/Stats/Stats';
 import Performance from '../../components/Performance/Performance';

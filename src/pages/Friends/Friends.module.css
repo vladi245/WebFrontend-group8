@@ -1,6 +1,6 @@
 .friendsPage {
     display: grid;
-    grid-template-columns: 30% 45% 25%;
+    grid-template-columns: 220px 29% 33% 25%;
     gap: 24px;
     padding: 40px;
     min-height: 100vh;
@@ -8,14 +8,12 @@
     color: #ffffff;
 }
 
-.friendsPage > :first-child {
-    grid-column: 1 / -1;
-    margin-bottom: 20px;
-}
+
 
 .leftColumn {
     display: flex;
     flex-direction: column;
+    grid-column: 2 / 3;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 150, 255, 0.8));
     border-radius: 12px;
     padding: 24px;
@@ -25,6 +23,7 @@
 .middleColumn {
     display: flex;
     flex-direction: column;
+    grid-column: 3/4;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 150, 255, 0.8));
     border-radius: 12px;
     padding: 16px;
@@ -51,4 +50,3 @@
         gap: 16px;
     }
 }
-
