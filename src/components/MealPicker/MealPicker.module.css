@@ -1,0 +1,278 @@
+.mealsPlannerContainer {
+  width: 100%;
+  max-width: 1400px;
+  padding: 32px;
+  margin-top: 40px;
+  background-color: #0d0d0d;
+  border: 2px solid #0096ff;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  border-width: thin;
+}
+
+/* Sections */
+
+.foodLibrarySection,
+.mealsSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 24px 0;
+}
+
+/* Search */
+
+.searchContainer {
+  margin-bottom: 12px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: rgba(255, 255, 255, 0.02);
+  color: #ffffff;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.searchInput::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.searchInput:focus {
+  border-color: #0096ff;
+  box-shadow: 0 4px 12px rgba(0, 150, 255, 0.12);
+}
+
+/* Left side: food pills */
+
+.foodPillList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: rgba(0, 150, 255, 0.05);
+}
+
+/* Custom scrollbar */
+.foodPillList::-webkit-scrollbar {
+  width: 8px;
+}
+
+.foodPillList::-webkit-scrollbar-track {
+  background: rgba(0, 150, 255, 0.1);
+  border-radius: 4px;
+}
+
+.foodPillList::-webkit-scrollbar-thumb {
+  background: #0096ff;
+  border-radius: 4px;
+}
+
+.foodPillList::-webkit-scrollbar-thumb:hover {
+  background: #0077cc;
+}
+
+.foodPill {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid #0096ff;
+  background-color: rgba(0, 150, 255, 0.04);
+  color: #ffffff;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.foodPill:hover {
+  background-color: #0096ff;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 150, 255, 0.4);
+}
+
+/* Right side: tabs + meal list */
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.tabButton {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tabButton:hover {
+  border-color: #0096ff;
+  color: #ffffff;
+}
+
+.tabButtonActive {
+  background-color: #0096ff;
+  border-color: #0096ff;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 150, 255, 0.5);
+}
+
+.mealList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: rgba(0, 150, 255, 0.05);
+}
+
+/* reuse scrollbar styles */
+.mealList::-webkit-scrollbar {
+  width: 8px;
+}
+
+.mealList::-webkit-scrollbar-track {
+  background: rgba(0, 150, 255, 0.1);
+  border-radius: 4px;
+}
+
+.mealList::-webkit-scrollbar-thumb {
+  background: #0096ff;
+  border-radius: 4px;
+}
+
+.mealList::-webkit-scrollbar-thumb:hover {
+  background: #0077cc;
+}
+
+.mealRow {
+  background-color: #0d0d0d;
+  border: 1px solid #0096ff;
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.mealRow:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 150, 255, 0.3);
+}
+
+.mealText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mealName {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.mealCalories {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Remove button */
+
+.removeButton {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border: 2px solid #ff6e6e;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #ff6e6e;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.removeButton:hover {
+  background-color: #ff6e6e;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+/* No results text */
+
+.noResults {
+  color: rgba(255, 255, 255, 0.6);
+  padding: 8px 4px;
+  font-size: 13px;
+}
+
+/* Meal total */
+
+.mealTotal {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.mealTotalValue {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Responsive */
+
+@media (max-width: 1024px) {
+  .mealsPlannerContainer {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mealsPlannerContainer {
+    padding: 20px;
+  }
+
+  .sectionTitle {
+    font-size: 20px;
+  }
+
+  .mealName {
+    font-size: 14px;
+  }
+
+  .mealList {
+    max-height: 300px;
+  }
+}
