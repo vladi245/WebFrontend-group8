@@ -14,3 +14,7 @@
     width: 100%;
     align-self: flex-start;
 }
+
+.container > * + * {
+  margin-top: 2rem;
+}

@@ -41,9 +41,9 @@ const FoodPerformance = ({ data }: FoodPerformanceProps) => {
                         <Line
                             type="monotone"
                             dataKey="caloriesEaten"
-                            stroke="#FF6E6E"
+                            stroke="#7ED957"
                             strokeWidth={3}
-                            dot={{ fill: '#FF6E6E', r: 5 }}
+                            dot={{ fill: '#7ED957', r: 5 }}
                             activeDot={{ r: 7 }}
                         />
                     </LineChart>
@@ -51,7 +51,7 @@ const FoodPerformance = ({ data }: FoodPerformanceProps) => {
             </div>
             <div className={style.legend}>
                 <div className={style.legendItem}>
-                    <div className={style.legendDot}></div>
+                    <div className={`${style.legendDot} ${style.legendDotGreen}`}></div>
                     <span className={style.legendText}>Calories Consumed</span>
                 </div>
             </div>

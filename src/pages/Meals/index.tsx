@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import Logo from "../../components/Logo/Logo";
 import FoodStats from "../../components/Stats/FoodStats"; 
 import FoodPerformance from '../../components/Performance/FoodPerformance';
+import CalorieIntake from "../../components/CalorieIntake/CalorieIntake";
 import style from "./Meals.module.css";
+
 
 interface StatsData {
   totalMeals: number;
@@ -63,6 +65,7 @@ export default function Meals() {
     <div className={style.container}>
       <Logo />
       {!loading && <FoodStats data={statsData} />}
+      {!loading && <CalorieIntake current={1467} goal={2000} />}
       {!loading && <FoodPerformance data={foodPerformanceData} />}
     </div>
   );
