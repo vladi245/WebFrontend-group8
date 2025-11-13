@@ -4,6 +4,7 @@ import FoodStats from "../../components/Stats/FoodStats";
 import FoodPerformance from '../../components/Performance/FoodPerformance';
 import CalorieIntake from "../../components/CalorieIntake/CalorieIntake";
 import MealPicker from "../../components/MealPicker/MealPicker";
+import MealCaloriesBreakdown from "../../components/MealCaloriesBreakdown/MealCaloriesBreakdown";
 import style from "./Meals.module.css";
 
 
@@ -66,7 +67,19 @@ export default function Meals() {
     <div className={style.container}>
       <Logo />
       {!loading && <FoodStats data={statsData} />}
-      {!loading && <CalorieIntake current={1467} goal={2000} />}
+      <div className={style.calorieRow}>
+          <CalorieIntake current={1467} goal={2000} />
+
+          <MealCaloriesBreakdown
+            totalCalories={1467}
+            mealCalories={{
+              breakfast: 400,
+              lunch: 500,
+              dinner: 450,
+              snacks: 117,
+            }}
+          />
+        </div>
       {!loading && <MealPicker />}
       {!loading && <FoodPerformance data={foodPerformanceData} />}
     </div>

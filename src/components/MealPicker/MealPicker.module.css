@@ -12,7 +12,6 @@
   border-width: thin;
 }
 
-/* Sections */
 
 .foodLibrarySection,
 .mealsSection {
@@ -27,7 +26,6 @@
   margin: 0 0 24px 0;
 }
 
-/* Search */
 
 .searchContainer {
   margin-bottom: 12px;
@@ -54,7 +52,6 @@
   box-shadow: 0 4px 12px rgba(0, 150, 255, 0.12);
 }
 
-/* Left side: food pills */
 
 .foodPillList {
   display: flex;
@@ -67,7 +64,6 @@
   background-color: rgba(0, 150, 255, 0.05);
 }
 
-/* Custom scrollbar */
 .foodPillList::-webkit-scrollbar {
   width: 8px;
 }
@@ -104,8 +100,6 @@
   transform: translateY(-1px);
   box-shadow: 0 2px 6px rgba(0, 150, 255, 0.4);
 }
-
-/* Right side: tabs + meal list */
 
 .tabs {
   display: flex;
@@ -148,7 +142,6 @@
   background-color: rgba(0, 150, 255, 0.05);
 }
 
-/* reuse scrollbar styles */
 .mealList::-webkit-scrollbar {
   width: 8px;
 }
@@ -201,8 +194,6 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
-/* Remove button */
-
 .removeButton {
   flex-shrink: 0;
   width: 32px;
@@ -227,15 +218,11 @@
   transform: scale(1.05);
 }
 
-/* No results text */
-
 .noResults {
   color: rgba(255, 255, 255, 0.6);
   padding: 8px 4px;
   font-size: 13px;
 }
-
-/* Meal total */
 
 .mealTotal {
   margin-top: 12px;
@@ -249,8 +236,6 @@
   font-weight: 600;
   color: #ffffff;
 }
-
-/* Responsive */
 
 @media (max-width: 1024px) {
   .mealsPlannerContainer {
@@ -275,4 +260,24 @@
   .mealList {
     max-height: 300px;
   }
+}
+
+.tabBreakfast {
+  background-color: #e7ff6e !important;
+  color: #0d0d0d !important;
+}
+
+.tabLunch {
+  background-color: #ff9452 !important;
+  color: #0d0d0d !important;
+}
+
+.tabDinner {
+  background-color: #fd5696 !important;
+  color: #0d0d0d !important;
+}
+
+.tabSnacks {
+  background-color: #a763ff !important;
+  color: #ffffff !important;
 }

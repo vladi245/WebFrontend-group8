@@ -138,6 +138,14 @@ const MealPicker = () => {
         snacks: "Snacks",
     };
 
+    const activeTabColorClass: Record<MealKey, string> = {
+  breakfast: style.tabBreakfast,
+  lunch: style.tabLunch,
+  dinner: style.tabDinner,
+  snacks: style.tabSnacks,
+};
+
+
     // ---------------------------- UI -----------------------------
 
     return (
@@ -187,14 +195,15 @@ const MealPicker = () => {
                     key={mealKey}
                     type="button"
                     className={
-                    activeMeal === mealKey
-                        ? `${style.tabButton} ${style.tabButtonActive}`
+                        activeMeal === mealKey
+                        ? `${style.tabButton} ${style.tabButtonActive} ${activeTabColorClass[mealKey]}`
                         : style.tabButton
                     }
                     onClick={() => setActiveMeal(mealKey)}
-                >
+                    >
                     {tabLabel[mealKey]}
                 </button>
+
                 )
             )}
             </div>
