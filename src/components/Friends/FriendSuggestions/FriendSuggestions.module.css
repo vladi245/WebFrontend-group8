@@ -1,0 +1,108 @@
+.suggestionsContainer {
+    margin-bottom: 24px;
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.sectionTitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+}
+
+.seeAllLink {
+    color: #007AFF;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.seeAllLink:hover {
+    text-decoration: underline;
+}
+
+.suggestionsList {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+}
+
+.suggestionCard {
+    min-width: 200px;
+    padding: 16px;
+    background: linear-gradient(to left, #0070BE, #003458);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.userIcon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #1e1e1e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888888;
+}
+
+.username {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.buttons {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.followButton,
+.removeButton {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.removeButton {
+    background: #1e1e1e;
+    color: #888888;
+    border: 1px solid #1e1e1e;
+}
+
+.removeButton:hover {
+    border-color: #666666;
+    color: #ffffff;
+}
+
+.followButton {
+    background: #007AFF;
+    color: #ffffff;
+}
+
+.followButton:hover {
+    background: #0056b3;
+}
+
+.tagline {
+    font-size: 12px;
+    color: #888888;
+    margin: 0;
+    text-align: center;
+}
+
+
+

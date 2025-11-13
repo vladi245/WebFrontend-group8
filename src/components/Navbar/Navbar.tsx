@@ -12,9 +12,6 @@ const Navbar = () => {
             <div className={style['navbar-center']}>
                 <ul className={style['nav-links']}>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/dashboard">Dashboard</a></li> {/*here would have to add the dropdown in the future */}
-                    <li><a href="/community">Community</a></li>
-                    <li><a href="/subscriptions">Subscriptions</a></li>
                     <li><a href="/about">About Us</a></li>
 
                 </ul>

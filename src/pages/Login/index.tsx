@@ -1,12 +1,27 @@
 import Logo from '../../components/Logo/Logo'
 import './Login.css'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react';
 
 export default function Login() {
     const navigate = useNavigate();
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     const handleSignUpRedirect = () => {
         navigate('/sign-up');
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        // Basic login check
+        if (username === 'login' && password === 'password') {
+            navigate('/dashboard');
+        } else {
+            setError('Invalid username or password');
+        }
     };
 
     return (
@@ -56,31 +71,41 @@ export default function Login() {
                         <span className="login-title">Login</span>
                         <span className="to-account">To Your Account.</span>
                     </h1>
-                    <form className="login-form">
+                    <form className="login-form" onSubmit={handleSubmit}>
                         <div className="input-group">
                             <div className="input-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 12q-1.65 0-2.825-1.175T8 8t1.175-2.825T12 4t2.825 1.175T16 8t-1.175 2.825T12 12m-8 6v-.8q0-.85.438-1.562T5.6 14.55q1.55-.775 3.15-1.162T12 13t3.25.388t3.15 1.162q.725.375 1.163 1.088T20 17.2v.8q0 .825-.587 1.413T18 20H6q-.825 0-1.412-.587T4 18" /></svg>
+                                {/* username icon */}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M12 12q-1.65 0-2.825-1.175T8 8t1.175-2.825T12 4t2.825 1.175T16 8t-1.175 2.825T12 12m-8 6v-.8q0-.85.438-1.562T5.6 14.55q1.55-.775 3.15-1.162T12 13t3.25.388t3.15 1.162q.725.375 1.163 1.088T20 17.2v.8q0 .825-.587 1.413T18 20H6q-.825 0-1.412-.587T4 18" />
+                                </svg>
                             </div>
                             <input
                                 type="text"
                                 placeholder="Enter your username"
                                 className="form-input"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
                             />
                         </div>
+
                         <div className="input-group">
                             <div className="input-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 22q-3.475-.875-5.738-3.988T4 11.1V5l8-3l8 3v6.1q0 3.8-2.262 6.913T12 22m0-2.1q2.6-.825 4.3-3.3t1.7-5.5V6.375l-6-2.25l-6 2.25V11.1q0 3.025 1.7 5.5t4.3 3.3M10 16h4q.425 0 .713-.288T15 15v-3q0-.425-.288-.712T14 11v-1q0-.825-.587-1.412T12 8t-1.412.588T10 10v1q-.425 0-.712.288T9 12v3q0 .425.288.713T10 16m1-5v-1q0-.425.288-.712T12 9t.713.288T13 10v1z" /></svg>
+                                {/* password icon */}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M12 22q-3.475-.875-5.738-3.988T4 11.1V5l8-3l8 3v6.1q0 3.8-2.262 6.913T12 22m0-2.1q2.6-.825 4.3-3.3t1.7-5.5V6.375l-6-2.25l-6 2.25V11.1q0 3.025 1.7 5.5t4.3 3.3M10 16h4q.425 0 .713-.288T15 15v-3q0-.425-.288-.712T14 11v-1q0-.825-.587-1.412T12 8t-1.412.588T10 10v1q-.425 0-.712.288T9 12v3q0 .425.288.713T10 16m1-5v-1q0-.425.288-.712T12 9t.713.288T13 10v1z" />
+                                </svg>
                             </div>
                             <input
                                 type="password"
                                 placeholder="Enter your password"
                                 className="form-input"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
-                            <div className="password-toggle">
-                                {/*this one is from here https://icon-sets.iconify.design/mdi-light/?icon-filter=eye   TODO place into documentation*/}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M11.5 18c4 0 7.46-2.22 9.24-5.5C18.96 9.22 15.5 7 11.5 7s-7.46 2.22-9.24 5.5C4.04 15.78 7.5 18 11.5 18m0-12c4.56 0 8.5 2.65 10.36 6.5C20 16.35 16.06 19 11.5 19S3 16.35 1.14 12.5C3 8.65 6.94 6 11.5 6m0 2C14 8 16 10 16 12.5S14 17 11.5 17S7 15 7 12.5S9 8 11.5 8m0 1A3.5 3.5 0 0 0 8 12.5a3.5 3.5 0 0 0 3.5 3.5a3.5 3.5 0 0 0 3.5-3.5A3.5 3.5 0 0 0 11.5 9" /></svg>
-                            </div>
                         </div>
+
+                        {error && <p className="error-text">{error}</p>}
+
                         <button type="submit" className="login-button">Login</button>
                     </form>
                 </div>
