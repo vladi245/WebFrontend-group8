@@ -10,13 +10,13 @@ interface MealCalories {
 
 interface Props {
   mealCalories: MealCalories;
-  totalCalories: number; // total eaten today
+  totalCalories: number; //total eaten today
 }
 
 const MealCaloriesBreakdown = ({ mealCalories, totalCalories }: Props) => {
   const { breakfast, lunch, dinner, snacks } = mealCalories;
 
-  const safeTotal = totalCalories > 0 ? totalCalories : 1; // avoid /0
+  const safeTotal = totalCalories > 0 ? totalCalories : 1; //avoid dividing by zero (thats why its 1)
 
   const segments = [
     { key: "Breakfast", value: breakfast, colorClass: style.breakfast },
