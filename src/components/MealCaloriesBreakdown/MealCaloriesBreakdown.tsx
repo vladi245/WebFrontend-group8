@@ -1,4 +1,3 @@
-// src/components/MealCaloriesBreakdown/MealCaloriesBreakdown.tsx
 import style from "./MealCaloriesBreakdown.module.css";
 
 interface MealCalories {
