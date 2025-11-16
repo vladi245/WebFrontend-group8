@@ -35,8 +35,8 @@
   width: 100%;
   padding: 10px 12px;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid #FFFFFF14;
+  background-color: #FFFFFF05;
   color: #ffffff;
   font-size: 14px;
   outline: none;
@@ -44,7 +44,7 @@
 }
 
 .searchInput::placeholder {
-  color: rgba(255, 255, 255, 0.45);
+  color: #FFFFFF73;
 }
 
 .searchInput:focus {
@@ -61,7 +61,7 @@
   overflow-y: auto;
   padding: 12px;
   border-radius: 8px;
-  background-color: rgba(0, 150, 255, 0.05);
+  background-color: #0096FF0D;
 }
 
 .foodPillList::-webkit-scrollbar {
@@ -69,7 +69,7 @@
 }
 
 .foodPillList::-webkit-scrollbar-track {
-  background: rgba(0, 150, 255, 0.1);
+  background: #0096FF1A;
   border-radius: 4px;
 }
 
@@ -86,7 +86,7 @@
   padding: 6px 12px;
   border-radius: 999px;
   border: 1px solid #0096ff;
-  background-color: rgba(0, 150, 255, 0.04);
+  background-color: #0096FF0A;
   color: #ffffff;
   font-size: 13px;
   cursor: pointer;
@@ -111,9 +111,9 @@
 .tabButton {
   padding: 6px 12px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid #FFFFFF26;
   background-color: transparent;
-  color: rgba(255, 255, 255, 0.7);
+  color: #FFFFFFB3;
   font-size: 13px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -139,7 +139,7 @@
   overflow-y: auto;
   padding: 12px;
   border-radius: 8px;
-  background-color: rgba(0, 150, 255, 0.05);
+  background-color: #0096FF0D;
 }
 
 .mealList::-webkit-scrollbar {
@@ -147,7 +147,7 @@
 }
 
 .mealList::-webkit-scrollbar-track {
-  background: rgba(0, 150, 255, 0.1);
+  background: #0096FF1A;
   border-radius: 4px;
 }
 
@@ -191,7 +191,7 @@
 
 .mealCalories {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.6);
+  color: #FFFFFF99;
 }
 
 .removeButton {
@@ -219,7 +219,7 @@
 }
 
 .noResults {
-  color: rgba(255, 255, 255, 0.6);
+  color: #FFFFFF99;
   padding: 8px 4px;
   font-size: 13px;
 }
@@ -229,7 +229,7 @@
   display: flex;
   justify-content: space-between;
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.8);
+  color: #FFFFFFCC;
 }
 
 .mealTotalValue {
@@ -263,21 +263,21 @@
 }
 
 .tabBreakfast {
-  background-color: #e7ff6e !important;
-  color: #0d0d0d !important;
+  background-color: #e7ff6e;
+  color: #0d0d0d;
 }
 
 .tabLunch {
-  background-color: #ff9452 !important;
-  color: #0d0d0d !important;
+  background-color: #ff9452;
+  color: #0d0d0d;
 }
 
 .tabDinner {
-  background-color: #fd5696 !important;
-  color: #0d0d0d !important;
+  background-color: #fd5696;
+  color: #0d0d0d;
 }
 
 .tabSnacks {
-  background-color: #a763ff !important;
-  color: #ffffff !important;
+  background-color: #a763ff;
+  color: #ffffff;
 }
