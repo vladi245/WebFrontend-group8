@@ -2,24 +2,29 @@
   margin-left: 350px;
   padding: 20px;
   color: white;
+  font-family: system-ui, sans-serif;
 }
 
-title {
-  font-size: 1.6rem;
-  margin-bottom: 16px;
+.title {
+  color: white;
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  font-weight: 600;
 }
 
 .addCard {
   border: 1px solid #0096FF;
   background: #111;
-  padding: 16px;
+  padding: 1rem;
   border-radius: 12px;
   margin-bottom: 20px;
 }
 
 .sectionTitle {
-  font-size: 1.2rem;
-  margin-bottom: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: white;
 }
 
 .formGrid {
@@ -31,41 +36,47 @@ title {
 
 .input {
   background: #1a1a1a;
-  border: 1px solid #333;
-  padding: 8px;
-  border-radius: 8px;
+  border: 1px solid #222;
+  padding: 10px;
+  border-radius: 10px;
   color: white;
+  font-size: 0.95rem;
 }
 
 .addBtn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: #0b2f4a;
+  gap: 6px;
+  background: rgba(0, 150, 255, 0.08);
   border: 1px solid #0096FF;
   padding: 8px 14px;
   border-radius: 10px;
   cursor: pointer;
   color: #0096FF;
   font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.addBtn:hover {
+  background: rgba(0, 150, 255, 0.15);
 }
 
 .addIcon {
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .searchWrap {
-  margin-top: 16px;
-  margin-bottom: 16px;
+  margin: 16px 0;
 }
 
 .searchInput {
-  width: 400px;
+  width: 420px;
   background: #111;
-  border: 1px solid #333;
-  padding: 8px;
+  border: 1px solid #222;
+  padding: 10px;
   border-radius: 10px;
   color: white;
+  font-size: 0.95rem;
 }
 
 .listWrap {
@@ -85,13 +96,15 @@ title {
 }
 
 .exerciseName {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 600;
+  color: white;
 }
 
 .exerciseDetails {
-  color: #bbb;
+  color: #888;
   margin-bottom: 6px;
+  font-size: 0.9rem;
 }
 
 .tags {
@@ -102,4 +115,30 @@ title {
 
 .tag {
   background: #111;
+  border: 1px solid #222;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: #bbb;
+}
+
+.deleteBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #4a1f1f;
+  background: rgba(140, 20, 20, 0.06);
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.deleteBtn:hover {
+  background: rgba(140, 20, 20, 0.15);
+}
+
+.delIcon {
+  font-size: 1rem;
+  color: #ff9b9b;
 }
