@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import Navbar from '../../components/NavbarVertical/Navbar';
+import Navbar from '../../components/NavbarVerticalAdmin/Navbar';
 import SearchBar from './SearchBar/SearchBar';
 import UsersTable from './UsersTable/UsersTable';
 import styles from './UsersPage.module.css';

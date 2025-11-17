@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import Navbar from '../../components/NavbarVertical/Navbar';
+import Navbar from '../../components/NavbarVerticalAdmin/Navbar';
 import styles from './FoodsAdminPage.module.css';
 import { Trash2, PlusCircle } from 'lucide-react';
 
