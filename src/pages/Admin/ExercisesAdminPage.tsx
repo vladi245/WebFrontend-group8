@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Navbar from '../../components/NavbarVerticalAdmin/Navbar';
 import styles from './ExercisesAdminPage.module.css';
 import { Trash2, PlusCircle } from 'lucide-react';
@@ -12,22 +12,25 @@ interface Exercise {
 }
 
 export default function ExercisesAdminPage() {
-  const [exercises, setExercises] = useState<Exercise[]>([
-    { id: 1, name: 'Leg Press', sets: 3, reps: 15, muscleGroups: ['Glutes', 'Hamstrings', 'Quadriceps'] },
-    { id: 2, name: 'Bench Press', sets: 4, reps: 10, muscleGroups: ['Chest', 'Triceps', 'Shoulders'] },
-    { id: 3, name: 'Deadlift', sets: 3, reps: 8, muscleGroups: ['Back', 'Hamstrings', 'Glutes'] },
-    { id: 4, name: 'Squats', sets: 4, reps: 12, muscleGroups: ['Quadriceps', 'Glutes', 'Hamstrings'] },
-    { id: 5, name: 'Pull-ups', sets: 3, reps: 10, muscleGroups: ['Back', 'Biceps', 'Shoulders'] }
-  ]);
-
+  const [exercises, setExercises] = useState<Exercise[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [newExercise, setNewExercise] = useState({ name: '', sets: '', reps: '', muscleGroups: '' });
 
-  const [newExercise, setNewExercise] = useState({
-    name: '',
-    sets: '',
-    reps: '',
-    muscleGroups: ''
-  });
+  useEffect(() => {
+    async function fetchExercises() {
+      const res = await fetch('http://localhost:5000/admin/workouts');
+      const data = await res.json();
+      // Map workouts to Exercise interface
+      setExercises(data.map((w: any) => ({
+        id: w.id,
+        name: w.name,
+        sets: w.sets,
+        reps: w.reps,
+        muscleGroups: w.muscle_group || []
+      })));
+    }
+    fetchExercises();
+  }, []);
 
   const filteredExercises = useMemo(() => {
     const q = searchTerm.trim().toLowerCase();
@@ -35,86 +38,57 @@ export default function ExercisesAdminPage() {
     return exercises.filter(ex => ex.name.toLowerCase().includes(q));
   }, [exercises, searchTerm]);
 
-  const deleteExercise = (id: number) => {
-    if (confirm('Remove this exercise?')) {
-      setExercises(prev => prev.filter(ex => ex.id !== id));
-    }
+  const deleteExercise = async (id: number) => {
+    if (!confirm('Remove this exercise?')) return;
+    await fetch(`http://localhost:5000/admin/workouts/${id}`, { method: 'DELETE' });
+    setExercises(prev => prev.filter(ex => ex.id !== id));
   };
 
-  const addExercise = () => {
+  const addExercise = async () => {
     if (!newExercise.name || !newExercise.sets || !newExercise.reps) return;
-
-    const newEx: Exercise = {
-      id: Date.now(),
+    const body = {
       name: newExercise.name,
       sets: Number(newExercise.sets),
       reps: Number(newExercise.reps),
-      muscleGroups: newExercise.muscleGroups
-        .split(',')
-        .map(m => m.trim())
-        .filter(m => m !== '')
+      muscle_group: newExercise.muscleGroups.split(',').map(m => m.trim()).filter(m => m)
     };
-
-    setExercises(prev => [...prev, newEx]);
+    const res = await fetch('http://localhost:5000/admin/workouts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    const created = await res.json();
+    setExercises(prev => [...prev, {
+      id: created.id,
+      name: created.name,
+      sets: created.sets,
+      reps: created.reps,
+      muscleGroups: created.muscle_group || []
+    }]);
     setNewExercise({ name: '', sets: '', reps: '', muscleGroups: '' });
   };
 
   return (
     <>
       <Navbar />
-
       <div className={styles.page}>
         <h1 className={styles.title}>Admin — Exercises</h1>
 
-        {/* Add New Exercise */}
         <div className={styles.addCard}>
           <h2 className={styles.sectionTitle}>Add Exercise</h2>
-
           <div className={styles.formGrid}>
-            <input
-              className={styles.input}
-              placeholder="Name"
-              value={newExercise.name}
-              onChange={(e) => setNewExercise({ ...newExercise, name: e.target.value })}
-            />
-            <input
-              className={styles.input}
-              placeholder="Sets"
-              type="number"
-              value={newExercise.sets}
-              onChange={(e) => setNewExercise({ ...newExercise, sets: e.target.value })}
-            />
-            <input
-              className={styles.input}
-              placeholder="Reps"
-              type="number"
-              value={newExercise.reps}
-              onChange={(e) => setNewExercise({ ...newExercise, reps: e.target.value })}
-            />
-            <input
-              className={styles.input}
-              placeholder="Muscle groups (comma separated)"
-              value={newExercise.muscleGroups}
-              onChange={(e) => setNewExercise({ ...newExercise, muscleGroups: e.target.value })}
-            />
+            <input className={styles.input} placeholder="Name" value={newExercise.name} onChange={e => setNewExercise({ ...newExercise, name: e.target.value })} />
+            <input className={styles.input} placeholder="Sets" type="number" value={newExercise.sets} onChange={e => setNewExercise({ ...newExercise, sets: e.target.value })} />
+            <input className={styles.input} placeholder="Reps" type="number" value={newExercise.reps} onChange={e => setNewExercise({ ...newExercise, reps: e.target.value })} />
+            <input className={styles.input} placeholder="Muscle groups (comma separated)" value={newExercise.muscleGroups} onChange={e => setNewExercise({ ...newExercise, muscleGroups: e.target.value })} />
           </div>
-
-          <button className={styles.addBtn} onClick={addExercise}>
-            <PlusCircle className={styles.addIcon} /> Add Exercise
-          </button>
+          <button className={styles.addBtn} onClick={addExercise}><PlusCircle className={styles.addIcon} /> Add Exercise</button>
         </div>
 
-        {/* Search */}
         <div className={styles.searchWrap}>
-          <input
-            className={styles.searchInput}
-            placeholder="Search exercise by name…"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+          <input className={styles.searchInput} placeholder="Search exercise by name…" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
         </div>
 
-        {/* Exercise List */}
         <div className={styles.listWrap}>
           {filteredExercises.length === 0 ? (
             <p className={styles.noResults}>No exercises found.</p>
@@ -124,16 +98,9 @@ export default function ExercisesAdminPage() {
                 <div>
                   <h3 className={styles.exerciseName}>{ex.name}</h3>
                   <p className={styles.exerciseDetails}>{ex.sets} sets × {ex.reps} reps</p>
-                  <div className={styles.tags}>
-                    {ex.muscleGroups.map((m, i) => (
-                      <span key={i} className={styles.tag}>{m}</span>
-                    ))}
-                  </div>
+                  <div className={styles.tags}>{ex.muscleGroups.map((m, i) => <span key={i} className={styles.tag}>{m}</span>)}</div>
                 </div>
-
-                <button className={styles.deleteBtn} onClick={() => deleteExercise(ex.id)}>
-                  <Trash2 className={styles.delIcon} />
-                </button>
+                <button className={styles.deleteBtn} onClick={() => deleteExercise(ex.id)}><Trash2 className={styles.delIcon} /></button>
               </div>
             ))
           )}
@@ -141,5 +108,4 @@ export default function ExercisesAdminPage() {
       </div>
     </>
   );
-
 }
