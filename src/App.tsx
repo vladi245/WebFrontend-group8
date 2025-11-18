@@ -12,6 +12,9 @@ import Workout from './pages/Workout'
 import Settings from './pages/Settings'
 import Friends from './pages/Friends'
 import Dashboard from './pages/Dashboard'
+import UsersPage from './pages/Admin/UsersPage'
+import ExercisesAdminPage from './pages/Admin/ExercisesAdminPage'
+import FoodsAdminPage from './pages/Admin/FoodsAdminPage'
 
 function App() {
 
@@ -26,6 +29,9 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/desk" element={<Desk />} />
           <Route path="/workout" element={<Workout />} />
+          <Route path="/admin" element={<UsersPage />} />
+          <Route path="/admin/workout" element={<ExercisesAdminPage />} />
+          <Route path="/admin/foods" element={<FoodsAdminPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/friends" element={<Friends />} />
