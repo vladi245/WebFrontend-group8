@@ -67,7 +67,7 @@ export default function UsersPage() {
             <select value={roleFilter} onChange={(e) => setRoleFilter(e.target.value)} className={styles.select}>
               <option value="all">All</option>
               <option value="admin">Admin</option>
-              <option value="moderator">Moderator</option>
+              <option value="premium">Moderator</option>
               <option value="user">User</option>
             </select>
           </div>
