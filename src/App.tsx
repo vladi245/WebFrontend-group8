@@ -9,6 +9,7 @@ import Desk from './pages/Desk'
 
 import Workout from './pages/Workout'
 import Meals from './pages/Meals'
+import Hydration from './pages/Hydration'
 import Settings from './pages/Settings'
 import Friends from './pages/Friends'
 import Dashboard from './pages/Dashboard'
@@ -27,6 +28,7 @@ function App() {
           <Route path="/desk" element={<Desk />} />
           <Route path="/workout" element={<Workout />} />
           <Route path="/meals" element={<Meals />} />
+          <Route path="/hydration" element={<Hydration />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/friends" element={<Friends />} />

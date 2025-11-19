@@ -1,7 +1,7 @@
 import style from './Navbar.module.css';
 import GetStandingLogo from '../../assets/GetStanding.png';
 import Seperator from '../ui/Seperator/Seperator';
-import { LayoutDashboard,Dumbbell, LampDesk, Users, Settings, Utensils} from 'lucide-react';
+import { LayoutDashboard,Dumbbell, LampDesk, Users, Settings, Utensils, GlassWater} from 'lucide-react';
 const Navbar = () => {
     return (
         <nav className={style.navbar}>
@@ -27,6 +27,13 @@ const Navbar = () => {
                <a href="/meals" className={style.navlink}>
                   <Utensils className={style.icon} />
                   <span>Meals</span>
+               </a>
+            }
+
+            {
+               <a href="/hydration" className={style.navlink}>
+                  <GlassWater className={style.icon} />
+                  <span>Hydration</span>
                </a>
             }
             
