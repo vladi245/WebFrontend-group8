@@ -13,14 +13,36 @@ export default function Login() {
         navigate('/sign-up');
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');
 
-        // Basic login check
-        if (username === 'login' && password === 'password') {
+        try {
+            const API = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            const res = await fetch(`${API}/api/auth/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: username, password })
+            });
+
+            const data = await res.json();
+            if (!res.ok) {
+                setError(data?.error || 'Login failed');
+                return;
+            }
+
+            // store token and user
+            if (data.token) {
+                localStorage.setItem('token', data.token);
+            }
+            if (data.user) {
+                localStorage.setItem('user', JSON.stringify(data.user));
+            }
+
             navigate('/dashboard');
-        } else {
-            setError('Invalid username or password');
+        } catch (err) {
+            console.error('Login error:', err);
+            setError('Network error during login');
         }
     };
 
