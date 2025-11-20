@@ -24,51 +24,96 @@ export default function Meals() {
     caloriesEaten: 0,
     averageIntake: 0,
   });
+
   const [foodPerformanceData, setFoodPerformanceData] = useState<FoodPerformanceData[]>([]);
       const [loading, setLoading] = useState(true);
 
 
 
-  useEffect(() => {
-    const fetchMealsData = async () => {
-      try {
-        // mock data for now
-        const mockStatsData: StatsData = {
-          totalMeals: 8,
-          caloriesEaten: 1467,
-          averageIntake: 1789,
-        };
 
-        const mockFoodPerformanceData: FoodPerformanceData[] = [
-                    { day: 'Mon', caloriesEaten: 1678 },
-                    { day: 'Tue', caloriesEaten: 1567 },
-                    { day: 'Wed', caloriesEaten: 1207 },
-                    { day: 'Thu', caloriesEaten: 1345 },
-                    { day: 'Fri', caloriesEaten: 1123 },
-                    { day: 'Sat', caloriesEaten: 2897 },
-                    { day: 'Sun', caloriesEaten: 1964 },
-                ];
+  const fetchStats = async (provided?: StatsData) => {
+    if (provided) {
+      setStatsData(provided);
+      setLoading(false);
+      return;
+    }
 
-        setStatsData(mockStatsData);
-        setFoodPerformanceData(mockFoodPerformanceData);
-
-        setLoading(false);
-      } catch (error) {
-        console.error("Failed to fetch meals data:", error);
-        setLoading(false);
+    try {
+      const response = await fetch("http://localhost:5000/api/meals/stats-today"); 
+      if (!response.ok) {
+        throw new Error("Failed to fetch stats");
       }
-    };
+      const data = await response.json(); 
+      setStatsData(data); 
+    } catch (error) {
+      console.error("Failed to fetch meals stats:", error);
+    } finally {
+      setLoading(false); 
+    }
+  };
 
-    fetchMealsData();
+  
+  useEffect(() => {
+    fetchStats(); 
   }, []);
+
+  // useEffect(() => {
+  //   const fetchMealsData = async () => {
+  //     try {
+  //       // mock data for now
+  //       const mockStatsData: StatsData = {
+  //         totalMeals: 8,
+  //         caloriesEaten: 1467,
+  //         averageIntake: 1789,
+  //       };
+
+  //       const mockFoodPerformanceData: FoodPerformanceData[] = [
+  //                   { day: 'Mon', caloriesEaten: 1678 },
+  //                   { day: 'Tue', caloriesEaten: 1567 },
+  //                   { day: 'Wed', caloriesEaten: 1207 },
+  //                   { day: 'Thu', caloriesEaten: 1345 },
+  //                   { day: 'Fri', caloriesEaten: 1123 },
+  //                   { day: 'Sat', caloriesEaten: 2897 },
+  //                   { day: 'Sun', caloriesEaten: 1964 },
+  //               ];
+
+  //       setStatsData(mockStatsData);
+  //       setFoodPerformanceData(mockFoodPerformanceData);
+
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.error("Failed to fetch meals data:", error);
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchMealsData();
+  // }, []);
+
+  // return (
+  //   <div className={style.container}>
+  //     <Logo />
+  //     {!loading && <FoodStats data={statsData} />}
+  //     <CalorieIntake current={1467} goal={2000} />
+  //     {!loading && <MealPicker />}
+  //     {!loading && <FoodPerformance data={foodPerformanceData} />}
+  //   </div>
+  // );
 
   return (
     <div className={style.container}>
       <Logo />
       {!loading && <FoodStats data={statsData} />}
-      <CalorieIntake current={1467} goal={2000} />
-      {!loading && <MealPicker />}
-      {!loading && <FoodPerformance data={foodPerformanceData} />}
+
+      
+      <CalorieIntake current={statsData.caloriesEaten} goal={2000} />
+
+      
+      {!loading && <MealPicker onMealAdded={fetchStats} />}
+
+      
+      {/* {!loading && <FoodPerformance data={foodPerformanceData} />} */}
     </div>
   );
 }
+
