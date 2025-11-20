@@ -1,0 +1,76 @@
+.row {
+display: grid;
+grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+gap: 12px;
+align-items: center;
+padding: 0.6rem;
+background-color: #1a1a1a;
+border-radius: 8px;
+border: 1px solid #333;
+}
+
+
+.avatar {
+width: 36px;
+height: 36px;
+border-radius: 999px;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+background: #222;
+color: #0096FF;
+margin-right: 0.6rem;
+font-weight: 600;
+}
+
+
+.colUser {
+display: flex;
+align-items: center;
+}
+
+
+.username {
+color: #fff;
+font-weight: 600;
+}
+
+
+.sub {
+color: #888;
+font-size: 0.8rem;
+}
+
+
+.colEmail { color: #ccc }
+.colRole { }
+.role {
+border: 1px solid #333;
+padding: 0.15rem 0.5rem;
+border-radius: 6px;
+font-size: 0.85rem;
+}
+
+
+.colStatus { }
+.active { color: #00d166; font-weight: 600 }
+.inactive { color: #ffb86b }
+
+
+.colActions { display: flex; justify-content: flex-end }
+
+
+.deleteBtn {
+display: inline-flex;
+align-items: center;
+gap: 0.45rem;
+padding: 0.45rem 0.7rem;
+border-radius: 8px;
+border: 1px solid #4a1f1f;
+background: rgba(140, 20, 20, 0.06);
+cursor: pointer;
+}
+
+
+.trashIcon { font-size: 0.95rem }
+.deleteText { color: #ff9b9b; font-weight: 600 }

@@ -1,0 +1,30 @@
+.title {
+color: white;
+font-size: 1.4rem;
+margin-bottom: 8px;
+}
+
+
+.controlsRow {
+display: flex;
+align-items: center;
+gap: 12px;
+}
+
+
+.filterWrap {
+display: flex;
+flex-direction: column;
+}
+
+
+.filterLabel { color: #888; font-size: 0.85rem }
+
+
+.select {
+background: #111;
+border: 1px solid #222;
+color: white;
+padding: 6px 8px;
+border-radius: 8px;
+}

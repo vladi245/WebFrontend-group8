@@ -1,0 +1,26 @@
+.wrapper {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+background: #111;
+border: 1px solid #222;
+padding: 0.5rem 0.75rem;
+border-radius: 10px;
+width: 420px;
+}
+
+
+.icon {
+font-size: 1rem;
+color: #0096FF;
+}
+
+
+.input {
+background: transparent;
+border: none;
+outline: none;
+color: #fff;
+font-size: 0.95rem;
+width: 100%;
+}

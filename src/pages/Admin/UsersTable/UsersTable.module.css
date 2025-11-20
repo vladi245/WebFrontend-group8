@@ -1,0 +1,64 @@
+.card {
+border: 1px solid #0096FF;
+border-radius: 12px;
+padding: 1rem;
+color: white;
+font-family: system-ui, sans-serif;
+background-color: #111;
+}
+
+
+.header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 0.75rem;
+}
+
+
+.title {
+font-size: 1.05rem;
+font-weight: 600;
+}
+
+
+.count {
+color: #888;
+}
+
+
+.tableWrap {
+border-top: 1px solid #222;
+padding-top: 0.75rem;
+}
+
+
+.tableHeader {
+display: grid;
+grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+gap: 12px;
+padding: 0.5rem 0.5rem;
+color: #888;
+font-size: 0.85rem;
+}
+
+
+.tableBody {
+display: flex;
+flex-direction: column;
+gap: 0.5rem;
+margin-top: 0.5rem;
+}
+
+
+.loading, .empty {
+padding: 1rem;
+color: #999;
+}
+
+
+.colUser { }
+.colEmail { }
+.colRole { }
+.colStatus { }
+.colActions { text-align: right }

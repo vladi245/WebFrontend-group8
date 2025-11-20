@@ -1,0 +1,134 @@
+.page {
+  margin-left: 350px;
+  padding: 20px;
+  color: white;
+  font-family: system-ui, sans-serif;
+}
+
+.title {
+  color: white;
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.addCard {
+  border: 1px solid #0096FF;
+  background: #111;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.sectionTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.input {
+  background: #1a1a1a;
+  border: 1px solid #222;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  font-size: 0.95rem;
+}
+
+.addBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 150, 255, 0.08);
+  border: 1px solid #0096FF;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #0096FF;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.addBtn:hover {
+  background: rgba(0, 150, 255, 0.15);
+}
+
+.addIcon {
+  font-size: 1rem;
+}
+
+.searchWrap {
+  margin: 16px 0;
+}
+
+.searchInput {
+  width: 420px;
+  background: #111;
+  border: 1px solid #222;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  font-size: 0.95rem;
+}
+
+.listWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.foodCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px;
+  background: #1a1a1a;
+  border-radius: 10px;
+  border: 1px solid #333;
+}
+
+.foodName {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: white;
+}
+
+.foodDetails {
+  color: #888;
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+}
+
+.timestamp {
+  color: #555;
+  font-size: 0.8rem;
+}
+
+.deleteBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #4a1f1f;
+  background: rgba(140, 20, 20, 0.06);
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.deleteBtn:hover {
+  background: rgba(140, 20, 20, 0.15);
+}
+
+.delIcon {
+  font-size: 1rem;
+  color: #ff9b9b;
+}
