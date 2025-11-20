@@ -1,0 +1,99 @@
+.card {
+  border: 1px solid #0096FF;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  width: 630px;
+  height: 200px;
+  color: white;
+  font-family: system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* 4 equal columns, both rows live in this grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* Top row buttons */
+.quickButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 8px;
+  border-radius: 999px;
+  border: 1px solid #202631;
+  background: #0096FF;
+  color: #e5f2ff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease;
+}
+
+.quickButton:hover {
+  background: #82cbff;
+  transform: translateY(-1px);
+}
+
+/* Shared style for bottom-row buttons */
+.actionButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 10px;
+  border-radius: 999px;
+  border: 1px solid #202631;
+  background: #0c0f18;
+  color: #e5f2ff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease;
+}
+
+.removeButton {
+  grid-column: span 3;
+  justify-content: center;
+  background: #2b2b2b;
+  border-color: #0096FF;
+  transition: all 0.3s ease;
+}
+
+.removeButton:hover {
+  background: #4f1717;
+  transform: scale(1.04);
+}
+
+.resetButton {
+  grid-column: span 1;
+  padding-inline: 0;
+  background: #2b2b2b;
+  border-color: #0096FF;
+  transition: all 0.3s ease;
+}
+
+.resetButton:hover {
+  background: #4f1717;
+  transform: scale(1.04);
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}

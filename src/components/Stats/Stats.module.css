@@ -82,6 +82,47 @@
     color: #72B4FF;
 }
 
+
+
+
+.mealsCard .statLabel {
+    color: #ffffff;
+}
+
+.mealsCard .statValue {
+    color: #8dcfff;
+}
+
+.mealsCard .statIcon {
+    color: #8dcfff;
+}
+
+.foodcaloriesCard .statLabel {
+    color: #ffffff; 
+}
+
+.foodcaloriesCard .statValue {
+    color: #7ED957; 
+}
+
+.foodcaloriesCard .statIcon {
+    color: #7ED957;
+}
+
+.averageintakeCard .statLabel {
+    color: #ffffff; 
+}
+
+.averageintakeCard .statValue {
+    color: #e6ca4f; 
+}
+
+.averageintakeCard .statIcon {
+    color: #e6ca4f;
+}
+
+
+
 @media (max-width: 1024px) {
     .statsContainer {
         flex-direction: column;
@@ -97,3 +138,4 @@
         font-size: 24px;
     }
 }
+

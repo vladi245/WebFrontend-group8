@@ -42,13 +42,13 @@ h3{
   background: transparent;
   border: none;
   color: inherit;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   cursor: pointer;
   padding: 0.5rem 0rem;
   color: #fff;
   border-radius: 0.5rem;
   transition: background 0.2s ease;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 .navlink:hover {

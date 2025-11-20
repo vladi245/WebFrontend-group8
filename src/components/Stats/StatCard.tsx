@@ -4,7 +4,7 @@ interface StatCardProps {
     icon: React.ReactNode;
     value: number | string;
     label: string;
-    colorClass: 'workoutsCard' | 'caloriesCard' | 'daysActiveCard';
+    colorClass: 'workoutsCard' | 'caloriesCard' | 'daysActiveCard' | 'mealsCard' | 'foodcaloriesCard' | 'averageintakeCard';
 }
 
 const StatCard = ({ icon, value, label, colorClass }: StatCardProps) => {

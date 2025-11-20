@@ -52,6 +52,10 @@
     border-radius: 50%;
 }
 
+.legendDotGreen {
+    background-color: #7ED957;
+}
+
 .legendText {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.8);
