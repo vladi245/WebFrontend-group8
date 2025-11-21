@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import Navbar from '../../components/NavbarVerticalAdmin/Navbar';
 import styles from './ExercisesAdminPage.module.css';
 import { Trash2, PlusCircle } from 'lucide-react';
+import { apiFetch } from '../../services/api';
 
 interface Exercise {
   id: number;
@@ -18,8 +19,7 @@ export default function ExercisesAdminPage() {
 
   useEffect(() => {
     async function fetchExercises() {
-      const res = await fetch('http://localhost:5000/admin/workouts');
-      const data = await res.json();
+      const data = await apiFetch('/admin/workouts');
       // Map workouts to Exercise interface
       setExercises(data.map((w: any) => ({
         id: w.id,
@@ -40,7 +40,7 @@ export default function ExercisesAdminPage() {
 
   const deleteExercise = async (id: number) => {
     if (!confirm('Remove this exercise?')) return;
-    await fetch(`http://localhost:5000/admin/workouts/${id}`, { method: 'DELETE' });
+    await apiFetch(`/admin/workouts/${id}`, { method: 'DELETE' });
     setExercises(prev => prev.filter(ex => ex.id !== id));
   };
 
@@ -52,12 +52,10 @@ export default function ExercisesAdminPage() {
       reps: Number(newExercise.reps),
       muscle_group: newExercise.muscleGroups.split(',').map(m => m.trim()).filter(m => m)
     };
-    const res = await fetch('http://localhost:5000/admin/workouts', {
+    const created = await apiFetch('/admin/workouts', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     });
-    const created = await res.json();
     setExercises(prev => [...prev, {
       id: created.id,
       name: created.name,
