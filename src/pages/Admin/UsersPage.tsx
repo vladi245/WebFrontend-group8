@@ -3,11 +3,11 @@ import Navbar from '../../components/NavbarVerticalAdmin/Navbar';
 import SearchBar from './SearchBar/SearchBar';
 import UsersTable from './UsersTable/UsersTable';
 import styles from './UsersPage.module.css';
+import { apiFetch } from '../../services/api';
 
 // Fetch users from backend
 async function fetchUsers() {
-  const res = await fetch('http://localhost:5000/admin/users');
-  return await res.json();
+  return await apiFetch('/admin/users');
 }
 
 export default function UsersPage() {
@@ -29,9 +29,7 @@ export default function UsersPage() {
 
   const handleDelete = async (id: string) => {
     try {
-      await fetch(`http://localhost:5000/admin/users/${id}`, {
-        method: 'DELETE'
-      });
+      await apiFetch(`/admin/users/${id}`, { method: 'DELETE' });
       setUsers(prev => prev.filter(u => u.id !== id));
     } catch (err) {
       console.error('Delete failed', err);

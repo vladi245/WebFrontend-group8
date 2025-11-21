@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import Navbar from '../../components/NavbarVerticalAdmin/Navbar';
 import styles from './ExercisesAdminPage.module.css'; // reuse same dark theme styles
 import { Trash2, PlusCircle } from 'lucide-react';
+import { apiFetch } from '../../services/api';
 
 interface Food {
   id: number;
@@ -16,8 +17,7 @@ export default function FoodsAdminPage() {
 
   useEffect(() => {
     async function fetchFoods() {
-      const res = await fetch('http://localhost:5000/admin/foods');
-      const data = await res.json();
+      const data = await apiFetch('/admin/foods');
       setFoods(data);
     }
     fetchFoods();
@@ -31,19 +31,17 @@ export default function FoodsAdminPage() {
 
   const deleteFood = async (id: number) => {
     if (!confirm('Delete this food?')) return;
-    await fetch(`http://localhost:5000/admin/foods/${id}`, { method: 'DELETE' });
+    await apiFetch(`/admin/foods/${id}`, { method: 'DELETE' });
     setFoods(prev => prev.filter(f => f.id !== id));
   };
 
   const addFood = async () => {
     if (!newFood.name || !newFood.calories) return;
     const body = { name: newFood.name, calories_intake: Number(newFood.calories) };
-    const res = await fetch('http://localhost:5000/admin/foods', {
+    const created = await apiFetch('/admin/foods', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     });
-    const created = await res.json();
     setFoods(prev => [...prev, created]);
     setNewFood({ name: '', calories: '' });
   };
