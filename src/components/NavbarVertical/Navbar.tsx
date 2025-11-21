@@ -42,10 +42,13 @@ const Navbar = () => {
                <span>Desk Details</span>
             </a>
 
+            {/* 
             <a href="/friends" className={style.navlink}>
                <Users className={style.icon} />
                <span>Friends</span>
             </a>
+            */}
+
 
             <Seperator variant="accent" />
 

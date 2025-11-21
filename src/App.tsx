@@ -38,7 +38,7 @@ function App() {
           <Route path="/admin/foods" element={<ProtectedRoute requiredType="admin"><FoodsAdminPage /></ProtectedRoute>} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
-          <Route path="/friends" element={<ProtectedRoute><Friends /></ProtectedRoute>} />
+          {/*<Route path="/friends" element={<ProtectedRoute><Friends /></ProtectedRoute>} />*/}
           <Route path="*" element={<Navigate to="/error" replace />} />
 
         </Routes>
