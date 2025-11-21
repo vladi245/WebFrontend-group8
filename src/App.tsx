@@ -16,6 +16,7 @@ import Dashboard from './pages/Dashboard'
 import UsersPage from './pages/Admin/UsersPage'
 import ExercisesAdminPage from './pages/Admin/ExercisesAdminPage'
 import FoodsAdminPage from './pages/Admin/FoodsAdminPage'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
 
@@ -28,16 +29,16 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/error" element={<ErrorPage />} />
           <Route path="/about" element={<AboutUs />} />
-          <Route path="/desk" element={<Desk />} />
-          <Route path="/workout" element={<Workout />} />
-          <Route path="/meals" element={<Meals />} />
-          <Route path="/hydration" element={<Hydration />} />
-          <Route path="/admin" element={<UsersPage />} />
-          <Route path="/admin/workout" element={<ExercisesAdminPage />} />
-          <Route path="/admin/foods" element={<FoodsAdminPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/friends" element={<Friends />} />
+          <Route path="/desk" element={<ProtectedRoute><Desk /></ProtectedRoute>} />
+          <Route path="/workout" element={<ProtectedRoute><Workout /></ProtectedRoute>} />
+          <Route path="/meals" element={<ProtectedRoute><Meals /></ProtectedRoute>} />
+          <Route path="/hydration" element={<ProtectedRoute><Hydration /></ProtectedRoute>} />
+          <Route path="/admin" element={<ProtectedRoute><UsersPage /></ProtectedRoute>} />
+          <Route path="/admin/workout" element={<ProtectedRoute><ExercisesAdminPage /></ProtectedRoute>} />
+          <Route path="/admin/foods" element={<ProtectedRoute><FoodsAdminPage /></ProtectedRoute>} />
+          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+          <Route path="/friends" element={<ProtectedRoute><Friends /></ProtectedRoute>} />
           <Route path="*" element={<Navigate to="/error" replace />} />
 
         </Routes>
