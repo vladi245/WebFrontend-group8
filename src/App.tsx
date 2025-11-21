@@ -33,9 +33,9 @@ function App() {
           <Route path="/workout" element={<ProtectedRoute><Workout /></ProtectedRoute>} />
           <Route path="/meals" element={<ProtectedRoute><Meals /></ProtectedRoute>} />
           <Route path="/hydration" element={<ProtectedRoute><Hydration /></ProtectedRoute>} />
-          <Route path="/admin" element={<ProtectedRoute><UsersPage /></ProtectedRoute>} />
-          <Route path="/admin/workout" element={<ProtectedRoute><ExercisesAdminPage /></ProtectedRoute>} />
-          <Route path="/admin/foods" element={<ProtectedRoute><FoodsAdminPage /></ProtectedRoute>} />
+          <Route path="/admin" element={<ProtectedRoute requiredType="admin"><UsersPage /></ProtectedRoute>} />
+          <Route path="/admin/workout" element={<ProtectedRoute requiredType="admin"><ExercisesAdminPage /></ProtectedRoute>} />
+          <Route path="/admin/foods" element={<ProtectedRoute requiredType="admin"><FoodsAdminPage /></ProtectedRoute>} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
           <Route path="/friends" element={<ProtectedRoute><Friends /></ProtectedRoute>} />

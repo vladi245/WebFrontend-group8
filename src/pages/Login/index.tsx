@@ -1,7 +1,8 @@
 import Logo from '../../components/Logo/Logo'
 import './Login.css'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useState } from 'react';
+import type { FormEvent } from 'react';
 
 export default function Login() {
     const navigate = useNavigate();
@@ -13,7 +14,9 @@ export default function Login() {
         navigate('/sign-up');
     };
 
-    const handleSubmit = async (e) => {
+    const location = useLocation();
+
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError('');
 
@@ -39,7 +42,19 @@ export default function Login() {
                 localStorage.setItem('user', JSON.stringify(data.user));
             }
 
-            navigate('/dashboard');
+            // Redirect admins to admin panel otherwise redirect back to dashboard
+            const isAdmin = data.user && data.user.type === 'admin'
+            if (isAdmin) {
+                navigate('/admin');
+                return;
+            }
+
+            const fromPath = (location.state as any)?.from?.pathname
+            if (fromPath) {
+                navigate(fromPath)
+            } else {
+                navigate('/dashboard')
+            }
         } catch (err) {
             console.error('Login error:', err);
             setError('Network error during login');
