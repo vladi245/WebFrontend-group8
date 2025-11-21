@@ -39,16 +39,39 @@ export default function Meals() {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/meals/stats-today"); 
+      const storedUser = localStorage.getItem('user');
+      const user = storedUser ? JSON.parse(storedUser) : null;
+      const userId = user?.id;
+
+      //fetch todays totals
+      const response = await fetch(`http://localhost:5000/api/meals/stats?userId=${userId}`);
       if (!response.ok) {
         throw new Error("Failed to fetch stats");
       }
-      const data = await response.json(); 
-      setStatsData(data); 
+      const data = await response.json();
+
+      //fetch weekly stast and average
+      const weekRes = await fetch(`http://localhost:5000/api/meals/weekly?userId=${userId}`);
+      if (!weekRes.ok) {
+        throw new Error("Failed to fetch weekly stats");
+      }
+      const weekData = await weekRes.json();
+
+      //weekData
+      setFoodPerformanceData(weekData.week.map((d: any) => ({ day: d.day, caloriesEaten: d.caloriesEaten })));
+
+     
+      const average = Math.round(weekData.average);
+
+      setStatsData({
+        totalMeals: data.totalMeals ?? 0,
+        caloriesEaten: data.caloriesEaten ?? 0,
+        averageIntake: average,
+      });
     } catch (error) {
       console.error("Failed to fetch meals stats:", error);
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
@@ -109,10 +132,10 @@ export default function Meals() {
       <CalorieIntake current={statsData.caloriesEaten} goal={2000} />
 
       
-      {!loading && <MealPicker onMealAdded={fetchStats} />}
+  {!loading && <MealPicker onMealAdded={fetchStats} />}
 
       
-      {/* {!loading && <FoodPerformance data={foodPerformanceData} />} */}
+  {!loading && <FoodPerformance data={foodPerformanceData} />}
     </div>
   );
 }

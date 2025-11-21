@@ -26,7 +26,7 @@ interface BackendMeal {
 
 interface MealPickerProps {
   
-  onMealAdded?: (stats?: { totalMeals: number; caloriesEaten: number; averageIntake: number }) => void;
+  onMealAdded?: () => void;
 }
 
 const ALL_FOODS: Food[] = [
@@ -128,7 +128,11 @@ const MealPicker = ({ onMealAdded }: MealPickerProps) => {
 
   const loadMealsFromServer = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/meals/entries");
+      const storedUser = localStorage.getItem("user");
+      const user = storedUser ? JSON.parse(storedUser) : null;
+      const userId = user?.id;
+
+      const res = await fetch(`http://localhost:5000/api/meals/entries?userId=${userId}`);
       const data: BackendMeal[] = await res.json();
 
       const grouped: Record<MealKey, MealEntry[]> = {
@@ -150,16 +154,7 @@ const MealPicker = ({ onMealAdded }: MealPickerProps) => {
       setMeals(grouped);
 
       
-      try {
-        const allMeals = Object.values(grouped).flat();
-        const totalMeals = allMeals.length;
-        const caloriesEaten = allMeals.reduce((s, m) => s + (m.calories || 0), 0);
-        const averageIntake = caloriesEaten; 
-        onMealAdded?.({ totalMeals, caloriesEaten, averageIntake });
-      } catch (e) {
-        
-        console.error("Failed to compute stats from loaded meals:", e);
-      }
+      onMealAdded?.();
     } catch (err) {
       console.error("Failed to load meals from server:", err);
     }
@@ -179,10 +174,15 @@ const MealPicker = ({ onMealAdded }: MealPickerProps) => {
 
   const handleAddFood = async (food: Food) => {
     try {
+      const storedUser = localStorage.getItem("user");
+      const user = storedUser ? JSON.parse(storedUser) : null;
+      const userId = user?.id;
+
       const res = await fetch("http://localhost:5000/api/meals", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          userId,
           mealType: activeMeal,
           foodId: food.id,
         }),
@@ -196,11 +196,7 @@ const MealPicker = ({ onMealAdded }: MealPickerProps) => {
       }
 
       
-      if (data && data.stats) {
-        onMealAdded?.(data.stats);
-      } else {
-        onMealAdded?.();
-      }
+      onMealAdded?.();
 
       await loadMealsFromServer();
     } catch (err) {
@@ -222,20 +218,10 @@ const MealPicker = ({ onMealAdded }: MealPickerProps) => {
         const res = await fetch("http://localhost:5000/api/meals", {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ recordId }),
+          body: JSON.stringify({ recordId, userId: JSON.parse(localStorage.getItem('user') || 'null')?.id }),
         });
 
-        try {
-          const data = await res.json();
-          if (res.ok && data && data.stats) {
-            onMealAdded?.(data.stats);
-          } else {
-            onMealAdded?.();
-          }
-        } catch (e) {
-          
-          onMealAdded?.();
-        }
+        onMealAdded?.();
 
         await loadMealsFromServer();
     } catch (err) {

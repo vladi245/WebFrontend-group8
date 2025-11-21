@@ -36,7 +36,7 @@ const FoodStats = ({ data }: FoodStatsProps) => {
             <StatCard
                 icon={avgIcon}
                 value={data.averageIntake}
-                label="Average daily calorie intake"
+                label="This Week’s Average Intake"
                 colorClass="averageintakeCard"
             />
         </div>
