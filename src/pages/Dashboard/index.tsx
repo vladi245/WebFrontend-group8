@@ -42,6 +42,7 @@ export default function Home() {
                         { day: 'Sat', minutes: 40 },
                         { day: 'Sun', minutes: 70 },
                     ]} />
+                    {/*
                     <FriendsActivity activities={[
                         {
                         id: 1,
@@ -57,6 +58,8 @@ export default function Home() {
                         },
 
                     ]}/>
+                    */}
+                    
                     <StandingStats data={[
                         { day: 'Mon', minutes: 120 },
                         { day: 'Tue', minutes: 150 },
