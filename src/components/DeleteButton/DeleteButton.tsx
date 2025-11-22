@@ -14,8 +14,13 @@ const DeleteButton = () => {
 
     const handleConfirmDelete = () => {
         // delete account logic will go here
-        console.log('Account deleted');
-        setShowModal(false);
+        try {
+            const response = await fetch(`http://localhost:5000/api/users/${}`, {
+                method: "DELETE",
+            });
+            console.log('Account deleted');
+            setShowModal(false);
+        }
     };
 
     return (
