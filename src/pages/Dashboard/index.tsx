@@ -15,23 +15,23 @@ export default function Home() {
     return (
         <>
             <Navbar />
-            <div style={{ marginLeft: '350px', padding: '20px', overflowY: 'hidden'}}>
-                <Greeting name='Washington '/>
+            <div style={{ marginLeft: '350px', padding: '20px', overflowY: 'hidden' }}>
+                <Greeting name='Washington ' />
                 <div style={{ width: '50%' }}>
-                    <Seperator variant="accent"/>
+                    <Seperator variant="accent" />
                 </div>
                 <h2 style={{ color: 'white', marginTop: '20px' }}>Today's stats</h2>
-                <div style={{display: 'flex', columnGap: '20px', marginBottom: '20px',  width: '80%'}}>
-                    <ConnectionStatus/>
+                <div style={{ display: 'flex', columnGap: '20px', marginBottom: '20px', width: '80%' }}>
+                    <ConnectionStatus />
                 </div>
 
-                <div style={{display: 'flex', columnGap: '20px', marginBottom: '20px',  width: '80%'}}>
+                <div style={{ display: 'flex', columnGap: '20px', marginBottom: '20px', width: '80%' }}>
                     <CalorieIntake current={1331} goal={2500} />
                     <WaterCard current={1.5} goal={3} />
                     <WorkoutStatsCard calories={1560} />
 
                 </div>
-                <div style={{display: 'flex', columnGap: '20px', marginBottom: '20px',  width: '80%'}}>
+                <div style={{ display: 'flex', columnGap: '20px', marginBottom: '20px', width: '80%' }}>
 
                     <WorkoutCard data={[
                         { day: 'Mon', minutes: 30 },
@@ -59,15 +59,15 @@ export default function Home() {
 
                     ]}/>
                     */}
-                    
+
                     <StandingStats data={[
-                        { day: 'Mon', minutes: 120 },
-                        { day: 'Tue', minutes: 150 },
-                        { day: 'Wed', minutes: 90 },
-                        { day: 'Thu', minutes: 180 },
-                        { day: 'Fri', minutes: 160 },
-                        { day: 'Sat', minutes: 1040 },
-                        { day: 'Sun', minutes: 200 },
+                        { day: 'Mon', minutes: 0 },
+                        { day: 'Tue', minutes: 0 },
+                        { day: 'Wed', minutes: 0 },
+                        { day: 'Thu', minutes: 0 },
+                        { day: 'Fri', minutes: 0 },
+                        { day: 'Sat', minutes: 0 },
+                        { day: 'Sun', minutes: 0 },
                     ]} />
                 </div>
 
