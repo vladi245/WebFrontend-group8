@@ -30,12 +30,12 @@ const Navbar = () => {
                </a>
             }
 
-            {
+            {/* {
                <a href="/hydration" className={style.navlink}>
                   <GlassWater className={style.icon} />
                   <span>Hydration</span>
                </a>
-            }
+            } */}
             
             <a href="/desk" className={style.navlink}>
                <LampDesk className={style.icon} />
