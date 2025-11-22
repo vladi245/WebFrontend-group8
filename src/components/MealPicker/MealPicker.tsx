@@ -25,22 +25,34 @@ interface MealPickerProps {
   onMealAdded?: () => void;
 }
 
-const ALL_FOODS: Food[] = [
-  { id: 0, name: "Oatmeal", calories: 250 },
-  { id: 1, name: "Greek Yogurt", calories: 120 },
-  { id: 2, name: "Scrambled Eggs", calories: 210 }
-];
-
 const MealPicker = ({ onMealAdded }: MealPickerProps) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [foods, setFoods] = useState<Food[]>([]);
   const [meals, setMeals] = useState<MealEntry[]>([]);
 
-  // Load foods from backend (flat list — no meal types)
+  // -----------------------------
+  // Load FOOD LIBRARY (from /api/foods)
+  // -----------------------------
+  const loadFoodsFromServer = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/foods");
+      const data: Food[] = await res.json();
+      setFoods(data);
+    } catch (err) {
+      console.error("Failed to load foods:", err);
+    }
+  };
+
+  // -----------------------------
+  // Load MEALS (from /api/meals/entries)
+  // -----------------------------
   const loadMealsFromServer = async () => {
     try {
       const storedUser = localStorage.getItem("user");
       const user = storedUser ? JSON.parse(storedUser) : null;
       const userId = user?.id;
+
+      if (!userId) return;
 
       const res = await fetch(
         `http://localhost:5000/api/meals/entries?userId=${userId}`
@@ -52,7 +64,7 @@ const MealPicker = ({ onMealAdded }: MealPickerProps) => {
           recordId: entry.id,
           foodId: entry.foodId,
           name: entry.name,
-          calories: entry.calories
+          calories: entry.calories,
         }))
       );
 
@@ -62,32 +74,41 @@ const MealPicker = ({ onMealAdded }: MealPickerProps) => {
     }
   };
 
+  // Load foods + meals when component mounts
   useEffect(() => {
+    loadFoodsFromServer();
     loadMealsFromServer();
   }, []);
 
+  // -----------------------------
+  // Filter foods based on search input
+  // -----------------------------
   const filteredFoods = useMemo(() => {
     const q = searchTerm.trim().toLowerCase();
-    if (!q) return ALL_FOODS;
-    return ALL_FOODS.filter((food) =>
+    if (!q) return foods;
+    return foods.filter((food) =>
       food.name.toLowerCase().includes(q)
     );
-  }, [searchTerm]);
+  }, [searchTerm, foods]);
 
-  // Add food — NO mealType sent
+  // -----------------------------
+  // Add food to meals
+  // -----------------------------
   const handleAddFood = async (food: Food) => {
     try {
       const user = JSON.parse(localStorage.getItem("user") || "null");
       const userId = user?.id;
 
-      console.log("userId: " +  userId)
+      if (!userId) return;
+      console.log(userId)
+
       const res = await fetch("http://localhost:5000/api/meals", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           userId,
-          foodId: food.id
-        })
+          foodId: food.id,
+        }),
       });
 
       if (!res.ok) {
@@ -102,16 +123,17 @@ const MealPicker = ({ onMealAdded }: MealPickerProps) => {
     }
   };
 
-  // Remove food
+  // -----------------------------
+  // Remove meal entry
+  // -----------------------------
   const handleRemoveFood = async (recordId: number) => {
-    // Remove from UI instantly
     setMeals((current) => current.filter((m) => m.recordId !== recordId));
 
     try {
       await fetch("http://localhost:5000/api/meals", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ recordId })
+        body: JSON.stringify({ recordId }),
       });
 
       onMealAdded?.();
@@ -126,6 +148,9 @@ const MealPicker = ({ onMealAdded }: MealPickerProps) => {
     0
   );
 
+  // -----------------------------
+  // UI Render
+  // -----------------------------
   return (
     <div className={style.mealsPlannerContainer}>
       {/* LEFT — FOOD LIBRARY */}
@@ -160,7 +185,7 @@ const MealPicker = ({ onMealAdded }: MealPickerProps) => {
         </div>
       </div>
 
-      {/* RIGHT — FLAT MEALS LIST */}
+      {/* RIGHT — FOODS EATEN TODAY */}
       <div className={style.mealsSection}>
         <h2 className={style.sectionTitle}>Today's Foods</h2>
 
@@ -176,6 +201,7 @@ const MealPicker = ({ onMealAdded }: MealPickerProps) => {
                     {meal.calories} kcal
                   </span>
                 </div>
+
                 <button
                   type="button"
                   className={style.removeButton}
