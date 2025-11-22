@@ -15,7 +15,8 @@ interface WorkoutCardProps {
 }
 
 const WorkoutCard = ({ data }: WorkoutCardProps) => {
-  const average = data.reduce((sum, d) => sum + d.minutes, 0) / data.length;
+  const averageRaw = data.length ? data.reduce((sum, d) => sum + d.minutes, 0) / data.length : 0;
+  const average = Number(averageRaw.toFixed(2));
 
 
   return (
@@ -25,15 +26,11 @@ const WorkoutCard = ({ data }: WorkoutCardProps) => {
           <Clock4 className={styles.icon} />
           <span className={styles.title}>Workout Duration</span>
         </div>
-        <button className={styles.addButton}>
-          <CircleFadingPlus className={styles.addIcon} />
-          <span>Add Workout</span>
-        </button>
       </div>
 
 
       <div className={styles.content}>
-        <div className={styles.subtitle}>Your average workout time is <div className={styles.amount}>{average} min</div></div>
+        <div className={styles.subtitle}>Your average workout time this week is <div className={styles.amount}>{average} min</div></div>
 
 
         <div className={styles.chartContainer}>
