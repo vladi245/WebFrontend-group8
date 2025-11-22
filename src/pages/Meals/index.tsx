@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Logo from "../../components/Logo/Logo";
-import FoodStats from "../../components/Stats/FoodStats"; 
+import FoodStats from "../../components/Stats/FoodStats";
 import FoodPerformance from '../../components/Performance/FoodPerformance';
 import CalorieIntake from "../../components/CalorieIntake/CalorieIntake";
 import MealPicker from "../../components/MealPicker/MealPicker";
@@ -15,8 +15,8 @@ interface StatsData {
 }
 
 interface FoodPerformanceData {
-    day: string;
-    caloriesEaten: number;
+  day: string;
+  caloriesEaten: number;
 }
 
 export default function Meals() {
@@ -27,7 +27,7 @@ export default function Meals() {
   });
 
   const [foodPerformanceData, setFoodPerformanceData] = useState<FoodPerformanceData[]>([]);
-      const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
 
 
@@ -61,7 +61,7 @@ export default function Meals() {
       //weekData
       setFoodPerformanceData(weekData.week.map((d: any) => ({ day: d.day, caloriesEaten: d.caloriesEaten })));
 
-     
+
       const average = Math.round(weekData.average);
 
       setStatsData({
@@ -76,9 +76,9 @@ export default function Meals() {
     }
   };
 
-  
+
   useEffect(() => {
-    fetchStats(); 
+    fetchStats();
   }, []);
 
   // useEffect(() => {
@@ -131,13 +131,13 @@ export default function Meals() {
       <div className={style.container}>
         {!loading && <FoodStats data={statsData} />}
 
-        
-        <CalorieIntake current={statsData.caloriesEaten} goal={2000} />
 
-        
+        <CalorieIntake current={statsData.caloriesEaten} goal={2500} />
+
+
         {!loading && <MealPicker onMealAdded={fetchStats} />}
 
-        
+
         {!loading && <FoodPerformance data={foodPerformanceData} />}
       </div>
 

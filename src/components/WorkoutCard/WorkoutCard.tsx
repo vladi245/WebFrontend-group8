@@ -30,7 +30,7 @@ const WorkoutCard = ({ data }: WorkoutCardProps) => {
 
 
       <div className={styles.content}>
-        <div className={styles.subtitle}>Your average workout time this week is <div className={styles.amount}>{average} min</div></div>
+        <div className={styles.subtitle}>Your average workout time is <div className={styles.amount}>{average} min</div></div>
 
 
         <div className={styles.chartContainer}>
