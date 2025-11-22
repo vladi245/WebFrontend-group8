@@ -17,6 +17,15 @@ export default function Home() {
     const [calorieCurrent, setCalorieCurrent] = useState<number>(1331);
     const [calorieGoal, setCalorieGoal] = useState<number>(2500);
     const [caloriesBurned, setCaloriesBurned] = useState<number>(1560);
+    const [workoutDurationData, setWorkoutDurationData] = useState<{ day: string; minutes: number }[]>([
+        { day: 'Mon', minutes: 0 },
+        { day: 'Tue', minutes: 0 },
+        { day: 'Wed', minutes: 0 },
+        { day: 'Thu', minutes: 0 },
+        { day: 'Fri', minutes: 0 },
+        { day: 'Sat', minutes: 0 },
+        { day: 'Sun', minutes: 0 },
+    ]);
 
     useEffect(() => {
         let mounted = true;
@@ -79,6 +88,22 @@ export default function Home() {
 
                 if (workoutStats && (typeof workoutStats.total_calories !== 'undefined' || typeof workoutStats.totalCalories !== 'undefined')) {
                     setCaloriesBurned(Number(workoutStats.total_calories ?? workoutStats.totalCalories ?? 0));
+
+                    try {
+                        const daily = workoutStats.daily || [];
+                        if (Array.isArray(daily) && daily.length > 0) {
+                            const mapped = daily.map((d: any) => {
+                                const dateStr = d.date || d.day || '';
+                                const date = dateStr ? new Date(dateStr) : new Date();
+                                const dayName = date.toLocaleDateString(undefined, { weekday: 'short' });
+                                const minutes = Number(d.minutes ?? d.duration ?? 0) || 0;
+                                return { day: dayName, minutes };
+                            });
+                            setWorkoutDurationData(mapped);
+                        }
+                    } catch (e) {
+                        console.warn('Failed to map workout duration data', e);
+                    }
                 }
             } catch (err) {
                 console.warn('Failed to fetch dashboard stats', err);
@@ -87,11 +112,16 @@ export default function Home() {
         fetchStats();
         return () => { mounted = false };
     }, []);
+
+    const storedUserForGreeting = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
+    const parsedUserForGreeting = storedUserForGreeting ? JSON.parse(storedUserForGreeting) : null;
+    const displayName = parsedUserForGreeting?.name ?? parsedUserForGreeting?.username ?? 'Guest';
+
     return (
         <>
             <Navbar />
             <div style={{ marginLeft: '350px', padding: '20px', overflowY: 'hidden' }}>
-                <Greeting name='Washington ' />
+                <Greeting name={displayName} />
                 <div style={{ width: '50%' }}>
                     <Seperator variant="accent" />
                 </div>
@@ -108,15 +138,7 @@ export default function Home() {
                 </div>
                 <div style={{ display: 'flex', columnGap: '20px', marginBottom: '20px', width: '80%' }}>
 
-                    <WorkoutCard data={[
-                        { day: 'Mon', minutes: 30 },
-                        { day: 'Tue', minutes: 45 },
-                        { day: 'Wed', minutes: 20 },
-                        { day: 'Thu', minutes: 60 },
-                        { day: 'Fri', minutes: 50 },
-                        { day: 'Sat', minutes: 40 },
-                        { day: 'Sun', minutes: 70 },
-                    ]} />
+                    <WorkoutCard data={workoutDurationData} />
                     {/*
                     <FriendsActivity activities={[
                         {
