@@ -84,7 +84,6 @@
     color: #aaa;
 }
 
-/* Blurred state for locked (standard) users */
 
 .cardInner {
     display: flex;
@@ -92,7 +91,6 @@
     gap: 1rem;
 }
 
-/* Blurred state for locked (standard) users - applied to inner wrapper so overlay is not blurred */
 .blurred {
     filter: blur(4px);
     opacity: 0.85;
