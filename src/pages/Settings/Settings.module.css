@@ -4,6 +4,9 @@
     place-items: center;
 
 }
+.settingsContainer > * + * {
+  margin-top: 2rem;
+}
 
 .settingText {
 
