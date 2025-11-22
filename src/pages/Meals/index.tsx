@@ -5,6 +5,7 @@ import FoodPerformance from '../../components/Performance/FoodPerformance';
 import CalorieIntake from "../../components/CalorieIntake/CalorieIntake";
 import MealPicker from "../../components/MealPicker/MealPicker";
 import style from "./Meals.module.css";
+import Navbar from '../../components/NavbarVertical/Navbar';
 
 
 interface StatsData {
@@ -124,19 +125,23 @@ export default function Meals() {
   // );
 
   return (
-    <div className={style.container}>
-      <Logo />
-      {!loading && <FoodStats data={statsData} />}
+    <>
+      <Navbar />
 
-      
-      <CalorieIntake current={statsData.caloriesEaten} goal={2000} />
+      <div className={style.container}>
+        {!loading && <FoodStats data={statsData} />}
 
-      
-  {!loading && <MealPicker onMealAdded={fetchStats} />}
+        
+        <CalorieIntake current={statsData.caloriesEaten} goal={2000} />
 
-      
-  {!loading && <FoodPerformance data={foodPerformanceData} />}
-    </div>
+        
+        {!loading && <MealPicker onMealAdded={fetchStats} />}
+
+        
+        {!loading && <FoodPerformance data={foodPerformanceData} />}
+      </div>
+
+    </>
   );
 }
 
