@@ -128,13 +128,20 @@ const MealPicker = ({ onMealAdded }: MealPickerProps) => {
   // -----------------------------
   const handleRemoveFood = async (recordId: number) => {
     setMeals((current) => current.filter((m) => m.recordId !== recordId));
+    const user = JSON.parse(localStorage.getItem("user") || "null");
+      const userId = user?.id;
 
+      if (!userId) return;
     try {
-      await fetch("http://localhost:5000/api/meals", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ recordId }),
-      });
+          await fetch("http://localhost:5000/api/meals", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ 
+        recordId, 
+        userId 
+      })
+    });
+
 
       onMealAdded?.();
       await loadMealsFromServer();
