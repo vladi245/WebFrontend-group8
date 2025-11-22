@@ -1,8 +1,9 @@
 import style from './Performance.module.css'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import React from 'react';
 
 interface FoodPerformanceData {
-    day: string;
+    day: string; 
     caloriesEaten: number;
 }
 
@@ -10,7 +11,60 @@ interface FoodPerformanceProps {
     data: FoodPerformanceData[];
 }
 
+
+//helper to get the date for each day label in the current week
+function getDateForDay(dayLabel: string): Date {
+    const dayMap = { Mon: 0, Tue: 1, Wed: 2, Thu: 3, Fri: 4, Sat: 5, Sun: 6 };
+    const today = new Date();
+    const jsDay = today.getDay(); // 0=sun 1=mon, 
+    //find monday of this week
+    const daysSinceMonday = jsDay === 0 ? 6 : jsDay - 1;
+    const monday = new Date(today);
+    monday.setHours(0, 0, 0, 0);
+    monday.setDate(today.getDate() - daysSinceMonday);
+    const idx = dayMap[dayLabel];
+    const d = new Date(monday);
+    d.setDate(monday.getDate() + idx);
+    return d;
+}
+
+function getFullDayName(date: Date) {
+    //always use English
+    return date.toLocaleDateString('en-US', { weekday: 'long' });
+}
+
+const CustomTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+        const dateObj = getDateForDay(label);
+        const fullDay = getFullDayName(dateObj);
+        const dateStr = dateObj.toLocaleDateString();
+        return (
+            <div style={{ background: '#1a1a1a', border: '1px solid #0096FF', borderRadius: 8, color: '#fff', padding: 12 }}>
+                <div style={{ fontWeight: 600, fontSize: 16 }}>{fullDay}</div>
+                <div style={{ fontSize: 12, color: '#aaa' }}>{dateStr}</div>
+                <div style={{ marginTop: 8 }}>Calories: <b>{payload[0].value}</b></div>
+            </div>
+        );
+    }
+    return null;
+};
+
 const FoodPerformance = ({ data }: FoodPerformanceProps) => {
+
+    const today = new Date();
+    const jsDay = today.getDay();
+    const dayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const todayLabel = dayLabels[jsDay === 0 ? 6 : jsDay - 1];
+
+    
+    const renderDot = (props: any) => {
+        const { cx, cy, payload } = props;
+        if (payload.day === todayLabel) {
+            return <circle cx={cx} cy={cy} r={8} fill="#0096FF" stroke="#fff" strokeWidth={2} />;
+        }
+        return <circle cx={cx} cy={cy} r={5} fill="#7ED957" />;
+    };
+
     return (
         <div className={style.performanceContainer}>
             <div className={style.header}>
@@ -30,21 +84,14 @@ const FoodPerformance = ({ data }: FoodPerformanceProps) => {
                             stroke="rgba(255, 255, 255, 0.6)"
                             style={{ fontSize: '14px' }}
                         />
-                        <Tooltip
-                            contentStyle={{
-                                backgroundColor: '#1a1a1a',
-                                border: '1px solid #0096FF',
-                                borderRadius: '8px',
-                                color: '#fff'
-                            }}
-                        />
+                        <Tooltip content={<CustomTooltip />} />
                         <Line
                             type="monotone"
                             dataKey="caloriesEaten"
                             stroke="#7ED957"
                             strokeWidth={3}
-                            dot={{ fill: '#7ED957', r: 5 }}
-                            activeDot={{ r: 7 }}
+                            dot={renderDot}
+                            activeDot={{ r: 10, fill: '#0096FF', stroke: '#fff', strokeWidth: 2 }}
                         />
                     </LineChart>
                 </ResponsiveContainer>

@@ -6,6 +6,7 @@
     align-items: center;
     padding-top: 2rem;
     padding-bottom: 4rem;
+    margin-left: 300px;
 }
 
 .container> :first-child {
