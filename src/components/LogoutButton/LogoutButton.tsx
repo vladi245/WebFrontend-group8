@@ -1,0 +1,23 @@
+import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import style from './LogoutButton.module.css';
+import { logout } from '../../services/api';
+
+const LogoutButton = () => {
+    const navigate = useNavigate();
+
+    const handleLogout = useCallback(() => {
+        logout();
+        navigate('/login');
+    }, [navigate]);
+
+    return (
+        <div className={style.buttonContainer}>
+            <button onClick={handleLogout}>
+                Logout
+            </button>
+        </div>
+    );
+}
+
+export default LogoutButton;

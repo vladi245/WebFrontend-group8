@@ -43,10 +43,10 @@ const Navbar = () => {
          }
 
          {
-            <a href="/hydration" className={style.navlink}>
+            /*<a href="/hydration" className={style.navlink}>
                <GlassWater className={style.icon} />
                <span>Hydration</span>
-            </a>
+            </a>*/
          }
 
          <a href="/desk" className={style.navlink}>
