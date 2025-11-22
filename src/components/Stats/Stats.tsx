@@ -40,7 +40,7 @@ const Stats = ({ data }: StatsProps) => {
             />
             <StatCard
                 icon={caloriesIcon}
-                value={data.caloriesBurned.toLocaleString()}
+                value={(Number(data.caloriesBurned || 0)).toLocaleString()}
                 label="Calories Burned"
                 colorClass="caloriesCard"
             />

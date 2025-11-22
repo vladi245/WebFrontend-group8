@@ -50,13 +50,27 @@ const Exercises = ({ onAdd, onRemove, initialCompleted = [] }: ExercisesProps) =
                 const list = await apiFetch('/api/exercises');
                 if (!mounted) return;
                 if (Array.isArray(list) && list.length > 0) {
-                    const mapped = list.map((w: any) => ({
-                        id: w.id,
-                        name: w.name || 'Unknown',
-                        sets: typeof w.sets === 'number' ? w.sets : 0,
-                        reps: typeof w.reps === 'number' ? w.reps : 0,
-                        muscleGroups: Array.isArray(w.muscle_group) ? w.muscle_group : (w.muscle_group ? JSON.parse(w.muscle_group) : [])
-                    } as Exercise));
+                    const mapped = list.map((w: any) => {
+                        let muscles: string[] = [];
+                        if (Array.isArray(w.muscle_group)) muscles = w.muscle_group;
+                        else if (typeof w.muscle_group === 'string') {
+                            try {
+                                const parsed = JSON.parse(w.muscle_group);
+                                if (Array.isArray(parsed)) muscles = parsed.map(String);
+                                else muscles = String(w.muscle_group).split(',').map((s: string) => s.trim()).filter(Boolean);
+                            } catch (e) {
+                                muscles = String(w.muscle_group).split(',').map((s: string) => s.trim()).filter(Boolean);
+                            }
+                        }
+
+                        return {
+                            id: w.id,
+                            name: w.name || 'Unknown',
+                            sets: typeof w.sets === 'number' ? w.sets : 0,
+                            reps: typeof w.reps === 'number' ? w.reps : 0,
+                            muscleGroups: muscles
+                        } as Exercise;
+                    });
                     setAvailableExercises(mapped);
                     return;
                 }
@@ -88,7 +102,14 @@ const Exercises = ({ onAdd, onRemove, initialCompleted = [] }: ExercisesProps) =
     const filteredAvailable = useMemo(() => {
         const q = searchTerm.trim().toLowerCase();
         if (!q) return availableExercises;
-        return availableExercises.filter((ex) => ex.name.toLowerCase().includes(q));
+        return availableExercises.filter((ex) => {
+            try {
+                const name = (ex && ex.name) ? String(ex.name).toLowerCase() : '';
+                return name.includes(q);
+            } catch (e) {
+                return false;
+            }
+        });
     }, [availableExercises, searchTerm]);
 
     const addToCompleted = async (exercise: Exercise) => {
@@ -132,7 +153,12 @@ const Exercises = ({ onAdd, onRemove, initialCompleted = [] }: ExercisesProps) =
         // If backend provided remove handler, try to locate corresponding record_id to remove
         if (onRemove && completedRecords.length > 0) {
             const rec = completedRecords.find(r => r.workout_id === exercise.id);
-            if (rec) onRemove(rec.record_id).catch((e) => console.error('Failed to remove via API', e));
+            if (rec) {
+                const result = onRemove(rec.record_id);
+                if (result && typeof (result as any).catch === 'function') {
+                    (result as Promise<void>).catch((e: unknown) => console.error('Failed to remove via API', e));
+                }
+            }
         }
     };
 

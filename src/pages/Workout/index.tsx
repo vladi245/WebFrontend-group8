@@ -33,20 +33,36 @@ export default function Workout() {
             try {
                 const stats = await apiFetch('/api/workouts/stats');
                 const records = await apiFetch('/api/workouts');
-                // Map stats to StatsData
-                const daysActiveCount = (stats.daily || []).filter((d: any) => Number(d.calories ?? d.calories_burned ?? 0) > 0).length;
+
+
+                let dailyArray: any[] = [];
+                if (stats && Array.isArray(stats.daily)) {
+                    dailyArray = stats.daily;
+                } else if (stats && stats.daily && typeof stats.daily === 'object') {
+
+                    try {
+                        dailyArray = Object.keys(stats.daily).map(k => {
+                            const v = stats.daily[k];
+                            return (typeof v === 'object') ? { date: v.date ?? k, calories: v.calories ?? v.calories_burned ?? v.value ?? v } : { date: k, calories: v };
+                        });
+                    } catch (e) {
+                        dailyArray = [];
+                    }
+                }
+
+                const daysActiveCount = dailyArray.filter((d: any) => Number(d.calories ?? d.calories_burned ?? 0) > 0).length;
                 const statsDataMapped: StatsData = {
-                    totalWorkouts: stats.total_workouts,
-                    caloriesBurned: stats.total_calories,
+                    totalWorkouts: Number(stats?.total_workouts ?? stats?.totalWorkouts ?? 0),
+                    caloriesBurned: Number(stats?.total_calories ?? stats?.totalCalories ?? 0),
                     daysActive: `${daysActiveCount} days active`
                 };
 
-                // Map daily to PerformanceData with short day labels (be permissive about field names)
-                const perfData: PerformanceData[] = (stats.daily || []).map((d: any) => {
+
+                const perfData: PerformanceData[] = dailyArray.map((d: any) => {
                     const dateStr = d.date || d.day || d[0] || '';
                     const date = dateStr ? new Date(dateStr) : new Date();
                     const dayName = date.toLocaleDateString(undefined, { weekday: 'short' });
-                    const calories = Number(d.calories ?? d.calories_burned ?? d.value ?? 0) || 0;
+                    const calories = Number(d.calories ?? d.calories_burned ?? d.value ?? d) || 0;
                     return { day: dayName, calories };
                 });
 
@@ -55,7 +71,7 @@ export default function Workout() {
                 setPerformanceData(perfData);
                 // Store only today's completed records (so list resets each day)
                 const todayStr = (new Date()).toISOString().slice(0, 10);
-                const todays = (records || []).filter((r: any) => {
+                const todays = (Array.isArray(records) ? records : []).filter((r: any) => {
                     const ts = r.timestamp || r.time || r.date;
                     if (!ts) return false;
                     return new Date(ts).toISOString().slice(0, 10) === todayStr;
@@ -124,17 +140,24 @@ export default function Workout() {
             // POST response stats
             setCompletedRecords(prev => [res.record, ...prev]);
 
-            const daysActiveCount = (res.stats.daily || []).filter((d: any) => Number(d.calories ?? d.calories_burned ?? 0) > 0).length;
+            // Normalize response stats
+            const resDaily = Array.isArray(res?.stats?.daily) ? res.stats.daily : (res?.stats?.daily && typeof res.stats.daily === 'object'
+                ? Object.keys(res.stats.daily).map(k => {
+                    const v = res.stats.daily[k];
+                    return (typeof v === 'object') ? { date: v.date ?? k, calories: v.calories ?? v.calories_burned ?? v.value ?? v } : { date: k, calories: v };
+                }) : []);
+
+            const daysActiveCount = resDaily.filter((d: any) => Number(d.calories ?? d.calories_burned ?? 0) > 0).length;
             setStatsData({
-                totalWorkouts: res.stats.total_workouts,
-                caloriesBurned: res.stats.total_calories,
+                totalWorkouts: Number(res?.stats?.total_workouts ?? res?.stats?.totalWorkouts ?? 0),
+                caloriesBurned: Number(res?.stats?.total_calories ?? res?.stats?.totalCalories ?? 0),
                 daysActive: `${daysActiveCount} days active`
             });
-            const perfData: PerformanceData[] = (res.stats.daily || []).map((d: any) => {
+            const perfData: PerformanceData[] = resDaily.map((d: any) => {
                 const dateStr = d.date || d.day || d[0] || '';
                 const date = dateStr ? new Date(dateStr) : new Date();
                 const dayName = date.toLocaleDateString(undefined, { weekday: 'short' });
-                const calories = Number(d.calories ?? d.calories_burned ?? d.value ?? 0) || 0;
+                const calories = Number(d.calories ?? d.calories_burned ?? d.value ?? d) || 0;
                 return { day: dayName, calories };
             });
             // mapped perfData after add
@@ -150,17 +173,24 @@ export default function Workout() {
             // update local lists
             setCompletedRecords(prev => prev.filter(r => r.record_id !== record_id));
 
-            const daysActiveCount = res.stats.daily.filter((d: any) => d.calories > 0).length;
+            const del = res?.stats?.daily;
+            const delArr = Array.isArray(del) ? del : (del && typeof del === 'object' ? Object.keys(del).map(k => {
+                const v = del[k];
+                return (typeof v === 'object') ? { date: v.date ?? k, calories: v.calories ?? v.calories_burned ?? v.value ?? v } : { date: k, calories: v };
+            }) : []);
+
+            const daysActiveCount = delArr.filter((d: any) => Number(d.calories ?? d.calories_burned ?? 0) > 0).length;
             setStatsData({
-                totalWorkouts: res.stats.total_workouts,
-                caloriesBurned: res.stats.total_calories,
+                totalWorkouts: Number(res?.stats?.total_workouts ?? res?.stats?.totalWorkouts ?? 0),
+                caloriesBurned: Number(res?.stats?.total_calories ?? res?.stats?.totalCalories ?? 0),
                 daysActive: `${daysActiveCount} days active`
             });
 
-            const perfData: PerformanceData[] = res.stats.daily.map((d: any) => {
-                const date = new Date(d.day || d.date);
+            const perfData: PerformanceData[] = delArr.map((d: any) => {
+                const date = new Date(d.day || d.date || d[0] || '');
                 const dayName = date.toLocaleDateString(undefined, { weekday: 'short' });
-                return { day: dayName, calories: d.calories };
+                const calories = Number(d.calories ?? d.calories_burned ?? d.value ?? d) || 0;
+                return { day: dayName, calories };
             });
             setPerformanceData(perfData);
         } catch (err) {
