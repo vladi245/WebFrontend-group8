@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import style from './DeleteButton.module.css';
+import { apiFetch, logout } from '../../services/api';
 
 const DeleteButton = () => {
     const [showModal, setShowModal] = useState(false);
@@ -12,11 +14,42 @@ const DeleteButton = () => {
         setShowModal(false);
     };
 
-    const handleConfirmDelete = () => {
-        // delete account logic will go here
-        console.log('Account deleted');
-        setShowModal(false);
-    };
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+
+    const handleConfirmDelete = useCallback(async (id: string | null) => {
+        if (!id) {
+            setError('No user id found');
+            return;
+        }
+
+        setLoading(true);
+        setError('');
+        try {
+            // backend exposes user deletion under the admin routes mounted at /admin
+            await apiFetch(`/admin/users/${id}`, { method: 'DELETE' });
+            // clear local data and redirect to login
+            logout();
+            setShowModal(false);
+            navigate('/login');
+        } catch (err: any) {
+            console.error('Delete failed', err);
+            setError(err?.error || err?.message || 'Delete failed');
+        } finally {
+            setLoading(false);
+        }
+    }, [navigate]);
+
+    // get current user id from localStorage
+    const userJson = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
+    let user: any = null;
+    try {
+        user = userJson ? JSON.parse(userJson) : null;
+    } catch (e) {
+        user = null;
+    }
+    const userId = user?._id || user?.id || null;
 
     return (
         <>
@@ -39,10 +72,15 @@ const DeleteButton = () => {
                             <button className={style.cancelButton} onClick={handleCancel}>
                                 Cancel
                             </button>
-                            <button className={style.confirmDeleteButton} onClick={handleConfirmDelete}>
-                                Delete Account
+                            <button
+                                className={style.confirmDeleteButton}
+                                onClick={() => handleConfirmDelete(userId)}
+                                disabled={loading}
+                            >
+                                {loading ? 'Deleting…' : 'Delete Account'}
                             </button>
                         </div>
+                        {error && <p className={style.errorText}>{error}</p>}
                     </div>
                 </div>
             )}
