@@ -34,12 +34,12 @@
 
 \section{Backend and Resource Management}
 \subsection{Backend}
-The backend follows the MVC framework principles to assure a well structured project. The techstack includes using Express.js and handling the database using PostegreSQL, finally using Docker for managing containers. 
-The three main components are :
+The backend follows the MVC framework to ensure a well-structured project. The backend techstack uses Express.js and a PostgreSQL database running in with Docker.
+The three main architecture components are :
 \begin{itemize}[noitemsep]
-    \item Models handle data, business logic and database queries. They define how data is created, read,updated and deleted. In GetStanding models interact with PostgreSQL to ensure consistent database operations.
-    \item Views are responsible for rendering the User Interface. Although the backend focuses on API endpoints, views provide server-side rendering for specific pages.
-    \item  Controllers manage requests, calling model methods and returning views. They are responsible for processing users input, selecting the correct views to display and updating the Model based on user actions.They also handle validation, errors and response codes.
+    \item Models handle data, business logic and database queries. They define how data is created, read, updated and deleted.
+    \item Views (not part of the backend code but a portion of MVC structure) are responsible for rendering the User interface and sending requests to the backend controllers.
+    \item Controllers act as intermediaries between the client and the model. Handling the validation of incoming requests and sending back a properly structured response
  \end{itemize}
 Backend includes other responsibilities:\\
 API routing through Express helps define clean and organized endpoint paths for every resource in the project.\\
