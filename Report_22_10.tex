@@ -42,11 +42,8 @@ The three main architecture components are :
     \item Controllers act as intermediaries between the client and the model. Handling the validation of incoming requests and sending back a properly structured response
  \end{itemize}
 Backend includes other responsibilities:\\
-API routing through Express helps define clean and organized endpoint paths for every resource in the project.\\
 Docker provides containerization for the Database ensuring consistent development environments.\\
 Routing is in control of mapping URLs to controllers.
-Furthermore it handles the Authentication and authorization which are going to be covered later in this report.
-
 
 \subsection{Resource Management}
 \textbf{Resource: WorkoutModel}
@@ -105,7 +102,7 @@ Middleware checks user's role and grants access to role-specific elements. For e
 	\end{itemize}
     \item \textbf{Meals Tracking}
 	\begin{itemize}
-	\item Actor: Premium
+	\item Actor: Premium User
 	\item Description: A user adds meals to the system and data is reflected on addition to show users' consumption. 
 	\end{itemize}
     \item \textbf{Workout Tracking}
@@ -120,5 +117,5 @@ Middleware checks user's role and grants access to role-specific elements. For e
 	\end{itemize}
 \end{itemize}
 \section{Conclusion}
-GetStanding helps users in their journey of developing healthier lifestyle through integration of meal tracking and workout tracking. Using MVC framework, authentication and authorization and managing the resources well, the application creates a proper foundation for self-growth. The main models User, Workout and Meal ensure structured data handling, which is essential for proper functionality and possible improvements in the future. The team sees possibilities for even more features in the future. Ability to track your hydration. Addition of notification system could be a great as it would help you stick to your goals. Lastly ability to interact with your friends could be an extra motivation to continue on your track to health.
+GetStanding encourages a healthier lifestyle by granting users an application to track their habbits. Thanks to the MVC structure and secure user login, it offers a solid foundation for scalability. The structured models helps keep data organized for easy updates. Future improvements considered by the team include hydration tracking, goal reminders, and social features to help users stay motivated.
 \end{document}
