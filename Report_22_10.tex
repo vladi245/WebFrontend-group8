@@ -34,7 +34,7 @@
 
 \section{Backend and Resource Management}
 \subsection{Backend}
-The backend follows the MVC framework to ensure a well-structured project. The backend techstack uses Express.js and a PostgreSQL database running in with Docker.
+The backend follows the MVC framework to ensure a well-structured project. The backend techstack uses Express.js and a PostgreSQL database running in Docker.
 The three main architecture components are :
 \begin{itemize}[noitemsep]
     \item Models handle data, business logic and database queries. They define how data is created, read, updated and deleted.
@@ -72,13 +72,13 @@ Description: UserModel holds information regarding GetStanding users. CRUD opera
 
 \textbf{Resource: WorkoutRecord}
 \\
-Description: WorkoutRecord allows the user to interact and handle his workout data.
+Description: WorkoutRecord allows the user to interact and handle their workout data.
 \\
 \begin{itemize}
-\item addRecord (POST) - User adds an exercise entry into his workout.
+\item addRecord (POST) - User adds an exercise entry into their workout.
 \item getRecordsByUser (GET) - User gets access and sees date of previous workouts.
-\item deleteByID (DELETE) - User removes his workout from his records.
-\item getAggregatedStatsByUser (GET) - User can view his stats over last 7 days.
+\item deleteByID (DELETE) - User removes their workout from their records.
+\item getAggregatedStatsByUser (GET) - User can view their stats over last 7 days.
 \end{itemize}
 
 
@@ -94,7 +94,7 @@ GetStanding implements three user types:
 Login is implemented using encrypted passwords.\\
 Every existing user has their own JWT token generated during signing up. The token is verified and if it's valid the request provides access to the user type.
 \subsection{Authorization}
-Middleware checks user's role and grants access to role-specific elements. For example Admins can create and delete exercises which other users can do. Guest user can not access the dashboard and the perks of having an account, only being able to browse homepage. Standard User has ability to log his workouts however it is impossible for him to access the meals panel and track his meals which is unlocked by the Premium User. In near future the app will be expanded adding new features for different users set in line with the semester project. 
+Middleware checks user's role and grants access to role-specific elements. For example Admins can create and delete exercises which other users can do. Users which are not logged in can not access the dashboard and the perks of having an account, only being able to browse homepage. Standard User has ability to log their workouts however it is impossible for him to access the meals panel and track their meals which is unlocked by the Premium User. In the near future the app will be expanded adding new features for different users.
 
 \subsection{Role table}
 \begin{itemize}[noitemsep]
