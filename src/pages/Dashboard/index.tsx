@@ -177,7 +177,8 @@ export default function Home() {
     const displayName = parsedUserForGreeting?.name ?? parsedUserForGreeting?.username ?? 'Guest';
 
     return (
-        <>
+        <div style={{ zoom: 0.85 }}>
+
             <Navbar />
             <div style={{ marginLeft: '350px', padding: '20px', overflowY: 'hidden' }}>
                 <Greeting name={displayName} />
@@ -230,6 +231,6 @@ export default function Home() {
 
 
             </div>
-        </>
+        </div>
     );
 };

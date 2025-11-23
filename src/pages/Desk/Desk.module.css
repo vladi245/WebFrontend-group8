@@ -49,3 +49,7 @@
     grid-column: 3 / 5;
     grid-row: 1 / 4;
 }
+
+.zoomContainer {
+    zoom: 0.85;
+}

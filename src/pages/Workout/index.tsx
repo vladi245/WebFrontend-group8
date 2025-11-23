@@ -169,7 +169,8 @@ export default function Workout() {
     };
 
     return (
-        <>
+        <div className={style.zoomContainer}>
+
             <Navbar />
             <div className={style.container}>
                 <div style={{ background: 'transparent', height: '40px' }}>
@@ -180,6 +181,6 @@ export default function Workout() {
                 <Exercises onAdd={handleAddCompleted} onRemove={handleRemoveCompleted} initialCompleted={completedRecords} />
                 <MuscleGroup />
             </div>
-        </>
+        </div>
     );
 }
