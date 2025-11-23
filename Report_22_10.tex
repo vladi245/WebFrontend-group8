@@ -1,0 +1,117 @@
+\documentclass[twocolumn,11pt]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}  % UTF-8 encoding
+\usepackage{graphicx}        % For figures
+\usepackage{amsmath, amssymb}% For math symbols
+\usepackage{hyperref}        % Hyperlinks
+\usepackage{geometry}        % Page layout
+\usepackage{lipsum}          % Dummy text
+\usepackage{enumitem}        % Custom lists
+
+\geometry{margin=1in}
+
+% Title and Author
+\title{GetStanding: A Web Application for Healthier Desk Habits - Assignment 2 }
+\author{Group 8: \\ Piotr Szczesny –piszc24@student.sdu.dk \\ Vlad-Alexandru Ionita -vlion24@student.sdu.dk \\ Karolina Malik -kamal24@student.sdu.dk \\ Bartosz Bobkiewicz -babob24@student.sdu.dk \\ Viktor Barabás -vibar24@student.sdu.dk \\ Azra Talum -aztal24@student.sdu.dk}
+
+\date{\today}
+
+\begin{document}
+
+
+\maketitle
+
+
+\twocolumn
+
+\section{Introduction}
+\textbf{Motivation:} Prolonged sitting can harm both wellbeing and productivity, yet people often forget to stand, stretch, or take short breaks throughout the day. Additionally, the lack of integration between work routines and fitness apps makes it difficult to accurately track and assess physical activity, limiting the ability to maintain a healthy, active lifestyle.
+\\\\
+\textbf{Project:} GetStanding is a web application designed for office workers and students who spend most of their day sitting or generally leading an unhealthy lifestyle. The platform promotes a healthier lifestyle by encouraging physical activity. Core features include activity tracking, integration with fitness data inputed by the user and general fitness tools such as calorie and meal tracking. GetStanding helps users maintain better posture, stay active, and improve overall wellbeing throughout their day as well as their mood. 
+\\\\
+\textbf{Contributions:} Readers will learn how GetStandings' backend operates. The project demonstrates how a Model-View-Controller framework should be applied to a project integrating elements of database handling, API requests and responses, authentication and authorization, and utilization of CRUD.
+
+\section{Backend and Resource Management}
+\subsection{Backend}
+The backend follows MVC framework principles using Express.js and handling database using Postegress SQL and Docker. 
+The three main components are :
+\begin{itemize}[noitemsep]
+    \item Models handle data, business logic and database queries. They define how data is created, read,updated and deleted. In GetStanding models interact with PostgreSQL to ensure consistnet database operations.
+    \item Views are responsible for Rendering the User Interface. Although the backend focuses on API endpoints, views provide server-side rendering for specific pages.
+    \item Controllers manage requests, calling model methods and returning views. They are responsobile for proccessing users input, selecting correct views to display and udpating the Model based on user actions.They also handle validation, errors and response codes.
+ \end{itemize}
+Backend includes other responsibilities:\\
+API routing through express helps define clean and ogranized endpoint paths for every resource in the project.\\
+Docker provides containerization for the Database ensuring consistent development enviroments.\\
+Routing is in control of mapping URLs to controllers.
+Furthermore it handles the Authentication and authorization which are going to be covered later in this report.
+
+
+\subsection{Resource Management}
+WorkoutModel serves as the representation of how workouts can be managed by the admin \\\\
+\textbf{WorkoutModel}
+\begin{itemize}
+\item getAll ( GET) - Returns all workouts.
+\item create (POST) - Adds a new workout using data from the request body.\
+\item deleteById (DELETE) - Removes workout by its ID.\\
+\end{itemize}
+User model allows Admin to handle accounts of users of GetStanding.\\\\
+\textbf{UserModel}
+\begin{itemize}
+\item GetAll(GET)- Admin can access Users.
+\item DeleteByID(DELETE) -Deletes a user.
+\item Create(POST) - Creates new user.
+\item updateType(UPDATE) - Updates users subscritpion type.\\
+\end{itemize}
+
+WorkoutRecord allows the user to interact and handle his workout data.\\\\
+\textbf{WorkoutRecord}
+\begin{itemize}
+\item addRecord(POST) - User adds an exercise entry into his workout.
+\item getRecordsByUser(GET) - User gets access and sees date of previous workouts.
+\item deleteByID(DELETE) - User removes his workouot from his records.
+\item getAggregatedStatsByUser(GET) - User can view his stats over last 7 days.
+\end{itemize}
+
+
+\section{Authentication and Authorization}
+
+\subsection{Authentication}
+GetStanding implements four user types:
+\begin{itemize}
+\item Admin 
+\item Standard User 
+\item Premium User 
+\end{itemize}
+Login is implemented using encrypted passowrds and session-based authentication.\\
+Every existing user has their own JWT token generated during signing up. The token is verified and if its valid the request provides access to the user type.
+\subsection{Authorization}
+Middleware checks user role and grants access to role-specific elements. For example Admins can create and delete exercises which other users can do. Guest user can not access the dashboard and the perks of having an account, only being able to browse homepage. Standard User has ability to log his workouts however it is impossible for him to access the meals panel and track his meals which is unlocked by the Premium User. In near future the app will be expanded adding new features for diffrent users set in line with the semester project. 
+
+\subsection{Role table}
+\begin{itemize}[noitemsep]
+    \item \textbf{Register and Login}
+	\begin{itemize}
+	\item Actor: User
+	\item Description: A user sings up for an account and logs in. 
+	\end{itemize}
+    \item \textbf{Meals Tracking}
+	\begin{itemize}
+	\item Actor: Premium
+	\item Description: A user adds meals to the system and data is reflected on addition to show users' consumption. 
+	\end{itemize}
+    \item \textbf{Workout Tracking}
+	\begin{itemize}
+	\item Actor: User
+	\item Description: A user logs workouts and can view their progress in the app.
+	\end{itemize}
+    \item \textbf{Adding and Removing}
+	\begin{itemize}
+	\item Actor: Admin
+	\item Description: Admin manages all users, workouts and meals and can create and delete them. 
+	\end{itemize}
+\end{itemize}
+\section{Conclusion}
+GetStanding helps users in their journey of developing healthier lifestyle through integration of meal tracking and workout tracking.  Using MVC framework, authentication and authorization and managing the resources well, the application creates a proper foundation for self-growth. The main models User, Workout and Meal ensure structured data handling, which is essential for proper functionality and possible improvements in the future.  The team sees possibilites for even more features in the future. Ability to track your hydration. Addition of notifcation system could be a great as it would serve helping stick to your goals. Lastly ability to interact with your friends could be an extra motivation to continue on your track to health.
+\end{document}
