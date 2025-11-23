@@ -34,16 +34,16 @@
 
 \section{Backend and Resource Management}
 \subsection{Backend}
-The backend follows MVC framework principles using Express.js and handling database using Postegress SQL and Docker. 
+The backend follows MVC framework principles using Express.js and handling database using PostegreSQL and Docker. 
 The three main components are :
 \begin{itemize}[noitemsep]
-    \item Models handle data, business logic and database queries. They define how data is created, read,updated and deleted. In GetStanding models interact with PostgreSQL to ensure consistnet database operations.
-    \item Views are responsible for Rendering the User Interface. Although the backend focuses on API endpoints, views provide server-side rendering for specific pages.
-    \item Controllers manage requests, calling model methods and returning views. They are responsobile for proccessing users input, selecting correct views to display and udpating the Model based on user actions.They also handle validation, errors and response codes.
+    \item Models handle data, business logic and database queries. They define how data is created, read,updated and deleted. In GetStanding models interact with PostgreSQL to ensure consistent database operations.
+    \item Views are responsible for rendering the User Interface. Although the backend focuses on API endpoints, views provide server-side rendering for specific pages.
+    \item  Controllers manage requests, calling model methods and returning views. They are responsible for processing users input, selecting the correct views to display and updating the Model based on user actions.They also handle validation, errors and response codes.
  \end{itemize}
 Backend includes other responsibilities:\\
-API routing through express helps define clean and ogranized endpoint paths for every resource in the project.\\
-Docker provides containerization for the Database ensuring consistent development enviroments.\\
+API routing through Express helps define clean and organized endpoint paths for every resource in the project.\\
+Docker provides containerization for the Database ensuring consistent development environments.\\
 Routing is in control of mapping URLs to controllers.
 Furthermore it handles the Authentication and authorization which are going to be covered later in this report.
 
@@ -84,10 +84,10 @@ GetStanding implements four user types:
 \item Standard User 
 \item Premium User 
 \end{itemize}
-Login is implemented using encrypted passowrds and session-based authentication.\\
-Every existing user has their own JWT token generated during signing up. The token is verified and if its valid the request provides access to the user type.
+Login is implemented using encrypted passwords and session-based authentication.\\
+Every existing user has their own JWT token generated during signing up. The token is verified and if it's valid the request provides access to the user type.
 \subsection{Authorization}
-Middleware checks user role and grants access to role-specific elements. For example Admins can create and delete exercises which other users can do. Guest user can not access the dashboard and the perks of having an account, only being able to browse homepage. Standard User has ability to log his workouts however it is impossible for him to access the meals panel and track his meals which is unlocked by the Premium User. In near future the app will be expanded adding new features for diffrent users set in line with the semester project. 
+Middleware checks user's role and grants access to role-specific elements. For example Admins can create and delete exercises which other users can do. Guest user can not access the dashboard and the perks of having an account, only being able to browse homepage. Standard User has ability to log his workouts however it is impossible for him to access the meals panel and track his meals which is unlocked by the Premium User. In near future the app will be expanded adding new features for different users set in line with the semester project. 
 
 \subsection{Role table}
 \begin{itemize}[noitemsep]
@@ -113,5 +113,4 @@ Middleware checks user role and grants access to role-specific elements. For exa
 	\end{itemize}
 \end{itemize}
 \section{Conclusion}
-GetStanding helps users in their journey of developing healthier lifestyle through integration of meal tracking and workout tracking.  Using MVC framework, authentication and authorization and managing the resources well, the application creates a proper foundation for self-growth. The main models User, Workout and Meal ensure structured data handling, which is essential for proper functionality and possible improvements in the future.  The team sees possibilites for even more features in the future. Ability to track your hydration. Addition of notifcation system could be a great as it would serve helping stick to your goals. Lastly ability to interact with your friends could be an extra motivation to continue on your track to health.
-\end{document}
+GetStanding helps users in their journey of developing healthier lifestyle through integration of meal tracking and workout tracking.  Using MVC framework, authentication and authorization and managing the resources well, the application creates a proper foundation for self-growth. The main models User, Workout and Meal ensure structured data handling, which is essential for proper functionality and possible improvements in the future.  The team sees possibilities for even more features in the future. Ability to track your hydration. Addition of notification system could be a great as it would help you stick to your goals. Lastly ability to interact with your friends could be an extra motivation to continue on your track to health.\end{document}
