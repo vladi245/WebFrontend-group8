@@ -14,7 +14,7 @@
     position: static !important;
     margin-bottom: 3rem;
     width: 100%;
-    align-self: flex-start;
+    align-self: center;
 }
 
 .container > * + * {
@@ -29,4 +29,9 @@
   gap: 20px;
   width: 100%;
   max-width: 1400px;
+}
+
+
+.zoomContainer {
+    zoom: 0.85;
 }

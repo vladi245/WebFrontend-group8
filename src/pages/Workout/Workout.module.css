@@ -15,3 +15,7 @@
     width: 100%;
     align-self: flex-start;
 }
+
+.zoomContainer {
+    zoom: 0.85;
+}

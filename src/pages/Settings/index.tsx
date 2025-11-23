@@ -6,7 +6,7 @@ import Navbar from '../../components/NavbarVertical/Navbar';
 
 export default function Settings() {
     return (    
-        <>
+        <div className={style.zoomContainer}>
             <Navbar />
 
             <div className={style.settingsContainer}>
@@ -17,6 +17,6 @@ export default function Settings() {
                 <DeleteButton />
 
             </div>
-        </>
+        </div>
     );
 };

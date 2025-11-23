@@ -13,7 +13,8 @@ export default function Desk() {
     };
 
     return (
-        <>
+        <div className={style.zoomContainer}>
+
             <Navbar />
             <div className={style.logoContainer}>
                 <div className={style.gridContainer}>
@@ -31,6 +32,6 @@ export default function Desk() {
                 </div>
             </div>
 
-        </>
+        </div>
     );
 };

@@ -125,7 +125,8 @@ export default function Meals() {
   // );
 
   return (
-    <>
+    <div className={style.zoomContainer}>
+
       <Navbar />
 
       <div className={style.container}>
@@ -141,7 +142,7 @@ export default function Meals() {
         {!loading && <FoodPerformance data={foodPerformanceData} />}
       </div>
 
-    </>
+    </div>
   );
 }
 

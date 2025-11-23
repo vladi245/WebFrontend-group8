@@ -8,11 +8,12 @@
   margin-top: 2rem;
 }
 
-.settingText {
-
+.settingsText {
     display: grid;
     place-items: center;
 
 }
 
-;
+.zoomContainer {
+    zoom: 0.85;
+}
