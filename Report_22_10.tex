@@ -49,29 +49,36 @@ Furthermore it handles the Authentication and authorization which are going to b
 
 
 \subsection{Resource Management}
-WorkoutModel serves as the representation of how workouts can be managed by the admin \\\\
-\textbf{WorkoutModel}
+\textbf{Resource: WorkoutModel}
+\\
+Description: WorkoutModel is the data model which holds all the relevant properties regarding a workout. Through CRUD operations it can be managed by the admin.
+\\
 \begin{itemize}
-\item getAll ( GET) - Returns all workouts.
+\item getAll (GET) - Returns all workouts.
 \item create (POST) - Adds a new workout using data from the request body.\
 \item deleteById (DELETE) - Removes workout by its ID.\\
 \end{itemize}
-User model allows Admin to handle accounts of users of GetStanding.\\\\
-\textbf{UserModel}
+
+\textbf{Resource: UserModel}
+\\
+Description: UserModel holds information regarding GetStanding users. CRUD operations are implemented to allow core operations by the admin such as creating, deleting and updating users.
+\\
 \begin{itemize}
-\item GetAll(GET)- Admin can access Users.
-\item DeleteByID(DELETE) -Deletes a user.
-\item Create(POST) - Creates new user.
-\item updateType(UPDATE) - Updates users subscription type.\\
+\item GetAll (GET) - Admin can access Users.
+\item DeleteByID (DELETE) - Deletes a user.
+\item Create (POST) - Creates new user.
+\item updateType (UPDATE) - Updates users subscription type.\\
 \end{itemize}
 
-WorkoutRecord allows the user to interact and handle his workout data.\\\\
-\textbf{WorkoutRecord}
+\textbf{Resource: WorkoutRecord}
+\\
+Description: WorkoutRecord allows the user to interact and handle his workout data.
+\\
 \begin{itemize}
-\item addRecord(POST) - User adds an exercise entry into his workout.
-\item getRecordsByUser(GET) - User gets access and sees date of previous workouts.
-\item deleteByID(DELETE) - User removes his workout from his records.
-\item getAggregatedStatsByUser(GET) - User can view his stats over last 7 days.
+\item addRecord (POST) - User adds an exercise entry into his workout.
+\item getRecordsByUser (GET) - User gets access and sees date of previous workouts.
+\item deleteByID (DELETE) - User removes his workout from his records.
+\item getAggregatedStatsByUser (GET) - User can view his stats over last 7 days.
 \end{itemize}
 
 
