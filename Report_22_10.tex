@@ -28,7 +28,7 @@
 \section{Introduction}
 \textbf{Motivation:} Prolonged sitting can harm both well-being and productivity, yet people often forget to stand, stretch, or take short breaks throughout the day. Additionally, the lack of integration between work routines and fitness apps makes it difficult to accurately track and assess physical activity, limiting the ability to maintain a healthy, active lifestyle.
 \\\\
-\textbf{Project:} GetStanding is a web application designed for office workers and students who spend most of their day sitting or generally leading an unhealthy lifestyle. The platform promotes a healthier lifestyle by encouraging physical activity. Core features include activity tracking, integration with fitness data inputed by the user and general fitness tools such as calorie and meal tracking. GetStanding helps users maintain better posture, stay active, and improve overall wellbeing throughout their day as well as their mood. 
+\textbf{Project:} GetStanding is a web application designed for office workers and students who spend most of their day sitting or generally leading an unhealthy lifestyle. The platform promotes a healthier lifestyle by encouraging physical activity. Core features include activity tracking, integration with fitness data inputted by the user and general fitness tools such as calorie and meal tracking. GetStanding helps users maintain better posture, stay active, and improve overall wellbeing throughout their day as well as their mood. 
 \\\\
 \textbf{Contributions:} Readers will learn how GetStandings' backend operates. The project demonstrates how a Model-View-Controller framework should be applied to a project integrating elements of database handling, API requests and responses, authentication and authorization, and utilization of CRUD.
 
@@ -62,7 +62,7 @@ User model allows Admin to handle accounts of users of GetStanding.\\\\
 \item GetAll(GET)- Admin can access Users.
 \item DeleteByID(DELETE) -Deletes a user.
 \item Create(POST) - Creates new user.
-\item updateType(UPDATE) - Updates users subscritpion type.\\
+\item updateType(UPDATE) - Updates users subscription type.\\
 \end{itemize}
 
 WorkoutRecord allows the user to interact and handle his workout data.\\\\
@@ -70,7 +70,7 @@ WorkoutRecord allows the user to interact and handle his workout data.\\\\
 \begin{itemize}
 \item addRecord(POST) - User adds an exercise entry into his workout.
 \item getRecordsByUser(GET) - User gets access and sees date of previous workouts.
-\item deleteByID(DELETE) - User removes his workouot from his records.
+\item deleteByID(DELETE) - User removes his workout from his records.
 \item getAggregatedStatsByUser(GET) - User can view his stats over last 7 days.
 \end{itemize}
 
@@ -78,13 +78,13 @@ WorkoutRecord allows the user to interact and handle his workout data.\\\\
 \section{Authentication and Authorization}
 
 \subsection{Authentication}
-GetStanding implements four user types:
+GetStanding implements three user types:
 \begin{itemize}
 \item Admin 
 \item Standard User 
 \item Premium User 
 \end{itemize}
-Login is implemented using encrypted passwords and session-based authentication.\\
+Login is implemented using encrypted passwords.\\
 Every existing user has their own JWT token generated during signing up. The token is verified and if it's valid the request provides access to the user type.
 \subsection{Authorization}
 Middleware checks user's role and grants access to role-specific elements. For example Admins can create and delete exercises which other users can do. Guest user can not access the dashboard and the perks of having an account, only being able to browse homepage. Standard User has ability to log his workouts however it is impossible for him to access the meals panel and track his meals which is unlocked by the Premium User. In near future the app will be expanded adding new features for different users set in line with the semester project. 
