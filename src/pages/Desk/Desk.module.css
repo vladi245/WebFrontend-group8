@@ -1,27 +1,36 @@
 .logoContainer {
-    background-color: #0D0D0D;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 2rem;
-    padding-bottom: 4rem;
 
 }
 
 .gridContainer {
-    margin-left: 300px;
+    margin-left: 380px;
     margin-right: 80px;
-    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding-left: 10rem;
-    padding-top: 10rem;
-
-
 }
 
 .zoomContainer {
     zoom: 0.85;
+}
+
+.subgrid{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 20px;
+    padding-top: 20px;
+    padding-bottom: 100px;
+}
+
+.subgrid > div {
+    height: 300px;
+}
+
+@media (max-width: 1000px) {
+    .subgrid {
+        grid-template-columns: 1fr;
+    }
 }

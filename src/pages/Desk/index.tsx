@@ -16,11 +16,13 @@ export default function Desk() {
         <div className={style.zoomContainer}>
 
             <Navbar />
-                <div className={style.gridContainer}>
-                    <ConnectionStatus />
+            <div className={style.gridContainer}>
+                <ConnectionStatus />
+                <div className={style.subgrid}>
                     <DeskSlider initialHeight={currentHeight} />
                     <DeskSettings onHeightChange={handleHeightChange} />
                 </div>
+            </div>
 
         </div>
     );
