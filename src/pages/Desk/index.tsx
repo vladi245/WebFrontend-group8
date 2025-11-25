@@ -16,21 +16,11 @@ export default function Desk() {
         <div className={style.zoomContainer}>
 
             <Navbar />
-            <div className={style.logoContainer}>
                 <div className={style.gridContainer}>
-                    <div className={style.deskComponentsGridSetup}>
-                        <div className={style.deskConnectionStatus}>
-                            <ConnectionStatus />
-                        </div>
-                        <div className={style.deskImageAndSlider}>
-                            <DeskSlider initialHeight={currentHeight} />
-                        </div>
-                        <div className={style.deskSettings}>
-                            <DeskSettings onHeightChange={handleHeightChange} />
-                        </div>
-                    </div>
+                    <ConnectionStatus />
+                    <DeskSlider initialHeight={currentHeight} />
+                    <DeskSettings onHeightChange={handleHeightChange} />
                 </div>
-            </div>
 
         </div>
     );
