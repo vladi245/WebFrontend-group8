@@ -1,25 +1,9 @@
-.ConnectionContainer {
-    background-color: #0D0D0D;
-    height: 82%;
-    width: 96%;
-    font-family: 'Inter', sans-serif;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    border: 2px solid #0070BE;
-    padding: 5px 10px;
-    font-size: 14px;
-    border-radius: 10px;
-}
-
 .StatusCircle {
     width: 10px;
     height: 10px;
     background-color: red;
     border-radius: 50%;
-    display: flex;
     margin-right: 20px;
-    align-self: center;
 }
 
 .StatusText {

@@ -186,7 +186,7 @@ export default function Home() {
                     <Seperator variant="accent" />
                 </div>
                 <h2 style={{ color: 'white', marginTop: '20px' }}>Today's stats</h2>
-                <div style={{ display: 'flex', columnGap: '20px', marginBottom: '20px', width: '80%' }}>
+                <div style={{ marginBottom: '20px', width: '65%' }}>
                     <ConnectionStatus />
                 </div>
 

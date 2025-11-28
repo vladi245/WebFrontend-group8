@@ -5,6 +5,9 @@ import DeskSlider from '../../components/DeskSlider/DeskSlider';
 import style from './Desk.module.css';
 import DeskSettings from '../../components/DeskSettings/DeskSettings';
 import Navbar from '../../components/NavbarVertical/Navbar';
+import Seperator
+ from '../../components/ui/Seperator/Seperator';
+import Greeting from '../../components/ui/DeskText/Greetings';
 export default function Desk() {
     const [currentHeight, setCurrentHeight] = useState<number>(100);
 
@@ -12,23 +15,24 @@ export default function Desk() {
         setCurrentHeight(height);
     };
 
+    const storedUserForGreeting = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
+    const parsedUserForGreeting = storedUserForGreeting ? JSON.parse(storedUserForGreeting) : null;
+    const displayName = parsedUserForGreeting?.name ?? parsedUserForGreeting?.username ?? 'Guest';
+
+
     return (
         <div className={style.zoomContainer}>
 
             <Navbar />
-            <div className={style.logoContainer}>
-                <div className={style.gridContainer}>
-                    <div className={style.deskComponentsGridSetup}>
-                        <div className={style.deskConnectionStatus}>
-                            <ConnectionStatus />
-                        </div>
-                        <div className={style.deskImageAndSlider}>
-                            <DeskSlider initialHeight={currentHeight} />
-                        </div>
-                        <div className={style.deskSettings}>
-                            <DeskSettings onHeightChange={handleHeightChange} />
-                        </div>
-                    </div>
+            <div className={style.gridContainer}>
+                <Greeting name={displayName} />
+                <div style={{ width: '50%' }}>
+                    <Seperator variant="accent" />
+                </div>
+                <ConnectionStatus />
+                <div className={style.subgrid}>
+                    <DeskSlider initialHeight={currentHeight} />
+                    <DeskSettings onHeightChange={handleHeightChange} />
                 </div>
             </div>
 
