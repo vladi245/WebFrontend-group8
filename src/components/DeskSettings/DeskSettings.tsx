@@ -10,7 +10,12 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
     const [sittingHeight, setSittingHeight] = useState<number>(100);
     const [standingHeight, setStandingHeight] = useState<number>(120);
     const [isStanding, setIsStanding] = useState<boolean>(false);
-    const position = isStanding ? "Sitting" : "Standing";
+    const position = isStanding ? "Standing" : "Sitting";
+    const userHeight = 180;
+
+    const recommendedSittingHeight = Math.ceil(((0.4739 * userHeight) - 17 + (0.5538 * userHeight - 24)) / 2);
+    const recommendedStandingHeight = Math.ceil(((0.6 * userHeight) + (0.64 * userHeight) + 6) / 2);
+
 
     const handleToggleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const standing = e.target.checked;
@@ -63,15 +68,17 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
             <button className={style.SaveButton} onClick={handleConfirm}>confirm</button>
             <p className={style.SettingsText}> Preferred Sitting Height (Cm) - Manual</p>
             <div className={style.valueAndChangeButtonsGrid}>
-                <label className={style.Label}> {sittingHeight} </label>
+                <label className={style.ValueLabel}> {sittingHeight} </label>
                 <button className={style.PlusButton} onClick={addOneSitting}>+</button>
                 <button className={style.MinusButton} onClick={subtractOneSitting}>-</button>
+                <label className={style.SuggestionValue}>Reccomended: {recommendedSittingHeight} </label>
             </div>
             <p className={style.SettingsText}> Preferred Standing Height (cm)- Manual</p>
             <div className={style.valueAndChangeButtonsGrid}>
-                <label className={style.Label}> {standingHeight} </label>
+                <label className={style.ValueLabel}> {standingHeight} </label>
                 <button className={style.PlusButton} onClick={addOneStanding}>+</button>
                 <button className={style.MinusButton} onClick={subtractOneStanding}>-</button>
+                <label className={style.SuggestionValue}>Reccomended: {recommendedStandingHeight} </label>
             </div>
 
         </div >

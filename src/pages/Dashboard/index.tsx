@@ -8,7 +8,6 @@ import WorkoutCard from '../../components/WorkoutCard/WorkoutCard';
 import ConnectionStatus from "../../components/ConnectionStatus/ConnectionStatus";
 
 import StandingStats from '../../components/StandingStatsCard/StandingStatsCard';
-import FriendsActivity from '../../components/FriendsActivity/FriendsActivity';
 import WorkoutStatsCard from '../../components/WorkoutStatsCard/WorkoutStatsCard';
 import { useEffect, useState } from 'react';
 import { apiFetch } from '../../services/api';
@@ -199,23 +198,6 @@ export default function Home() {
                 <div style={{ display: 'flex', columnGap: '20px', marginBottom: '20px', width: '80%' }}>
 
                     <WorkoutCard data={workoutDurationData} />
-                    {/*
-                    <FriendsActivity activities={[
-                        {
-                        id: 1,
-                        username: 'washington',
-                        action: 'added a new activity',
-                        timeAgo: '10m ago',
-                        },
-                        {
-                        id: 2,
-                        username: 'gmail',
-                        action: 'reached the goal',
-                        timeAgo: '17m ago',
-                        },
-
-                    ]}/>
-                    */}
 
                     <StandingStats data={[
                         { day: 'Mon', minutes: 0 },

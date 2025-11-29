@@ -27,7 +27,7 @@ const SliderValue: React.FC<SliderValueProps> = ({
                 className={style.DeskSlider}
                 onChange={onChange}
             />
-            <label className={style.Label}>{prefHeight} cm</label>
+            <label className={style.HeightLabel}>{prefHeight} cm</label>
         </div>
     );
 };

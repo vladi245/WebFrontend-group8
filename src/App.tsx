@@ -11,7 +11,6 @@ import Workout from './pages/Workout'
 import Meals from './pages/Meals'
 import Hydration from './pages/Hydration'
 import Settings from './pages/Settings'
-import Friends from './pages/Friends'
 import Dashboard from './pages/Dashboard'
 import UsersPage from './pages/Admin/UsersPage'
 import ExercisesAdminPage from './pages/Admin/ExercisesAdminPage'
@@ -38,7 +37,7 @@ function App() {
           <Route path="/admin/foods" element={<ProtectedRoute requiredType="admin"><FoodsAdminPage /></ProtectedRoute>} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
-          {/*<Route path="/friends" element={<ProtectedRoute><Friends /></ProtectedRoute>} />*/}
+
           <Route path="*" element={<Navigate to="/error" replace />} />
 
         </Routes>

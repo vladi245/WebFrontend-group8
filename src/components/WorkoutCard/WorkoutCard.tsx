@@ -8,7 +8,7 @@ import {
   CartesianGrid,
 } from 'recharts';
 import styles from './WorkoutCard.module.css';
-import { Clock4, CircleFadingPlus } from 'lucide-react';
+import { Clock4 } from 'lucide-react';
 
 interface WorkoutCardProps {
   data: { day: string; minutes: number }[];
