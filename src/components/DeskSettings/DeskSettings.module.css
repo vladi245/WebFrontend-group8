@@ -4,13 +4,14 @@
     align-items: flex-start;
     justify-content: flex-start;
     gap: 5px;
-    border: 2px solid #0070BE;
+    border: 2px solid var(--card-border-color);
     border-radius: 10px;
     padding: 20px;
     width: 70%;
     height: 100%;
     box-sizing: border-box;
-    background-color: #0D0D0D;
+    background-color: var(--card-background);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .TitleContainer {
@@ -23,26 +24,30 @@
 
 .Title {
     font-size: 18px;
-    color: #FFFFFF;
+    color: var(--card-text-color);
     margin: 0;
     margin-right: 50px;
+    transition: color 0.3s ease;
 }
 
 .SettingsText {
     font-size: 12px;
-    color: #FFFFFF;
+    color: var(--card-text-color);
     padding-bottom: 5px;
+    transition: color 0.3s ease;
 }
 
 .SaveButton {
-    background-color: #0070BE;
-    color: #000000;
+    background-color: #0096FF;
+    color: #ffffff;
     border: none;
     border-radius: 10px;
     width: 170px;
     height: 30px;
     font-size: 12px;
     text-align: center;
+    cursor: pointer;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
 }
 
 .SaveButton:hover {
@@ -50,8 +55,8 @@
 }
 
 .Label {
-    background-color: #0D0D0D;
-    border: 2px solid #0070BE;
+    background-color: var(--input-background);
+    border: 2px solid var(--card-border-color);
     border-radius: 10px;
     width: 100px;
     height: 20px;
@@ -59,19 +64,24 @@
     border-radius: 10px;
     font-size: 15px;
     padding: 5px;
+    color: var(--input-text-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 
 
 .PlusButton {
-    background-color: #0070BE;
+    background-color: #0096FF;
+    color: #ffffff;
+    border: none;
     border-radius: 10px;
     width: 65px;
     height: 34px;
     text-align: center;
     padding: 5px;
     opacity: 1;
-    transition: 0.3s;
+    cursor: pointer;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
 }
 
 .PlusButton:hover {
@@ -82,11 +92,14 @@
     border-radius: 10px;
     width: 60px;
     height: 34px;
-    border: 2px solid #0070BE;
+    border: 2px solid #0096FF;
+    background-color: transparent;
+    color: #0096FF;
     text-align: center;
     padding: 5px;
     opacity: 1;
-    transition: 0.3s;
+    cursor: pointer;
+    transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
 .MinusButton:hover {

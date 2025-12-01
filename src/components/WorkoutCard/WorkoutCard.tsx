@@ -36,14 +36,15 @@ const WorkoutCard = ({ data }: WorkoutCardProps) => {
         <div className={styles.chartContainer}>
           <ResponsiveContainer width="100%" height={350}>
             <LineChart data={data}>
-              <CartesianGrid stroke="#222" strokeDasharray="3 3" />
-              <XAxis dataKey="day" stroke="#888" />
-              <YAxis stroke="#888" />
+              <CartesianGrid stroke="var(--graph-grid-color)" strokeDasharray="3 3" />
+              <XAxis dataKey="day" stroke="var(--graph-axis-color)" />
+              <YAxis stroke="var(--graph-axis-color)" />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: '#111',
-                  border: '1px solid #0096FF',
-                  color: 'white',
+                  backgroundColor: 'var(--graph-tooltip-background)',
+                  border: '1px solid var(--graph-tooltip-border)',
+                  borderRadius: '8px',
+                  color: 'var(--graph-tooltip-text)',
                 }}
               />
               <Line
@@ -52,7 +53,7 @@ const WorkoutCard = ({ data }: WorkoutCardProps) => {
                 stroke="#0096FF"
                 strokeWidth={3}
                 dot={{ r: 5, fill: '#0096FF' }}
-                activeDot={{ r: 7 }}
+                activeDot={{ r: 7, fill: '#888' }}
               />
             </LineChart>
           </ResponsiveContainer>

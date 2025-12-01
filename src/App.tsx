@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 import './App.css'
 import Home from './pages/Home'
 import ErrorPage from './pages/Errors'
@@ -18,11 +19,41 @@ import ExercisesAdminPage from './pages/Admin/ExercisesAdminPage'
 import FoodsAdminPage from './pages/Admin/FoodsAdminPage'
 import ProtectedRoute from './components/ProtectedRoute'
 
+// Protected routes that should have theme applied
+const protectedRoutes = ['/dashboard', '/workout', '/meals', '/desk', '/settings', '/admin'];
+
+function ThemeHandler() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+    const isProtectedRoute = protectedRoutes.some(route => location.pathname.startsWith(route));
+
+    if (isProtectedRoute && token) {
+      // Apply theme if on protected route and logged in
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      if (savedTheme === 'light') {
+        document.body.classList.add('light');
+        document.body.classList.remove('dark');
+      } else {
+        document.body.classList.add('dark');
+        document.body.classList.remove('light');
+      }
+    } else {
+      // Remove theme classes if not on protected route or not logged in
+      document.body.classList.remove('light', 'dark');
+    }
+  }, [location.pathname]);
+
+  return null;
+}
+
 function App() {
 
   return (
     <>
       <BrowserRouter>
+        <ThemeHandler />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

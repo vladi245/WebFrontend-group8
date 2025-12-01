@@ -1,13 +1,15 @@
 .ConnectionContainer {
-    background-color: #0D0D0D;
+    background-color: var(--card-background);
     height: 82%;
     width: 96%;
     font-family: 'Inter', sans-serif;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    border: 2px solid #0070BE;
+    border: 2px solid var(--card-border-color);
     padding: 5px 10px;
     font-size: 14px;
     border-radius: 10px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    color: var(--card-text-color);
 }

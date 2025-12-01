@@ -1,13 +1,15 @@
 .card {
-  border: 1px solid #0096FF;
+  border: 1px solid var(--card-border-color);
   border-radius: 12px;
   padding: 1rem 1.5rem;
   width: 450px;
-  color: white;
+  color: var(--card-text-color);
   font-family: system-ui, sans-serif;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  background-color: var(--card-background);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .header {
@@ -24,7 +26,7 @@
 }
 
 .icon {
-  color: #ffffff;
+  color: var(--text-color-white);
   font-size: 1rem;
 }
 
@@ -43,7 +45,7 @@
 .amount {
   font-size: 2rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text-color-white);
   line-height: 1;
 }
 
@@ -60,9 +62,10 @@
   gap: 0.5rem;
   background: none;
   border: none;
-  color: white;
+  color: var(--text-color-white);
   cursor: pointer;
   font-size: 0.9rem;
+  transition: color 0.3s ease;
 }
 
 .addIcon {

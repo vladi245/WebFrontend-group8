@@ -5,10 +5,6 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -19,21 +15,114 @@
   -ms-user-select: none;
 }
 
+/* Dark Mode (Default) */
+body,
+body.dark {
+  color-scheme: dark;
+  --background-color: #0D0D0D;
+  --text-color: rgba(255, 255, 255, 0.87);
+  --text-color-white: rgba(255, 255, 255, 0.87);
+  --text-color-white-90: rgba(255, 255, 255, 0.9);
+  --text-color-white-80: rgba(255, 255, 255, 0.8);
+  --text-color-white-60: rgba(255, 255, 255, 0.6);
+  --text-color-white-45: rgba(255, 255, 255, 0.45);
+  --link-color: #646cff;
+  --link-hover-color: #535bf2;
+  --button-background: #1a1a1a;
+  --button-border-color: transparent;
+  --button-hover-border-color: #646cff;
+  /* Card variables */
+  --card-background: #0D0D0D;
+  --card-border-color: #0096FF;
+  --card-text-color: rgba(255, 255, 255, 0.87);
+  --card-text-secondary: rgba(255, 255, 255, 0.8);
+  --card-text-tertiary: rgba(255, 255, 255, 0.6);
+  /* Input variables */
+  --input-background: rgba(255, 255, 255, 0.02);
+  --input-border-color: rgba(255, 255, 255, 0.08);
+  --input-text-color: #ffffff;
+  --input-placeholder-color: rgba(255, 255, 255, 0.45);
+  /* Tag/Pill variables */
+  --tag-background: transparent;
+  --tag-border-color: #0096FF;
+  --tag-text-color: #0096FF;
+  --tag-hover-background: #0096FF;
+  --tag-hover-text-color: #ffffff;
+  /* Graph variables */
+  --graph-grid-color: rgba(255, 255, 255, 0.1);
+  --graph-axis-color: rgba(255, 255, 255, 0.6);
+  --graph-legend-text: rgba(255, 255, 255, 0.8);
+  --graph-tooltip-background: #1a1a1a;
+  --graph-tooltip-border: #0096FF;
+  --graph-tooltip-text: #fff;
+  --graph-tooltip-text-secondary: #aaa;
+}
+
+/* Light Mode */
+body.light {
+  color-scheme: light;
+  --background-color: #ffffff;
+  --text-color: #213547;
+  --text-color-white: #213547;
+  --text-color-white-90: #213547;
+  --text-color-white-80: #213547;
+  --text-color-white-60: #213547;
+  --text-color-white-45: rgba(33, 53, 71, 0.6);
+  --link-color: #213547;
+  --link-hover-color: #747bff;
+  --button-background: #f9f9f9;
+  --button-border-color: #dcdcdc;
+  --button-hover-border-color: #747bff;
+  /* Card variables */
+  --card-background: #f5f5f5;
+  --card-border-color: #0096FF;
+  --card-text-color: #213547;
+  --card-text-secondary: rgba(33, 53, 71, 0.8);
+  --card-text-tertiary: rgba(33, 53, 71, 0.6);
+  /* Input variables */
+  --input-background: rgba(0, 0, 0, 0.05);
+  --input-border-color: rgba(0, 0, 0, 0.15);
+  --input-text-color: #213547;
+  --input-placeholder-color: rgba(33, 53, 71, 0.5);
+  /* Tag/Pill variables */
+  --tag-background: rgba(0, 150, 255, 0.1);
+  --tag-border-color: #0096FF;
+  --tag-text-color: #0096FF;
+  --tag-hover-background: #0096FF;
+  --tag-hover-text-color: #ffffff;
+  /* Graph variables */
+  --graph-grid-color: rgba(0, 0, 0, 0.1);
+  --graph-axis-color: rgba(33, 53, 71, 0.6);
+  --graph-legend-text: rgba(33, 53, 71, 0.8);
+  --graph-tooltip-background: #f5f5f5;
+  --graph-tooltip-border: #0096FF;
+  --graph-tooltip-text: #213547;
+  --graph-tooltip-text-secondary: #666;
+}
+
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--link-color);
   text-decoration: inherit;
+  transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #535bf2;
+  color: var(--link-hover-color);
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #0D0D0D;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-color);
+  transition: color 0.3s ease;
 }
 
 h1 {
@@ -43,18 +132,19 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid var(--button-border-color);
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--button-background);
+  color: var(--text-color);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, background-color 0.3s ease, color 0.3s ease;
 }
 
 button:hover {
-  border-color: #646cff;
+  border-color: var(--button-hover-border-color);
 }
 
 button:focus,
@@ -62,17 +152,75 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
+/* Global theme-aware overrides for hardcoded white text */
+/* Override inline styles with white color in light mode */
+body.light [style*="color: white"],
+body.light [style*="color: #ffffff"],
+body.light [style*="color: #fff"],
+body.light [style*="color: rgb(255, 255, 255)"] {
+  color: var(--text-color) !important;
+}
 
-  a:hover {
-    color: #747bff;
-  }
+/* Override common heading and text elements */
+body.light h1,
+body.light h2,
+body.light h3,
+body.light h4,
+body.light h5,
+body.light h6 {
+  color: var(--text-color) !important;
+}
 
-  button {
-    background-color: #f9f9f9;
-  }
+/* Add a utility class for theme-aware white text */
+.theme-text {
+  color: var(--text-color-white);
+}
+
+.theme-text-90 {
+  color: var(--text-color-white-90);
+}
+
+.theme-text-80 {
+  color: var(--text-color-white-80);
+}
+
+.theme-text-60 {
+  color: var(--text-color-white-60);
+}
+
+/* Override common CSS module patterns - target elements that commonly have white text */
+/* More specific overrides for common patterns */
+body.light .card,
+body.light [class*="card"],
+body.light [class*="Card"],
+body.light .title,
+body.light [class*="title"],
+body.light [class*="Title"],
+body.light .header,
+body.light [class*="header"],
+body.light [class*="Header"],
+body.light .content,
+body.light [class*="content"],
+body.light [class*="Content"],
+body.light .description,
+body.light [class*="description"],
+body.light [class*="Description"] {
+  color: var(--text-color) !important;
+}
+
+/* Override specific color values in light mode using attribute selectors */
+body.light [style*="color: white"] {
+  color: var(--text-color) !important;
+}
+
+body.light [style*="color: #ffffff"] {
+  color: var(--text-color) !important;
+}
+
+body.light [style*="color: #fff"] {
+  color: var(--text-color) !important;
+}
+
+body.light [style*="color: rgb(255, 255, 255)"] {
+  color: var(--text-color) !important;
 }

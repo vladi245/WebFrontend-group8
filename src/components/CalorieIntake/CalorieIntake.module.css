@@ -18,7 +18,7 @@
 }
 
 .icon {
-    color: #ffffff;
+    color: var(--text-color-white);
     font-size: 1rem;
 }
 
