@@ -64,16 +64,7 @@ export default function AboutUs() {
                 <p className={styles['contact-description']}>
                     Have questions or want to learn more about Get Standing? We'd love to hear from you!
                 </p>
-                <div className={styles['contact-info']}>
-                    <div className={styles['contact-item']}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className={styles['contact-icon']}>
-                            <path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 4l-8 5l-8-5V6l8 5l8-5z" />
-                        </svg>
-                        <a href="mailto:vibar24@student.sdu.dk" className={styles['contact-link']}>
-                            vibar24@student.sdu.dk
-                        </a>
-                    </div>
-                <h3 className={styles['contact-title']} style={{ marginTop: "40px" }}>Send us a message</h3>
+              
 
                 <form className={styles['contact-form']} onSubmit={handleSubmit}>
                     <input
@@ -106,15 +97,6 @@ export default function AboutUs() {
 
                     {status && <p className={styles['status-message']}>{status}</p>}
                 </form>
-                    <div className={styles['contact-item']}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className={styles['contact-icon']}>
-                            <path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7m0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5" />
-                        </svg>
-                        <span className={styles['contact-text']}>
-                            SDU Sønderborg
-                        </span>
-                    </div>
-                </div>
             </div>
         </div>
         
