@@ -16,6 +16,7 @@ import Dashboard from './pages/Dashboard'
 import UsersPage from './pages/Admin/UsersPage'
 import ExercisesAdminPage from './pages/Admin/ExercisesAdminPage'
 import FoodsAdminPage from './pages/Admin/FoodsAdminPage'
+import MessagesPage from './pages/Admin/MessagesPage'
 import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           <Route path="/admin" element={<ProtectedRoute requiredType="admin"><UsersPage /></ProtectedRoute>} />
           <Route path="/admin/workout" element={<ProtectedRoute requiredType="admin"><ExercisesAdminPage /></ProtectedRoute>} />
           <Route path="/admin/foods" element={<ProtectedRoute requiredType="admin"><FoodsAdminPage /></ProtectedRoute>} />
+          <Route path="/admin/contact" element={<ProtectedRoute requiredType="admin"><MessagesPage /></ProtectedRoute>} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
           {/*<Route path="/friends" element={<ProtectedRoute><Friends /></ProtectedRoute>} />*/}
