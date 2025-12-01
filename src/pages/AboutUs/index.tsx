@@ -1,8 +1,42 @@
+import { useState } from "react";
 import Navbar from '../../components/Navbar/Navbar'
 import styles from './AboutUs.module.css'
 import aboutImage from '../../assets/about-team.jpg'
 
 export default function AboutUs() {
+
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        message: ""
+    });
+
+    const [status, setStatus] = useState("");
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setStatus("Sending...");
+
+        try {
+            const res = await fetch("http://localhost:5000/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+
+            if (!res.ok) throw new Error("Failed to send");
+
+            setStatus("Message sent successfully!");
+            setFormData({ name: "", email: "", message: "" });
+        } catch (err) {
+            setStatus("Error sending message. Try again later.");
+        }
+    };
+
     return (
         <div className={styles['about-us-container']}>
             <Navbar />
@@ -39,6 +73,39 @@ export default function AboutUs() {
                             vibar24@student.sdu.dk
                         </a>
                     </div>
+                <h3 className={styles['contact-title']} style={{ marginTop: "40px" }}>Send us a message</h3>
+
+                <form className={styles['contact-form']} onSubmit={handleSubmit}>
+                    <input
+                        name="name"
+                        placeholder="Your Name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                    />
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Your Email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                    />
+                    <textarea
+                        name="message"
+                        placeholder="Your Message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        rows={5}
+                        required
+                    ></textarea>
+
+                    <button type="submit" className={styles['submit-btn']}>
+                        Send Message
+                    </button>
+
+                    {status && <p className={styles['status-message']}>{status}</p>}
+                </form>
                     <div className={styles['contact-item']}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className={styles['contact-icon']}>
                             <path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7m0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5" />
@@ -50,5 +117,6 @@ export default function AboutUs() {
                 </div>
             </div>
         </div>
+        
     );
 }
