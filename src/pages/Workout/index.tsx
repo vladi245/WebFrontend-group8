@@ -179,7 +179,7 @@ export default function Workout() {
                 {!loading && <Stats data={statsData} />}
                 {!loading && <Performance data={performanceData} />}
                 <Exercises onAdd={handleAddCompleted} onRemove={handleRemoveCompleted} initialCompleted={completedRecords} />
-                <MuscleGroup />
+                <MuscleGroup completedExercises={completedRecords} />
             </div>
         </div>
     );
