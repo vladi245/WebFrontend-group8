@@ -1,8 +1,8 @@
 import styles from './DailyProgress.module.css';
 
 interface DailyProgressProps {
-  current: number; // in ml
-  goal: number; // in ml
+  current: number;
+  goal: number;
 }
 
 const DailyProgress = ({ current, goal }: DailyProgressProps) => {

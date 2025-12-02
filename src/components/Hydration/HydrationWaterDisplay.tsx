@@ -1,8 +1,8 @@
 import styles from './HydrationWaterDisplay.module.css';
 
 interface HydrationWaterDisplayProps {
-  current: number; // in ml
-  goal: number; // in ml
+  current: number;
+  goal: number;
 }
 
 const HydrationWaterDisplay = ({ current, goal }: HydrationWaterDisplayProps) => {
@@ -26,7 +26,7 @@ const HydrationWaterDisplay = ({ current, goal }: HydrationWaterDisplayProps) =>
         </defs>
 
         <g clipPath="url(#glassClip)">
-          {/* Main water body */}
+          {/*main water body*/}
           <rect
             x="12"
             y={waterY}
@@ -38,7 +38,7 @@ const HydrationWaterDisplay = ({ current, goal }: HydrationWaterDisplayProps) =>
           
         </g>
 
-        {/* Glass outline with very rounded corners */}
+        {/*glass outline */}
         <path
           d="M 20 25 Q 12 25 12 35 L 26 310 Q 30 340 55 342 L 105 342 Q 130 340 134 310 L 148 35 Q 148 25 140 25 Z"
           fill="none"

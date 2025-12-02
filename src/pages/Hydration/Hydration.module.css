@@ -13,11 +13,11 @@
   margin-top: 4rem;
 }
 
-/* Swimming fish background */
+/*swimming fish background */
 .fishContainer {
   position: absolute;
   top: 0;
-  left: 350px;
+  left: 0;
   right: 0;
   bottom: 0;
   pointer-events: none;
@@ -25,32 +25,92 @@
   overflow: hidden;
 }
 
-.fish {
+/*fish swimming left to right */
+.fishLeft {
   position: absolute;
-  left: -50px;
-  animation: swimAcross linear infinite;
-  opacity: 0.4;
-  filter: blur(1px);
-  transform: scaleX(-1);
+  left: -80px;
+  animation: swimLeftToRight linear infinite;
+  opacity: 0.35;
+  filter: blur(0.5px);
 }
 
-@keyframes swimAcross {
+/*fish swimming right to left (flipped)*/
+.fishRight {
+  position: absolute;
+  right: -80px;
+  animation: swimRightToLeft linear infinite;
+  opacity: 0.35;
+  filter: blur(0.5px);
+}
+
+
+.bubble {
+  position: absolute;
+  bottom: -30px;
+  animation: bubbleRise ease-in-out infinite;
+  opacity: 0.25;
+  color: #4FC3F7;
+}
+
+@keyframes swimLeftToRight {
   0% {
-    left: -50px;
+    left: -80px;
     transform: scaleX(-1) translateY(0px);
   }
   25% {
-    transform: scaleX(-1) translateY(-15px);
+    transform: scaleX(-1) translateY(-20px);
   }
   50% {
     transform: scaleX(-1) translateY(0px);
   }
   75% {
-    transform: scaleX(-1) translateY(15px);
+    transform: scaleX(-1) translateY(20px);
   }
   100% {
-    left: calc(100% + 50px);
+    left: calc(100% + 80px);
     transform: scaleX(-1) translateY(0px);
+  }
+}
+
+@keyframes swimRightToLeft {
+  0% {
+    right: -80px;
+    transform: scaleX(1) translateY(0px);
+  }
+  25% {
+    transform: scaleX(1) translateY(-20px);
+  }
+  50% {
+    transform: scaleX(1) translateY(0px);
+  }
+  75% {
+    transform: scaleX(1) translateY(20px);
+  }
+  100% {
+    right: calc(100% + 80px);
+    transform: scaleX(1) translateY(0px);
+  }
+}
+
+@keyframes bubbleRise {
+  0% {
+    bottom: -30px;
+    opacity: 0;
+    transform: translateX(0px);
+  }
+  10% {
+    opacity: 0.25;
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  90% {
+    opacity: 0.25;
+  }
+  100% {
+    bottom: 100%;
+    opacity: 0;
+    transform: translateX(-3px);
   }
 }
 

@@ -175,7 +175,7 @@ export default function Home() {
                     }
                 }
 
-                // Fetch hydration data
+                //fetch hydration data
                 try {
                     const userJson = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
                     const user = userJson ? JSON.parse(userJson) : null;

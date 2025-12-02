@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import StatCard from './StatCard';
 import ChangeGoalModal from './ChangeGoalModal';
+import styles from './Stats.module.css';
 
 interface HydrationStatsData {
   waterGoal: number;
@@ -34,35 +34,12 @@ const HydrationStats = ({ data, onChangeGoal }: HydrationStatsProps) => {
   };
 
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '1.25rem 1.5rem',
-      border: '1px solid #0096FF',
-      borderRadius: '12px',
-      backgroundColor: '#0D0D0D',
-      minWidth: '200px',
-    }}>
-      <span style={{ color: '#888', fontSize: '0.9rem', marginBottom: '0.5rem' }}>Water Goal</span>
-      <span style={{ color: 'white', fontSize: '2rem', fontWeight: 600 }}>{goalInMl} ml</span>
+    <div className={styles.hydrationStatsCard}>
+      <span className={styles.hydrationStatsLabel}>Water Goal</span>
+      <span className={styles.hydrationStatsValue}>{goalInMl} ml</span>
       <button
         onClick={() => setShowModal(true)}
-        style={{
-          marginTop: '0.75rem',
-          background: '#333',
-          border: '1px solid #555',
-          color: 'white',
-          padding: '8px 24px',
-          borderRadius: 20,
-          cursor: 'pointer',
-          fontSize: '0.85rem',
-          fontWeight: 500,
-          transition: 'background 0.2s'
-        }}
-        onMouseOver={(e) => e.currentTarget.style.background = '#444'}
-        onMouseOut={(e) => e.currentTarget.style.background = '#333'}
+        className={styles.hydrationChangeButton}
       >
         Change
       </button>
