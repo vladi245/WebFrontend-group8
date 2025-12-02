@@ -1,30 +1,25 @@
-import { useState, useEffect } from "react";
-import Navbar from "../../components/NavbarVertical/Navbar";
-import HydrationStats from "../../components/Stats/HydrationStats";
-import DailyGlasses from "../../components/Hydration/DailyGlasses";
-import DailyProgress from "../../components/Hydration/DailyProgress";
-import HydrationWaterDisplay from "../../components/Hydration/HydrationWaterDisplay";
-import HydrationQuickAdd from "../../components/Hydration/HydrationQuickAdd";
-import { apiFetch } from "../../services/api";
-import style from "./Hydration.module.css";
+import { useState, useEffect } from 'react';
+import Navbar from '../../components/NavbarVertical/Navbar';
+import HydrationStats from '../../components/Stats/HydrationStats';
+import DailyGlasses from '../../components/Hydration/DailyGlasses';
+import DailyProgress from '../../components/Hydration/DailyProgress';
+import HydrationWaterDisplay from '../../components/Hydration/HydrationWaterDisplay';
+import HydrationQuickAdd from '../../components/Hydration/HydrationQuickAdd';
+import { apiFetch } from '../../services/api';
+import style from './Hydration.module.css';
 
 interface HydrationData {
   waterGoal: number;
   currentIntake: number;
 }
 
-// Helper to get userId from localStorage
-function getUserId(): number | null {
-  try {
+export default function Hydration() {
+  //get user ID from localStorage (same pattern as dashboard)
+  const getUserId = (): number | null => {
     const storedUser = localStorage.getItem('user');
     const user = storedUser ? JSON.parse(storedUser) : null;
     return user?.id || null;
-  } catch {
-    return null;
-  }
-}
-
-export default function Hydration() {
+  };
   const [hydrationData, setHydrationData] = useState<HydrationData>({
     waterGoal: 2000,
     currentIntake: 0,
@@ -34,7 +29,7 @@ export default function Hydration() {
   const totalGlasses = 8;
   const glassSize = hydrationData.waterGoal / totalGlasses;
 
-  // Fetch today's hydration data on mount
+  //fetch today hydration data
   useEffect(() => {
     const fetchHydration = async () => {
       const userId = getUserId();
@@ -49,8 +44,8 @@ export default function Hydration() {
           waterGoal: data.goalMl || 2000,
           currentIntake: data.currentMl || 0
         });
-      } catch (err) {
-        console.error("Error fetching hydration:", err);
+      } catch (error) {
+        console.error('Failed to fetch hydration data:', error);
       } finally {
         setLoading(false);
       }
@@ -61,14 +56,11 @@ export default function Hydration() {
 
   const handleAdd = async (amount: number) => {
     const userId = getUserId();
-    if (!userId) {
-      console.error("No user ID found - please log in");
-      return;
-    }
+    if (!userId) return;
 
     const previousIntake = hydrationData.currentIntake;
 
-    // Optimistic update
+  
     setHydrationData(prev => ({
       ...prev,
       currentIntake: prev.currentIntake + amount,
@@ -79,19 +71,17 @@ export default function Hydration() {
         method: 'POST',
         body: JSON.stringify({ amount, userId })
       });
+
       
-      console.log("Water added successfully:", data);
-      
-      // Only sync if server value differs significantly (handles race conditions)
       if (data && typeof data.currentMl === 'number') {
         setHydrationData(prev => ({
           ...prev,
           currentIntake: data.currentMl
         }));
       }
-    } catch (err) {
-      console.error("Error adding water:", err);
-      // Revert on error
+    } catch (error) {
+      console.error('Failed to add water:', error);
+      
       setHydrationData(prev => ({
         ...prev,
         currentIntake: previousIntake,
@@ -103,9 +93,10 @@ export default function Hydration() {
     const userId = getUserId();
     if (!userId) return;
 
-    const newAmount = Math.max(0, hydrationData.currentIntake - amount);
-    
-    // Optimistic update
+    const previousIntake = hydrationData.currentIntake;
+    const newAmount = Math.max(0, previousIntake - amount);
+
+  
     setHydrationData(prev => ({
       ...prev,
       currentIntake: newAmount,
@@ -116,13 +107,13 @@ export default function Hydration() {
         method: 'POST',
         body: JSON.stringify({ amount, userId })
       });
-      
+
       setHydrationData(prev => ({
         ...prev,
         currentIntake: data.currentMl
       }));
-    } catch (err) {
-      console.error("Error removing water:", err);
+    } catch (error) {
+      console.error('Failed to remove water:', error);
     }
   };
 
@@ -130,9 +121,9 @@ export default function Hydration() {
     const userId = getUserId();
     if (!userId) return;
 
-    const prevIntake = hydrationData.currentIntake;
-    
-    // Optimistic update
+    const previousIntake = hydrationData.currentIntake;
+
+  
     setHydrationData(prev => ({
       ...prev,
       currentIntake: 0,
@@ -143,12 +134,12 @@ export default function Hydration() {
         method: 'POST',
         body: JSON.stringify({ userId })
       });
-    } catch (err) {
-      console.error("Error resetting hydration:", err);
-      // Revert on error
+    } catch (error) {
+      console.error('Failed to reset hydration:', error);
+    
       setHydrationData(prev => ({
         ...prev,
-        currentIntake: prevIntake,
+        currentIntake: previousIntake,
       }));
     }
   };
@@ -157,9 +148,9 @@ export default function Hydration() {
     const userId = getUserId();
     if (!userId) return;
 
-    const prevGoal = hydrationData.waterGoal;
-    
-    // Optimistic update
+    const previousGoal = hydrationData.waterGoal;
+
+  
     setHydrationData(prev => ({
       ...prev,
       waterGoal: newGoal
@@ -170,12 +161,12 @@ export default function Hydration() {
         method: 'PUT',
         body: JSON.stringify({ goal: newGoal, userId })
       });
-    } catch (err) {
-      console.error("Error updating goal:", err);
-      // Revert on error
+    } catch (error) {
+      console.error('Failed to update goal:', error);
+ 
       setHydrationData(prev => ({
         ...prev,
-        waterGoal: prevGoal
+        waterGoal: previousGoal
       }));
     }
   };
@@ -193,31 +184,48 @@ export default function Hydration() {
     );
   }
 
-  // Fish count based on progress (0-10 fish)
+  //fish count based on progress 
   const progressPercent = Math.min((hydrationData.currentIntake / hydrationData.waterGoal) * 100, 100);
-  const fishCount = Math.floor(progressPercent / 10); // 1 fish per 10% progress
+  const fishCount = Math.floor(progressPercent / 5); 
+  const bubbleCount = Math.floor(progressPercent / 3); 
 
-  // Generate fish with random positions
-  const fishEmojis = ['🐟','🐠','🐡','🦈','🐬','🐳','🐋','🦭','🐙','🦑','🦐','🦞','🦀','🦪','🐚'];
+  //pseudo-random function based on index for consistent but mixed results
+  const pseudoRandom = (seed: number) => {
+    const x = Math.sin(seed * 9999) * 10000;
+    return x - Math.floor(x);
+  };
+
+
+  const fishEmojis = ['🐟', '🐠', '🐡'];
   const fish = Array.from({ length: fishCount }, (_, i) => ({
     id: i,
-    emoji: fishEmojis[i % fishEmojis.length],
-    top: 15 + (i * 17) % 70,
-    delay: i * 0.7,
-    duration: 8 + (i % 4) * 2,
-    size: 5 + (i % 3) * 0.5,
+    emoji: fishEmojis[Math.floor(pseudoRandom(i + 1) * fishEmojis.length)],
+    top: 10 + pseudoRandom(i + 10) * 75,
+    delay: pseudoRandom(i + 20) * 8,
+    duration: 10 + pseudoRandom(i + 30) * 12,
+    size: 1.2 + pseudoRandom(i + 40) * 2,
+    direction: pseudoRandom(i + 50) > 0.5 ? 'left' : 'right',
+  }));
+
+  
+  const bubbles = Array.from({ length: bubbleCount }, (_, i) => ({
+    id: i,
+    left: 10 + pseudoRandom(i + 100) * 80,
+    delay: pseudoRandom(i + 110) * 5,
+    duration: 5 + pseudoRandom(i + 120) * 4,
+    size: 0.2 + pseudoRandom(i + 130) * 0.6, 
   }));
 
   return (
-    <div className={style.container}>
+    <div className={style.container} style={{ zoom: 0.85 }}>
       <Navbar />
 
-      {/* Swimming fish background */}
+      
       <div className={style.fishContainer}>
         {fish.map((f) => (
           <span
             key={f.id}
-            className={style.fish}
+            className={f.direction === 'left' ? style.fishLeft : style.fishRight}
             style={{
               top: `${f.top}%`,
               animationDelay: `${f.delay}s`,
@@ -226,6 +234,21 @@ export default function Hydration() {
             }}
           >
             {f.emoji}
+          </span>
+        ))}
+       
+        {bubbles.map((b) => (
+          <span
+            key={`bubble-${b.id}`}
+            className={style.bubble}
+            style={{
+              left: `${b.left}%`,
+              animationDelay: `${b.delay}s`,
+              animationDuration: `${b.duration}s`,
+              fontSize: `${b.size}rem`,
+            }}
+          >
+            ○
           </span>
         ))}
       </div>
