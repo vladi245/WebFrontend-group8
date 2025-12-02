@@ -23,7 +23,7 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
-/* Selected goal section */
+
 .selectedGoalSection {
   background: #1A1A1A;
   border-radius: 12px;
@@ -64,14 +64,14 @@
   font-size: 1rem;
 }
 
-/* Section titles */
+
 .sectionTitle {
   font-weight: 700;
   font-size: 1.05rem;
   margin-bottom: 14px;
 }
 
-/* Recommended goals grid */
+
 .recommendedGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -108,7 +108,7 @@
   opacity: 0.9;
 }
 
-/* Custom input */
+
 .customInputRow {
   display: flex;
   gap: 10px;
@@ -144,7 +144,7 @@
   font-weight: 500;
 }
 
-/* Action buttons */
+
 .actionButtons {
   display: flex;
   justify-content: center;

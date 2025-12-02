@@ -23,7 +23,7 @@ const ChangeGoalModal = ({ isOpen, currentGoal, onClose, onSave }: ChangeGoalMod
 
   if (!isOpen) return null;
 
-  // Calculate the "selected goal" value — prioritize custom input if numeric, else current goal
+  //calculate the selected goal value  prioritize custom input if numeric, else current goal
   const getSelectedGoal = (): number => {
     const parsed = parseInt(customVal.replace(/[^0-9]/g, ''), 10);
     if (!isNaN(parsed) && parsed > 0) {
@@ -53,12 +53,12 @@ const ChangeGoalModal = ({ isOpen, currentGoal, onClose, onSave }: ChangeGoalMod
 
   return (
     <div className={styles.overlay}>
-      {/* Backdrop */}
+      
       <div className={styles.backdrop} onClick={handleClose} />
 
-      {/* Modal content */}
+      
       <div className={styles.modal}>
-        {/* Selected goal section */}
+       
         <div className={styles.selectedGoalSection}>
           <div className={styles.selectedGoalHeader}>
             <Droplets size={20} color="#0096FF" />
@@ -74,7 +74,7 @@ const ChangeGoalModal = ({ isOpen, currentGoal, onClose, onSave }: ChangeGoalMod
           </div>
         </div>
 
-        {/* Recommended goals */}
+       
         <div className={styles.sectionTitle}>Recommended goals</div>
         <div className={styles.recommendedGrid}>
           {RECOMMENDED_GOALS.map(r => (
@@ -89,7 +89,7 @@ const ChangeGoalModal = ({ isOpen, currentGoal, onClose, onSave }: ChangeGoalMod
           ))}
         </div>
 
-        {/* Custom goal */}
+        
         <div className={styles.sectionTitle}>Custom goal</div>
         <div className={styles.customInputRow}>
           <input
@@ -103,7 +103,6 @@ const ChangeGoalModal = ({ isOpen, currentGoal, onClose, onSave }: ChangeGoalMod
           <div className={styles.mlBadge}>ml</div>
         </div>
 
-        {/* Action buttons */}
         <div className={styles.actionButtons}>
           <button className={styles.cancelButton} onClick={handleClose}>
             Cancel
