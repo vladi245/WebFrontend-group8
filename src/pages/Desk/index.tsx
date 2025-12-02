@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import Logo from '../../components/Logo/Logo'
 import ConnectionStatus from "../../components/ConnectionStatus/ConnectionStatus";
 import DeskSlider from '../../components/DeskSlider/DeskSlider';
 import style from './Desk.module.css';
 import DeskSettings from '../../components/DeskSettings/DeskSettings';
 import Navbar from '../../components/NavbarVertical/Navbar';
 import Seperator
- from '../../components/ui/Seperator/Seperator';
+    from '../../components/ui/Seperator/Seperator';
 import Greeting from '../../components/ui/DeskText/Greetings';
 export default function Desk() {
     const [currentHeight, setCurrentHeight] = useState<number>(100);

@@ -3,8 +3,10 @@ import './Login.css'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useState } from 'react';
 import type { FormEvent } from 'react';
+import { useTranslation } from 'react-i18next'
 
 export default function Login() {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -30,7 +32,7 @@ export default function Login() {
 
             const data = await res.json();
             if (!res.ok) {
-                setError(data?.error || 'Login failed');
+                setError(data?.error || t('loginPage.errors.loginFailed'));
                 return;
             }
 
@@ -57,7 +59,7 @@ export default function Login() {
             }
         } catch (err) {
             console.error('Login error:', err);
-            setError('Network error during login');
+            setError(t('loginPage.errors.networkError'));
         }
     };
 
@@ -69,11 +71,11 @@ export default function Login() {
                 </div>
                 <div className="welcome-content">
                     <h1 className="welcome-heading">
-                        <span className="hey-there">Hey There!</span>
-                        <span className="welcome-back">Welcome Back.</span>
+                        <span className="hey-there">{t('loginPage.heyThere')}</span>
+                        <span className="welcome-back">{t('loginPage.welcomeBack')}</span>
                     </h1>
                     <p className="welcome-subtext">
-                        Get back to tracking, monitoring and be proud of your progress!
+                        {t('loginPage.subtext')}
                     </p>
                     {/*all icons here are from this link https://icon-sets.iconify.design/material-symbols/page-3.html?icon-filter=pers  license is apache 2 so we are good*/}
                     <div className="feature-icons">
@@ -97,16 +99,16 @@ export default function Login() {
                         </div>
                     </div>
                     <div className="signup-section">
-                        <p className="signup-question">Don't have an account?</p>
-                        <button className="signup-button" onClick={handleSignUpRedirect}>Sign Up</button>
+                        <p className="signup-question">{t('loginPage.noAccountQuestion')}</p>
+                        <button className="signup-button" onClick={handleSignUpRedirect}>{t('loginPage.signUpButton')}</button>
                     </div>
                 </div>
             </div>
             <div className="right-column">
                 <div className="login-content">
                     <h1 className="login-heading">
-                        <span className="login-title">Login</span>
-                        <span className="to-account">To Your Account.</span>
+                        <span className="login-title">{t('loginPage.title')}</span>
+                        <span className="to-account">{t('loginPage.toAccount')}</span>
                     </h1>
                     <form className="login-form" onSubmit={handleSubmit}>
                         <div className="input-group">
@@ -118,7 +120,7 @@ export default function Login() {
                             </div>
                             <input
                                 type="text"
-                                placeholder="Enter your username"
+                                placeholder={t('loginPage.placeholders.username')}
                                 className="form-input"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
@@ -134,7 +136,7 @@ export default function Login() {
                             </div>
                             <input
                                 type="password"
-                                placeholder="Enter your password"
+                                placeholder={t('loginPage.placeholders.password')}
                                 className="form-input"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -143,7 +145,7 @@ export default function Login() {
 
                         {error && <p className="error-text">{error}</p>}
 
-                        <button type="submit" className="login-button">Login</button>
+                        <button type="submit" className="login-button">{t('loginPage.button')}</button>
                     </form>
                 </div>
             </div>

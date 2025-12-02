@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import style from "./MealPicker.module.css";
+import { useTranslation } from 'react-i18next';
 
 interface MealEntry {
   recordId: number;
@@ -26,6 +27,7 @@ interface MealPickerProps {
 }
 
 const MealPicker = ({ onMealAdded }: MealPickerProps) => {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [foods, setFoods] = useState<Food[]>([]);
   const [meals, setMeals] = useState<MealEntry[]>([]);
@@ -129,18 +131,18 @@ const MealPicker = ({ onMealAdded }: MealPickerProps) => {
   const handleRemoveFood = async (recordId: number) => {
     setMeals((current) => current.filter((m) => m.recordId !== recordId));
     const user = JSON.parse(localStorage.getItem("user") || "null");
-      const userId = user?.id;
+    const userId = user?.id;
 
-      if (!userId) return;
+    if (!userId) return;
     try {
-          await fetch("http://localhost:5000/api/meals", {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ 
-        recordId, 
-        userId 
-      })
-    });
+      await fetch("http://localhost:5000/api/meals", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          recordId,
+          userId
+        })
+      });
 
 
       onMealAdded?.();
@@ -162,12 +164,12 @@ const MealPicker = ({ onMealAdded }: MealPickerProps) => {
     <div className={style.mealsPlannerContainer}>
       {/* LEFT — FOOD LIBRARY */}
       <div className={style.foodLibrarySection}>
-        <h2 className={style.sectionTitle}>Food Library</h2>
+        <h2 className={style.sectionTitle}>{t('mealPicker.foodLibrary')}</h2>
 
         <div className={style.searchContainer}>
           <input
             className={style.searchInput}
-            placeholder="Search foods..."
+            placeholder={t('mealPicker.searchBar')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -176,7 +178,7 @@ const MealPicker = ({ onMealAdded }: MealPickerProps) => {
         <div className={style.foodPillList}>
           {filteredFoods.length === 0 ? (
             <p className={style.noResults}>
-              No foods match "{searchTerm}"
+              {t('mealPicker.noResults', { searchTerm })}
             </p>
           ) : (
             filteredFoods.map((food) => (
@@ -194,11 +196,11 @@ const MealPicker = ({ onMealAdded }: MealPickerProps) => {
 
       {/* RIGHT — FOODS EATEN TODAY */}
       <div className={style.mealsSection}>
-        <h2 className={style.sectionTitle}>Today's Foods</h2>
+        <h2 className={style.sectionTitle}>{t('mealPicker.todayFood')}</h2>
 
         <div className={style.mealList}>
           {meals.length === 0 ? (
-            <p className={style.noResults}>No foods added yet.</p>
+            <p className={style.noResults}>{t('mealPicker.noFoodsAdded')} {searchTerm}</p>
           ) : (
             meals.map((meal) => (
               <div key={meal.recordId} className={style.mealRow}>
@@ -222,7 +224,7 @@ const MealPicker = ({ onMealAdded }: MealPickerProps) => {
         </div>
 
         <div className={style.mealTotal}>
-          <span>Total Calories:</span>
+          <span>{t('mealPicker.totalCalories')}</span>
           <span className={style.mealTotalValue}>
             {totalCalories} kcal
           </span>

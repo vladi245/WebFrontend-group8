@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import Logo from "../../components/Logo/Logo";
 import FoodStats from "../../components/Stats/FoodStats";
 import FoodPerformance from '../../components/Performance/FoodPerformance';
 import CalorieIntake from "../../components/CalorieIntake/CalorieIntake";
 import MealPicker from "../../components/MealPicker/MealPicker";
 import style from "./Meals.module.css";
 import Navbar from '../../components/NavbarVertical/Navbar';
-
+import { useTranslation } from 'react-i18next';
 
 interface StatsData {
   totalMeals: number;
@@ -20,6 +19,7 @@ interface FoodPerformanceData {
 }
 
 export default function Meals() {
+  const { t } = useTranslation();
   const [statsData, setStatsData] = useState<StatsData>({
     totalMeals: 0,
     caloriesEaten: 0,

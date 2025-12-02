@@ -1,30 +1,32 @@
 import React from 'react';
 import style from './Subscriptions.module.css';
+import { useTranslation } from 'react-i18next';
+
 
 const Subscriptions = () => {
     const [hoveredPlan, setHoveredPlan] = React.useState<number | null>(null);
-
+    const { t } = useTranslation();
     const plans = [
         {
             id: 0,
-            name: 'Beginner Plan',
+            name: t('subscriptions.plans.0.name'),
             price: 0,
             features: [
-                'Notifications to adjust your desk',
-                'Manual desk adjustment',
-                'Logging up to 30 meals',
-                'Logging up to 50 workouts'
+                t('subscriptions.plans.0.features.0'),
+                t('subscriptions.plans.0.features.1'),
+                t('subscriptions.plans.0.features.2'),
+                t('subscriptions.plans.0.features.3')
             ]
         },
         {
             id: 1,
-            name: 'Premium Plan',
+            name: t('subscriptions.plans.1.name'),
             price: 1000,
             features: [
-                'Unlimited workout logging',
-                'Unlimited meal tracking',
-                'Automatic desk adjustment',
-                'All of the Beginner Plan features and many more'
+                t('subscriptions.plans.1.features.0'),
+                t('subscriptions.plans.1.features.1'),
+                t('subscriptions.plans.1.features.2'),
+                t('subscriptions.plans.1.features.3')
             ]
         }
     ];
@@ -33,10 +35,10 @@ const Subscriptions = () => {
         <div className={style.container}>
             <div className={style.header}>
                 <h2 className={style.title}>
-                    Join <span className={style.highlight}>Today</span>
+                    {t('subscriptions.title1')} <span className={style.highlight}>{t('subscriptions.title2')}</span>
                 </h2>
                 <p className={style.subtitle}>
-                    Checkout Our Subscription Options:
+                    {t('subscriptions.subtitle')}
                 </p>
             </div>
 
@@ -51,9 +53,9 @@ const Subscriptions = () => {
                         <div className={style.planHeader}>
                             <p className={style.planName}>{plan.name}</p>
                             <h3 className={style.planPrice}>
-                                HUK {plan.price} <span className={style.priceUnit}>/ Month</span>
+                                {t('subscriptions.currency')} {plan.price} <span className={style.priceUnit}>{t('subscriptions.priceUnit')}</span>
                             </h3>
-                            <p className={style.planIncludes}>This plan includes:</p>
+                            <p className={style.planIncludes}>{t('subscriptions.planIncludes')}</p>
                         </div>
 
                         <ul className={style.featuresList}>
@@ -68,7 +70,7 @@ const Subscriptions = () => {
                         </ul>
 
                         <button className={style.choosePlanButton}>
-                            Choose Plan
+                            {t('subscriptions.choosePlan')}
                         </button>
                     </div>
                 ))}

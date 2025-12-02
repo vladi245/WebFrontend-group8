@@ -8,10 +8,10 @@ import WorkoutCard from '../../components/WorkoutCard/WorkoutCard';
 import ConnectionStatus from "../../components/ConnectionStatus/ConnectionStatus";
 
 import StandingStats from '../../components/StandingStatsCard/StandingStatsCard';
-import FriendsActivity from '../../components/FriendsActivity/FriendsActivity';
 import WorkoutStatsCard from '../../components/WorkoutStatsCard/WorkoutStatsCard';
 import { useEffect, useState } from 'react';
 import { apiFetch } from '../../services/api';
+import { useTranslation } from 'react-i18next';
 
 interface StatsData {
     totalMeals: number;
@@ -20,6 +20,7 @@ interface StatsData {
 }
 
 export default function Home() {
+    const { t } = useTranslation();
     const [statsData, setStatsData] = useState<StatsData>({
         totalMeals: 0,
         caloriesEaten: 0,
@@ -174,7 +175,7 @@ export default function Home() {
 
     const storedUserForGreeting = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
     const parsedUserForGreeting = storedUserForGreeting ? JSON.parse(storedUserForGreeting) : null;
-    const displayName = parsedUserForGreeting?.name ?? parsedUserForGreeting?.username ?? 'Guest';
+    const displayName = parsedUserForGreeting?.name ?? parsedUserForGreeting?.username ?? t('dashboardPage.guest');
 
     return (
         <div style={{ zoom: 0.85 }}>
@@ -185,7 +186,7 @@ export default function Home() {
                 <div style={{ width: '50%' }}>
                     <Seperator variant="accent" />
                 </div>
-                <h2 style={{ color: 'white', marginTop: '20px' }}>Today's stats</h2>
+                <h2 style={{ color: 'white', marginTop: '20px' }}>{t('dashboardPage.todaysStats')}</h2>
                 <div style={{ marginBottom: '20px', width: '65%' }}>
                     <ConnectionStatus />
                 </div>
