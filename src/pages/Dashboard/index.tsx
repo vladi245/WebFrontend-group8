@@ -19,11 +19,21 @@ interface StatsData {
     averageIntake: number;
 }
 
+interface HydrationData {
+    currentMl: number;
+    goalMl: number;
+}
+
 export default function Home() {
     const [statsData, setStatsData] = useState<StatsData>({
         totalMeals: 0,
         caloriesEaten: 0,
         averageIntake: 0,
+    });
+
+    const [hydrationData, setHydrationData] = useState<HydrationData>({
+        currentMl: 0,
+        goalMl: 2000,
     });
 
     const [calorieCurrent, setCalorieCurrent] = useState<number>(1331);
@@ -164,6 +174,23 @@ export default function Home() {
                         console.warn('Failed to map workout duration data', e);
                     }
                 }
+
+                //fetch hydration data
+                try {
+                    const userJson = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
+                    const user = userJson ? JSON.parse(userJson) : null;
+                    if (user && user.id) {
+                        const hydration = await apiFetch(`/api/hydration?userId=${user.id}`);
+                        if (hydration && mounted) {
+                            setHydrationData({
+                                currentMl: Number(hydration.current_ml || hydration.currentMl || 0),
+                                goalMl: Number(hydration.goal_ml || hydration.goalMl || 2000),
+                            });
+                        }
+                    }
+                } catch (e) {
+                    console.warn('Could not fetch hydration data', e);
+                }
             } catch (err) {
                 console.warn('Failed to fetch dashboard stats', err);
             }
@@ -192,7 +219,7 @@ export default function Home() {
 
                 <div style={{ display: 'flex', columnGap: '20px', marginBottom: '20px', width: '80%' }}>
                     <CalorieIntake current={statsData.caloriesEaten} goal={calorieGoal} />
-                    <WaterCard current={1.5} goal={3} />
+                    <WaterCard current={hydrationData.currentMl / 1000} goal={hydrationData.goalMl / 1000} />
                     <WorkoutStatsCard calories={caloriesBurned} />
 
                 </div>

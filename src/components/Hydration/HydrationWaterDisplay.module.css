@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1.2rem;
+}
+
+.glass {
+  width: 470px;
+  height: 470px;
+  filter: drop-shadow(0 12px 32px rgba(0, 150, 255, 0.25));
+}
+
+
+.waterFill {
+  transition: y 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+              height 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.waterSurface {
+  transition: cy 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.info {
+  margin-top: 1rem;
+}
+
+.currentAmount {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1BB4FF;
+}
+
+@media (max-width: 768px) {
+  .glass {
+    width: 280px;
+    height: 350px;
+  }
+  .currentAmount {
+    font-size: 1.2rem;
+  }
+}

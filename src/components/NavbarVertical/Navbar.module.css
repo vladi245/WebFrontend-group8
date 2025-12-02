@@ -47,12 +47,13 @@ h3{
   padding: 0.5rem 0rem;
   color: #fff;
   border-radius: 0.5rem;
-  transition: background 0.2s ease;
+  transition: transform 0.15s ease, font-size 0.15s ease, color 0.15s ease;
   margin-bottom: 15px;
 }
 
 .navlink:hover {
-    color: inherit;
+    color: #4FC3F7;
+    transform: translateX(5px) scale(1.05);
 }
 
 .icon {

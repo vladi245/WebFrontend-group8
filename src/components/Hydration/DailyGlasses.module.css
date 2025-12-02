@@ -1,0 +1,82 @@
+.container {
+  border: 1px solid #0096FF;
+  border-radius: 14px;
+  padding: 1.5rem 1.75rem;
+  color: white;
+  width: 100%;
+  max-width: 1070px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: white;
+}
+
+.progress {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.glassesGrid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0.75rem;
+  align-items: end;
+}
+
+.glassWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.glassSvg {
+  width: 95px;
+  height: 118px;
+  transition: transform 0.18s ease;
+}
+
+.glassSvg:hover {
+  transform: scale(1.05);
+}
+
+.glassOutline {
+  transition: stroke 0.3s ease;
+}
+
+/* Smooth water fill animation */
+.waterFill {
+  transition: y 0.8s cubic-bezier(0.22, 1, 0.36, 1), 
+              height 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.checkWrap {
+  transform-origin: center;
+  animation: popIn 260ms ease-out;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.4); opacity: 0; }
+  70% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .glassesGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .glassSvg {
+    width: 48px;
+    height: 60px;
+  }
+}

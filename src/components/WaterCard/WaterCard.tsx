@@ -8,17 +8,20 @@ interface WaterCardProps {
 
 const WaterCard = ({ current, goal }: WaterCardProps) => {
   const percentage = Math.min((current / goal) * 100, 100);
+  // Props are in liters, convert to ml for display
+  const currentMl = Math.round(current * 1000);
+  const goalMl = Math.round(goal * 1000);
 
   return (
     <div className={styles.card}>
-      <div className={`${styles.cardInner} ${styles.blurred}`}>
+      <div className={styles.cardInner}>
         <div className={styles.header}>
           <GlassWater className={styles.icon} />
           <span className={styles.title}>Water</span>
         </div>
 
         <div className={styles.amount}>
-          {current.toLocaleString('en-FR', { maximumFractionDigits: 1 })}l
+          {currentMl}/{goalMl} ml
         </div>
 
         <div className={styles.progressBar}>
@@ -26,12 +29,6 @@ const WaterCard = ({ current, goal }: WaterCardProps) => {
             className={styles.progressFill}
             style={{ width: `${percentage}%` }}
           ></div>
-        </div>
-      </div>
-
-      <div className={styles.overlay} role="presentation">
-        <div className={styles.overlayBox}>
-          <div className={styles.overlayText}>Coming soon</div>
         </div>
       </div>
     </div>
