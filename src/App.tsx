@@ -19,7 +19,7 @@ import ExercisesAdminPage from './pages/Admin/ExercisesAdminPage'
 import FoodsAdminPage from './pages/Admin/FoodsAdminPage'
 import ProtectedRoute from './components/ProtectedRoute'
 
-// Protected routes that should have theme applied
+//  routes that should have theme applied
 const protectedRoutes = ['/dashboard', '/workout', '/meals', '/desk', '/settings', '/admin'];
 
 function ThemeHandler() {
@@ -30,7 +30,7 @@ function ThemeHandler() {
     const isProtectedRoute = protectedRoutes.some(route => location.pathname.startsWith(route));
 
     if (isProtectedRoute && token) {
-      // Apply theme if on protected route and logged in
+      // apply theme iflogged in
       const savedTheme = localStorage.getItem('theme') || 'dark';
       if (savedTheme === 'light') {
         document.body.classList.add('light');
@@ -40,7 +40,7 @@ function ThemeHandler() {
         document.body.classList.remove('light');
       }
     } else {
-      // Remove theme classes if not on protected route or not logged in
+      // remove theme if not logged in
       document.body.classList.remove('light', 'dark');
     }
   }, [location.pathname]);

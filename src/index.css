@@ -15,40 +15,52 @@
   -ms-user-select: none;
 }
 
-/* Dark Mode (Default) */
+/* Dark Mode */
 body,
 body.dark {
   color-scheme: dark;
+
+  /* text/background */
   --background-color: #0D0D0D;
   --text-color: rgba(255, 255, 255, 0.87);
+
+  /* white texts */
   --text-color-white: rgba(255, 255, 255, 0.87);
   --text-color-white-90: rgba(255, 255, 255, 0.9);
   --text-color-white-80: rgba(255, 255, 255, 0.8);
   --text-color-white-60: rgba(255, 255, 255, 0.6);
   --text-color-white-45: rgba(255, 255, 255, 0.45);
+
+  /* link */
   --link-color: #646cff;
   --link-hover-color: #535bf2;
+
+  /* button */
   --button-background: #1a1a1a;
   --button-border-color: transparent;
   --button-hover-border-color: #646cff;
-  /* Card variables */
+
+  /* card */
   --card-background: #0D0D0D;
   --card-border-color: #0096FF;
   --card-text-color: rgba(255, 255, 255, 0.87);
   --card-text-secondary: rgba(255, 255, 255, 0.8);
   --card-text-tertiary: rgba(255, 255, 255, 0.6);
-  /* Input variables */
+
+  /* input */
   --input-background: rgba(255, 255, 255, 0.02);
   --input-border-color: rgba(255, 255, 255, 0.08);
   --input-text-color: #ffffff;
   --input-placeholder-color: rgba(255, 255, 255, 0.45);
-  /* Tag/Pill variables */
+
+  /* tag*/
   --tag-background: transparent;
   --tag-border-color: #0096FF;
   --tag-text-color: #0096FF;
   --tag-hover-background: #0096FF;
   --tag-hover-text-color: #ffffff;
-  /* Graph variables */
+
+  /* graph */
   --graph-grid-color: rgba(255, 255, 255, 0.1);
   --graph-axis-color: rgba(255, 255, 255, 0.6);
   --graph-legend-text: rgba(255, 255, 255, 0.8);
@@ -61,36 +73,48 @@ body.dark {
 /* Light Mode */
 body.light {
   color-scheme: light;
+
+  /* text/background */
   --background-color: #ffffff;
   --text-color: #213547;
+
+  /* white texts */
   --text-color-white: #213547;
   --text-color-white-90: #213547;
   --text-color-white-80: #213547;
   --text-color-white-60: #213547;
   --text-color-white-45: rgba(33, 53, 71, 0.6);
+
+  /* link */
   --link-color: #213547;
   --link-hover-color: #747bff;
+
+  /* button */
   --button-background: #f9f9f9;
   --button-border-color: #dcdcdc;
   --button-hover-border-color: #747bff;
-  /* Card variables */
+
+  /* card */
   --card-background: #f5f5f5;
   --card-border-color: #0096FF;
   --card-text-color: #213547;
   --card-text-secondary: rgba(33, 53, 71, 0.8);
   --card-text-tertiary: rgba(33, 53, 71, 0.6);
-  /* Input variables */
+
+  /* input */
   --input-background: rgba(0, 0, 0, 0.05);
   --input-border-color: rgba(0, 0, 0, 0.15);
   --input-text-color: #213547;
   --input-placeholder-color: rgba(33, 53, 71, 0.5);
-  /* Tag/Pill variables */
+
+  /* tag */
   --tag-background: rgba(0, 150, 255, 0.1);
   --tag-border-color: #0096FF;
   --tag-text-color: #0096FF;
   --tag-hover-background: #0096FF;
   --tag-hover-text-color: #ffffff;
-  /* Graph variables */
+
+  /* graph */
   --graph-grid-color: rgba(0, 0, 0, 0.1);
   --graph-axis-color: rgba(33, 53, 71, 0.6);
   --graph-legend-text: rgba(33, 53, 71, 0.8);
@@ -99,6 +123,7 @@ body.light {
   --graph-tooltip-text: #213547;
   --graph-tooltip-text-secondary: #666;
 }
+
 
 a {
   font-weight: 500;
@@ -152,8 +177,6 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-/* Global theme-aware overrides for hardcoded white text */
-/* Override inline styles with white color in light mode */
 body.light [style*="color: white"],
 body.light [style*="color: #ffffff"],
 body.light [style*="color: #fff"],
@@ -161,7 +184,6 @@ body.light [style*="color: rgb(255, 255, 255)"] {
   color: var(--text-color) !important;
 }
 
-/* Override common heading and text elements */
 body.light h1,
 body.light h2,
 body.light h3,
@@ -171,7 +193,6 @@ body.light h6 {
   color: var(--text-color) !important;
 }
 
-/* Add a utility class for theme-aware white text */
 .theme-text {
   color: var(--text-color-white);
 }
@@ -188,8 +209,15 @@ body.light h6 {
   color: var(--text-color-white-60);
 }
 
-/* Override common CSS module patterns - target elements that commonly have white text */
-/* More specific overrides for common patterns */
+
+/* hardcode white text in light mode */    
+body.light [style*="color: white"],
+body.light [style*="color: #ffffff"],
+body.light [style*="color: #fff"],
+body.light [style*="color: rgb(255, 255, 255)"] {
+  color: var(--text-color) !important;
+}
+
 body.light .card,
 body.light [class*="card"],
 body.light [class*="Card"],
@@ -205,22 +233,5 @@ body.light [class*="Content"],
 body.light .description,
 body.light [class*="description"],
 body.light [class*="Description"] {
-  color: var(--text-color) !important;
-}
-
-/* Override specific color values in light mode using attribute selectors */
-body.light [style*="color: white"] {
-  color: var(--text-color) !important;
-}
-
-body.light [style*="color: #ffffff"] {
-  color: var(--text-color) !important;
-}
-
-body.light [style*="color: #fff"] {
-  color: var(--text-color) !important;
-}
-
-body.light [style*="color: rgb(255, 255, 255)"] {
   color: var(--text-color) !important;
 }

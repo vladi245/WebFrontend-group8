@@ -2,21 +2,20 @@ import React, { useState, useEffect } from 'react';
 import style from './ModeButton.module.css';
 
 const ModeButton = () => {
-    // Get theme from localStorage or default to dark
+    //  default to dark
     const [theme, setTheme] = useState(() => {
         const savedTheme = localStorage.getItem('theme');
         return savedTheme || 'dark';
     });
 
-    // Check if user is logged in
+    // check if user is logged in
     const isLoggedIn = () => {
         return typeof window !== 'undefined' && localStorage.getItem('token') !== null;
     };
 
-    // Apply theme changes to body and save to localStorage (only if logged in)
     useEffect(() => {
         if (!isLoggedIn()) {
-            // Remove theme classes if not logged in
+            
             document.body.classList.remove('light', 'dark');
             return;
         }

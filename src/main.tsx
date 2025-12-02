@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 
-// Apply theme on initial load (only if user is logged in)
+
 const token = localStorage.getItem('token');
 if (token) {
   const savedTheme = localStorage.getItem('theme') || 'dark';
