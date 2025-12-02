@@ -1,9 +1,157 @@
 .container {
-    background-color: #0D0D0D;
-    min-height: 100vh;
-    display: flex;
+  background-color: #0D0D0D;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  color: white;
+  font-family: system-ui, -apple-system, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.container > * + * {
+  margin-top: 4rem;
+}
+
+/* Swimming fish background */
+.fishContainer {
+  position: absolute;
+  top: 0;
+  left: 350px;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.fish {
+  position: absolute;
+  left: -50px;
+  animation: swimAcross linear infinite;
+  opacity: 0.4;
+  filter: blur(1px);
+  transform: scaleX(-1);
+}
+
+@keyframes swimAcross {
+  0% {
+    left: -50px;
+    transform: scaleX(-1) translateY(0px);
+  }
+  25% {
+    transform: scaleX(-1) translateY(-15px);
+  }
+  50% {
+    transform: scaleX(-1) translateY(0px);
+  }
+  75% {
+    transform: scaleX(-1) translateY(15px);
+  }
+  100% {
+    left: calc(100% + 50px);
+    transform: scaleX(-1) translateY(0px);
+  }
+}
+
+.contentWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  padding-top: 40px;
+  gap: 2rem;
+  margin-left: 350px;
+  overflow-y: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.topRow {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  width: 100%;
+  align-items: stretch;
+}
+
+.mainContent {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.rightColumn > * {
+  flex: 1 1 auto;
+}
+
+.leftColumn {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex: 0 0 auto;
+  min-width: 280px;
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 0 0 auto;
+  max-width: none;
+  margin-top: 2.5rem;
+}
+
+@media (max-width: 1400px) {
+  .contentWrapper {
+    margin-left: 300px;
+    padding: 1.5rem;
+  }
+
+  .mainContent {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .contentWrapper {
+    margin-left: 0;
+    padding: 1.5rem;
+  }
+
+  .mainContent {
     flex-direction: column;
     align-items: center;
-    padding-top: 2rem;
-    padding-bottom: 4rem;
+  }
+
+  .leftColumn {
+    min-width: auto;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .rightColumn {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .contentWrapper {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .mainContent {
+    gap: 1rem;
+  }
+
+  .rightColumn {
+    gap: 1rem;
+  }
 }

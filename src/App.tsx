@@ -11,7 +11,7 @@ import Workout from './pages/Workout'
 import Meals from './pages/Meals'
 import Hydration from './pages/Hydration'
 import Settings from './pages/Settings'
-import Friends from './pages/Friends'
+// import Friends from './pages/Friends'
 import Dashboard from './pages/Dashboard'
 import UsersPage from './pages/Admin/UsersPage'
 import ExercisesAdminPage from './pages/Admin/ExercisesAdminPage'
@@ -32,7 +32,7 @@ function App() {
           <Route path="/desk" element={<ProtectedRoute><Desk /></ProtectedRoute>} />
           <Route path="/workout" element={<ProtectedRoute><Workout /></ProtectedRoute>} />
           <Route path="/meals" element={<ProtectedRoute requiredType="premium"><Meals /></ProtectedRoute>} />
-          {/*<Route path="/hydration" element={<ProtectedRoute><Hydration /></ProtectedRoute>} /> */}
+          <Route path="/hydration" element={<ProtectedRoute><Hydration /></ProtectedRoute>} />
           <Route path="/admin" element={<ProtectedRoute requiredType="admin"><UsersPage /></ProtectedRoute>} />
           <Route path="/admin/workout" element={<ProtectedRoute requiredType="admin"><ExercisesAdminPage /></ProtectedRoute>} />
           <Route path="/admin/foods" element={<ProtectedRoute requiredType="admin"><FoodsAdminPage /></ProtectedRoute>} />

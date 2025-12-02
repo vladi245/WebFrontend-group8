@@ -121,7 +121,29 @@
     color: #e6ca4f;
 }
 
+.hydrationGoalCard .statLabel {
+    color: #ffffff;
+}
 
+.hydrationGoalCard .statValue {
+    color: #0096FF;
+}
+
+.hydrationGoalCard .statIcon {
+    color: #0096FF;
+}
+
+.hydrationIntakeCard .statLabel {
+    color: #ffffff;
+}
+
+.hydrationIntakeCard .statValue {
+    color: #00B4FF;
+}
+
+.hydrationIntakeCard .statIcon {
+    color: #00B4FF;
+}
 
 @media (max-width: 1024px) {
     .statsContainer {

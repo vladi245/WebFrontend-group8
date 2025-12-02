@@ -1,14 +1,15 @@
 .card {
   border: 1px solid #0096FF;
   border-radius: 12px;
-  padding: 1rem 1.5rem;
-  width: 630px;
-  height: 200px;
+  padding: 1rem 1.25rem;
+  width: 175%;
   color: white;
   font-family: system-ui, sans-serif;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
+  box-sizing: border-box;
+  flex: 0 0 auto;
 }
 
 .header {
@@ -28,6 +29,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
+  row-gap: 20px;
 }
 
 /* Top row buttons */
