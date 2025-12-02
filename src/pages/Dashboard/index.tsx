@@ -54,14 +54,14 @@ export default function Home() {
             const userId = user?.id;
 
             //fetch todays totals
-            const response = await fetch(`http://localhost:5002/api/meals/stats?userId=${userId}`);
+            const response = await fetch(`http://localhost:5000/api/meals/stats?userId=${userId}`);
             if (!response.ok) {
                 throw new Error("Failed to fetch stats");
             }
             const data = await response.json();
 
             //fetch weekly stast and average
-            const weekRes = await fetch(`http://localhost:5002/api/meals/weekly?userId=${userId}`);
+            const weekRes = await fetch(`http://localhost:5000/api/meals/weekly?userId=${userId}`);
             if (!weekRes.ok) {
                 throw new Error("Failed to fetch weekly stats");
             }
