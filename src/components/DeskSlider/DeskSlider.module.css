@@ -1,8 +1,7 @@
 .Container {
     background-color: var(--card-background);
     border-radius: 10px;
-    height: 300px;
-    width: 500px;
+    height: 100%;
     font-family: 'Inter', sans-serif;
     display: flex;
     flex-direction: row;

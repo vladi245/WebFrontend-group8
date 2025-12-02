@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import Logo from '../../components/Logo/Logo';
 import style from './Workout.module.css';
 import Stats from '../../components/Stats/Stats';
 import Performance from '../../components/Performance/Performance';
@@ -179,7 +178,7 @@ export default function Workout() {
                 {!loading && <Stats data={statsData} />}
                 {!loading && <Performance data={performanceData} />}
                 <Exercises onAdd={handleAddCompleted} onRemove={handleRemoveCompleted} initialCompleted={completedRecords} />
-                <MuscleGroup />
+                <MuscleGroup completedExercises={completedRecords} />
             </div>
         </div>
     );

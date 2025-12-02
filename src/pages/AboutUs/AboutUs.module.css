@@ -75,6 +75,10 @@
   padding: 2.5rem 4rem;
   border: 1px solid #000000;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .contact-title {
@@ -255,3 +259,80 @@
     font-size: 0.875rem;
   }
 }
+
+/* Bartek personal extension */
+.contact-form {
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  text-align: left;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(0, 150, 255, 0.35);
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(4px);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #0096FF;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 12px rgba(0, 150, 255, 0.4);
+}
+
+.submit-btn {
+  margin-top: 0.5rem;
+  padding: 0.9rem 1.5rem;
+  background: #0096FF;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: center;
+}
+
+.submit-btn:hover {
+  background: #1DA8FF;
+  box-shadow: 0 0 14px rgba(0, 150, 255, 0.5);
+}
+
+.status-message {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+  color: #72B4FF;
+}
+
+@media (max-width: 768px) {
+  .contact-form {
+    max-width: 100%;
+    gap: 1rem;
+  }
+
+  .submit-btn {
+    font-size: 1rem;
+    padding: 0.8rem 1.2rem;
+  }
+}
+

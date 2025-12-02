@@ -1,0 +1,17 @@
+.greeting {
+    color: white;
+    font-size: 3rem;
+    margin: 0%;
+    margin-top: 60px;
+    font-weight: 600;
+}
+
+.name {
+    color: #0096FF;
+}
+
+.sub{
+    color: white;
+    font-size: 2rem;
+    margin: 0%;
+}

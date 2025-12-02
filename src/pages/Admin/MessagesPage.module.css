@@ -1,0 +1,21 @@
+.page {
+  margin-left: 350px;
+  padding: 20px;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0096FF;
+  margin-bottom: 1.5rem;
+}
+
+.tableWrapper {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 150, 255, 0.25);
+  backdrop-filter: blur(6px);
+}
