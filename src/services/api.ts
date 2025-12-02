@@ -2,7 +2,7 @@ export async function apiFetch(path: string, options: RequestInit = {}) {
     // Determine API base. Prefer explicit VITE_API_URL, otherwise default to localhost backend.
     // If the default contains 'localhost' but the frontend is served from a different host,
     // replace 'localhost' with the current page hostname so requests go to the same machine.
-    let apiBase = import.meta.env.VITE_API_URL || 'http://localhost:0';
+    let apiBase = import.meta.env.VITE_API_URL || 'http://localhost:5000';
     try {
         if (typeof window !== 'undefined' && apiBase.includes('localhost')) {
             const host = window.location.hostname;
