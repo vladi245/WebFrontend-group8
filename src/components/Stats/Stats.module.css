@@ -8,12 +8,16 @@
 
 .statCard {
     flex: 1;
-    background-color: #0D0D0D;
-    border: 2px solid #0096FF;
+    background-color: var(--card-background);
+    border: 2px solid var(--card-border-color);
     border-radius: 12px;
     padding: 24px 28px;
     transition: all 0.3s ease;
     border-width: thin;
+}
+
+.statValue {
+    color: var(--card-text-color);
 }
 
 .statCard:hover {
@@ -36,7 +40,7 @@
 .statLabel {
     font-size: 16px;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--card-text-secondary);
     margin: 0;
 }
 
@@ -45,6 +49,7 @@
     font-weight: 700;
     margin: 0;
     line-height: 1;
+    color: var(--card-text-color);
 }
 
 .statIcon {
@@ -86,7 +91,7 @@
 
 
 .mealsCard .statLabel {
-    color: #ffffff;
+    color: var(--card-text-color);
 }
 
 .mealsCard .statValue {
@@ -98,7 +103,7 @@
 }
 
 .foodcaloriesCard .statLabel {
-    color: #ffffff; 
+    color: var(--card-text-color); 
 }
 
 .foodcaloriesCard .statValue {
@@ -110,7 +115,7 @@
 }
 
 .averageintakeCard .statLabel {
-    color: #ffffff; 
+    color: var(--card-text-color); 
 }
 
 .averageintakeCard .statValue {

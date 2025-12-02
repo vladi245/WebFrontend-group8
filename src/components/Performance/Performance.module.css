@@ -3,10 +3,11 @@
     max-width: 1400px;
     padding: 32px;
     margin-top: 40px;
-    background-color: #0D0D0D;
-    border: 2px solid #0096FF;
+    background-color: var(--card-background);
+    border: 2px solid var(--card-border-color);
     border-radius: 12px;
     border-width: thin;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .header {
@@ -16,14 +17,16 @@
 .title {
     font-size: 28px;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--card-text-color);
     margin: 0 0 8px 0;
+    transition: color 0.3s ease;
 }
 
 .subtitle {
     font-size: 16px;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--card-text-tertiary);
     margin: 0;
+    transition: color 0.3s ease;
 }
 
 .graph {
@@ -58,7 +61,8 @@
 
 .legendText {
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--graph-legend-text);
+    transition: color 0.3s ease;
 }
 
 @media (max-width: 768px) {

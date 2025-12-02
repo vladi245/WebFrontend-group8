@@ -39,9 +39,15 @@ const CustomTooltip = ({ active, payload, label }: any) => {
         const fullDay = getFullDayName(dateObj);
         const dateStr = dateObj.toLocaleDateString();
         return (
-            <div style={{ background: '#1a1a1a', border: '1px solid #0096FF', borderRadius: 8, color: '#fff', padding: 12 }}>
+            <div style={{ 
+                background: 'var(--graph-tooltip-background)', 
+                border: '1px solid var(--graph-tooltip-border)', 
+                borderRadius: 8, 
+                color: 'var(--graph-tooltip-text)', 
+                padding: 12 
+            }}>
                 <div style={{ fontWeight: 600, fontSize: 16 }}>{fullDay}</div>
-                <div style={{ fontSize: 12, color: '#aaa' }}>{dateStr}</div>
+                <div style={{ fontSize: 12, color: 'var(--graph-tooltip-text-secondary)' }}>{dateStr}</div>
                 <div style={{ marginTop: 8 }}>Calories: <b>{payload[0].value}</b></div>
             </div>
         );
@@ -74,14 +80,14 @@ const FoodPerformance = ({ data }: FoodPerformanceProps) => {
             <div className={style.graph}>
                 <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 20 }}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.1)" />
+                        <CartesianGrid strokeDasharray="3 3" stroke="var(--graph-grid-color)" />
                         <XAxis
                             dataKey="day"
-                            stroke="rgba(255, 255, 255, 0.6)"
+                            stroke="var(--graph-axis-color)"
                             style={{ fontSize: '14px' }}
                         />
                         <YAxis
-                            stroke="rgba(255, 255, 255, 0.6)"
+                            stroke="var(--graph-axis-color)"
                             style={{ fontSize: '14px' }}
                         />
                         <Tooltip content={<CustomTooltip />} />
@@ -91,7 +97,7 @@ const FoodPerformance = ({ data }: FoodPerformanceProps) => {
                             stroke="#7ED957"
                             strokeWidth={3}
                             dot={renderDot}
-                            activeDot={{ r: 10, fill: '#0096FF', stroke: '#fff', strokeWidth: 2 }}
+                            activeDot={{ r: 10, fill: '#888', stroke: '#fff', strokeWidth: 2 }}
                         />
                     </LineChart>
                 </ResponsiveContainer>

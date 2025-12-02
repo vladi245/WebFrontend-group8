@@ -5,10 +5,6 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -19,21 +15,139 @@
   -ms-user-select: none;
 }
 
+/* Dark Mode */
+body,
+body.dark {
+  color-scheme: dark;
+
+  /* text/background */
+  --background-color: #0D0D0D;
+  --text-color: rgba(255, 255, 255, 0.87);
+
+  /* white texts */
+  --text-color-white: rgba(255, 255, 255, 0.87);
+  --text-color-white-90: rgba(255, 255, 255, 0.9);
+  --text-color-white-80: rgba(255, 255, 255, 0.8);
+  --text-color-white-60: rgba(255, 255, 255, 0.6);
+  --text-color-white-45: rgba(255, 255, 255, 0.45);
+
+  /* link */
+  --link-color: #646cff;
+  --link-hover-color: #535bf2;
+
+  /* button */
+  --button-background: #1a1a1a;
+  --button-border-color: transparent;
+  --button-hover-border-color: #646cff;
+
+  /* card */
+  --card-background: #0D0D0D;
+  --card-border-color: #0096FF;
+  --card-text-color: rgba(255, 255, 255, 0.87);
+  --card-text-secondary: rgba(255, 255, 255, 0.8);
+  --card-text-tertiary: rgba(255, 255, 255, 0.6);
+
+  /* input */
+  --input-background: rgba(255, 255, 255, 0.02);
+  --input-border-color: rgba(255, 255, 255, 0.08);
+  --input-text-color: #ffffff;
+  --input-placeholder-color: rgba(255, 255, 255, 0.45);
+
+  /* tag*/
+  --tag-background: transparent;
+  --tag-border-color: #0096FF;
+  --tag-text-color: #0096FF;
+  --tag-hover-background: #0096FF;
+  --tag-hover-text-color: #ffffff;
+
+  /* graph */
+  --graph-grid-color: rgba(255, 255, 255, 0.1);
+  --graph-axis-color: rgba(255, 255, 255, 0.6);
+  --graph-legend-text: rgba(255, 255, 255, 0.8);
+  --graph-tooltip-background: #1a1a1a;
+  --graph-tooltip-border: #0096FF;
+  --graph-tooltip-text: #fff;
+  --graph-tooltip-text-secondary: #aaa;
+}
+
+/* Light Mode */
+body.light {
+  color-scheme: light;
+
+  /* text/background */
+  --background-color: #ffffff;
+  --text-color: #213547;
+
+  /* white texts */
+  --text-color-white: #213547;
+  --text-color-white-90: #213547;
+  --text-color-white-80: #213547;
+  --text-color-white-60: #213547;
+  --text-color-white-45: rgba(33, 53, 71, 0.6);
+
+  /* link */
+  --link-color: #213547;
+  --link-hover-color: #747bff;
+
+  /* button */
+  --button-background: #f9f9f9;
+  --button-border-color: #dcdcdc;
+  --button-hover-border-color: #747bff;
+
+  /* card */
+  --card-background: #f5f5f5;
+  --card-border-color: #0096FF;
+  --card-text-color: #213547;
+  --card-text-secondary: rgba(33, 53, 71, 0.8);
+  --card-text-tertiary: rgba(33, 53, 71, 0.6);
+
+  /* input */
+  --input-background: rgba(0, 0, 0, 0.05);
+  --input-border-color: rgba(0, 0, 0, 0.15);
+  --input-text-color: #213547;
+  --input-placeholder-color: rgba(33, 53, 71, 0.5);
+
+  /* tag */
+  --tag-background: rgba(0, 150, 255, 0.1);
+  --tag-border-color: #0096FF;
+  --tag-text-color: #0096FF;
+  --tag-hover-background: #0096FF;
+  --tag-hover-text-color: #ffffff;
+
+  /* graph */
+  --graph-grid-color: rgba(0, 0, 0, 0.1);
+  --graph-axis-color: rgba(33, 53, 71, 0.6);
+  --graph-legend-text: rgba(33, 53, 71, 0.8);
+  --graph-tooltip-background: #f5f5f5;
+  --graph-tooltip-border: #0096FF;
+  --graph-tooltip-text: #213547;
+  --graph-tooltip-text-secondary: #666;
+}
+
+
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--link-color);
   text-decoration: inherit;
+  transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #535bf2;
+  color: var(--link-hover-color);
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #0D0D0D;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-color);
+  transition: color 0.3s ease;
 }
 
 h1 {
@@ -43,18 +157,19 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid var(--button-border-color);
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--button-background);
+  color: var(--text-color);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, background-color 0.3s ease, color 0.3s ease;
 }
 
 button:hover {
-  border-color: #646cff;
+  border-color: var(--button-hover-border-color);
 }
 
 button:focus,
@@ -62,17 +177,61 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
+body.light [style*="color: white"],
+body.light [style*="color: #ffffff"],
+body.light [style*="color: #fff"],
+body.light [style*="color: rgb(255, 255, 255)"] {
+  color: var(--text-color) !important;
+}
 
-  a:hover {
-    color: #747bff;
-  }
+body.light h1,
+body.light h2,
+body.light h3,
+body.light h4,
+body.light h5,
+body.light h6 {
+  color: var(--text-color) !important;
+}
 
-  button {
-    background-color: #f9f9f9;
-  }
+.theme-text {
+  color: var(--text-color-white);
+}
+
+.theme-text-90 {
+  color: var(--text-color-white-90);
+}
+
+.theme-text-80 {
+  color: var(--text-color-white-80);
+}
+
+.theme-text-60 {
+  color: var(--text-color-white-60);
+}
+
+
+/* hardcode white text in light mode */    
+body.light [style*="color: white"],
+body.light [style*="color: #ffffff"],
+body.light [style*="color: #fff"],
+body.light [style*="color: rgb(255, 255, 255)"] {
+  color: var(--text-color) !important;
+}
+
+body.light .card,
+body.light [class*="card"],
+body.light [class*="Card"],
+body.light .title,
+body.light [class*="title"],
+body.light [class*="Title"],
+body.light .header,
+body.light [class*="header"],
+body.light [class*="Header"],
+body.light .content,
+body.light [class*="content"],
+body.light [class*="Content"],
+body.light .description,
+body.light [class*="description"],
+body.light [class*="Description"] {
+  color: var(--text-color) !important;
 }
