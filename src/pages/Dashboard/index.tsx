@@ -96,6 +96,16 @@ export default function Home() {
         { day: 'Sun', minutes: 0 },
     ]);
 
+    const [standingStatsData, setStandingStatsData] = useState<{ day: string; minutes: number }[]>([
+        { day: 'Mon', minutes: 0 },
+        { day: 'Tue', minutes: 0 },
+        { day: 'Wed', minutes: 0 },
+        { day: 'Thu', minutes: 0 },
+        { day: 'Fri', minutes: 0 },
+        { day: 'Sat', minutes: 0 },
+        { day: 'Sun', minutes: 0 },
+    ]);
+
     useEffect(() => {
         let mounted = true;
         const fetchStats = async () => {
@@ -191,6 +201,21 @@ export default function Home() {
                 } catch (e) {
                     console.warn('Could not fetch hydration data', e);
                 }
+
+                // Fetch standing stats
+                try {
+                    const userJson = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
+                    const user = userJson ? JSON.parse(userJson) : null;
+                    if (user && user.id) {
+                        const standingStats = await apiFetch(`/api/desks/records/stats?userId=${user.id}`);
+                        console.debug('Dashboard: standingStats response:', standingStats);
+                        if (Array.isArray(standingStats) && standingStats.length > 0 && mounted) {
+                            setStandingStatsData(standingStats);
+                        }
+                    }
+                } catch (e) {
+                    console.warn('Could not fetch standing stats', e);
+                }
             } catch (err) {
                 console.warn('Failed to fetch dashboard stats', err);
             }
@@ -244,15 +269,7 @@ export default function Home() {
                     ]}/>
                     */}
 
-                    <StandingStats data={[
-                        { day: 'Mon', minutes: 0 },
-                        { day: 'Tue', minutes: 0 },
-                        { day: 'Wed', minutes: 0 },
-                        { day: 'Thu', minutes: 0 },
-                        { day: 'Fri', minutes: 0 },
-                        { day: 'Sat', minutes: 0 },
-                        { day: 'Sun', minutes: 0 },
-                    ]} />
+                    <StandingStats data={standingStatsData} />
                 </div>
 
 
