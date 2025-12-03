@@ -45,7 +45,7 @@
     opacity: 0.6
 }
 
-.Label {
+.ValueLabel {
     background-color: #0D0D0D;
     border: 2px solid #0070BE;
     border-radius: 10px;
@@ -91,7 +91,7 @@
 
 .valueAndChangeButtonsGrid {
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: auto auto auto auto 140px;
     grid-template-rows: auto;
     gap: 10px;
 }
@@ -148,4 +148,21 @@ input.switch:checked+label:before {
 
 input.switch:checked+label:after {
     margin-left: 2em;
+}
+
+
+
+.SuggestionValue {
+    background: transparent;
+    border-radius: 10px;
+    width: 100px;
+    height: 20px;
+    text-align: center;
+    font-size: 12px;
+    padding: 5px;
+    color: #9AA6B2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: end;
 }
