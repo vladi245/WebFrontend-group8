@@ -1,4 +1,3 @@
-import Logo from '../../components/Logo/Logo'
 import style from './Friends.module.css';
 import UserProfile from '../../components/Friends/UserProfile/UserProfile';
 import FollowRequests from '../../components/Friends/FollowRequests/FollowRequests';
