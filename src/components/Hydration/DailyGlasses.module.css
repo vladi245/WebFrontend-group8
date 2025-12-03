@@ -1,10 +1,12 @@
 .container {
-  border: 1px solid #0096FF;
+  border: 1px solid var(--card-border-color);
   border-radius: 14px;
   padding: 1.5rem 1.75rem;
-  color: white;
+  color: var(--card-text-color);
   width: 100%;
   max-width: 1070px;
+  background-color: var(--card-background);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .header {
@@ -18,12 +20,14 @@
   font-size: 1.1rem;
   font-weight: 600;
   margin: 0;
-  color: white;
+  color: var(--card-text-color);
+  transition: color 0.3s ease;
 }
 
 .progress {
   font-size: 0.9rem;
-  color: #888;
+  color: var(--card-text-tertiary);
+  transition: color 0.3s ease;
 }
 
 .glassesGrid {

@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: var(--card-background-color);
+  background-color: var(--card-background);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -29,7 +29,8 @@
 
 .progress {
   font-size: 0.9rem;
-  color: var(--progress-text-color);
+  color: var(--card-text-tertiary);
+  transition: color 0.3s ease;
 }
 
 .progressBar {

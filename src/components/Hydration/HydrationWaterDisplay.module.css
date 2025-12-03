@@ -4,7 +4,7 @@
   justify-content: center;
   flex-direction: column;
   padding: 1.2rem;
-  background-color: var(--card-background); 
+  background-color: var(--background-color); 
   color: var(--card-text-color); 
   transition: background-color 0.3s ease, color 0.3s ease;
 }

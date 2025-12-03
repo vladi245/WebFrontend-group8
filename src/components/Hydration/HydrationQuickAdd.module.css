@@ -3,7 +3,7 @@
   border-radius: 14px;
   padding: 1.2rem 1.5rem;
   width: 205%;
-  background-color: var(--card-background-color);
+  background-color: var(--card-background);
   color: var(--card-text-color);
   font-family: system-ui, sans-serif;
   display: flex;
@@ -51,7 +51,7 @@
 }
 
 .quickButton:hover {
-  background: var(--button-hover-background-color);
+  border-color: var(--button-hover-border-color);
   transform: translateY(-1px);
 }
 
@@ -80,7 +80,7 @@
 }
 
 .removeButton:hover {
-  background: var(--button-hover-background-color);
+  border-color: var(--button-hover-border-color);
   transform: scale(1.04);
 }
 
@@ -93,7 +93,7 @@
 }
 
 .resetButton:hover {
-  background: var(--button-hover-background-color);
+  border-color: var(--button-hover-border-color);
   transform: scale(1.04);
 }
 

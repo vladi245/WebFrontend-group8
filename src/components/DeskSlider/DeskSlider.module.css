@@ -27,6 +27,12 @@
     height: auto;
     padding-top: 30px;
     background-image: var(--desk-image);
+    transition: filter 0.3s ease;
+}
+
+/* desk image black in light theme */
+:global(body.light) .DeskImage {
+    filter: invert(1);
 }
 
 

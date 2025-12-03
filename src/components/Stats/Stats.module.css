@@ -157,40 +157,44 @@
     align-items: center;
     justify-content: center;
     padding: 1.5rem 1.75rem;
-    border: 1px solid #0096FF;
+    border: 1px solid var(--card-border-color);
     border-radius: 14px;
-    background-color: transparent;
+    background-color: var(--card-background);
     min-width: 235px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .hydrationStatsLabel {
-    color: #888;
+    color: var(--card-text-tertiary);
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
 }
 
 .hydrationStatsValue {
-    color: white;
+    color: var(--card-text-color);
     font-size: 2.35rem;
     font-weight: 600;
+    transition: color 0.3s ease;
 }
 
 .hydrationChangeButton {
     margin-top: 0.9rem;
-    background: #333;
-    border: 1px solid #0096FF;
-    color: white;
+    background: var(--button-background);
+    border: 1px solid var(--card-border-color);
+    color: var(--card-text-color);
     padding: 10px 28px;
     border-radius: 24px;
     cursor: pointer;
     font-size: 1rem;
     font-weight: 500;
-    transition: transform 0.15s ease, background 0.15s ease;
+    transition: transform 0.15s ease, background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
     outline: none;
 }
 
 .hydrationChangeButton:hover {
-    background: #444;
+    background: var(--input-background);
+    border-color: var(--button-hover-border-color);
     transform: translateY(-2px);
 }
 

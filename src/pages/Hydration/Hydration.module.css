@@ -1,12 +1,13 @@
 .container {
-  background-color: #0D0D0D;
+  background-color: var(--background-color);
   min-height: 100vh;
   display: flex;
   flex-direction: row;
-  color: white;
+  color: var(--text-color);
   font-family: system-ui, -apple-system, sans-serif;
   position: relative;
   overflow: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container > * + * {

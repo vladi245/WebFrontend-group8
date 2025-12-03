@@ -68,6 +68,12 @@ body.dark {
   --graph-tooltip-border: #0096FF;
   --graph-tooltip-text: #fff;
   --graph-tooltip-text-secondary: #aaa;
+
+  /* progress */
+  --progress-bar-background: #1a1a1a;
+  --progress-start-color: #0096FF;
+  --progress-end-color: #0075CC;
+  --progress-percentage-color: #0096FF;
 }
 
 /* Light Mode */
@@ -125,7 +131,7 @@ body.light {
 
 
    /* progress */
-   --progress-bar-background: #1a1a1a;
+   --progress-bar-background: rgba(0, 0, 0, 0.1);
    --progress-start-color: #0096FF;
    --progress-end-color: #0075CC;
    --progress-percentage-color: #0096FF;

@@ -511,10 +511,9 @@ const MuscleGroup = ({ completedExercises = [] }: MuscleGroupProps) => {
                     {legendItems.map((item, index) => (
                         <div key={index} className={style.legendItem}>
                             <span
-                                className={style.legendColor}
+                                className={`${style.legendColor} ${item.border ? style.legendColorBordered : ''}`}
                                 style={{
-                                    backgroundColor: item.color,
-                                    border: item.border ? '1px solid #444' : 'none'
+                                    backgroundColor: item.color
                                 }}
                             />
                             <span className={style.legendLabel}>{item.label}</span>
