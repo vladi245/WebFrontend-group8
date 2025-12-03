@@ -1,14 +1,10 @@
 import style from './Navbar.module.css';
 import GetStandingLogo from '../../assets/GetStanding.png';
-import type { ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
-
+import LanguageChange from '../../components/LanguageChange/LanguageChange';
 const Navbar = () => {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
-    const handleLangChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        i18n.changeLanguage(e.target.value);
-    };
 
     return (
         <nav className={style.navbar}>
@@ -31,10 +27,7 @@ const Navbar = () => {
                 <a href="/sign-up" className={style['signup-button']}>
                     {t('signUp')}
                 </a>
-                <select value={i18n.language} onChange={handleLangChange} aria-label="language-select">
-                    <option value="en">EN</option>
-                    <option value="da">DA</option>
-                </select>
+                <LanguageChange />
             </div>
         </nav>
     );

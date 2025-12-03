@@ -200,7 +200,7 @@ const MealPicker = ({ onMealAdded }: MealPickerProps) => {
 
         <div className={style.mealList}>
           {meals.length === 0 ? (
-            <p className={style.noResults}>{t('mealPicker.noFoodsAdded')} {searchTerm}</p>
+            <p className={style.noResults}>{t('mealPicker.noFoodAdded')} {searchTerm}</p>
           ) : (
             meals.map((meal) => (
               <div key={meal.recordId} className={style.mealRow}>
