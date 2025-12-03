@@ -7,11 +7,13 @@
 .settingsContainer {
     margin-left: 350px;
     padding: 40px;
+    padding-top: 95px;
     display: flex;
     flex-direction: column;
     gap: 24px;
     max-width: 900px;
 }
+
 
 .card {
     background-color: transparent;
