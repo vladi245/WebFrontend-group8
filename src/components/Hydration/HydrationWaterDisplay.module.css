@@ -4,6 +4,9 @@
   justify-content: center;
   flex-direction: column;
   padding: 1.2rem;
+  background-color: var(--card-background); 
+  color: var(--card-text-color); 
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .glass {
@@ -24,12 +27,13 @@
 
 .info {
   margin-top: 1rem;
+  color: var(--card-text-secondary);
 }
 
 .currentAmount {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #1BB4FF;
+  color: var(--highlight-color);
 }
 
 @media (max-width: 768px) {

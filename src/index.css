@@ -122,6 +122,23 @@ body.light {
   --graph-tooltip-border: #0096FF;
   --graph-tooltip-text: #213547;
   --graph-tooltip-text-secondary: #666;
+
+
+   /* progress */
+   --progress-bar-background: #1a1a1a;
+   --progress-start-color: #0096FF;
+   --progress-end-color: #0075CC;
+   --progress-percentage-color: #0096FF;
+
+
+   /* glass */
+  --glass-border-color: #0096FF;
+  --glass-text-color: #ffffff;
+  --glass-progress-text-color: rgba(255, 255, 255, 0.8);
+  --glass-hover-scale: 1.05;
+
+    /* highlight */
+    --highlight-color: #0096FF;
 }
 
 
@@ -143,6 +160,8 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
+   
+
 }
 
 h1, h2, h3, h4, h5, h6 {

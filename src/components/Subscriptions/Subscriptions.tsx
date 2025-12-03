@@ -1,8 +1,10 @@
 import React from 'react';
 import style from './Subscriptions.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const Subscriptions = () => {
     const [hoveredPlan, setHoveredPlan] = React.useState<number | null>(null);
+    const navigate = useNavigate();
 
     const plans = [
         {
@@ -10,10 +12,10 @@ const Subscriptions = () => {
             name: 'Beginner Plan',
             price: 0,
             features: [
-                'Notifications to adjust your desk',
+                'Daily workout tracking',
+                'Weekly workout performance insights',
+                'Muscle group analysis',
                 'Manual desk adjustment',
-                'Logging up to 30 meals',
-                'Logging up to 50 workouts'
             ]
         },
         {
@@ -21,10 +23,10 @@ const Subscriptions = () => {
             name: 'Premium Plan',
             price: 1000,
             features: [
-                'Unlimited workout logging',
-                'Unlimited meal tracking',
-                'Automatic desk adjustment',
-                'All of the Beginner Plan features and many more'
+                'Daily calorie tracking',
+                'Weekly calorie consumption insights',
+                'Daily hydration tracking',
+                'Enjoy all Beginner features with additional analytics'
             ]
         }
     ];
@@ -67,7 +69,10 @@ const Subscriptions = () => {
                             ))}
                         </ul>
 
-                        <button className={style.choosePlanButton}>
+                        <button 
+                        className={style.choosePlanButton}
+                        onClick={() => navigate('/login')}
+                        >
                             Choose Plan
                         </button>
                     </div>

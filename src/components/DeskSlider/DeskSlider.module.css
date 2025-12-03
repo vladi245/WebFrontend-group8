@@ -26,4 +26,7 @@
     width: 350px;
     height: auto;
     padding-top: 30px;
+    background-image: var(--desk-image);
 }
+
+
