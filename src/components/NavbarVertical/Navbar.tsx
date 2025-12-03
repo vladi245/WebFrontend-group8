@@ -12,6 +12,7 @@ const Navbar = () => {
    }
 
    const showMeals = user && user.type === 'premium';
+   const showHydration = user && user.type === 'premium';
 
    return (
       <nav className={style.navbar}>
@@ -43,10 +44,12 @@ const Navbar = () => {
          }
 
          {
-            <a href="/hydration" className={style.navlink}>
-               <GlassWater className={style.icon} />
-               <span>Hydration</span>
-            </a>
+            showHydration && (
+               <a href="/hydration" className={style.navlink}>
+                  <GlassWater className={style.icon} />
+                  <span>Hydration</span>
+               </a>
+            )
          }
 
          <a href="/desk" className={style.navlink}>
