@@ -1,23 +1,18 @@
 .buttonContainer {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 100%;
 }
 
 .modeButtonContainer {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 15px;
-    padding: 10px;
-    font-size: 24px;
+    gap: 12px;
 }
 
 .label {
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 500;
-    color: var(--text-color);
+    color: #ffffff;
     user-select: none;
     white-space: nowrap;
 }

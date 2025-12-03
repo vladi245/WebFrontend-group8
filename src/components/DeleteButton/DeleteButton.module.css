@@ -1,13 +1,32 @@
-.DeleteButton {
-    background-color: red;
-    color: white;
-    font-size: 24px;
-    padding: 10px;
+.buttonContainer {
     display: flex;
     align-items: center;
+}
+
+.DeleteButton {
+    background-color: #ef4444;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.DeleteButton:hover {
+    background-color: #dc2626;
+    transform: translateY(-2px);
+}
+
+.DeleteButton svg {
+    width: 18px;
+    height: 18px;
 }
 
 .modalOverlay {
