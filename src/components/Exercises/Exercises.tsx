@@ -21,120 +21,102 @@ interface CompletedRecord {
     timestamp: string;
 }
 
+
 interface ExercisesProps {
     onAdd?: (workout_id: number) => Promise<void> | void;
     onRemove?: (record_id: number) => Promise<void> | void;
     initialCompleted?: CompletedRecord[];
 }
 
+const FALLBACK_EXERCISES: Exercise[] = [
+    { id: 1, name: 'Leg Press', sets: 3, reps: 15, muscleGroups: ['Glutes', 'Hamstrings', 'Quadriceps'] },
+    { id: 2, name: 'Bench Press', sets: 4, reps: 10, muscleGroups: ['Chest', 'Triceps', 'Shoulders'] },
+    { id: 3, name: 'Deadlift', sets: 3, reps: 8, muscleGroups: ['Back', 'Hamstrings', 'Glutes'] },
+    { id: 4, name: 'Squats', sets: 4, reps: 12, muscleGroups: ['Quadriceps', 'Glutes', 'Hamstrings'] },
+    { id: 5, name: 'Pull-ups', sets: 3, reps: 10, muscleGroups: ['Back', 'Biceps', 'Shoulders'] },
+    { id: 6, name: 'Shoulder Press', sets: 3, reps: 12, muscleGroups: ['Shoulders', 'Triceps'] },
+    { id: 7, name: 'Bicep Curls', sets: 3, reps: 15, muscleGroups: ['Biceps'] },
+    { id: 8, name: 'Tricep Dips', sets: 3, reps: 12, muscleGroups: ['Triceps', 'Chest'] },
+];
+
+const normalizeWorkout = (w: any): Exercise => ({
+    id: w.id,
+    name: w.name ?? "Unknown",
+    sets: Number(w.sets) || 0,
+    reps: Number(w.reps) || 0,
+    muscleGroups: Array.isArray(w.muscle_group)
+        ? w.muscle_group
+        : w.muscle_group ? JSON.parse(w.muscle_group) : []
+});
+
 const Exercises = ({ onAdd, onRemove, initialCompleted = [] }: ExercisesProps) => {
     // availableExercises will be fetched from server; fallback to mock list if fetch fails
-    const [availableExercises, setAvailableExercises] = useState<Exercise[]>([]);
+    const [available, setAvailable] = useState<Exercise[]>([]);
+    const [completedRecords, setCompletedRecords] = useState<CompletedRecord[]>([]);
+    const [search, setSearch] = useState("");
 
-    const fallbackMock: Exercise[] = [
-        { id: 1, name: 'Leg Press', sets: 3, reps: 15, muscleGroups: ['Glutes', 'Hamstrings', 'Quadriceps'] },
-        { id: 2, name: 'Bench Press', sets: 4, reps: 10, muscleGroups: ['Chest', 'Triceps', 'Shoulders'] },
-        { id: 3, name: 'Deadlift', sets: 3, reps: 8, muscleGroups: ['Back', 'Hamstrings', 'Glutes'] },
-        { id: 4, name: 'Squats', sets: 4, reps: 12, muscleGroups: ['Quadriceps', 'Glutes', 'Hamstrings'] },
-        { id: 5, name: 'Pull-ups', sets: 3, reps: 10, muscleGroups: ['Back', 'Biceps', 'Shoulders'] },
-        { id: 6, name: 'Shoulder Press', sets: 3, reps: 12, muscleGroups: ['Shoulders', 'Triceps'] },
-        { id: 7, name: 'Bicep Curls', sets: 3, reps: 15, muscleGroups: ['Biceps'] },
-        { id: 8, name: 'Tricep Dips', sets: 3, reps: 12, muscleGroups: ['Triceps', 'Chest'] },
-    ];
-
-    // Fetch canonical exercises from backend
     useEffect(() => {
-        let mounted = true;
-        const fetchExercises = async () => {
-            try {
-                const list = await apiFetch('/api/exercises');
-                if (!mounted) return;
-                if (Array.isArray(list) && list.length > 0) {
-                    const mapped = list.map((w: any) => ({
-                        id: w.id,
-                        name: w.name || 'Unknown',
-                        sets: typeof w.sets === 'number' ? w.sets : 0,
-                        reps: typeof w.reps === 'number' ? w.reps : 0,
-                        muscleGroups: Array.isArray(w.muscle_group) ? w.muscle_group : (w.muscle_group ? JSON.parse(w.muscle_group) : [])
-                    } as Exercise));
-                    setAvailableExercises(mapped);
-                    return;
-                }
-            } catch (err) {
-                console.warn('Could not fetch exercises from API, using fallback list', err);
-            }
+        const clean = (initialCompleted ?? []).filter(
+            r => r && typeof r.record_id === "number" && typeof r.workout_id === "number"
+        );
 
-            // fallback
-            if (mounted) setAvailableExercises(fallbackMock);
+        setCompletedRecords(clean);
+    }, [initialCompleted]);
+
+    useEffect(() => {
+        let active = true;
+
+        const load = async () => {
+            try {
+                const list = await apiFetch("/api/workouts/all");
+
+                if (!active) return;
+
+                if (Array.isArray(list) && list.length) {
+                    setAvailable(list.map(normalizeWorkout));
+                } else {
+                    setAvailable(FALLBACK_EXERCISES);
+                }
+            } catch {
+                if (active) setAvailable(FALLBACK_EXERCISES);
+            }
         };
-        fetchExercises();
-        return () => { mounted = false; };
+
+        load();
+        return () => { active = false; };
     }, []);
 
-    const [completedExercises, setCompletedExercises] = useState<Exercise[]>([]);
-    // if backend provided initial completed records, map them to Exercise-like shape when mounting
-    const [completedRecords, setCompletedRecords] = useState<CompletedRecord[]>(initialCompleted);
-    // keep completedRecords in sync when parent passes new data
-    useEffect(() => {
-        // Only accept well-formed completed records (avoid undefined/empty entries)
-        const sane = Array.isArray(initialCompleted)
-            ? initialCompleted.filter(r => r && (r.record_id || r.record_id === 0) && (r.workout_id || r.workout_id === 0))
-            : [];
-        setCompletedRecords(sane);
-    }, [initialCompleted]);
-    const [searchTerm, setSearchTerm] = useState<string>('');
+    // Filtered list derived from search
+    const filtered = useMemo(() => {
+        const q = search.trim().toLowerCase();
+        return q
+            ? available.filter(ex => ex.name.toLowerCase().includes(q))
+            : available;
+    }, [available, search]);
 
-    // Filtered list derived from available exercises and the search term
-    const filteredAvailable = useMemo(() => {
-        const q = searchTerm.trim().toLowerCase();
-        if (!q) return availableExercises;
-        return availableExercises.filter((ex) => ex.name.toLowerCase().includes(q));
-    }, [availableExercises, searchTerm]);
+    const handleAdd = async (ex: Exercise) => {
+        if (!ex?.id) return;
 
-    const addToCompleted = async (exercise: Exercise) => {
-        if (!exercise || typeof exercise.id !== 'number') {
-            console.warn('Attempted to add invalid exercise:', exercise);
-            return;
-        }
-        // If parent provided an onAdd handler, call it and let parent update the UI from server response.
         if (onAdd) {
-            try {
-                await onAdd(exercise.id);
-            } catch (err) {
-                console.error('Failed to add via API', err);
+            try { await onAdd(ex.id); }
+            catch (err) { console.error("Add failed:", err); }
+            return; // parent handles re-fetching
+        }
+
+    };
+
+    const handleRemove = async (record: CompletedRecord) => {
+        if (!record?.record_id) return;
+        if (onRemove) {
+            try { 
+                await onRemove(record.record_id); 
+            } catch (err) { 
+                console.error("Remove failed:", err); 
             }
-            return;
         }
-
-        // No onAdd handler -> do local optimistic add
-        setCompletedExercises(prev => {
-            if (prev.some(e => e.id === exercise.id)) return prev;
-            return [...prev, exercise];
-        });
-
-        setAvailableExercises(prev => prev.filter(ex => ex.id !== exercise.id));
+        setCompletedRecords(prev => prev.filter(r => r.record_id !== record.record_id));
     };
 
-    const removeFromCompleted = (exercise: Exercise) => {
-        if (!exercise || typeof exercise.id !== 'number') {
-            console.warn('Attempted to remove invalid exercise:', exercise);
-            return;
-        }
-
-        setAvailableExercises(prev => {
-            // avoid duplicating available exercises
-            if (prev.some(ex => ex.id === exercise.id)) return prev;
-            return [...prev, exercise];
-        });
-
-        setCompletedExercises(prev => prev.filter(ex => ex.id !== exercise.id));
-
-        // If backend provided remove handler, try to locate corresponding record_id to remove
-        if (onRemove && completedRecords.length > 0) {
-            const rec = completedRecords.find(r => r.workout_id === exercise.id);
-            if (rec) onRemove(rec.record_id).catch((e) => console.error('Failed to remove via API', e));
-        }
-    };
 
     return (
         <div className={style.exercisesContainer}>
@@ -145,16 +127,16 @@ const Exercises = ({ onAdd, onRemove, initialCompleted = [] }: ExercisesProps) =
                         <input
                             className={style.searchInput}
                             placeholder="Search exercises..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
                             aria-label="Search exercises by name"
                         />
                     </div>
 
-                    {filteredAvailable.length === 0 ? (
-                        <p className={style.noResults}>No exercises match "{searchTerm}"</p>
+                    {filtered.length === 0 ? (
+                        <p className={style.noResults}>No exercises match "{search}"</p>
                     ) : (
-                        filteredAvailable.map((exercise) => (
+                        filtered.map((exercise) => (
                             <div key={exercise.id} className={style.exerciseCard}>
                                 <div className={style.exerciseContent}>
                                     <div className={style.exerciseInfo}>
@@ -175,7 +157,7 @@ const Exercises = ({ onAdd, onRemove, initialCompleted = [] }: ExercisesProps) =
                                 </div>
                                 <button
                                     className={style.addButton}
-                                    onClick={() => addToCompleted(exercise)}
+                                    onClick={() => handleAdd(exercise)}
                                     title="Add to completed"
                                 >
                                     +
@@ -189,46 +171,24 @@ const Exercises = ({ onAdd, onRemove, initialCompleted = [] }: ExercisesProps) =
             <div className={style.completedSection}>
                 <h2 className={style.sectionTitle}>Exercises Done</h2>
                 <div className={style.exerciseList}>
-                    {/* Render backend-provided completed records first (if any) */}
-                    {completedRecords.map((rec) => (
-                        <div key={`${rec.record_id}-${rec.timestamp || ''}`} className={style.exerciseCard}>
-                            <div className={style.exerciseContent}>
-                                <div className={style.exerciseInfo}>
-                                    <h3 className={style.exerciseName}>{rec.name}</h3>
-                                    <p className={style.exerciseDetails}>
-                                        {rec.sets} sets x {rec.reps} reps
-                                    </p>
-                                </div>
-                            </div>
-                            <button
-                                className={style.removeButton}
-                                onClick={() => onRemove ? onRemove(rec.record_id) : undefined}
-                                title="Remove from completed"
-                            >
-                                −
-                            </button>
+                    {completedRecords.map((exercise) => (
+                    <div key={exercise.record_id} className={style.exerciseCard}>
+                        <div className={style.exerciseContent}>
+                        <div className={style.exerciseInfo}>
+                            <h3 className={style.exerciseName}>{exercise.name}</h3>
+                            <p className={style.exerciseDetails}>
+                            {exercise.sets} sets x {exercise.reps} reps
+                            </p>
                         </div>
-                    ))}
-
-                    {/* Local completed items added during this session */}
-                    {completedExercises.map((exercise) => (
-                        <div key={`local-${exercise.id}`} className={style.exerciseCard}>
-                            <div className={style.exerciseContent}>
-                                <div className={style.exerciseInfo}>
-                                    <h3 className={style.exerciseName}>{exercise.name}</h3>
-                                    <p className={style.exerciseDetails}>
-                                        {exercise.sets} sets x {exercise.reps} reps
-                                    </p>
-                                </div>
-                            </div>
-                            <button
-                                className={style.removeButton}
-                                onClick={() => removeFromCompleted(exercise)}
-                                title="Remove from completed"
-                            >
-                                −
-                            </button>
                         </div>
+                        <button
+                        className={style.removeButton}
+                        onClick={() => handleRemove(exercise)}
+                        title="Remove from completed"
+                        >
+                        −
+                        </button>
+                    </div>
                     ))}
                 </div>
             </div>
