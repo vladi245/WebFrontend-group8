@@ -68,7 +68,10 @@ const Exercises = ({ onAdd, onRemove, initialCompleted = [] }: ExercisesProps) =
 
         const load = async () => {
             try {
-                const list = await apiFetch("/api/workouts/all");
+                const res = await apiFetch("/api/workouts/all");
+                const list = await res.json();
+
+                console.log("Fetched exercises list:", list);
 
                 if (!active) return;
 
