@@ -39,6 +39,10 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
                 // Initialize both heights with the current height from backend
                 setSittingHeight(data.height);
                 setStandingHeight(data.height);
+                // Also notify parent to initialize the slider with the DB height
+                if (onHeightChange) {
+                    onHeightChange(data.height);
+                }
             } catch (err: any) {
                 setError(err.message || 'Failed to load desk height');
             } finally {
