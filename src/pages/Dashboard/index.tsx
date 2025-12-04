@@ -8,7 +8,6 @@ import WorkoutCard from '../../components/WorkoutCard/WorkoutCard';
 import ConnectionStatus from "../../components/ConnectionStatus/ConnectionStatus";
 
 import StandingStats from '../../components/StandingStatsCard/StandingStatsCard';
-import FriendsActivity from '../../components/FriendsActivity/FriendsActivity';
 import WorkoutStatsCard from '../../components/WorkoutStatsCard/WorkoutStatsCard';
 import { useEffect, useState } from 'react';
 import { apiFetch } from '../../services/api';
