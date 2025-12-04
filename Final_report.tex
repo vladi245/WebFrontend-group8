@@ -136,22 +136,34 @@ decreased productivity. Also beck pain, shoulder stiffness, lower back pain, and
 \newpage
 
 \section{Requirements}
-[Functional and non-functional requirements.]
+This section represents the functional and non-functional requirements of the GetStanding application. Functional requirements describe the core requirements that the application must respect, while non-functional requirements focus on the performance, security and usability of the application, rather than what it is supposed to do.
+\subsection*{Functional Requirements}
+\begin{itemize}
+    \item The system shall be able to control the desk’s height via the WIFI2BLE Box Web API.
+    \item The system shall retrieve and display the current desk height and position.
+    \item The system shall fetch and process user data from the GetStanding Database.
+    \item The UI shall allow input of user data.
+    \item The system shall provide reminders to switch posture based on tracking position and time spent in that position.
+    \item The system shall generate health recommendations based on the tracked data.
+    \item The system shall log desk usage data.
+    \item The system shall store and retrieve basic user information from a database.
+    \item Users shall be able to sign up and log in to the application using JWTs.
+    \item Users shall be able to customize their desk settings, such as preferred standing and sitting heights, and save them into the database.
+\item The application should provide the user with data regarding their sitting time using graphs.
+\item Users shall be able to change their username after creating an account.
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|}
-\hline
-X & X & X \\ \hline
-\end{tabular}
-\caption{An example table}
-\end{table}
+\end{itemize}
 
-\subsection{Sub-section}
-[Lorem ipsum]
+\subsection*{Non-Functional Requirements}
 
-\subsubsection{Sub-sub-section}
-[Lorem ipsum]
+\begin{itemize}
+    \item The system shall support multiple users.
+    \item The User Interface shall be intuitive and user-friendly.
+    \item Reminders shall be customizable and non-intrusive.
+    \item User data shall be protected with secure authentication.
+    \item The app shall be compatible with major modern browsers.
+    \item The system shall provide clear, user-friendly error messages (in plain English).
+\end{itemize}
 
 \newpage
 
