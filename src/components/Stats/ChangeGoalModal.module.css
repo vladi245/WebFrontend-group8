@@ -14,22 +14,25 @@
 }
 
 .modal {
-  background: #0D0D0D;
+  background: var(--card-background);
+  border: 1px solid var(--card-border-color);
   border-radius: 16px;
   padding: 24px 28px;
   width: 380px;
-  color: white;
+  color: var(--card-text-color);
   z-index: 2100;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 
 .selectedGoalSection {
-  background: #1A1A1A;
+  background: var(--input-background);
   border-radius: 12px;
   padding: 16px 20px;
   margin-bottom: 24px;
-  border: 1px solid #2a2a2a;
+  border: 1px solid var(--input-border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .selectedGoalHeader {
@@ -42,6 +45,8 @@
 .selectedGoalTitle {
   font-weight: 600;
   font-size: 1.1rem;
+  color: var(--card-text-color);
+  transition: color 0.3s ease;
 }
 
 .selectedGoalContent {
@@ -60,8 +65,9 @@
 }
 
 .glassInfo {
-  color: #999;
+  color: var(--card-text-tertiary);
   font-size: 1rem;
+  transition: color 0.3s ease;
 }
 
 
@@ -69,6 +75,8 @@
   font-weight: 700;
   font-size: 1.05rem;
   margin-bottom: 14px;
+  color: var(--card-text-color);
+  transition: color 0.3s ease;
 }
 
 
@@ -120,28 +128,29 @@
   flex: 1;
   padding: 14px 16px;
   border-radius: 28px;
-  background: #1A1A1A;
-  border: 1px solid #333;
-  color: white;
+  background: var(--input-background);
+  border: 1px solid var(--input-border-color);
+  color: var(--input-text-color);
   font-size: 1rem;
   outline: none;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
 .customInput:focus {
-  border-color: #0096FF;
+  border-color: var(--card-border-color);
 }
 
 .customInput::placeholder {
-  color: #666;
+  color: var(--input-placeholder-color);
 }
 
 .mlBadge {
-  background: #2a2a2a;
+  background: var(--input-background);
   padding: 14px 18px;
   border-radius: 12px;
-  color: #888;
+  color: var(--card-text-tertiary);
   font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 
@@ -163,17 +172,21 @@
 }
 
 .cancelButton {
-  background: #333;
-  color: white;
+  background: var(--button-background);
+  color: var(--card-text-color);
+  border: 1px solid var(--button-border-color);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 .cancelButton:hover {
-  background: #444;
+  background: var(--input-background);
+  border-color: var(--button-hover-border-color);
 }
 
 .saveButton {
-  background: #0096FF;
-  color: white;
+  background: var(--card-border-color);
+  color: #ffffff;
+  transition: background-color 0.3s ease, transform 0.1s ease;
 }
 
 .saveButton:hover {

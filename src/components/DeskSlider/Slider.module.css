@@ -45,6 +45,7 @@
     background-color: #FFFFFF;
     cursor: pointer;
     border-radius: 50%;
+    transition: background-color 0.3s ease;
 }
 
 .DeskSlider::-moz-range-thumb {
@@ -55,6 +56,16 @@
     background-color: #FFFFFF;
     cursor: pointer;
     border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+/* slider thumb black in light theme */
+:global(body.light) .DeskSlider::-webkit-slider-thumb {
+    background-color: #000000;
+}
+
+:global(body.light) .DeskSlider::-moz-range-thumb {
+    background-color: #000000;
 }
 
 .Label {

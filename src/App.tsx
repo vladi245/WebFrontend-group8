@@ -21,7 +21,7 @@ import MessagesPage from './pages/Admin/MessagesPage'
 import ProtectedRoute from './components/ProtectedRoute'
 
 //  routes that should have theme applied
-const protectedRoutes = ['/dashboard', '/workout', '/meals', '/desk', '/settings', '/admin'];
+const protectedRoutes = ['/dashboard', '/workout', '/meals', '/desk', '/settings', '/admin', '/hydration'];
 
 function ThemeHandler() {
   const location = useLocation();
