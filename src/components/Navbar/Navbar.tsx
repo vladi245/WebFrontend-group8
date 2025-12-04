@@ -1,7 +1,9 @@
 import style from './Navbar.module.css';
 import GetStandingLogo from '../../assets/GetStanding.png';
 import LanguageChange from '../LanguageChange/LanguageChange';
+import { useTranslation } from 'react-i18next';
 const Navbar = () => {
+    const { t } = useTranslation();
     return (
         <nav className={style.navbar}>
             <div className={style['navbar-left']}>
@@ -11,17 +13,17 @@ const Navbar = () => {
             </div>
             <div className={style['navbar-center']}>
                 <ul className={style['nav-links']}>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/">{t('home')}</a></li>
+                    <li><a href="/about">{t('aboutUs')}</a></li>
 
                 </ul>
             </div>
             <div className={style['navbar-right']}>
                 <a href="/login" className={style['login-button']}>
-                    Login
+                    {t('login')}
                 </a>
                 <a href="/sign-up" className={style['signup-button']}>
-                    Sign Up
+                    {t('signUp')}
                 </a>
                 <LanguageChange />
             </div>

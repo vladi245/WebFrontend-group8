@@ -17,7 +17,8 @@ export default function FoodsAdminPage() {
 
   useEffect(() => {
     async function fetchFoods() {
-      const data = await apiFetch('/admin/foods');
+      const res = await apiFetch('/admin/foods');
+      const data = await res.json();
       setFoods(data);
     }
     fetchFoods();
@@ -38,10 +39,11 @@ export default function FoodsAdminPage() {
   const addFood = async () => {
     if (!newFood.name || !newFood.calories) return;
     const body = { name: newFood.name, calories_intake: Number(newFood.calories) };
-    const created = await apiFetch('/admin/foods', {
+    const res = await apiFetch('/admin/foods', {
       method: 'POST',
       body: JSON.stringify(body)
     });
+    const created = await res.json();
     setFoods(prev => [...prev, created]);
     setNewFood({ name: '', calories: '' });
   };

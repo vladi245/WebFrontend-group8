@@ -12,9 +12,10 @@
 .label {
     font-size: 16px;
     font-weight: 500;
-    color: #ffffff;
+    color: var(--card-text-color);
     user-select: none;
     white-space: nowrap;
+    transition: color 0.3s ease;
 }
 
 .switch {
