@@ -1,6 +1,6 @@
 import style from './Navbar.module.css';
 import GetStandingLogo from '../../assets/GetStanding.png';
-
+import LanguageChange from '../LanguageChange/LanguageChange';
 const Navbar = () => {
     return (
         <nav className={style.navbar}>
@@ -23,6 +23,7 @@ const Navbar = () => {
                 <a href="/sign-up" className={style['signup-button']}>
                     Sign Up
                 </a>
+                <LanguageChange />
             </div>
         </nav>
     );

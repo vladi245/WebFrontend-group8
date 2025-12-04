@@ -6,6 +6,7 @@ import LogoutButton from '../../components/LogoutButton/LogoutButton';
 import DeleteButton from '../../components/DeleteButton/DeleteButton';
 import ModeButton from '../../components/ModeButton/ModeButton';
 import { apiFetch } from '../../services/api';
+import LanguageChange from '../../components/LanguageChange/LanguageChange';
 
 interface UserData {
     name: string;
@@ -140,6 +141,7 @@ export default function Settings() {
                 <div className={style.card}>
                     <div className={style.actionsRow}>
                         <ModeButton />
+                        <LanguageChange />
                         <LogoutButton />
                         <DeleteButton />
                     </div>
