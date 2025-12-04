@@ -1,0 +1,83 @@
+\documentclass[twocolumn,11pt]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}  % UTF-8 encoding
+\usepackage{graphicx}        % For figures
+\usepackage{amsmath, amssymb}% For math symbols
+\usepackage{hyperref}        % Hyperlinks
+\usepackage{geometry}        % Page layout
+\usepackage{lipsum}          % Dummy text
+\usepackage{enumitem}        % Custom lists
+
+\geometry{margin=1in}
+
+% Title and Author
+\title{GetStanding: A Web Application for Healthier Desk Habits}
+\author{Group 8: \\ Piotr Szczesny –piszc24@student.sdu.dk \\ Vlad-Alexandru Ionita -vlion24@student.sdu.dk \\ Karolina Malik -kamal24@student.sdu.dk \\ Bartosz Bobkiewicz -babob24@student.sdu.dk \\ Viktor Barabás -vibar24@student.sdu.dk \\ Azra Talum -aztal24@student.sdu.dk}
+
+\date{\today}
+
+\begin{document}
+
+
+\maketitle
+
+
+{\bfseries Group Members and Contributions: \par}
+\vspace{0.5cm}
+\begin{tabular}{p{5cm} p{10cm}}
+Piotr Szczesny & UI Design (Home Page) \\
+Vlad-Alexandru Ionita & Frontend Development (Home Page) \\
+Karolina Malik & UI Design (Login and Signup Pages) \\
+Bartosz Bobkiewicz & Frontend Development (Login and Signup Pages) \\
+Viktor Barabás & UI Design (About Us Page) \\
+Azra Talum & Frontend Development (About Us Page)
+\end{tabular}
+
+
+\twocolumn
+
+\section{Introduction}
+\textbf{Motivation:} Prolonged sitting can harm both wellbeing and productivity, yet people often forget to stand, stretch, or take short breaks throughout the day. Additionally, the lack of integration between work routines and fitness apps makes it difficult to accurately track and assess physical activity, limiting the ability to maintain a healthy, active lifestyle.
+\\\\
+\textbf{Project:} GetStanding is a web application designed for office workers and students who spend most of their day sitting or generally leading an unhealthy lifestyle. The platform promotes a healthier lifestyle by connecting with a smart desk to monitor and encouraging physical activity. Core features include reminders to stand, stretch, or take short breaks, activity tracking, integration with fitness data inputed by the user and general fitness tools such as calorie and meal tracking. GetStanding helps users maintain better posture, stay active, and improve overall wellbeing throughout their day as well as their mood. 
+\\\\
+\textbf{Contributions:} Readers will learn how to create a simple React Vite + TypeScript web application. The project demonstrates a component-based structure and a functional navigation system using routing. Although this early-stage version relies primarily on basic \texttt{<h1>} and \texttt{<nav>} elements, it provides practical experience in developing a frontend app from initial design to a minimum viable stage. The project also emphasizes clarity and organization, such as separating styles into .module.css files for maintainable CSS management.
+
+\section{Frontend Design}
+\subsection{HTML Structure}
+\begin{itemize}[noitemsep]
+    \item React with TypeScript,  compiled to HTML5
+    \item Global layout: \texttt{<nav>} for logo/navigation, \texttt{<h1>} for headings nside components.
+    \item \texttt{Navbar} component with accessible links (Home, Dashboard, Community  ,Subscriptions, Login/Sign Up)
+    \item Home Page structured into logical containers using components for sections.
+    \item Login/Sign-up Page using appropriate input types.
+ \end{itemize}
+
+\subsection{CSS Styling}
+\begin{itemize}[noitemsep]
+    \item CSS Modules are used to scope styles and prevent naming collisions.
+    \item Elements such as the NavBar and Logo use absolute or fixed positioning at the top of the page.
+    \item A consistent color scheme establishes visual hierarchy.
+    \item Buttons and links include hover effects for interactivity.
+    \item Layout adapts responsively on smaller devices.
+\end{itemize}
+
+\subsection{JavaScript Interactivity}
+\begin{itemize}[noitemsep]
+    \item React Navigation is used to switch between the Sign-up and Login pages.
+    \item React Router manages page routing, helping users understand their current location within the app.
+    \item Error 404 page used to redirect lost users.
+\end{itemize}
+
+\section{User Experience Considerations}
+\begin{itemize}[noitemsep]
+    \item \textbf{Navigation and Usability:} Persistent navbar, clear headings, and a consistent layout for easy navigation.
+    \item \textbf{Responsiveness:} Layout adjusts to different device sizes.
+    \item \textbf{Accessibility:} High contrast between text and background for improved readability.
+    \item \textbf{Interactive Features:} Elements like cards or buttons highlight on hover.
+    \item \textbf{Error Handling:} Users navigating to a non-existent path are redirected to a dedicated error page.
+    \item \textbf{Back To Homepage:} Clicking on a GetStanding Logo redirects users to the homepage.
+\end{itemize}
+
+\end{document}
