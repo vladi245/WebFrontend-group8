@@ -97,8 +97,8 @@ export default function SignUp() {
             <div className="right-column">
                 <div className="login-content">
                     <h1 className="login-heading">
-                        <span className="login-title">{t('signupPage.title')}</span>
-                        <span className="to-account">{t('signupPage.toAccount')}</span>
+                        <span className="login-title">Create</span>
+                        <span className="to-account">Your Account.</span>
                     </h1>
                     <form className="login-form" onSubmit={handleSubmit}>
                         <div className="input-group">

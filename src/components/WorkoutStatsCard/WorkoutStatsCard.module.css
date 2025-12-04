@@ -1,13 +1,15 @@
 .card {
-  border: 1px solid #0096FF;
+  border: 1px solid var(--card-border-color);
   border-radius: 12px;
   padding: 1.5rem;
   width: 150px;
-  color: white;
+  color: var(--card-text-color);
   font-family: system-ui, sans-serif;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  background-color: var(--card-background);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .header {
@@ -17,8 +19,9 @@
 }
 
 .icon {
-  color: #ffffff;
+  color: var(--card-text-color);
   font-size: 1.2rem;
+  transition: color 0.3s ease;
 }
 
 .title {
@@ -29,17 +32,19 @@
 .amount {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--card-text-color);
   line-height: 1;
   text-align: left;
   margin: 0.5rem 0;
+  transition: color 0.3s ease;
 }
 
 .unit {
   font-size: 1.2rem;
   font-weight: 400;
   margin-left: 0.5rem;
-  color: #ffffff;
+  color: var(--card-text-color);
+  transition: color 0.3s ease;
 }
 
 .status {

@@ -33,7 +33,7 @@ const HydrationQuickAdd = ({
       </div>
 
       <div className={styles.grid}>
-        {/* Top row: 4 equal buttons */}
+        
         {amounts.map((amount) => (
           <button
             key={amount}
@@ -46,7 +46,7 @@ const HydrationQuickAdd = ({
           </button>
         ))}
 
-        {/* Bottom row: long remove button (3 cols) */}
+        
         <button
           type="button"
           className={`${styles.actionButton} ${styles.removeButton}`}
@@ -56,7 +56,7 @@ const HydrationQuickAdd = ({
           <span>Remove 250 ml</span>
         </button>
 
-        {/* Bottom row: small reset button (1 col) */}
+       
         <button
           type="button"
           className={`${styles.actionButton} ${styles.resetButton}`}

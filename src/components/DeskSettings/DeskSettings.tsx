@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import style from './DeskSettings.module.css';
 import { useTranslation } from 'react-i18next';
 
@@ -7,6 +7,9 @@ interface DeskSettingsProps {
     onModeChange?: (isStanding: boolean) => void;
     userHeight?: number;
 }
+
+const DESK_ID = 'cd:fb:1a:53:fb:e6';
+const API_BASE_URL = 'http://localhost:5000/api/desks';
 
 const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChange, userHeight }) => {
     const { t } = useTranslation();
@@ -18,6 +21,44 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
     const recommendedSittingHeight = userHeight ? Math.round(((0.4739 * userHeight) - 17 + (0.5538 * userHeight - 24)) / 2) : null;
     const recommendedStandingHeight = userHeight ? Math.round(((0.6 * userHeight) + (0.64 * userHeight) + 6) / 2) : null;
 
+    const [currentHeight, setCurrentHeight] = useState<number | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string | null>(null);
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
+
+    // Fetch current desk height on mount
+    useEffect(() => {
+        const fetchDeskHeight = async () => {
+            try {
+                setIsLoading(true);
+                setError(null);
+
+                const response = await fetch(`${API_BASE_URL}/${DESK_ID}`);
+                if (!response.ok) {
+                    throw new Error(`Failed to load desk: ${response.statusText}`);
+                }
+
+                const data: { id: string; height: number } = await response.json();
+
+                setCurrentHeight(data.height);
+                // Initialize both heights with the current height from backend
+                setSittingHeight(data.height);
+                setStandingHeight(data.height);
+                // Also notify parent to initialize the slider with the DB height
+                if (onHeightChange) {
+                    onHeightChange(data.height);
+                }
+            } catch (err: any) {
+                setError(err.message || 'Failed to load desk height');
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchDeskHeight();
+    }, []);
+
     const handleToggleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const standing = e.target.checked;
         setIsStanding(standing);
@@ -26,10 +67,34 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
         }
     };
 
+    const handleConfirm = async () => {
+        const selectedHeight = isStanding ? standingHeight : sittingHeight;
+        try {
+            setIsLoading(true);
+            setError(null);
+            setSuccessMessage(null);
 
-    const handleConfirm = () => {
-        if (onHeightChange) {
-            onHeightChange(isStanding ? standingHeight : sittingHeight);
+            const response = await fetch(`${API_BASE_URL}/${DESK_ID}/height`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ height: selectedHeight }),
+            });
+
+            if (!response.ok) {
+                throw new Error(`Failed to update height: ${response.statusText}`);
+            }
+
+            setCurrentHeight(selectedHeight);
+            setSuccessMessage(`Height updated to ${selectedHeight} cm`);
+            if (onHeightChange) {
+                onHeightChange(selectedHeight);
+            }
+        } catch (err: any) {
+            setError(err.message || 'Failed to update desk height');
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -65,25 +130,55 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
                     <label htmlFor="switch1">{position}</label>
                 </div>
             </div>
-            <p className={style.SettingsText}> {t('deskSettings.saveHeightLabel')} </p>
-            <button className={style.SaveButton} onClick={handleConfirm}>{t('deskSettings.confirmButton')}</button>
-            <p className={style.SettingsText}> {t('deskSettings.prefSittingHeight')}</p>
+
+            {/* Status area */}
+            {isLoading && <p className={style.SettingsText}>Loading...</p>}
+            {currentHeight !== null && !isLoading && (
+                <p className={style.SettingsText}>Current desk height: {currentHeight} cm</p>
+            )}
+            {error && <p className={style.SettingsText} style={{ color: 'red' }}>{error}</p>}
+            {successMessage && (
+                <p className={style.SettingsText} style={{ color: 'green' }}>
+                    {successMessage}
+                </p>
+            )}
+
+            <p className={style.SettingsText}>Save Current Height As Preferred</p>
+            <button
+                className={style.SaveButton}
+                onClick={handleConfirm}
+                disabled={isLoading}
+            >
+                {isLoading ? 'Saving...' : 'confirm'}
+            </button>
+
+            <p className={style.SettingsText}>Preferred Sitting Height (cm) - Manual</p>
             <div className={style.valueAndChangeButtonsGrid}>
-                <label className={style.ValueLabel}> {sittingHeight} </label>
-                <button className={style.PlusButton} onClick={addOneSitting}>+</button>
-                <button className={style.MinusButton} onClick={subtractOneSitting}>-</button>
-                <label className={style.SuggestionValue}>Reccomended: {recommendedSittingHeight} </label>
+                <label className={style.Label}>{sittingHeight}</label>
+                <button className={style.PlusButton} onClick={addOneSitting} disabled={isLoading}>
+                    +
+                </button>
+                <button className={style.MinusButton} onClick={subtractOneSitting} disabled={isLoading}>
+                    -
+                </button>
             </div>
-            <p className={style.SettingsText}> {t('deskSettings.prefStandingHeight')}</p>
+
+            <p className={style.SettingsText}>Preferred Standing Height (cm) - Manual</p>
             <div className={style.valueAndChangeButtonsGrid}>
+                <label className={style.Label}>{standingHeight}</label>
+                <button className={style.PlusButton} onClick={addOneStanding} disabled={isLoading}>
+                    +
+                </button>
+                <button className={style.MinusButton} onClick={subtractOneStanding} disabled={isLoading}>
+                    -
+                </button>
                 <label className={style.ValueLabel}> {standingHeight} </label>
                 <button className={style.PlusButton} onClick={addOneStanding}>+</button>
                 <button className={style.MinusButton} onClick={subtractOneStanding}>-</button>
                 <label className={style.SuggestionValue}>Reccomended: {recommendedStandingHeight} </label>
             </div>
-
-        </div >
+        </div>
     );
 };
-export default DeskSettings;
 
+export default DeskSettings;

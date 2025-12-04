@@ -19,12 +19,22 @@ interface StatsData {
     averageIntake: number;
 }
 
+interface HydrationData {
+    currentMl: number;
+    goalMl: number;
+}
+
 export default function Home() {
     const { t } = useTranslation();
     const [statsData, setStatsData] = useState<StatsData>({
         totalMeals: 0,
         caloriesEaten: 0,
         averageIntake: 0,
+    });
+
+    const [hydrationData, setHydrationData] = useState<HydrationData>({
+        currentMl: 0,
+        goalMl: 2000,
     });
 
     const [calorieCurrent, setCalorieCurrent] = useState<number>(1331);
@@ -45,14 +55,14 @@ export default function Home() {
             const userId = user?.id;
 
             //fetch todays totals
-            const response = await fetch(`http://localhost:5000/api/meals/stats?userId=${userId}`);
+            const response = await apiFetch(`/api/meals/stats?userId=${userId}`);
             if (!response.ok) {
                 throw new Error("Failed to fetch stats");
             }
             const data = await response.json();
 
             //fetch weekly stast and average
-            const weekRes = await fetch(`http://localhost:5000/api/meals/weekly?userId=${userId}`);
+            const weekRes = await apiFetch(`/api/meals/weekly?userId=${userId}`);
             if (!weekRes.ok) {
                 throw new Error("Failed to fetch weekly stats");
             }
@@ -87,6 +97,16 @@ export default function Home() {
         { day: 'Sun', minutes: 0 },
     ]);
 
+    const [standingStatsData, setStandingStatsData] = useState<{ day: string; minutes: number }[]>([
+        { day: 'Mon', minutes: 0 },
+        { day: 'Tue', minutes: 0 },
+        { day: 'Wed', minutes: 0 },
+        { day: 'Thu', minutes: 0 },
+        { day: 'Fri', minutes: 0 },
+        { day: 'Sat', minutes: 0 },
+        { day: 'Sun', minutes: 0 },
+    ]);
+
     useEffect(() => {
         let mounted = true;
         const fetchStats = async () => {
@@ -108,7 +128,8 @@ export default function Home() {
                 }
 
                 try {
-                    workoutStats = await apiFetch('/api/workouts/stats');
+                    const res = await apiFetch('/api/workouts/stats');
+                    workoutStats = await res.json();
                 } catch (err) {
                     workoutStats = null;
                     console.warn('Could not fetch workout stats (auth may be required)');
@@ -165,6 +186,39 @@ export default function Home() {
                         console.warn('Failed to map workout duration data', e);
                     }
                 }
+
+                //fetch hydration data
+                try {
+                    const userJson = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
+                    const user = userJson ? JSON.parse(userJson) : null;
+                    if (user && user.id) {
+                        const res = await apiFetch(`/api/hydration?userId=${user.id}`);
+                        const hydration = await res.json();
+                        if (hydration && mounted) {
+                            setHydrationData({
+                                currentMl: Number(hydration.current_ml || hydration.currentMl || 0),
+                                goalMl: Number(hydration.goal_ml || hydration.goalMl || 2000),
+                            });
+                        }
+                    }
+                } catch (e) {
+                    console.warn('Could not fetch hydration data', e);
+                }
+
+                // Fetch standing stats
+                try {
+                    const userJson = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
+                    const user = userJson ? JSON.parse(userJson) : null;
+                    if (user && user.id) {
+                        const standingStats = await apiFetch(`/api/desks/records/stats?userId=${user.id}`);
+                        console.debug('Dashboard: standingStats response:', standingStats);
+                        if (Array.isArray(standingStats) && standingStats.length > 0 && mounted) {
+                            setStandingStatsData(standingStats);
+                        }
+                    }
+                } catch (e) {
+                    console.warn('Could not fetch standing stats', e);
+                }
             } catch (err) {
                 console.warn('Failed to fetch dashboard stats', err);
             }
@@ -186,51 +240,23 @@ export default function Home() {
                 <div style={{ width: '50%' }}>
                     <Seperator variant="accent" />
                 </div>
-                <h2 style={{ color: 'white', marginTop: '20px' }}>{t('dashboardPage.todaysStats')}</h2>
-                <div style={{ marginBottom: '20px', width: '65%' }}>
+                <h2 style={{ marginTop: '20px' }}>Today's stats</h2>
+                <div style={{ display: 'flex', columnGap: '20px', marginBottom: '20px', width: '80%' }}>
                     <ConnectionStatus />
                 </div>
 
                 <div style={{ display: 'flex', columnGap: '20px', marginBottom: '20px', width: '80%' }}>
                     <CalorieIntake current={statsData.caloriesEaten} goal={calorieGoal} />
-                    <WaterCard current={1.5} goal={3} />
+                    <WaterCard current={hydrationData.currentMl / 1000} goal={hydrationData.goalMl / 1000} />
                     <WorkoutStatsCard calories={caloriesBurned} />
 
                 </div>
                 <div style={{ display: 'flex', columnGap: '20px', marginBottom: '20px', width: '80%' }}>
 
                     <WorkoutCard data={workoutDurationData} />
-                    {/*
-                    <FriendsActivity activities={[
-                        {
-                        id: 1,
-                        username: 'washington',
-                        action: 'added a new activity',
-                        timeAgo: '10m ago',
-                        },
-                        {
-                        id: 2,
-                        username: 'gmail',
-                        action: 'reached the goal',
-                        timeAgo: '17m ago',
-                        },
 
-                    ]}/>
-                    */}
-
-                    <StandingStats data={[
-                        { day: 'Mon', minutes: 0 },
-                        { day: 'Tue', minutes: 0 },
-                        { day: 'Wed', minutes: 0 },
-                        { day: 'Thu', minutes: 0 },
-                        { day: 'Fri', minutes: 0 },
-                        { day: 'Sat', minutes: 0 },
-                        { day: 'Sun', minutes: 0 },
-                    ]} />
+                    <StandingStats data={standingStatsData} />
                 </div>
-
-
-
             </div>
         </div>
     );

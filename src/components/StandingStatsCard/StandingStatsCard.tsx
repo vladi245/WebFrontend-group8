@@ -28,14 +28,15 @@ const StandingStats = ({ data }: StandingStatsProps) => {
         <div className={styles.chartContainer}>
           <ResponsiveContainer width="100%" height={400}>
             <BarChart data={data}>
-              <CartesianGrid stroke="#222" strokeDasharray="3 3" />
-              <XAxis dataKey="day" stroke="#888" />
-              <YAxis stroke="#888" />
+              <CartesianGrid stroke="var(--graph-grid-color)" strokeDasharray="3 3" />
+              <XAxis dataKey="day" stroke="var(--graph-axis-color)" />
+              <YAxis stroke="var(--graph-axis-color)" />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: '#111',
-                  border: '1px solid #0096FF',
-                  color: 'white',
+                  backgroundColor: 'var(--graph-tooltip-background)',
+                  border: '1px solid var(--graph-tooltip-border)',
+                  borderRadius: '8px',
+                  color: 'var(--graph-tooltip-text)',
                 }}
               />
               <Bar

@@ -1,43 +1,74 @@
-import React, { useEffect, useState } from "react";
-import DeleteButton from "../../components/DeleteButton/DeleteButton";
-import style from './Settings.module.css'
-import LogoutButton from "../../components/LogoutButton/LogoutButton";
+import { useState, useEffect } from 'react';
+import { UserCircle } from 'lucide-react';
+import style from './Settings.module.css';
 import Navbar from '../../components/NavbarVertical/Navbar';
-import LanguageChange from '../../components/LanguageChange/LanguageChange';
+import LogoutButton from '../../components/LogoutButton/LogoutButton';
+import DeleteButton from '../../components/DeleteButton/DeleteButton';
+import ModeButton from '../../components/ModeButton/ModeButton';
 import { apiFetch } from '../../services/api';
 
+interface UserData {
+    name: string;
+    email: string;
+    type: string;
+}
+
 export default function Settings() {
-    const [height, setHeight] = useState<number | ''>('');
-    const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState('');
+    const [userData, setUserData] = useState<UserData>({
+        name: '',
+        email: '',
+        type: 'standard'
+    });
+    const [isEditingName, setIsEditingName] = useState(false);
+    const [editedName, setEditedName] = useState('');
 
-    /*useEffect(() => {
-        const fetchUserHeight = async () => {
-            try {
-                const data = await apiFetch('api/user/userheight');
-
-            }
-            catch (err) {
-                console.error('Failed to fetch user height:', err);
-            }
-        };
-        fetchUserHeight();
-    }, []);
-    */
-
-    const handleSave = async () => {
-        setLoading(true);
-        setMessage('');
-        try {
-            const body = { height: height || 0 };
-            await apiFetch('/api/user/height', { method: 'PATCH', body: JSON.stringify(body) });
-            setMessage('Height saved');
-        } catch (err: any) {
-            console.error(err);
-            setMessage(err?.error || 'Failed to save height');
-        } finally {
-            setLoading(false);
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            const user = JSON.parse(storedUser);
+            setUserData({
+                name: user.name || '',
+                email: user.email || '',
+                type: user.type || 'standard'
+            });
+            setEditedName(user.name || '');
         }
+    }, []);
+
+    const handleEditName = () => {
+        setIsEditingName(true);
+    };
+
+    const handleSaveName = async () => {
+        if (!editedName.trim()) return;
+
+        try {
+            const storedUser = localStorage.getItem('user');
+            const user = storedUser ? JSON.parse(storedUser) : null;
+            const userId = user?.id;
+
+            if (userId) {
+                await apiFetch(`/api/users/${userId}/name`, {
+                    method: 'PUT',
+                    body: JSON.stringify({ name: editedName })
+                });
+
+                //update localstorage
+                const updatedUser = { ...user, name: editedName };
+                localStorage.setItem('user', JSON.stringify(updatedUser));
+
+                setUserData(prev => ({ ...prev, name: editedName }));
+            }
+        } catch (error) {
+            console.error('Failed to update name:', error);
+        }
+
+        setIsEditingName(false);
+    };
+
+    const handleCancelEdit = () => {
+        setEditedName(userData.name);
+        setIsEditingName(false);
     };
 
     return (
@@ -45,34 +76,75 @@ export default function Settings() {
             <Navbar />
 
             <div className={style.settingsContainer}>
-                <h1 className={style.settingsText}>
-                    Settings
-                </h1>
-                <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 12 }}>
-                    <label htmlFor="user-height">Your height (cm):</label>
-                    <input
-                        id="user-height"
-                        type="number"
-                        min={100}
-                        max={250}
-                        value={height}
-                        onChange={(e) => setHeight(e.target.value === '' ? '' : Number(e.target.value))}
-                    />
-                    <button onClick={handleSave} disabled={loading}>
-                        {loading ? 'Saving...' : 'Save'}
-                    </button>
+                <div className={style.card}>
+                    <h2 className={style.cardTitle}>Profile details</h2>
+
+                    <div className={style.profileContent}>
+                        <div className={style.userIcon}>
+                            <UserCircle size={100} strokeWidth={1.5} />
+                        </div>
+
+                        <div className={style.profileFields}>
+                            <div className={style.fieldRow}>
+                                {isEditingName ? (
+                                    <input
+                                        type="text"
+                                        className={style.input}
+                                        value={editedName}
+                                        onChange={(e) => setEditedName(e.target.value)}
+                                        placeholder="Name"
+                                        autoFocus
+                                    />
+                                ) : (
+                                    <input
+                                        type="text"
+                                        className={style.input}
+                                        value={userData.name}
+                                        placeholder="Name"
+                                        readOnly
+                                    />
+                                )}
+                                {isEditingName ? (
+                                    <div className={style.editActions}>
+                                        <button className={style.saveButton} onClick={handleSaveName}>
+                                            Save
+                                        </button>
+                                        <button className={style.cancelButton} onClick={handleCancelEdit}>
+                                            Cancel
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <button className={style.editButton} onClick={handleEditName}>
+                                        Edit name
+                                    </button>
+                                )}
+                            </div>
+
+                            <div className={style.fieldRow}>
+                                <input
+                                    type="text"
+                                    className={style.input}
+                                    value={userData.email}
+                                    placeholder="E-mail"
+                                    readOnly
+                                />
+                            </div>
+                        </div>
+
+                        <div className={style.accountType}>
+                            <span>Account type: {userData.type}</span>
+                        </div>
+                    </div>
                 </div>
 
-
-                {message && (
-                    <div style={{ marginBottom: 12 }}>{message}</div>
-                )}
-
-                <LanguageChange />
-                <LogoutButton />
-                <DeleteButton />
-
+                <div className={style.card}>
+                    <div className={style.actionsRow}>
+                        <ModeButton />
+                        <LogoutButton />
+                        <DeleteButton />
+                    </div>
+                </div>
             </div>
         </div>
     );
-};
+}

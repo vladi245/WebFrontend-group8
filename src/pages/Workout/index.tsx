@@ -30,8 +30,10 @@ export default function Workout() {
     useEffect(() => {
         const fetchWorkoutData = async () => {
             try {
-                const stats = await apiFetch('/api/workouts/stats');
-                const records = await apiFetch('/api/workouts');
+                const res = await apiFetch('/api/workouts/stats');
+                const stats = await res.json();
+                const res2 = await apiFetch('/api/workouts');
+                const records = await res2.json();
                 // Map stats to StatsData
                 const daysActiveCount = (stats.daily || []).filter((d: any) => Number(d.calories ?? d.calories_burned ?? 0) > 0).length;
                 const statsDataMapped: StatsData = {
@@ -79,8 +81,10 @@ export default function Workout() {
             // fetch fresh data (stats + today's records)
             (async () => {
                 try {
-                    const stats = await apiFetch('/api/workouts/stats');
-                    const records = await apiFetch('/api/workouts');
+                    const res = await apiFetch('/api/workouts/stats');
+                    const stats = await res.json();
+                    const res2 = await apiFetch('/api/workouts');
+                    const records = await res2.json();
                     const daysActiveCount = (stats.daily || []).filter((d: any) => Number(d.calories ?? d.calories_burned ?? 0) > 0).length;
                     setStatsData({
                         totalWorkouts: stats.total_workouts,
@@ -115,10 +119,12 @@ export default function Workout() {
 
     const handleAddCompleted = async (workout_id: number) => {
         try {
-            const res = await apiFetch('/api/workouts', {
+            const data = await apiFetch('/api/workouts', {
                 method: 'POST',
                 body: JSON.stringify({ workout_id })
             });
+
+            const res = await data.json();
             // res contains { record, stats }
             // POST response stats
             setCompletedRecords(prev => [res.record, ...prev]);
@@ -145,7 +151,10 @@ export default function Workout() {
 
     const handleRemoveCompleted = async (record_id: number) => {
         try {
-            const res = await apiFetch(`/api/workouts/${record_id}`, { method: 'DELETE' });
+            const data = await apiFetch(`/api/workouts/${record_id}`, { method: 'DELETE' });
+            const res = await data.json();
+
+
             // update local lists
             setCompletedRecords(prev => prev.filter(r => r.record_id !== record_id));
 
@@ -178,7 +187,7 @@ export default function Workout() {
                 {!loading && <Stats data={statsData} />}
                 {!loading && <Performance data={performanceData} />}
                 <Exercises onAdd={handleAddCompleted} onRemove={handleRemoveCompleted} initialCompleted={completedRecords} />
-                <MuscleGroup />
+                <MuscleGroup completedExercises={completedRecords} />
             </div>
         </div>
     );

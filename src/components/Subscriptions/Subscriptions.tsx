@@ -1,21 +1,21 @@
 import React from 'react';
 import style from './Subscriptions.module.css';
-import { useTranslation } from 'react-i18next';
-
+import { useNavigate } from 'react-router-dom';
 
 const Subscriptions = () => {
     const [hoveredPlan, setHoveredPlan] = React.useState<number | null>(null);
-    const { t } = useTranslation();
+    const navigate = useNavigate();
+
     const plans = [
         {
             id: 0,
             name: t('subscriptions.plans.0.name'),
             price: 0,
             features: [
-                t('subscriptions.plans.0.features.0'),
-                t('subscriptions.plans.0.features.1'),
-                t('subscriptions.plans.0.features.2'),
-                t('subscriptions.plans.0.features.3')
+                'Daily workout tracking',
+                'Weekly workout performance insights',
+                'Muscle group analysis',
+                'Manual desk adjustment',
             ]
         },
         {
@@ -23,10 +23,10 @@ const Subscriptions = () => {
             name: t('subscriptions.plans.1.name'),
             price: 1000,
             features: [
-                t('subscriptions.plans.1.features.0'),
-                t('subscriptions.plans.1.features.1'),
-                t('subscriptions.plans.1.features.2'),
-                t('subscriptions.plans.1.features.3')
+                'Daily calorie tracking',
+                'Weekly calorie consumption insights',
+                'Daily hydration tracking',
+                'Enjoy all Beginner features with additional analytics'
             ]
         }
     ];
@@ -69,8 +69,11 @@ const Subscriptions = () => {
                             ))}
                         </ul>
 
-                        <button className={style.choosePlanButton}>
-                            {t('subscriptions.choosePlan')}
+                        <button
+                            className={style.choosePlanButton}
+                            onClick={() => navigate('/login')}
+                        >
+                            Choose Plan
                         </button>
                     </div>
                 ))}

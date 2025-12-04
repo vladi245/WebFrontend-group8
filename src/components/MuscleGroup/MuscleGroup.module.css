@@ -3,25 +3,263 @@
     max-width: 1400px;
     padding: 32px;
     margin-top: 40px;
-    background-color: #0D0D0D;
-    border: 2px solid #0096FF;
+    background-color: var(--card-background);
+    border: 2px solid var(--card-border-color);
     border-radius: 12px;
     border-width: thin;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .header {
     margin-bottom: 24px;
+    text-align: center;
 }
 
 .title {
     font-size: 28px;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--card-text-color);
     margin: 0 0 8px 0;
+    transition: color 0.3s ease;
 }
 
 .subtitle {
     font-size: 16px;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--card-text-tertiary);
     margin: 0;
+    transition: color 0.3s ease;
+}
+
+.diagramWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 60px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.viewContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.viewTitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--card-text-secondary);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.bodyDiagram {
+    width: 280px;
+    height: auto;
+    filter: drop-shadow(0 0 10px rgba(0, 150, 255, 0.1));
+}
+
+.musclePath {
+    stroke: rgba(255, 255, 255, 0.4);
+    stroke-width: 1;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.musclePath:hover {
+    filter: brightness(1.2);
+    stroke: rgba(255, 255, 255, 0.6);
+    stroke-width: 1;
+}
+
+.legend {
+    margin-top: 32px;
+    padding: 20px;
+    background-color: var(--input-background);
+    border-radius: 8px;
+    border: 1px solid var(--input-border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.legendTitle {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--card-text-secondary);
+    margin: 0 0 16px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+.legendItems {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.legendItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legendColor {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.legendColorBordered {
+    border: 1px solid var(--input-border-color);
+    transition: border-color 0.3s ease;
+}
+
+.legendLabel {
+    font-size: 13px;
+    color: var(--card-text-tertiary);
+    white-space: nowrap;
+    transition: color 0.3s ease;
+}
+
+.summary {
+    margin-top: 24px;
+    padding: 20px;
+    background-color: rgba(0, 150, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 150, 255, 0.2);
+}
+
+.summaryTitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--card-text-color);
+    margin: 0 0 16px 0;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+.muscleChips {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.muscleChip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.muscleChip:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.muscleName {
+    font-size: 13px;
+}
+
+.muscleCount {
+    font-size: 12px;
+    font-weight: 700;
+    opacity: 0.9;
+}
+
+.emptyState {
+    margin-top: 24px;
+    padding: 32px;
+    text-align: center;
+    background-color: var(--input-background);
+    border-radius: 8px;
+    border: 1px dashed var(--input-border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.emptyState p {
+    margin: 0;
+    font-size: 15px;
+    color: var(--card-text-tertiary);
+    transition: color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .muscleGroupContainer {
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 22px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .diagramWrapper {
+        gap: 30px;
+        padding: 10px;
+    }
+
+    .bodyDiagram {
+        width: 220px;
+    }
+
+    .viewTitle {
+        font-size: 14px;
+    }
+
+    .legendItems {
+        gap: 10px;
+    }
+
+    .legendLabel {
+        font-size: 11px;
+    }
+
+    .legendColor {
+        width: 16px;
+        height: 16px;
+    }
+
+    .muscleChip {
+        padding: 6px 10px;
+    }
+
+    .muscleName {
+        font-size: 12px;
+    }
+
+    .muscleCount {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .diagramWrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .bodyDiagram {
+        width: 180px;
+    }
+
+    .legendItems {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
 }

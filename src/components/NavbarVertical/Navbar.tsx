@@ -1,8 +1,7 @@
 import style from './Navbar.module.css';
 import GetStandingLogo from '../../assets/GetStanding.png';
 import Seperator from '../ui/Seperator/Seperator';
-import { LayoutDashboard, Dumbbell, LampDesk, Users, Settings, Utensils, GlassWater } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import { LayoutDashboard, Dumbbell, LampDesk, Settings, Utensils, GlassWater } from 'lucide-react';
 const Navbar = () => {
    const { t } = useTranslation();
    const userJson = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
@@ -14,6 +13,7 @@ const Navbar = () => {
    }
 
    const showMeals = user && user.type === 'premium';
+   const showHydration = user && user.type === 'premium';
 
    return (
       <nav className={style.navbar}>
@@ -45,10 +45,12 @@ const Navbar = () => {
          }
 
          {
-            /*<a href="/hydration" className={style.navlink}>
-               <GlassWater className={style.icon} />
-               <span>Hydration</span>
-            </a>*/
+            showHydration && (
+               <a href="/hydration" className={style.navlink}>
+                  <GlassWater className={style.icon} />
+                  <span>Hydration</span>
+               </a>
+            )
          }
 
          <a href="/desk" className={style.navlink}>

@@ -23,7 +23,7 @@ export default function Login() {
         setError('');
 
         try {
-            const API = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            const API = import.meta.env.VITE_API_URL || 'http://localhost:5002';
             const res = await fetch(`${API}/api/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -120,7 +120,7 @@ export default function Login() {
                             </div>
                             <input
                                 type="text"
-                                placeholder={t('loginPage.placeholders.username')}
+                                placeholder="Enter your email"
                                 className="form-input"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}

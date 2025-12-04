@@ -1,10 +1,43 @@
+import { useState } from "react";
 import Navbar from '../../components/Navbar/Navbar'
 import styles from './AboutUs.module.css'
 import aboutImage from '../../assets/about-team.jpg'
-import { useTranslation } from 'react-i18next'
+import { apiFetch } from '../../services/api';
 
 export default function AboutUs() {
-    const { t } = useTranslation();
+
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        message: ""
+    });
+
+    const [status, setStatus] = useState("");
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setStatus("Sending...");
+
+        try {
+            const res = await apiFetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+
+            if (!res.ok) throw new Error("Failed to send");
+
+            setStatus("Message sent successfully!");
+            setFormData({ name: "", email: "", message: "" });
+        } catch (err) {
+            setStatus("Error sending message. Try again later.");
+        }
+    };
+
     return (
         <div className={styles['about-us-container']}>
             <Navbar />
@@ -31,25 +64,41 @@ export default function AboutUs() {
                 <p className={styles['contact-description']}>
                     {t('contact.description')}
                 </p>
-                <div className={styles['contact-info']}>
-                    <div className={styles['contact-item']}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className={styles['contact-icon']}>
-                            <path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 4l-8 5l-8-5V6l8 5l8-5z" />
-                        </svg>
-                        <a href={`mailto:${t('contact.email')}`} className={styles['contact-link']}>
-                            {t('contact.email')}
-                        </a>
-                    </div>
-                    <div className={styles['contact-item']}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className={styles['contact-icon']}>
-                            <path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7m0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5" />
-                        </svg>
-                        <span className={styles['contact-text']}>
-                            {t('contact.location')}
-                        </span>
-                    </div>
-                </div>
+
+
+                <form className={styles['contact-form']} onSubmit={handleSubmit}>
+                    <input
+                        name="name"
+                        placeholder="Your Name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                    />
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Your Email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                    />
+                    <textarea
+                        name="message"
+                        placeholder="Your Message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        rows={5}
+                        required
+                    ></textarea>
+
+                    <button type="submit" className={styles['submit-btn']}>
+                        Send Message
+                    </button>
+
+                    {status && <p className={styles['status-message']}>{status}</p>}
+                </form>
             </div>
         </div>
+
     );
 }

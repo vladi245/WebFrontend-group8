@@ -23,22 +23,22 @@ const Performance = ({ data }: PerformanceProps) => {
             <div className={style.graph}>
                 <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 20 }}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.1)" />
+                        <CartesianGrid strokeDasharray="3 3" stroke="var(--graph-grid-color)" />
                         <XAxis
                             dataKey="day"
-                            stroke="rgba(255, 255, 255, 0.6)"
+                            stroke="var(--graph-axis-color)"
                             style={{ fontSize: '14px' }}
                         />
                         <YAxis
-                            stroke="rgba(255, 255, 255, 0.6)"
+                            stroke="var(--graph-axis-color)"
                             style={{ fontSize: '14px' }}
                         />
                         <Tooltip
                             contentStyle={{
-                                backgroundColor: '#1a1a1a',
-                                border: '1px solid #0096FF',
+                                backgroundColor: 'var(--graph-tooltip-background)',
+                                border: '1px solid var(--graph-tooltip-border)',
                                 borderRadius: '8px',
-                                color: '#fff'
+                                color: 'var(--graph-tooltip-text)'
                             }}
                         />
                         <Line
@@ -47,7 +47,7 @@ const Performance = ({ data }: PerformanceProps) => {
                             stroke="#FF6E6E"
                             strokeWidth={3}
                             dot={{ fill: '#FF6E6E', r: 5 }}
-                            activeDot={{ r: 7 }}
+                            activeDot={{ r: 7, fill: '#888' }}
                         />
                     </LineChart>
                 </ResponsiveContainer>

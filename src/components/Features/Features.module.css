@@ -135,20 +135,6 @@
     flex: 1;
 }
 
-.learnMore {
-    color: #0096FF;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: gap 0.3s ease;
-}
-
-.learnMore.learnMoreHover {
-    gap: 12px;
-}
 
 @media (max-width: 1024px) {
     .gridContainer {

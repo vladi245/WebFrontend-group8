@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import style from "./MealPicker.module.css";
 import { useTranslation } from 'react-i18next';
+import { apiFetch, logout } from '../../services/api';
 
 interface MealEntry {
   recordId: number;
@@ -37,7 +38,7 @@ const MealPicker = ({ onMealAdded }: MealPickerProps) => {
   // -----------------------------
   const loadFoodsFromServer = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/foods");
+      const res = await apiFetch("/api/foods");
       const data: Food[] = await res.json();
       setFoods(data);
     } catch (err) {
@@ -56,8 +57,8 @@ const MealPicker = ({ onMealAdded }: MealPickerProps) => {
 
       if (!userId) return;
 
-      const res = await fetch(
-        `http://localhost:5000/api/meals/entries?userId=${userId}`
+      const res = await apiFetch(
+        `/api/meals/entries?userId=${userId}`
       );
       const data: BackendMeal[] = await res.json();
 
@@ -104,7 +105,7 @@ const MealPicker = ({ onMealAdded }: MealPickerProps) => {
       if (!userId) return;
       console.log(userId)
 
-      const res = await fetch("http://localhost:5000/api/meals", {
+      const res = await apiFetch("/api/meals", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -135,7 +136,7 @@ const MealPicker = ({ onMealAdded }: MealPickerProps) => {
 
     if (!userId) return;
     try {
-      await fetch("http://localhost:5000/api/meals", {
+      await apiFetch("/api/meals", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
