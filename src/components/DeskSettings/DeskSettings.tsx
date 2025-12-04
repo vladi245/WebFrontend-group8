@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import style from './DeskSettings.module.css';
+import { apiFetch } from '../../services/api';
 
 interface DeskSettingsProps {
     onHeightChange?: (height: number) => void;
@@ -15,11 +16,35 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
     const [isStanding, setIsStanding] = useState<boolean>(false);
 
     const [currentHeight, setCurrentHeight] = useState<number | null>(null);
+    const [userHeight, setUserHeight] = useState<number | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
     const position = isStanding ? 'Standing' : 'Sitting';
+
+    const recommendedSittingHeight = userHeight ? Math.round((((0.4739 * userHeight) - 17 + (0.5538 * userHeight - 24)) / 2) * 10) : null;
+    const recommendedStandingHeight = userHeight ? Math.round((((0.6 * userHeight) + (0.64 * userHeight) + 6) / 2) * 10) : null;
+    // Fetch user height from the backend
+    const fetchUserHeight = async () => {
+        try {
+            const storedUser = localStorage.getItem('user');
+            if (!storedUser) return;
+
+            const user = JSON.parse(storedUser);
+            const userId = user?.id;
+
+            if (userId) {
+                const response = await apiFetch(`/api/users/${userId}/height`);
+                const data = await response.json();
+                if (data.user_height) {
+                    setUserHeight(data.user_height);
+                }
+            }
+        } catch (error) {
+            console.error('Failed to fetch user height:', error);
+        }
+    };
 
     // Fetch current desk height on mount
     useEffect(() => {
@@ -51,6 +76,7 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
         };
 
         fetchDeskHeight();
+        fetchUserHeight();
     }, []);
 
     const handleToggleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -81,7 +107,7 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
             }
 
             setCurrentHeight(selectedHeight);
-            setSuccessMessage(`Height updated to ${selectedHeight} cm`);
+            setSuccessMessage(`Height updated to ${selectedHeight} mm`);
             if (onHeightChange) {
                 onHeightChange(selectedHeight);
             }
@@ -128,7 +154,7 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
             {/* Status area */}
             {isLoading && <p className={style.SettingsText}>Loading...</p>}
             {currentHeight !== null && !isLoading && (
-                <p className={style.SettingsText}>Current desk height: {currentHeight} cm</p>
+                <p className={style.SettingsText}>Current desk height: {currentHeight} mm</p>
             )}
             {error && <p className={style.SettingsText} style={{ color: 'red' }}>{error}</p>}
             {successMessage && (
@@ -146,7 +172,7 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
                 {isLoading ? 'Saving...' : 'confirm'}
             </button>
 
-            <p className={style.SettingsText}>Preferred Sitting Height (cm) - Manual</p>
+            <p className={style.SettingsText}>Preferred Sitting Height (mm) - Manual</p>
             <div className={style.valueAndChangeButtonsGrid}>
                 <label className={style.Label}>{sittingHeight}</label>
                 <button className={style.PlusButton} onClick={addOneSitting} disabled={isLoading}>
@@ -155,9 +181,10 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
                 <button className={style.MinusButton} onClick={subtractOneSitting} disabled={isLoading}>
                     -
                 </button>
+                <label className={style.SuggestionValue}> Recommended: {recommendedSittingHeight}mm </label>
             </div>
 
-            <p className={style.SettingsText}>Preferred Standing Height (cm) - Manual</p>
+            <p className={style.SettingsText}>Preferred Standing Height (mm) - Manual</p>
             <div className={style.valueAndChangeButtonsGrid}>
                 <label className={style.Label}>{standingHeight}</label>
                 <button className={style.PlusButton} onClick={addOneStanding} disabled={isLoading}>
@@ -166,6 +193,7 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
                 <button className={style.MinusButton} onClick={subtractOneStanding} disabled={isLoading}>
                     -
                 </button>
+                <label className={style.SuggestionValue}>Recommended: {recommendedStandingHeight} mm</label>
             </div>
         </div>
     );

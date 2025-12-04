@@ -11,16 +11,33 @@ interface UserData {
     name: string;
     email: string;
     type: string;
+    height: number | null;
 }
 
 export default function Settings() {
     const [userData, setUserData] = useState<UserData>({
         name: '',
         email: '',
-        type: 'standard'
+        type: 'standard',
+        height: null
     });
     const [isEditingName, setIsEditingName] = useState(false);
     const [editedName, setEditedName] = useState('');
+    const [isEditingHeight, setIsEditingHeight] = useState(false);
+    const [editedHeight, setEditedHeight] = useState<string>('');
+
+    const fetchUserHeight = async (userId: number) => {
+        try {
+            const response = await apiFetch(`/api/users/${userId}/height`);
+            const data = await response.json();
+            if (data.user_height) {
+                setUserData(prev => ({ ...prev, height: data.user_height }));
+                setEditedHeight(data.user_height.toString());
+            }
+        } catch (error) {
+            console.error('Failed to fetch user height:', error);
+        }
+    };
 
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
@@ -29,9 +46,15 @@ export default function Settings() {
             setUserData({
                 name: user.name || '',
                 email: user.email || '',
-                type: user.type || 'standard'
+                type: user.type || 'standard',
+                height: user.height || null
             });
             setEditedName(user.name || '');
+            setEditedHeight(user.height?.toString() || '');
+
+            if (user.id) {
+                fetchUserHeight(user.id);
+            }
         }
     }, []);
 
@@ -69,6 +92,46 @@ export default function Settings() {
     const handleCancelEdit = () => {
         setEditedName(userData.name);
         setIsEditingName(false);
+    };
+
+    const handleEditHeight = () => {
+        setIsEditingHeight(true);
+    };
+
+    const handleSaveHeight = async () => {
+        const heightNum = parseInt(editedHeight);
+        if (isNaN(heightNum) || heightNum < 100 || heightNum > 250) {
+            alert('Height must be between 100 and 250 cm');
+            return;
+        }
+
+        try {
+            const storedUser = localStorage.getItem('user');
+            const user = storedUser ? JSON.parse(storedUser) : null;
+            const userId = user?.id;
+
+            if (userId) {
+                await apiFetch(`/api/users/${userId}/heightsave`, {
+                    method: 'PUT',
+                    body: JSON.stringify({ height: heightNum })
+                });
+
+                // Update localStorage
+                const updatedUser = { ...user, height: heightNum };
+                localStorage.setItem('user', JSON.stringify(updatedUser));
+
+                setUserData(prev => ({ ...prev, height: heightNum }));
+            }
+        } catch (error) {
+            console.error('Failed to update height:', error);
+        }
+
+        setIsEditingHeight(false);
+    };
+
+    const handleCancelHeightEdit = () => {
+        setEditedHeight(userData.height?.toString() || '');
+        setIsEditingHeight(false);
     };
 
     return (
@@ -128,6 +191,43 @@ export default function Settings() {
                                     placeholder="E-mail"
                                     readOnly
                                 />
+                            </div>
+
+                            <div className={style.fieldRow}>
+                                {isEditingHeight ? (
+                                    <input
+                                        type="number"
+                                        className={style.input}
+                                        value={editedHeight}
+                                        onChange={(e) => setEditedHeight(e.target.value)}
+                                        placeholder="Height (cm)"
+                                        min="100"
+                                        max="250"
+                                        autoFocus
+                                    />
+                                ) : (
+                                    <input
+                                        type="text"
+                                        className={style.input}
+                                        value={userData.height ? `${userData.height} cm` : ''}
+                                        placeholder="Height (cm)"
+                                        readOnly
+                                    />
+                                )}
+                                {isEditingHeight ? (
+                                    <div className={style.editActions}>
+                                        <button className={style.saveButton} onClick={handleSaveHeight}>
+                                            Save
+                                        </button>
+                                        <button className={style.cancelButton} onClick={handleCancelHeightEdit}>
+                                            Cancel
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <button className={style.editButton} onClick={handleEditHeight}>
+                                        Edit height
+                                    </button>
+                                )}
                             </div>
                         </div>
 
