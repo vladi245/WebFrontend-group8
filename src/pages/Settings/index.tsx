@@ -11,7 +11,7 @@ export default function Settings() {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
 
-    useEffect(() => {
+    /*useEffect(() => {
         const fetchUserHeight = async () => {
             try {
                 const data = await apiFetch('api/user/userheight');
@@ -23,7 +23,7 @@ export default function Settings() {
         };
         fetchUserHeight();
     }, []);
-
+    */
 
     const handleSave = async () => {
         setLoading(true);
