@@ -41,7 +41,7 @@
 }
 
 .SaveButton {
-    background-color: #0096FF;
+    background-color: var(--card-border-color);
     color: #ffffff;
     border: none;
     border-radius: 10px;
@@ -74,7 +74,7 @@
 
 
 .PlusButton {
-    background-color: #0096FF;
+    background-color: var(--card-border-color);
     color: #ffffff;
     border: none;
     border-radius: 10px;
@@ -95,14 +95,14 @@
     border-radius: 10px;
     width: 60px;
     height: 34px;
-    border: 2px solid #0096FF;
+    border: 2px solid var(--card-border-color);
     background-color: transparent;
-    color: #0096FF;
+    color: var(--card-border-color);
     text-align: center;
     padding: 5px;
     opacity: 1;
     cursor: pointer;
-    transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    transition: opacity 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .MinusButton:hover {
@@ -111,7 +111,7 @@
 
 .valueAndChangeButtonsGrid {
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: auto auto auto 140px;
     grid-template-rows: auto;
     gap: 10px;
 }
@@ -145,11 +145,11 @@ input.switch+label:after {
     left: 0;
     content: ' ';
     width: 3.6em;
-    background-color: #0070BE;
+    background-color: var(--input-border-color);
     border-radius: 0.3em;
     box-shadow: inset 0 0.2em 0 rgba(0, 0, 0, 0.3);
-    -webkit-transition: all 100ms ease-in;
-    transition: all 100ms ease-in;
+    -webkit-transition: all 100ms ease-in, background-color 0.3s ease;
+    transition: all 100ms ease-in, background-color 0.3s ease;
 }
 
 input.switch+label:after {
@@ -157,15 +157,32 @@ input.switch+label:after {
     top: 0.1em;
     bottom: 0.1em;
     margin-left: 0.1em;
-    background-color: #fff;
+    background-color: var(--background-color);
     border-radius: 0.15em;
     box-shadow: inset 0 -0.2em 0 rgba(0, 0, 0, 0.2);
+    transition: all 100ms ease-in, background-color 0.3s ease;
 }
 
 input.switch:checked+label:before {
-    background-color: #0DDFFF;
+    background-color: var(--card-border-color);
 }
 
 input.switch:checked+label:after {
     margin-left: 2em;
+}
+
+.SuggestionValue {
+    background: transparent;
+    border-radius: 10px;
+    width: 100px;
+    height: 20px;
+    text-align: center;
+    font-size: 12px;
+    padding: 5px;
+    color: #9AA6B2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: end;
+
 }
