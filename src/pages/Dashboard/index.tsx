@@ -210,7 +210,8 @@ export default function Home() {
                     const userJson = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
                     const user = userJson ? JSON.parse(userJson) : null;
                     if (user && user.id) {
-                        const standingStats = await apiFetch(`/api/desks/records/stats?userId=${user.id}`);
+                        const res = await apiFetch(`/api/desks/records/stats?userId=${user.id}`);
+                        const standingStats = await res.json();
                         console.debug('Dashboard: standingStats response:', standingStats);
                         if (Array.isArray(standingStats) && standingStats.length > 0 && mounted) {
                             setStandingStatsData(standingStats);
