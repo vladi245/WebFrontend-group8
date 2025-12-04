@@ -132,7 +132,7 @@ export default function Settings() {
                         </div>
 
                         <div className={style.accountType}>
-                            <span>Account type: {userData.type}</span>
+                            <span>Account type: <span className={userData.type === 'premium' ? style.premiumText : ''}>{userData.type}</span></span>
                         </div>
                     </div>
                 </div>

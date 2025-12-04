@@ -7,7 +7,7 @@ interface DeskSettingsProps {
 }
 
 const DESK_ID = 'cd:fb:1a:53:fb:e6';
-const API_BASE_URL = 'http://localhost:5000/api/desks';
+const API_BASE_URL = 'http://localhost:5002/api/desks';
 
 const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChange }) => {
     const [sittingHeight, setSittingHeight] = useState<number>(100);
