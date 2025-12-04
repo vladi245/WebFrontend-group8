@@ -54,14 +54,14 @@ export default function Home() {
             const userId = user?.id;
 
             //fetch todays totals
-            const response = await fetch(`http://localhost:5002/api/meals/stats?userId=${userId}`);
+            const response = await apiFetch(`/api/meals/stats?userId=${userId}`);
             if (!response.ok) {
                 throw new Error("Failed to fetch stats");
             }
             const data = await response.json();
 
             //fetch weekly stast and average
-            const weekRes = await fetch(`http://localhost:5002/api/meals/weekly?userId=${userId}`);
+            const weekRes = await apiFetch(`/api/meals/weekly?userId=${userId}`);
             if (!weekRes.ok) {
                 throw new Error("Failed to fetch weekly stats");
             }
@@ -96,6 +96,16 @@ export default function Home() {
         { day: 'Sun', minutes: 0 },
     ]);
 
+    const [standingStatsData, setStandingStatsData] = useState<{ day: string; minutes: number }[]>([
+        { day: 'Mon', minutes: 0 },
+        { day: 'Tue', minutes: 0 },
+        { day: 'Wed', minutes: 0 },
+        { day: 'Thu', minutes: 0 },
+        { day: 'Fri', minutes: 0 },
+        { day: 'Sat', minutes: 0 },
+        { day: 'Sun', minutes: 0 },
+    ]);
+
     useEffect(() => {
         let mounted = true;
         const fetchStats = async () => {
@@ -117,7 +127,8 @@ export default function Home() {
                 }
 
                 try {
-                    workoutStats = await apiFetch('/api/workouts/stats');
+                    const res = await apiFetch('/api/workouts/stats');
+                    workoutStats = await res.json();
                 } catch (err) {
                     workoutStats = null;
                     console.warn('Could not fetch workout stats (auth may be required)');
@@ -180,7 +191,8 @@ export default function Home() {
                     const userJson = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
                     const user = userJson ? JSON.parse(userJson) : null;
                     if (user && user.id) {
-                        const hydration = await apiFetch(`/api/hydration?userId=${user.id}`);
+                        const res = await apiFetch(`/api/hydration?userId=${user.id}`);
+                        const hydration = await res.json();
                         if (hydration && mounted) {
                             setHydrationData({
                                 currentMl: Number(hydration.current_ml || hydration.currentMl || 0),
@@ -190,6 +202,21 @@ export default function Home() {
                     }
                 } catch (e) {
                     console.warn('Could not fetch hydration data', e);
+                }
+
+                // Fetch standing stats
+                try {
+                    const userJson = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
+                    const user = userJson ? JSON.parse(userJson) : null;
+                    if (user && user.id) {
+                        const standingStats = await apiFetch(`/api/desks/records/stats?userId=${user.id}`);
+                        console.debug('Dashboard: standingStats response:', standingStats);
+                        if (Array.isArray(standingStats) && standingStats.length > 0 && mounted) {
+                            setStandingStatsData(standingStats);
+                        }
+                    }
+                } catch (e) {
+                    console.warn('Could not fetch standing stats', e);
                 }
             } catch (err) {
                 console.warn('Failed to fetch dashboard stats', err);
@@ -226,37 +253,9 @@ export default function Home() {
                 <div style={{ display: 'flex', columnGap: '20px', marginBottom: '20px', width: '80%' }}>
 
                     <WorkoutCard data={workoutDurationData} />
-                    {/*
-                    <FriendsActivity activities={[
-                        {
-                        id: 1,
-                        username: 'washington',
-                        action: 'added a new activity',
-                        timeAgo: '10m ago',
-                        },
-                        {
-                        id: 2,
-                        username: 'gmail',
-                        action: 'reached the goal',
-                        timeAgo: '17m ago',
-                        },
 
-                    ]}/>
-                    */}
-
-                    <StandingStats data={[
-                        { day: 'Mon', minutes: 0 },
-                        { day: 'Tue', minutes: 0 },
-                        { day: 'Wed', minutes: 0 },
-                        { day: 'Thu', minutes: 0 },
-                        { day: 'Fri', minutes: 0 },
-                        { day: 'Sat', minutes: 0 },
-                        { day: 'Sun', minutes: 0 },
-                    ]} />
+                    <StandingStats data={standingStatsData} />
                 </div>
-
-
-
             </div>
         </div>
     );

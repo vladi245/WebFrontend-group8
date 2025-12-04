@@ -2,6 +2,7 @@ import { useState } from "react";
 import Navbar from '../../components/Navbar/Navbar'
 import styles from './AboutUs.module.css'
 import aboutImage from '../../assets/about-team.jpg'
+import { apiFetch } from '../../services/api';
 
 export default function AboutUs() {
 
@@ -22,7 +23,7 @@ export default function AboutUs() {
         setStatus("Sending...");
 
         try {
-            const res = await fetch("http://localhost:5000/api/contact", {
+            const res = await apiFetch("/api/contact", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),

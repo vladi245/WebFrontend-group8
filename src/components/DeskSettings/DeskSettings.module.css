@@ -7,10 +7,11 @@
     border: 2px solid var(--card-border-color);
     border-radius: 10px;
     padding: 20px;
-    height: 100%;
+    min-height: 100%;
     box-sizing: border-box;
     background-color: var(--card-background);
     transition: background-color 0.3s ease, border-color 0.3s ease;
+    overflow: hidden;
 }
 
 .TitleContainer {
@@ -34,6 +35,9 @@
     color: var(--card-text-color);
     padding-bottom: 5px;
     transition: color 0.3s ease;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
 }
 
 .SaveButton {
