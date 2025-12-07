@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { apiFetch } from '../../services/api';
 import style from './Exercises.module.css';
 
@@ -50,6 +51,7 @@ const normalizeWorkout = (w: any): Exercise => ({
 });
 
 const Exercises = ({ onAdd, onRemove, initialCompleted = [] }: ExercisesProps) => {
+    const { t } = useTranslation();
     // availableExercises will be fetched from server; fallback to mock list if fetch fails
     const [available, setAvailable] = useState<Exercise[]>([]);
     const [completedRecords, setCompletedRecords] = useState<CompletedRecord[]>([]);
@@ -124,20 +126,20 @@ const Exercises = ({ onAdd, onRemove, initialCompleted = [] }: ExercisesProps) =
     return (
         <div className={style.exercisesContainer}>
             <div className={style.exercisesSection}>
-                <h2 className={style.sectionTitle}>Exercises</h2>
+                <h2 className={style.sectionTitle}>{t('exercises.title')}</h2>
                 <div className={style.exerciseList}>
                     <div className={style.searchContainer}>
                         <input
                             className={style.searchInput}
-                            placeholder="Search exercises..."
+                            placeholder={t('exercises.searchExercise')}
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            aria-label="Search exercises by name"
+                            aria-label={t('exercises.searchExercise')}
                         />
                     </div>
 
                     {filtered.length === 0 ? (
-                        <p className={style.noResults}>No exercises match "{search}"</p>
+                        <p className={style.noResults}>{t('exercises.noResults')} "{search}"</p>
                     ) : (
                         filtered.map((exercise) => (
                             <div key={exercise.id} className={style.exerciseCard}>
@@ -172,7 +174,7 @@ const Exercises = ({ onAdd, onRemove, initialCompleted = [] }: ExercisesProps) =
             </div>
 
             <div className={style.completedSection}>
-                <h2 className={style.sectionTitle}>Exercises Done</h2>
+                <h2 className={style.sectionTitle}>{t('exercises.doneTitle')}</h2>
                 <div className={style.exerciseList}>
                     {completedRecords.map((exercise) => (
                     <div key={exercise.record_id} className={style.exerciseCard}>

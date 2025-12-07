@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import style from './DeskSettings.module.css';
 import { apiFetch } from '../../services/api';
+import { useTranslation } from 'react-i18next';
 
 interface DeskSettingsProps {
     onHeightChange?: (height: number) => void;
@@ -11,6 +12,7 @@ const DESK_ID = 'cd:fb:1a:53:fb:e6';
 const API_BASE_URL = 'http://localhost:5000/api/desks';
 
 const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChange }) => {
+    const { t } = useTranslation();
     const [sittingHeight, setSittingHeight] = useState<number>(100);
     const [standingHeight, setStandingHeight] = useState<number>(120);
     const [isStanding, setIsStanding] = useState<boolean>(false);
@@ -21,7 +23,7 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
     const [error, setError] = useState<string | null>(null);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
-    const position = isStanding ? 'Standing' : 'Sitting';
+    const position = isStanding ? t('deskSettings.positionStanding') : t('deskSettings.positionSitting');
 
     const recommendedSittingHeight = userHeight ? Math.round((((0.4739 * userHeight) - 17 + (0.5538 * userHeight - 24)) / 2) * 10) : null;
     const recommendedStandingHeight = userHeight ? Math.round((((0.6 * userHeight) + (0.64 * userHeight) + 6) / 2) * 10) : null;
@@ -137,7 +139,7 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
     return (
         <div className={style.DeskSettingsContainer}>
             <div className={style.TitleContainer}>
-                <p className={style.Title}>Desk Settings</p>
+                <p className={style.Title}>{t('deskSettings.title')}</p>
                 <div>
                     <input
                         type="checkbox"
@@ -154,7 +156,7 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
             {/* Status area */}
             {isLoading && <p className={style.SettingsText}>Loading...</p>}
             {currentHeight !== null && !isLoading && (
-                <p className={style.SettingsText}>Current desk height: {currentHeight} mm</p>
+                <p className={style.SettingsText}>{t('deskSettings.currentDeskHeight')} {currentHeight} mm</p>
             )}
             {error && <p className={style.SettingsText} style={{ color: 'red' }}>{error}</p>}
             {successMessage && (
@@ -163,7 +165,7 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
                 </p>
             )}
 
-            <p className={style.SettingsText}>Save Current Height As Preferred</p>
+            <p className={style.SettingsText}>{t('deskSettings.saveHeightLabel')}</p>
             <button
                 className={style.SaveButton}
                 onClick={handleConfirm}
@@ -172,7 +174,7 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
                 {isLoading ? 'Saving...' : 'confirm'}
             </button>
 
-            <p className={style.SettingsText}>Preferred Sitting Height (mm) - Manual</p>
+            <p className={style.SettingsText}>{t('deskSettings.prefSittingHeight')}</p>
             <div className={style.valueAndChangeButtonsGrid}>
                 <label className={style.Label}>{sittingHeight}</label>
                 <button className={style.PlusButton} onClick={addOneSitting} disabled={isLoading}>
@@ -181,10 +183,10 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
                 <button className={style.MinusButton} onClick={subtractOneSitting} disabled={isLoading}>
                     -
                 </button>
-                <label className={style.SuggestionValue}> Recommended: {recommendedSittingHeight}mm </label>
+                <label className={style.SuggestionValue}> {t('deskSettings.recommended')}: {recommendedSittingHeight}mm </label>
             </div>
 
-            <p className={style.SettingsText}>Preferred Standing Height (mm) - Manual</p>
+            <p className={style.SettingsText}>{t('deskSettings.prefStandingHeight')}</p>
             <div className={style.valueAndChangeButtonsGrid}>
                 <label className={style.Label}>{standingHeight}</label>
                 <button className={style.PlusButton} onClick={addOneStanding} disabled={isLoading}>
@@ -193,7 +195,7 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
                 <button className={style.MinusButton} onClick={subtractOneStanding} disabled={isLoading}>
                     -
                 </button>
-                <label className={style.SuggestionValue}>Recommended: {recommendedStandingHeight} mm</label>
+                <label className={style.SuggestionValue}>{t('deskSettings.recommended')}: {recommendedStandingHeight} mm</label>
             </div>
         </div>
     );

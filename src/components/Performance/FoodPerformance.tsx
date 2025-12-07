@@ -108,7 +108,7 @@ const FoodPerformance = ({ data }: FoodPerformanceProps) => {
             <div className={style.legend}>
                 <div className={style.legendItem}>
                     <div className={`${style.legendDot} ${style.legendDotGreen}`}></div>
-                    <span className={style.legendText}>Calories Consumed</span>
+                    <span className={style.legendText}>{t('foodPerformance.caloriesConsumed')}</span>
                 </div>
             </div>
         </div>

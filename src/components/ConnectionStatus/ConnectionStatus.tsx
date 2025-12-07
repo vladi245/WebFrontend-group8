@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import style from './ConnectionStatus.module.css';
 import Status from './Status';
 import { apiFetch } from '../../services/api';
+import { useTranslation } from 'react-i18next';
 
 const ConnectionStatus = () => {
+  const { t } = useTranslation();
   const [isConnected, setIsConnected] = useState(false);
   const [deskId, setDeskId] = useState<string | null>(null);
   const [currentHeight, setCurrentHeight] = useState<number | null>(null);
@@ -47,7 +49,7 @@ const ConnectionStatus = () => {
     }
   }, []);
 
-  const connection = isConnected ? "Connected:" : "Disconnected";
+  const connection = isConnected ? t('deskConnection.connected') : t('deskConnection.disconnected');
   const currentDesk = deskId || "";
   const statusColor = isConnected ? "green" : "red";
 

@@ -1,5 +1,7 @@
 import i18n from 'i18next';
+import { act } from 'react';
 import { initReactI18next } from 'react-i18next';
+import DailyGlasses from './src/components/Hydration/DailyGlasses';
 
 const resources = {
     en: {
@@ -20,7 +22,6 @@ const resources = {
                 title1: 'Our',
                 title2: 'Features',
                 subtitle: 'This Is A Preview Of What GetStanding Offers To Its Users. Find Out More By Clicking On Each Feature.',
-                learnMore: 'Learn More →',
                 items: [
                     {
                         title: 'Calorie tracker',
@@ -31,12 +32,8 @@ const resources = {
                         description: 'Track your time spent sitting and standing, helping you get some weight off that back.'
                     },
                     {
-                        title: 'Friends',
-                        description: 'Invite your friends to join you on this journey and motivate each other to continue.'
-                    },
-                    {
-                        title: 'Rewards',
-                        description: 'Every session counts, you can earn coins which can later allow you to upgrade to our pro plan and upgrade even more features'
+                        title: 'Hydration',
+                        description: 'Track your daily water intake and stay hydrated throughout the day.'
                     },
                     {
                         title: 'Workout tracker',
@@ -61,8 +58,10 @@ const resources = {
                 title1: 'Get In',
                 title2: 'Touch',
                 description: "Have questions or want to learn more about Get Standing? We'd love to hear from you!",
-                email: 'vibar24@student.sdu.dk',
-                location: 'SDU Sønderborg'
+                yourName: 'Your Name',
+                yourEmail: 'Your Email',
+                yourMessage: 'Your Message',
+                sendMessage: 'Send Message'
             },
             loginPage: {
                 heyThere: 'Hey There!',
@@ -112,7 +111,6 @@ const resources = {
                 meals: 'Meals',
                 desk: 'Desk Details',
                 hydration: 'Hydration',
-                friends: 'Friends',
                 settings: 'Settings'
             },
             dashboardPage: {
@@ -131,19 +129,19 @@ const resources = {
                     {
                         name: 'Beginner Plan',
                         features: [
-                            'Notifications to adjust your desk',
+                            'Daily workout tracking',
+                            'Weekly workout performance insights',
+                            'Muscle group analysis',
                             'Manual desk adjustment',
-                            'Logging up to 30 meals',
-                            'Logging up to 50 workouts'
                         ]
                     },
                     {
                         name: 'Premium Plan',
                         features: [
-                            'Unlimited workout logging',
-                            'Unlimited meal tracking',
-                            'Automatic desk adjustment',
-                            'All of the Beginner Plan features and many more'
+                            'Daily calorie tracking',
+                            'Weekly calorie consumption insights',
+                            'Daily hydration tracking',
+                            'Enjoy all Beginner features with additional analytics'
                         ]
                     }
                 ]
@@ -157,16 +155,23 @@ const resources = {
             },
             deskGreeting: {
                 hello: 'Hello,',
-                manageDesk: 'Manage your desk.'
+                manageDesk: 'Manage your desk.',
+                helloGuest: 'Hello, Guest!'
+            },
+            deskConnection: {
+                connected: 'Connected',
+                disconnected: 'Disconnected',
             },
             deskSettings: {
                 title: 'Desk Settings',
+                currentDeskHeight: 'Current desk height:',
                 saveHeightLabel: 'Save Current Height As Preferred',
                 confirmButton: 'confirm',
                 prefSittingHeight: 'Preferred Sitting Height (Cm) - Manual',
                 prefStandingHeight: 'Preferred Standing Height (cm)- Manual',
                 positionStanding: 'Standing',
-                positionSitting: 'Sitting'
+                positionSitting: 'Sitting',
+                recommended: 'Recommended: '
             },
             foodStats: {
                 mealslogged: 'Meals Logged',
@@ -174,7 +179,8 @@ const resources = {
                 avgIntake: "This Week's Average Intake"
             },
             calorieIntake: {
-                calorieIntake: 'Calorie intake'
+                calorieIntake: 'Calorie intake',
+                premiumFeature: 'Premium feature'
             },
             mealPicker: {
                 searchBar: 'Search foods...',
@@ -207,8 +213,65 @@ const resources = {
             },
             muscleGroup: {
                 title: 'Muscle Group Targeting',
-                subtitle: 'Visual representation of muscle activation from your workout'
+                subtitle: 'Visual representation of muscle activation from your workout',
+                frontView: 'Front View',
+                backView: 'Back View',
+                intensity: 'Intensity Scale',
+                active: 'Active Muscle Groups',
+                complete: 'Complete exercises to see your muscle activation map!',
+                notTargeted: 'Not Targeted',
+                light: 'Light (1x)',
+                moderate: 'Moderate (2x)',
+                activ: 'Active (3x)',
+                intense: 'Intense (4x)',
+                maximum: 'Maximum (5x)'
+
+            },
+            daysActive: 'Days Active',
+            greeting: {
+                hello: 'Hello,',
+                todayIsGreat: 'Today is a great day to be fit.'
+            },
+            waterCard: {
+                Water: 'Water',
+            },
+            hydrationQuickAdd: {
+                quickAdd: 'Quick Add',
+                remove: 'Remove 250 ml',
+            },
+            hydrationDailyProgress:
+            {
+                dailyProgress: 'Daily Progress',
+                complete: 'Complete'
+            },
+            hydrationStats: {
+                waterGoal: 'Water Goal',
+                change: 'Change'
+            },
+            dailyGlasses: {
+                dailyGlasses: 'Daily Glasses',
+                completed: 'completed',
+                each: 'each'
+            },
+            workoutstatscard: {
+                burned: 'burned'
+            },
+            workoutCard: {
+                duration: 'Workout Duration',
+                average: 'Your average workout time is',
+            },
+            standingStats: {
+                title: 'Standing Stats',
+            },
+            settings: {
+                profileDetails: 'Profile Details',
+                save: 'Save',
+                cancel: 'Cancel',
+                editName: 'Edit Name',
+                editHeight: 'Edit Height',
+                accountType: 'Account Type',
             }
+
 
         }
     },
@@ -231,7 +294,6 @@ const resources = {
                 title1: 'Vores',
                 title2: 'Funktioner',
                 subtitle: 'Dette er en forhåndsvisning af, hvad GetStanding tilbyder brugerne. Find ud af mere ved at klikke på hver funktion.',
-                learnMore: 'Lær mere →',
                 items: [
                     {
                         title: 'Kalorietræcker',
@@ -242,10 +304,8 @@ const resources = {
                         description: 'Hold styr på din siddetid og ståtid, så du aflaster ryggen.'
                     },
                     {
-
-                    },
-                    {
-                        //keeping these to as a place holder so the layout isnt fucked
+                        title: 'Hydrering',
+                        description: 'Track dit daglige vandindtag og hold dig hydreret hele dagen.'
                     },
 
                     {
@@ -272,8 +332,10 @@ const resources = {
                 title1: 'Kom i',
                 title2: 'Kontakt',
                 description: 'Har du spørgsmål eller vil du vide mere om Get Standing? Vi vil meget gerne høre fra dig!',
-                email: 'vibar24@student.sdu.dk',
-                location: 'SDU Sønderborg'
+                yourName: 'Dit navn',
+                yourEmail: 'Din e-mail',
+                yourMessage: 'Din besked',
+                sendMessage: 'Send Besked'
             },
 
             loginPage: {
@@ -324,7 +386,6 @@ const resources = {
                 meals: 'Måltider',
                 desk: 'Bordsdetaljer',
                 hydration: 'Hydrering',
-                friends: 'Venner',
                 settings: 'Indstillinger'
             },
             dashboardPage: {
@@ -344,13 +405,19 @@ const resources = {
                     {
                         name: 'Begynderplan',
                         features: [
-
+                            'Notifikationer for at justere dit skrivebord',
+                            'Manuel bordjustering',
+                            'Logning af op til 30 måltider',
+                            'Logning af op til 50 træninger'
                         ]
                     },
                     {
                         name: 'Premium-plan',
                         features: [
-
+                            'Ubegrænset træningslogning',
+                            'Ubegrænset måltidssporing',
+                            'Automatisk bordjustering',
+                            'Alle funktioner i begynderplanen og mange flere'
                         ]
                     }
                 ]
@@ -364,16 +431,24 @@ const resources = {
             },
             deskGreeting: {
                 hello: 'Hej',
-                manageDesk: 'Administrer dit skrivebord.'
+                manageDesk: 'Administrer dit skrivebord.',
+                helloGuest: 'Hej, gæst!'
+            },
+            deskConnection: {
+                connected: 'Forbundet',
+                disconnected: 'Ikke forbundet'
             },
             deskSettings: {
                 title: 'Skrivebordsindstillinger',
+                currentDeskHeight: 'Nuværende skrivebordshøjde:',
                 saveHeightLabel: 'Gem nuværende højde som foretrukken',
                 confirmButton: 'bekræfte',
                 positionSitting: 'Siddende',
                 positionStanding: 'Stående',
                 prefSittingHeight: 'Foretrukken siddende højde (cm) - Manuel',
-                prefStandingHeight: 'Foretrukken stående højde (cm) - Manuel'
+                prefStandingHeight: 'Foretrukken stående højde (cm) - Manuel',
+                recommended: 'Anbefalet: '
+
             },
             foodStats: {
                 mealslogged: 'Loggede måltider',
@@ -381,7 +456,8 @@ const resources = {
                 avgIntake: 'Denne uges gennemsnitlige indtag'
             },
             calorieIntake: {
-                calorieIntake: 'Kalorieindtag'
+                calorieIntake: 'Kalorieindtag',
+                premiumFeature: 'Premium-funktion'
             },
             mealPicker: {
                 searchBar: 'Søg efter mad...',
@@ -414,8 +490,67 @@ const resources = {
             },
             muscleGroup: {
                 title: 'Muskelgruppemålretning',
-                subtitle: 'Visuel repræsentation af muskelaktivering fra din træning'
+                subtitle: 'Visuel repræsentation af muskelaktivering fra din træning',
+                frontView: 'Forside',
+                backView: 'Bagud',
+                intensity: 'Intensitetsskala',
+                active: 'Aktive muskelgrupper',
+                complete: 'Fuldfør øvelser for at se dit muskelaktiveringskort!',
+                notTargeted: 'Ikke målrettet',
+                light: 'Let (1x)',
+                moderate: 'Moderat (2x)',
+                activ: 'Aktiv (3x)',
+                intense: 'Intens (4x)',
+                maximum: 'Maksimum (5x)'
+            },
+            daysActive: 'Dage Aktiv',
+            greeting: {
+                hello: 'Hej',
+                todayIsGreat: 'I dag er en fantastisk dag at være fit.'
+            },
+            waterCard: {
+                Water: 'Vand'
+            },
+            hydrationQuickAdd: {
+                quickAdd: 'Hurtig tilføjelse',
+                remove: 'Fjern 250 ml'
+            },
+            hydrationDailyProgress:
+            {
+                dailyProgress: 'Daglig fremgang',
+                complete: 'Fuldført'
+            },
+            hydrationStats: {
+                waterGoal: 'Vandmål',
+                change: 'Ændre'
+            },
+
+            dailyGlasses: {
+                dailyGlasses: 'Daglige glas',
+                completed: 'fuldført',
+                each: 'hver'
+            },
+            workoutstatscard: {
+                burned: 'forbrændt'
+            },
+            workoutCard: {
+                duration: 'Træningsvarighed',
+                average: 'Din gennemsnitlige træningstid er'
+            },
+            standingStats: {
+                title: 'Stående statistik',
+            },
+            settings: {
+                profileDetails: 'Profiloplysninger',
+                save: 'Gem',
+                cancel: 'Annuller',
+                editName: 'Rediger navn',
+                editHeight: 'Rediger højde',
+                accountType: 'Kontotype',
             }
+
+
+
         }
     }
 };

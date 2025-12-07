@@ -1,5 +1,6 @@
 import styles from './WaterCard.module.css';
 import { GlassWater, Lock } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface WaterCardProps {
   current: number;
@@ -7,6 +8,7 @@ interface WaterCardProps {
 }
 
 const WaterCard = ({ current, goal }: WaterCardProps) => {
+  const { t } = useTranslation();
   const percentage = Math.min((current / goal) * 100, 100);
   // Props are in liters, convert to ml for display
   const currentMl = Math.round(current * 1000);
@@ -21,7 +23,7 @@ const WaterCard = ({ current, goal }: WaterCardProps) => {
       <div className={`${styles.cardInner} ${isStandard ? styles.blurred : ''}`}>
         <div className={styles.header}>
           <GlassWater className={styles.icon} />
-          <span className={styles.title}>Water</span>
+          <span className={styles.title}>{t('waterCard.Water')}</span>
         </div>
 
         <div className={styles.amount}>
@@ -39,7 +41,7 @@ const WaterCard = ({ current, goal }: WaterCardProps) => {
         <div className={styles.lockOverlay} role="presentation">
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Lock className={styles.lockIcon} />
-            <div className={styles.lockCaption}>Premium feature</div>
+            <div className={styles.lockCaption}>{t('waterCard.premiumFeature')}</div>
           </div>
         </div>
       )}

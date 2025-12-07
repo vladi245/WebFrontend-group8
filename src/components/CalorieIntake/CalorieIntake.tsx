@@ -20,7 +20,7 @@ const CalorieIntake = ({ current, goal }: CalorieCardProps) => {
       <div className={`${styles.cardInner} ${isStandard ? styles.blurred : ''}`}>
         <div className={styles.header}>
           <Zap className={styles.icon} />
-          <span className={styles.title}>{t('calorieIntake')}</span>
+          <span className={styles.title}>{t('calorieIntake.calorieIntake')}</span>
         </div>
 
         <div className={styles.content}>
@@ -53,7 +53,7 @@ const CalorieIntake = ({ current, goal }: CalorieCardProps) => {
         <div className={styles.lockOverlay} role="presentation">
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Lock className={styles.lockIcon} />
-            <div className={styles.lockCaption}>Premium feature</div>
+            <div className={styles.lockCaption}>{t('calorieIntake.premiumFeature')}</div>
           </div>
         </div>
       )}

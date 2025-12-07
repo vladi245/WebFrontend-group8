@@ -1,5 +1,6 @@
 import { Plus, Minus, RotateCcw } from 'lucide-react';
 import styles from './HydrationQuickAdd.module.css';
+import { useTranslation } from 'react-i18next';
 
 interface HydrationQuickAddProps {
   onAdd?: (amountMl: number) => void;
@@ -12,6 +13,7 @@ const HydrationQuickAdd = ({
   onRemove,
   onReset,
 }: HydrationQuickAddProps) => {
+  const { t } = useTranslation();
   const amounts = [250, 500, 750, 1000];
 
   const handleAdd = (amount: number) => {
@@ -29,11 +31,11 @@ const HydrationQuickAdd = ({
   return (
     <div className={styles.card}>
       <div className={styles.header}>
-        <span className={styles.title}>Quick Add</span>
+        <span className={styles.title}>{t('hydrationQuickAdd.quickAdd')}</span>
       </div>
 
       <div className={styles.grid}>
-        
+
         {amounts.map((amount) => (
           <button
             key={amount}
@@ -46,7 +48,7 @@ const HydrationQuickAdd = ({
           </button>
         ))}
 
-        
+
         <button
           type="button"
           className={`${styles.actionButton} ${styles.removeButton}`}
@@ -56,7 +58,7 @@ const HydrationQuickAdd = ({
           <span>Remove 250 ml</span>
         </button>
 
-       
+
         <button
           type="button"
           className={`${styles.actionButton} ${styles.resetButton}`}
