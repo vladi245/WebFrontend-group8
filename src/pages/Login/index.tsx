@@ -3,6 +3,7 @@ import './Login.css'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useState } from 'react';
 import type { FormEvent } from 'react';
+import { apiFetch } from '../../services/api';
 import { useTranslation } from 'react-i18next';
 
 export default function Login() {
@@ -23,8 +24,7 @@ export default function Login() {
         setError('');
 
         try {
-            const API = import.meta.env.VITE_API_URL || 'http://localhost:5002';
-            const res = await fetch(`${API}/api/auth/login`, {
+            const res = await apiFetch(`/api/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email: username, password })
