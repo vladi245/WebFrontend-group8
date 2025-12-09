@@ -50,8 +50,8 @@ Same as if using node you access it by going to **http://localhost:5173** as it 
 3. Check terminal, if there is no red errors than the app is running correctly (at least on the frontend side).
 
 **If it is not working:**
-- Terminal shows errors? Read them - usually missing dependencies
-- Blank page? Open browser DevTools (F12) or right click the page -> inspect -> console and check the errors.
+- Check Terminal for errors and read them, usually missing dependencies
+- Otherwise open browser DevTools (F12) or right click the page -> inspect -> console and check the errors.
  
 ## Key API Calls
 
@@ -80,7 +80,7 @@ await apiFetch('/api/meals', {
 ## Watch Out For
 
 ### 1. Everything must be running
-Since the project consists of 5 repositories co-existing toghterer to have full functionality of the application make sure to run every one of them otherwise, there will be API errors and some functionalities might not be accessible or the app might not work as intended. 
+Since the project consists of 5 repositories co-existing toghterer to have full functionality of the application make sure to run every one of them otherwise, there will be API errors and some functionalities might not be accessible and the app might not work as intended. 
 
 ### 2. The `.env` File
 ```env
