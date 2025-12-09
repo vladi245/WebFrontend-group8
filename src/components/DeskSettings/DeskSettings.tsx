@@ -25,8 +25,8 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
 
     const position = isStanding ? t('deskSettings.positionStanding') : t('deskSettings.positionSitting');
 
-    const recommendedSittingHeight = userHeight ? Math.round((((0.4739 * userHeight) - 17 + (0.5538 * userHeight - 24)) / 2) * 10) : null;
-    const recommendedStandingHeight = userHeight ? Math.round((((0.6 * userHeight) + (0.64 * userHeight) + 6) / 2) * 10) : null;
+    const recommendedSittingHeight = userHeight ? Math.round((((0.4739 * userHeight) - 17 + (0.5538 * userHeight - 24)) / 2) * 10) : t('deskSettings.heightnotset');
+    const recommendedStandingHeight = userHeight ? Math.round((((0.6 * userHeight) + (0.64 * userHeight) + 6) / 2) * 10) : t('deskSettings.heightnotset');
     // Fetch user height from the backend
     const fetchUserHeight = async () => {
         try {
@@ -183,7 +183,7 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
                 <button className={style.MinusButton} onClick={subtractOneSitting} disabled={isLoading}>
                     -
                 </button>
-                <label className={style.SuggestionValue}> {t('deskSettings.recommended')}: {recommendedSittingHeight}mm </label>
+                <label className={style.SuggestionValue}> {t('deskSettings.recommended')}: {recommendedSittingHeight} (mm) </label>
             </div>
 
             <p className={style.SettingsText}>{t('deskSettings.prefStandingHeight')}</p>
@@ -195,7 +195,7 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
                 <button className={style.MinusButton} onClick={subtractOneStanding} disabled={isLoading}>
                     -
                 </button>
-                <label className={style.SuggestionValue}>{t('deskSettings.recommended')}: {recommendedStandingHeight} mm</label>
+                <label className={style.SuggestionValue}>{t('deskSettings.recommended')}: {recommendedStandingHeight} (mm) </label>
             </div>
         </div>
     );

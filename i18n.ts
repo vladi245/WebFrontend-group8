@@ -167,11 +167,12 @@ const resources = {
                 currentDeskHeight: 'Current desk height:',
                 saveHeightLabel: 'Save Current Height As Preferred',
                 confirmButton: 'confirm',
-                prefSittingHeight: 'Preferred Sitting Height (Cm) - Manual',
-                prefStandingHeight: 'Preferred Standing Height (cm)- Manual',
+                prefSittingHeight: 'Preferred Sitting Height (mm) - Manual',
+                prefStandingHeight: 'Preferred Standing Height (mm) - Manual',
                 positionStanding: 'Standing',
                 positionSitting: 'Sitting',
-                recommended: 'Recommended: '
+                recommended: 'Recommended: ',
+                heightnotset: 'Enter your height in settings'
             },
             foodStats: {
                 mealslogged: 'Meals Logged',
@@ -445,10 +446,10 @@ const resources = {
                 confirmButton: 'bekræfte',
                 positionSitting: 'Siddende',
                 positionStanding: 'Stående',
-                prefSittingHeight: 'Foretrukken siddende højde (cm) - Manuel',
-                prefStandingHeight: 'Foretrukken stående højde (cm) - Manuel',
-                recommended: 'Anbefalet: '
-
+                prefSittingHeight: 'Foretrukken siddende højde (mm) - Manuel',
+                prefStandingHeight: 'Foretrukken stående højde (mm) - Manuel',
+                recommended: 'Anbefalet: ',
+                heightnotset: 'Indtast din højde i indstillinger'
             },
             foodStats: {
                 mealslogged: 'Loggede måltider',
