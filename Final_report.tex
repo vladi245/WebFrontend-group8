@@ -175,15 +175,49 @@ This section represents the functional and non-functional requirements of the Ge
 \newpage
 
 \section{Implementation}
-[Code, algorithms, libraries used.]
+The implementation of GetStanding was structured to ensure modularity, scalability, and maintainability. The project was divided into two main parts: the frontend and the backend, each designed with best practices in mind to facilitate collaboration and future development.
 
-\subsection{Sub-section}
-[Lorem ipsum]
+\subsection{Frontend}
+The frontend for GetStandind is built with React and Vite, resulting in a modular, component-based architecture. This approach made it easy to implement new ideas and quickly pivot by discarding features when necessary. Additionally, Vite’s development server with live refresh significantly improved the developer experience, allowing changes to be reflected instantly without needing to restart the application. On top of that use of Docker in later stages of the project made sure that all deployments were working on the correct versions of packages, and most importantly Node.js \\
+The project is split into pages stored in the folder page/ and components stored in the folder components/. The decision for this setup was to make a new page and component creation easier, where pages function as a “component of components” connected to a specific route.
 
-\subsubsection{Sub-sub-section}
-[Lorem ipsum]
+\subsubsection{Routing - src/App.tsx}
+Routing is handled using the react-router-dom package, with all routes managed in the App.tsx file. As mentioned earlier, this approach made it easier for the team to add new pages and routes. Additionally, it simplified the setup of a custom /404 page, ensuring lost users are redirected appropriately and do not get lost navigating the app.\\
+Centralizing routing enabled the team to implement a ProtectedRoute component, which manages client-side access control for dashboard subpages. Each route wrapped with ProtectedRoute is accessible only after a user logs in. Furthermore, this component supports a requiredType property, allowing specification of the account type necessary to access certain pages. For example, only an admin can read messages from the contact form, while features such as Meals are available exclusively to premium users of GetStanding.
 
-\newpage
+\subsubsection{Routing - src/App.tsx}
+Routing is handled using the react-router-dom package, with all routes managed in the App.tsx file. As mentioned earlier, this approach made it easier for the team to add new pages and routes. Additionally, it simplified the setup of a custom /404 page, ensuring lost users are redirected appropriately and do not get lost navigating the app.\\
+Centralizing routing enabled the team to implement a ProtectedRoute component, which manages client-side access control for dashboard subpages. Each route wrapped with ProtectedRoute is accessible only after a user logs in. Furthermore, this component supports a requiredType property, allowing specification of the account type necessary to access certain pages. For example, only an admin can read messages from the contact form, while features such as Meals are available exclusively to premium users of GetStanding.
+
+\subsubsection{services/api.ts}
+During development, the team recognized the need to centralize API calls. Previously, API requests were scattered across pages and components, leading to inconsistencies, especially when system ports were occupied on different operating systems. To address this, the team created a single entry point for all API connections in services/api.ts. This file stores the backend server address, making it easier to update API endpoints and ensuring that the JWT token (stored in local storage) is automatically included with every request made from the frontend.
+
+\subsubsection{Styling - .module.css files}
+The team opted not to use CSS frameworks like Tailwind. Instead, they chose to use separate CSS files for each component and page. To avoid conflicts and maintain flexibility, CSS Modules were employed. This approach allows for repeating class names across components without unintended overrides, ensuring a clean and maintainable styling system.
+
+\subsection{Backend}
+The backend was designed around the MVC (Model-View-Controller) architecture and a RESTful API. The team initially focused on developing the frontend with mock data to better understand the system’s requirements before diving into complex business logic. 
+
+\subsubsection{Routes}
+Similar to the frontend, the backend centralises route management in the app.js file. However, instead of defining routes directly, it imports them from separate files in the routes/ folder (e.g., routes/desk.js, routes/adminRoutes.js). This modular approach improves code clarity and maintainability, especially given the backend’s higher number of routes compared to the frontend. 
+
+\subsubsection{Models}
+In the MVC architecture, Models handle the core business logic and database interactions. They define functions to query the PostgreSQL database, ensuring data integrity and consistency.
+
+\subsubsection{Controllers}
+Controllers act as the intermediary between the View (frontend) and the Models. They handle user input, perform validation (checking if a user exists), and manage the flow of data between the frontend and backend.
+
+\subsubsection{Authorisation - JWT}
+User authentication is managed using JWT (JSON Web Tokens). Upon login, users receive a JWT token with an expiration time of 1 hour. This token is included in every API request to the backend, where it is validated. Requests without a valid token are automatically rejected, ensuring secure access to the system.
+
+The token is generated in src/middleware/authMiddleware.js and imported into every API endpoint as authMiddleware.
+
+\subsection{Database}
+\subsubsection{Functions}
+To ensure scalability and future-proofing, the team implemented PostgreSQL functions as a core part of the database architecture. These functions are designed to encapsulate specific business logic and are called directly from the backend models. This approach not only modularizes database operations but also enhances security by allowing granular control over access permissions. Instead of granting users broad access to entire tables, the team can now restrict permissions to individual functions, minimizing the risk of unauthorized data manipulation or exposure.\\
+During development, this strategy provided greater control and flexibility. By abstracting complex queries and operations into reusable functions, the team reduced redundancy, improved code maintainability, and streamlined debugging. Additionally, it allowed for consistent data handling, as all interactions with the database are funneled through these predefined functions, ensuring compliance to business rules and reducing the likelihood of errors. This design ensures that the system can easily accommodate future extensions, such as adding new features or integrating third-party services, without requiring significant refactoring or altering the access levels in the database (creating database users).
+
+
 
 \section{Validation}
 [Test cases, results, performance analysis.]
