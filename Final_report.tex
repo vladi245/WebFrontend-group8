@@ -86,20 +86,37 @@ Most of our problems were related to the time limitations we had. We wanted to a
 
 \newpage
 
+
+
 \section{Methodology}
-[Describe the methods, tools, frameworks used.]
 
-\begin{figure}[h!]
-\centering
-\rule{10cm}{5cm} % Placeholder for image
-\caption{An example figure}
-\end{figure}
+\subsection{Development Process and Collaboration}
+Based on the knowledge the team has gained from as early as the first semester of software engineering studies and the hands-on experience from previous projects, following an Agile methodology, Scrum to be specific, was the obvious choice.\\\\
+The development process was split into two-week sprints, with Jira used as a tool for organization and keeping all team members on track. To ensure smooth development, each sprint had clear objectives that were decided during sprint planning meetings. Throughout those sessions, the backlog was populated with work items, which were assigned to adequate epics and split between team members.\\
+During those two weeks the team combined online communication with in-person meetings, which frequency varied based on current needs. \\
+After each sprint finished, sprint review sessions were held. During those meetings the team could reflect on the progress that was made. They were essential for understanding how much workload is realistic to complete in the span of two weeks, which was crucial for improving upcoming development and avoiding setting unrealistic expectations.\\\\
+In practice the process of developing GetStanding was iterative. Starting from early sprints that focused on establishing the base structure of the web application, and ending with later sprints that focused on adding additional features and refinements. Moreover, feedback was not limited to formal meetings. Frequent informal conversations, short check-ins, group coding sessions were an integral part of how the project was carried out. This approach made solving encountered issues easier, as it was an opportunity to share knowledge, exchange ideas, and decide on how to move forward together.\\
+By combining this gradual way of delivering the application with continuous internal feedback, as well as receiving guidance from the supervisor, and finally demo presentations for LINAK and the project coordinator, the team was able to improve both GetStanding and work practices. 
+\subsection{Technology Stack}
 
-\subsection{Sub-section}
-[Lorem ipsum]
+\subsubsection{Frontend}
 
-\subsubsection{Sub-sub-section}
-[Lorem ipsum]
+For developing the frontend the team used React with Vite. Keeping the web application consistent across different pages was of great importance, therefore React, which is characterized by its component-based approach aligned with the teams vision. It made creating reusable user interface components possible, which made the development process easier by keeping the code clearer, easier to maintain and avoiding code repetition. Due to choosing Vite, the team was able to work in a fast development environment, since it provided quick feedback.\\
+Prior to writing any code, a design was vital, thus Figma was the starting point of every frontend element. The team used a shared folder for all the designs, which also played an important role. Because the team members could see each others' designs, the application achieved a cohesive look, despite having six developers working on it.
+\subsubsection{Backend}
+
+The backend was implemented using Node.js with Express.js. This set up was selected due to its simplicity and suitability for developing RESTful APIs. Additionally it is well-established in the field, offers a broad set of libraries and comes with wide community-support.
+
+\subsubsection{Data Storage and Infrastructure}
+-postgresgl\\
+For containerization purposes the team used Docker. It helped with keeping the environment consistent across different devices and reduced configuration problems. Most of the team had previous experience with mentioned tools from the last semester's project, therefore reusing them was a logical choice, that allowed the team members to build on prior experience.\\\\
+One of the core requirements for this project was the integration of a Raspberry Pi Pico W board. The team was introduced to it during the Programming for Hardware Constrained Environments course, thus its use in the project provided an opportunity to apply the concepts learned there. Even though the Pico was not strictly required for the main idea of GetStanding to work, it was included to demonstrate how a small device can become a part of something bigger, in this case a larger system, and still play a meaningful role.
+
+\subsection{Version Control}
+Git and GitHub were the tools used throughout the whole development of GetStanding. To keep the codebase stable, work was carried out in separate branches rather than the main branch. In order to make the review process more manageable the team tried to stick to suitable and clear naming habits, that includes branches, commits, pull requests. GitHub was not only used to store code, but also as a way of receiving feedback. Each pull request was reviewed by at least one other member and comments were left if necessary. Also, the reviewing focused not only on whether the code was working, but also examined it from a maintainability and readability perspective.\\
+Collaborating this way and mutual support improved the team's spirit and contributed to the growth as developers.\\\\
+Overall, the selected way of working, tools, and technologies, combined with the experience from previous semesters and the new knowledge acquired this term, is what made designing and implementing GetStanding possible.
+
 
 \newpage
 
@@ -177,22 +194,30 @@ decreased productivity. Also beck pain, shoulder stiffness, lower back pain, and
 \newpage
 
 \section{Requirements}
-[Functional and non-functional requirements.]
+This section represents the functional and non-functional requirements of the GetStanding application. Functional requirements describe the core requirements that the application must respect, while non-functional requirements focus on the performance, security and usability of the application, rather than what it is supposed to do. This set of requirements guides the development of the application to guarantee that it meets user needs.
+\subsection*{Functional Requirements}
+\begin{itemize}
+	\item Users shall be able to sign up and log in to the application.
+	\item Users shall be able to update their profile information, including username and height.
+	\item The UI shall allow input and editing of user data.
+	\item The system shall store and retrieve user information and desk preferrence data in a database.
+	\item The system shall log desk usage data, including sitting and standing durations.
+	\item The system shall generate health recommendations based on the tracked data.
+	\item The application should provide the user with data regarding their sitting time using graphs.
+	\item The system shall be able to control the desk’s height via the WIFI2BLE Box Web API.
+	\item The system shall retrieve and display the current desk height and position.
+	 \item Users shall be able to customize their desk settings, such as preferred standing and sitting heights.
+\end{itemize}
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|}
-\hline
-X & X & X \\ \hline
-\end{tabular}
-\caption{An example table}
-\end{table}
+\subsection*{Non-Functional Requirements}
 
-\subsection{Sub-section}
-[Lorem ipsum]
-
-\subsubsection{Sub-sub-section}
-[Lorem ipsum]
+\begin{itemize}
+    \item The system shall support multiple users.
+    \item The User Interface shall be intuitive and user-friendly.
+    \item User data shall be protected with secure authentication.
+    \item The app shall be compatible with major modern browsers.
+    \item The system shall provide clear, user-friendly error messages (in plain English).
+\end{itemize}
 
 \newpage
 
@@ -230,13 +255,14 @@ X & X & X \\ \hline
 \newpage
 
 \section{Conclusion}
-[Summary, reflection, objectives achieved.]
+GetStanding was developed as a semester project in collaboration with LINAK, based on the scenarios given by them at the start of the sememster. The team chose to make an application to help people, with a focus on office workers, keep track of their habits. Despite some changes from the original plan for the application, the main functions were successfully implemented such as tracking of calorie intake, workouts and water consumption. The most important feature is that GetStanding can connect to a sit and stand desk, helping the user keep track of the time they spend standing throughout the day. While there were challanges throughout the developmet proces, such as delays that ended up affecting the teams progression. The communication inside the team was wery friendly most of time not serious even, this also affected our efficieny  For some of the team members this was the (outside of classes) first time working with multiple repositories and embedded elements like the Pico board, which added to the level of difficulty. 
+
 
 \subsection{Summary}
-[Lorem ipsum]
+Overall, it can be said that the outcome of the project was a success. GetStanding has provided us with valuable experince both in technical and teamwork scenarios. This will be a good foundation to build on in the future.
 
 \subsection{Future Work}
-[Areas for improvement.]
+As for future improvements, functionalities that not have been added would be great improvements. For example the friends page,notifications or even a rewards system. These functions specifically would be really good to retain users for the website. As for the team, working on making things happen on time should be the first priority. Having better communication could be the key to this, so in the next semester this should be something everyone aims for.
 
 \newpage
 
