@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import ChangeGoalModal from './ChangeGoalModal';
 import styles from './Stats.module.css';
+import { useTranslation } from 'react-i18next';
 
 interface HydrationStatsData {
   waterGoal: number;
@@ -18,6 +19,7 @@ const HydrationStats = ({ data, onChangeGoal }: HydrationStatsProps) => {
     currentIntake: 0,
   });
   const [showModal, setShowModal] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (data) {
@@ -35,13 +37,13 @@ const HydrationStats = ({ data, onChangeGoal }: HydrationStatsProps) => {
 
   return (
     <div className={styles.hydrationStatsCard}>
-      <span className={styles.hydrationStatsLabel}>Water Goal</span>
+      <span className={styles.hydrationStatsLabel}>{t('hydrationStats.waterGoal')}</span>
       <span className={styles.hydrationStatsValue}>{goalInMl} ml</span>
       <button
         onClick={() => setShowModal(true)}
         className={styles.hydrationChangeButton}
       >
-        Change
+        {t('hydrationStats.change')}
       </button>
 
       <ChangeGoalModal

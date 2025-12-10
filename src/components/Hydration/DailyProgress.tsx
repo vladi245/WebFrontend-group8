@@ -1,4 +1,5 @@
 import styles from './DailyProgress.module.css';
+import { useTranslation } from 'react-i18next';
 
 interface DailyProgressProps {
   current: number;
@@ -6,12 +7,13 @@ interface DailyProgressProps {
 }
 
 const DailyProgress = ({ current, goal }: DailyProgressProps) => {
+  const { t } = useTranslation();
   const percentage = Math.min((current / goal) * 100, 100);
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h3 className={styles.title}>Daily Progress</h3>
+        <h3 className={styles.title}>{t('hydrationDailyProgress.dailyProgress')}</h3>
         <span className={styles.progress}>{current}ml / {goal}ml</span>
       </div>
 
@@ -23,7 +25,7 @@ const DailyProgress = ({ current, goal }: DailyProgressProps) => {
       </div>
 
       <div className={styles.percentage}>
-        {Math.round(percentage)}% Complete
+        {Math.round(percentage)}% {t('hydrationDailyProgress.complete')}
       </div>
     </div>
   );

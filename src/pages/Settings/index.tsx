@@ -6,6 +6,8 @@ import LogoutButton from '../../components/LogoutButton/LogoutButton';
 import DeleteButton from '../../components/DeleteButton/DeleteButton';
 import ModeButton from '../../components/ModeButton/ModeButton';
 import { apiFetch } from '../../services/api';
+import LanguageChange from '../../components/LanguageChange/LanguageChange';
+import { useTranslation } from 'react-i18next';
 
 interface UserData {
     name: string;
@@ -15,6 +17,7 @@ interface UserData {
 }
 
 export default function Settings() {
+    const { t } = useTranslation();
     const [userData, setUserData] = useState<UserData>({
         name: '',
         email: '',
@@ -140,7 +143,7 @@ export default function Settings() {
 
             <div className={style.settingsContainer}>
                 <div className={style.card}>
-                    <h2 className={style.cardTitle}>Profile details</h2>
+                    <h2 className={style.cardTitle}>{t('settings.profileDetails')}</h2>
 
                     <div className={style.profileContent}>
                         <div className={style.userIcon}>
@@ -170,15 +173,15 @@ export default function Settings() {
                                 {isEditingName ? (
                                     <div className={style.editActions}>
                                         <button className={style.saveButton} onClick={handleSaveName}>
-                                            Save
+                                            {t('settings.save')}
                                         </button>
                                         <button className={style.cancelButton} onClick={handleCancelEdit}>
-                                            Cancel
+                                            {t('settings.cancel')}
                                         </button>
                                     </div>
                                 ) : (
                                     <button className={style.editButton} onClick={handleEditName}>
-                                        Edit name
+                                        {t('settings.editName')}
                                     </button>
                                 )}
                             </div>
@@ -217,22 +220,22 @@ export default function Settings() {
                                 {isEditingHeight ? (
                                     <div className={style.editActions}>
                                         <button className={style.saveButton} onClick={handleSaveHeight}>
-                                            Save
+                                            {t('settings.save')}
                                         </button>
                                         <button className={style.cancelButton} onClick={handleCancelHeightEdit}>
-                                            Cancel
+                                            {t('settings.cancel')}
                                         </button>
                                     </div>
                                 ) : (
                                     <button className={style.editButton} onClick={handleEditHeight}>
-                                        Edit height
+                                        {t('settings.editHeight')}
                                     </button>
                                 )}
                             </div>
                         </div>
 
                         <div className={style.accountType}>
-                            <span>Account type: <span className={userData.type === 'premium' ? style.premiumText : ''}>{userData.type}</span></span>
+                            <span>{t('settings.accountType')}: <span className={userData.type === 'premium' ? style.premiumText : ''}>{userData.type}</span></span>
                         </div>
                     </div>
                 </div>
@@ -240,6 +243,7 @@ export default function Settings() {
                 <div className={style.card}>
                     <div className={style.actionsRow}>
                         <ModeButton />
+                        <LanguageChange />
                         <LogoutButton />
                         <DeleteButton />
                     </div>

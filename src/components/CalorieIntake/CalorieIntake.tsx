@@ -1,5 +1,6 @@
 import styles from './CalorieIntake.module.css';
 import { Zap, Lock } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface CalorieCardProps {
   current: number;
@@ -7,6 +8,7 @@ interface CalorieCardProps {
 }
 
 const CalorieIntake = ({ current, goal }: CalorieCardProps) => {
+  const { t } = useTranslation();
   const percentage = Math.min(Math.round((current / goal) * 100), 100);
   const userJson = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
   let user: any = null;
@@ -18,7 +20,7 @@ const CalorieIntake = ({ current, goal }: CalorieCardProps) => {
       <div className={`${styles.cardInner} ${isStandard ? styles.blurred : ''}`}>
         <div className={styles.header}>
           <Zap className={styles.icon} />
-          <span className={styles.title}>Calorie intake</span>
+          <span className={styles.title}>{t('calorieIntake.calorieIntake')}</span>
         </div>
 
         <div className={styles.content}>
@@ -51,7 +53,7 @@ const CalorieIntake = ({ current, goal }: CalorieCardProps) => {
         <div className={styles.lockOverlay} role="presentation">
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Lock className={styles.lockIcon} />
-            <div className={styles.lockCaption}>Premium feature</div>
+            <div className={styles.lockCaption}>{t('calorieIntake.premiumFeature')}</div>
           </div>
         </div>
       )}
