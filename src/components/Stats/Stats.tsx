@@ -1,5 +1,7 @@
+import { useTranslation } from 'react-i18next';
 import StatCard from './StatCard';
 import style from './Stats.module.css';
+
 
 interface StatsData {
     totalWorkouts: number;
@@ -12,6 +14,7 @@ interface StatsProps {
 }
 
 const Stats = ({ data }: StatsProps) => {
+    const { t } = useTranslation();
     const workoutIcon = (
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
             <path fill="currentColor" d="M16 6l2.29 2.29l-4.88 4.88l-4-4L2 16.59L3.41 18l6-6l4 4l6.3-6.29L22 12V6z" />
@@ -35,19 +38,19 @@ const Stats = ({ data }: StatsProps) => {
             <StatCard
                 icon={workoutIcon}
                 value={data.totalWorkouts}
-                label="Total Workouts"
+                label={t('workoutStats.totalWorkouts')}
                 colorClass="workoutsCard"
             />
             <StatCard
                 icon={caloriesIcon}
                 value={data.caloriesBurned.toLocaleString()}
-                label="Calories Burned"
+                label={t('workoutStats.totalCalories')}
                 colorClass="caloriesCard"
             />
             <StatCard
                 icon={daysActiveIcon}
                 value={data.daysActive}
-                label="This Week"
+                label={t('workoutStats.thisWeek')}
                 colorClass="daysActiveCard"
             />
         </div>

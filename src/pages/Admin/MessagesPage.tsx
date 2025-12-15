@@ -13,8 +13,9 @@ export default function MessagesPage() {
     async function load() {
       setLoading(true);
       try {
-        const data = await apiFetch('/api/contact');
+        const res = await apiFetch('/api/contact');
         if (!mounted) return;
+        const data = await res.json();
         setMessages(data);
       } catch (err) {
         console.error("Failed to load messages", err);

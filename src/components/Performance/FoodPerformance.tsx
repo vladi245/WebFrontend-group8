@@ -1,9 +1,10 @@
 import style from './Performance.module.css'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface FoodPerformanceData {
-    day: string; 
+    day: string;
     caloriesEaten: number;
 }
 
@@ -34,21 +35,22 @@ function getFullDayName(date: Date) {
 }
 
 const CustomTooltip = ({ active, payload, label }: any) => {
+    const { t } = useTranslation();
     if (active && payload && payload.length) {
         const dateObj = getDateForDay(label);
         const fullDay = getFullDayName(dateObj);
         const dateStr = dateObj.toLocaleDateString();
         return (
-            <div style={{ 
-                background: 'var(--graph-tooltip-background)', 
-                border: '1px solid var(--graph-tooltip-border)', 
-                borderRadius: 8, 
-                color: 'var(--graph-tooltip-text)', 
-                padding: 12 
+            <div style={{
+                background: 'var(--graph-tooltip-background)',
+                border: '1px solid var(--graph-tooltip-border)',
+                borderRadius: 8,
+                color: 'var(--graph-tooltip-text)',
+                padding: 12
             }}>
                 <div style={{ fontWeight: 600, fontSize: 16 }}>{fullDay}</div>
                 <div style={{ fontSize: 12, color: 'var(--graph-tooltip-text-secondary)' }}>{dateStr}</div>
-                <div style={{ marginTop: 8 }}>Calories: <b>{payload[0].value}</b></div>
+                <div style={{ marginTop: 8 }}>{t('performanceChart.calories')}: <b>{payload[0].value}</b></div>
             </div>
         );
     }
@@ -56,13 +58,14 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 };
 
 const FoodPerformance = ({ data }: FoodPerformanceProps) => {
+    const { t } = useTranslation();
 
     const today = new Date();
     const jsDay = today.getDay();
     const dayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const todayLabel = dayLabels[jsDay === 0 ? 6 : jsDay - 1];
 
-    
+
     const renderDot = (props: any) => {
         const { cx, cy, payload } = props;
         if (payload.day === todayLabel) {
@@ -74,8 +77,8 @@ const FoodPerformance = ({ data }: FoodPerformanceProps) => {
     return (
         <div className={style.performanceContainer}>
             <div className={style.header}>
-                <h2 className={style.title}>Nutrition Overview</h2>
-                <p className={style.subtitle}>Track your meals and calorie intake</p>
+                <h2 className={style.title}>{t('foodPerformance.nutritionOverview')}</h2>
+                <p className={style.subtitle}>{t('foodPerformance.trackMeals')}</p>
             </div>
             <div className={style.graph}>
                 <ResponsiveContainer width="100%" height="100%">
@@ -105,7 +108,7 @@ const FoodPerformance = ({ data }: FoodPerformanceProps) => {
             <div className={style.legend}>
                 <div className={style.legendItem}>
                     <div className={`${style.legendDot} ${style.legendDotGreen}`}></div>
-                    <span className={style.legendText}>Calories Consumed</span>
+                    <span className={style.legendText}>{t('foodPerformance.caloriesConsumed')}</span>
                 </div>
             </div>
         </div>

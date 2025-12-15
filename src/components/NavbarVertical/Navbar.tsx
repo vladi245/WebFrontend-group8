@@ -2,7 +2,9 @@ import style from './Navbar.module.css';
 import GetStandingLogo from '../../assets/GetStanding.png';
 import Seperator from '../ui/Seperator/Seperator';
 import { LayoutDashboard, Dumbbell, LampDesk, Settings, Utensils, GlassWater } from 'lucide-react';
+import { useTranslation } from "react-i18next";
 const Navbar = () => {
+   const { t } = useTranslation();
    const userJson = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
    let user: any = null;
    try {
@@ -12,6 +14,7 @@ const Navbar = () => {
    }
 
    const showMeals = user && user.type === 'premium';
+   const showHydration = user && user.type === 'premium';
 
    return (
       <nav className={style.navbar}>
@@ -21,37 +24,39 @@ const Navbar = () => {
             </a>
          </div>
          <Seperator variant="accent" />
-         <h3>NAVIGATION</h3>
+         <h3>{t('navbar.title')}</h3>
 
          <a href="/dashboard" className={style.navlink}>
             <LayoutDashboard className={style.icon} />
-            <span>Dashboard</span>
+            <span>{t('navbar.dashboard')}</span>
          </a>
 
          <a href="/workout" className={style.navlink}>
             <Dumbbell className={style.icon} />
-            <span>Workout</span>
+            <span>{t('navbar.workout')}</span>
          </a>
 
          {
             showMeals && (
                <a href="/meals" className={style.navlink}>
                   <Utensils className={style.icon} />
-                  <span>Meals</span>
+                  <span>{t('navbar.meals')}</span>
                </a>
             )
          }
 
          {
-            <a href="/hydration" className={style.navlink}>
-               <GlassWater className={style.icon} />
-               <span>Hydration</span>
-            </a>
+            showHydration && (
+               <a href="/hydration" className={style.navlink}>
+                  <GlassWater className={style.icon} />
+                  <span>{t('navbar.hydration')}</span>
+               </a>
+            )
          }
 
          <a href="/desk" className={style.navlink}>
             <LampDesk className={style.icon} />
-            <span>Desk Details</span>
+            <span>{t('navbar.desk')}</span>
          </a>
 
          {/* 
@@ -66,7 +71,7 @@ const Navbar = () => {
 
          <a href="/settings" className={style.navlink}>
             <Settings className={style.icon} />
-            <span>Settings</span>
+            <span>{t('navbar.settings')}</span>
          </a>
       </nav>
    );
