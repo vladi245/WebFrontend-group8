@@ -8,11 +8,17 @@ import Navbar from '../../components/NavbarVertical/Navbar';
 import Seperator
  from '../../components/ui/Seperator/Seperator';
 import Greeting from '../../components/ui/DeskText/Greetings';
+import { usePostureReminders } from '../../context/PostureReminderContext';
 export default function Desk() {
     const [currentHeight, setCurrentHeight] = useState<number>(100);
+    const { setPosture } = usePostureReminders();
 
     const handleHeightChange = (height: number) => {
         setCurrentHeight(height);
+    };
+
+    const handleModeChange = (isStanding: boolean) => {
+        setPosture(isStanding ? 'standing' : 'sitting');
     };
 
     const storedUserForGreeting = typeof window !== 'undefined' ? localStorage.getItem('user') : null;
@@ -32,7 +38,7 @@ export default function Desk() {
                 <ConnectionStatus />
                 <div className={style.subgrid}>
                     <DeskSlider initialHeight={currentHeight} />
-                    <DeskSettings onHeightChange={handleHeightChange} />
+                    <DeskSettings onHeightChange={handleHeightChange} onModeChange={handleModeChange} />
                 </div>
             </div>
 
