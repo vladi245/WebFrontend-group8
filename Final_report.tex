@@ -175,18 +175,19 @@ This section represents the functional and non-functional requirements of the Ge
 \newpage
 
 \section{Implementation}
-The implementation of GetStanding was structured to ensure modularity, scalability, and maintainability. The project was divided into two main parts: the frontend and the backend, each designed with best practices in mind to facilitate collaboration and future development.
+The implementation of GetStanding was structured to ensure modularity, scalability, and maintainability. The project was divided into four key elements: the frontend, the backend, the database and the gateway bridge setup.\\\\
+The frontend and backend were developed hand in hand to ensure compatibility and a shared vision across the team. The database is built as a relational system, keeping all data organised, consistent, and easy to manage. The gateway setup adds an extra layer of security by clearly separating the external app logic from the internal day-to-day operations used within companies. This structure ensures reliability, security, and smooth functionality for both end users, GetStanding administrators and IT departments.
 
 \subsection{Frontend}
-The frontend for GetStandind is built with React and Vite, resulting in a modular, component-based architecture. This approach made it easy to implement new ideas and quickly pivot by discarding features when necessary. Additionally, Vite’s development server with live refresh significantly improved the developer experience, allowing changes to be reflected instantly without needing to restart the application. On top of that use of Docker in later stages of the project made sure that all deployments were working on the correct versions of packages, and most importantly Node.js \\
+The frontend for GetStandind is built with React and Vite, resulting in a modular, component-based architecture. This approach made it easy to implement new ideas and quickly pivot by discarding features when necessary. Additionally, Vite’s development server with live refresh significantly improved the developer experience, allowing changes to be reflected instantly without needing to restart the application. On top of that use of Docker in later stages of the project made sure that all deployments were working on the correct versions of packages, and most importantly Node.js \\\\
 The project is split into pages stored in the folder page/ and components stored in the folder components/. The decision for this setup was to make a new page and component creation easier, where pages function as a “component of components” connected to a specific route.
 
 \subsubsection{Routing - src/App.tsx}
-Routing is handled using the react-router-dom package, with all routes managed in the App.tsx file. As mentioned earlier, this approach made it easier for the team to add new pages and routes. Additionally, it simplified the setup of a custom /404 page, ensuring lost users are redirected appropriately and do not get lost navigating the app.\\
+Routing is handled using the react-router-dom package, with all routes managed in the App.tsx file. As mentioned earlier, this approach made it easier for the team to add new pages and routes. Additionally, it simplified the setup of a custom /404 page, ensuring lost users are redirected appropriately and do not get lost navigating the app.\\\\
 Centralizing routing enabled the team to implement a ProtectedRoute component, which manages client-side access control for dashboard subpages. Each route wrapped with ProtectedRoute is accessible only after a user logs in. Furthermore, this component supports a requiredType property, allowing specification of the account type necessary to access certain pages. For example, only an admin can read messages from the contact form, while features such as Meals are available exclusively to premium users of GetStanding.
 
 \subsubsection{Routing - src/App.tsx}
-Routing is handled using the react-router-dom package, with all routes managed in the App.tsx file. As mentioned earlier, this approach made it easier for the team to add new pages and routes. Additionally, it simplified the setup of a custom /404 page, ensuring lost users are redirected appropriately and do not get lost navigating the app.\\
+Routing is handled using the react-router-dom package, with all routes managed in the App.tsx file. As mentioned earlier, this approach made it easier for the team to add new pages and routes. Additionally, it simplified the setup of a custom /404 page, ensuring lost users are redirected appropriately and do not get lost navigating the app.\\\\
 Centralizing routing enabled the team to implement a ProtectedRoute component, which manages client-side access control for dashboard subpages. Each route wrapped with ProtectedRoute is accessible only after a user logs in. Furthermore, this component supports a requiredType property, allowing specification of the account type necessary to access certain pages. For example, only an admin can read messages from the contact form, while features such as Meals are available exclusively to premium users of GetStanding.
 
 \subsubsection{services/api.ts}
@@ -208,8 +209,7 @@ In the MVC architecture, Models handle the core business logic and database inte
 Controllers act as the intermediary between the View (frontend) and the Models. They handle user input, perform validation (checking if a user exists), and manage the flow of data between the frontend and backend.
 
 \subsubsection{Authorisation - JWT}
-User authentication is managed using JWT (JSON Web Tokens). Upon login, users receive a JWT token with an expiration time of 1 hour. This token is included in every API request to the backend, where it is validated. Requests without a valid token are automatically rejected, ensuring secure access to the system.
-
+User authentication is managed using JWT (JSON Web Tokens). Upon login, users receive a JWT token with an expiration time of 1 hour. This token is included in every API request to the backend, where it is validated. Requests without a valid token are automatically rejected, ensuring secure access to the system.\\\\
 The token is generated in src/middleware/authMiddleware.js and imported into every API endpoint as authMiddleware.
 
 \subsection{Database}
