@@ -10,7 +10,9 @@
 \usepackage{hyperref}
 \usepackage{titlesec}
 \usepackage{tocloft}
-
+\usepackage{float}
+\usepackage{placeins}
+\graphicspath{{./graphs/}}
 
 % HEADER & FOOTER
 
@@ -126,6 +128,64 @@ decreased productivity. Also beck pain, shoulder stiffness, lower back pain, and
 \paragraph{}A study stated that people who predominantly sit at work have a 16 higher risk of mortality from all causes, and a 34\% higher risk of mortality from cardiovascular disease To counteract the increased risk, individuals who sit a lot at work would have to engage in an additional 15 to 30 minutes of physical activity per day to reduce their risk to that of individuals who do not predominantly sit, researchers estimated.
 \paragraph{} This project will serve as a preventive health solution, aiming to encourage the users to adopt healthier habits during their workday. GetStanding aims to track and monitor the duration of sitting and provide their standing habit insights over time. By seeing their weekly performance and tracking progress, users stay motivated and consistent. In addition to this, GetStanding encourage the user to stand up or take a break after long sitting periods. 
 
+
+
+\subsection{Scenarios}
+
+\paragraph{Scenario A: Adjusting desk height}
+
+\begin{description}
+    \item[\textbf{Actor:}] Logged-in user
+    \item[\textbf{Goal:}] Change the desk height to a comfortable level.
+    \item[\textbf{Context:}] User is on the Desk Details page.
+\end{description}
+
+\textbf{Main Flow:}
+\begin{enumerate}
+    \item The user opens the Desk Details page.
+    \item The system displays the current desk height.
+    \item The user drags the slider up or down to change the desk height.
+    \item The displayed numeric height updates in real time.
+    \item The desk moves accordingly to match the selected slider position.
+\end{enumerate}
+
+\paragraph{Scenario B: Setting Sitting and Standing Preferences}
+
+\begin{description}
+    \item[\textbf{Actor:}] Logged-in user
+    \item[\textbf{Goal:}] Configure preferred sitting and standing desk heights manually.
+    \item[\textbf{Context:}] The user is on the Desk Details page and wants to customize their position settings.
+\end{description}
+
+\textbf{Main Flow:}
+\begin{enumerate}
+    \item The user uses the toggle switch to select either "Sitting" or "Standing" mode.
+    \item Under "Preferred Sitting Height (cm) – Manual" or "Preferred Standing Height (cm) – Manual", 
+          the user presses the " + " or " - " buttons to adjust the numeric height value.
+    \item The system updates the displayed value with each button press.
+    \item The user clicks "Confirm" to save their new height setting.
+    \item A confirmation message is displayed to indicate successful saving.
+    \item The system stores the preferred sitting or standing height in the database.
+\end{enumerate}
+
+\paragraph{Scenario 3: Desk Connection }
+
+\begin{description}
+    \item[\textbf{Actor:}] Logged-in user
+    \item[\textbf{Goal:}] Understand why the desk cannot be controlled and receive clear feedback.
+    \item[\textbf{Context:}] The Desk Details page is open, but the system shows a red "Disconnected" status banner.
+\end{description}
+
+\textbf{Main Flow:}
+\begin{enumerate}
+    \item The user opens the Desk Details page.
+    \item The system attempts to connect to the desk simulator but fails.
+    \item A red banner appears displaying "Disconnected".
+    \item The user checks their network or simulator connection and refreshes the page. 
+    \item The system reconnects successfully, and displays a green "Connected" banner.
+\end{enumerate}
+
+\newpage
 \subsection{Key Challenges}
 \paragraph{} The most important challenge with this project is to get the user to follow up on their daily statistics on standing as well as to make changes to their daily behavior by providing encouragement. The process of developing new habits is based on the amount of time and effort it takes to develop new habits therefore, many users may ignore the daily stats if they are too busy or if they lack the motivation. This may decrease the effectiveness of the proposed solution. 
 \paragraph{} There are technical challenges in this project related to synchronizing data in real-time from the desk sensor, the user application, and the database. Synchronization delays or connectivity issues may prevent tracking stats from being sent, and thus decrease the overall effectiveness of the system. Addressing these challenges strategically will ensure that GetStanding effectively promotes a healthier and more productive workspace environment.
@@ -323,14 +383,101 @@ This section represents the functional and non-functional requirements of the Ge
 \newpage
 
 \section{Design}
-[Architecture, UML diagrams, system components.]
-
-\subsection{Sub-section}
+This section outlines the design of GetStanding application, focusing on the proccess of creating a software that fullfils the project requirements. During this phase the team focused on creating scenarios, use cases, prototyping and diagrams to provide better understanding of the system and how it is going to serve its purpose. Thanks to taking these steps during the design phase, there is a strong foundation for implementation.
+\subsection{Scenarios}
 [Lorem ipsum]
 
-\subsubsection{Sub-sub-section}
-[Lorem ipsum]
+\subsection{Use Cases}
+Use cases were created by the team at the start of the semester. During the brainstorming phase the team came up with functionalities that we would want GetStanding to offer. After laying out when would a use cases be considered a success, it helped with better understanding what to expect from each individual module. List of our use cases:\\\\
+\textbf{UC1 – Create Account} \\\\
+Goal: Allow a new user to create their personal account \\
+Primary actor:  New user \\
+Preconditions: \\
+The user (email) is not already in use\\ 
+Postconditions: \\
+A new account is created and stored in the system \\
+The user can log in with the new credentials\\
+Main flow: \\
+\begin{itemize}
+\item{User navigates  to the web app sign up page}
+\item{The user enters required info (name, email, password) and accepts terms and conditions}
+\item{The system validates the input}
+\item{The system creates a new account}
+\item{The system redirects the user to a log in page}\\
+\end{itemize}
+\textbf{UC2 – Log In }\\\\
+Goal: Allow a user to access their personal smart desk settings and data. \\
+Primary actor: User  \\
+Preconditions: User has an account. \\
+Postconditions: User is authenticated and sees their dashboard. \\
+Main flow: \\
+\begin{itemize}
+\item{User navigates to the web app log in page. }
+\item{User enters email and password.}
+\item{System validates credentials.}
+\item{System logs the user in and shows the dashboard.}
+\end{itemize}
+\textbf{UC3 – Adjust Desk Height From Web App} \\\\
+Goal: Let the user set the current height of the desk via the web interface. \\
+Primary actor: User \\
+Preconditions: \\
+User is logged in.\\
+A desk is connected.\\ 
+Postconditions: Desk has moved to the requested height (or is moving). \\
+Main flow: \\
+\begin{itemize}
+\item{User opens the desk control page.}
+\item{User chooses a target height (slider/ input).}
+\item{System sends the height command to the desk.}
+\item{Desk confirms the command.}
+\item{System shows the updated height/state.}
+\end{itemize}
+ 
 
+\subsection{Prototyping}
+Creating Frontend of GetStanding included two phases. During first phase each team member had 3 days to create his own prototype in Figma. When the 3 day mark passed the team decided which design they liked most and what elements they liked from other prototypes. After selecting the design the team inputed preffered elements into chosen design having the initial prototype finished. During course of developing the app, small details in the design were updated according to new project objectives.
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{prototype}\\
+	Initial prototype of GetStanding Home Page
+\end{figure}
+\subsection{Diagrams}
+\subsubsection{Sequence Diagram}
+In the sequence diagram, the whole process flow and connections between modules are displayed. The application first loads the desk page. After establishing connection with the desk, through changing the height of it either using the slider or confirming the changed height sends the information to the backend, which connects with the desk or simluator through a pico gateway and updates height to the one chosen by user.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{sequence-1}\\
+	\includegraphics[width=0.7\textwidth]{sequence-2}\\
+	\includegraphics[width=0.7\textwidth]{sequence-3}
+\end{figure}
+\subsubsection{Flowchart Diagram}
+The flowchart displays the process of User Logging in and the flow of the Dasbhoard of GetStanding. User begins at home page. If it is their first time on GetStanding he first needs to register his account and after log in otherwise he goes straight into login. Then depending on his account type he accesses either the Premium or Standard dashboard.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{flowchart}
+\end{figure}
+\subsubsection{Deployment Chart}
+As per univeristy plan for the project the team went through 3 main stages before the time for submission: Project Kickoff, Project Analysis and Project Development. During Project Kickoff the team was informed of this semesters project topic. In the Analysis phase, the team came up with the idea of GetStanding and started planning out the development plan for it. Lastly in development stage the team developed GetStanding.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{deployment}\\
+Deployment Chart of GetStanding
+\end{figure}
+
+\subsubsection{DB design}
+The Database design works as an overview of the structure of the database beofre implementation. The graph helped with implementing the database. The user and their relationship with the desk is the main point of the db. \\
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{db-design}\\
+	Database design graph
+\end{figure}
+\subsubsection{Technology and Infrastructure} 
+Backend operates using ExpressJs and connects with the PostgreSQL database,  Vite Frontend and the Gateway. GetStanding includes two gateways one is inside the provided simulator and the other was made by the team using the PicoBoard which acts as the gateway. Every request made in frontend runs through the backend that either fetches the data from the db and provides it to the frontend or passes the modified desk state to the gateway and finally to the desk changing its state.
+\begin{figure}[H] 
+	\centering 
+	\includegraphics[width=0.7\textwidth]{uml}\\
+	Technology and Infrastructure of GetStanding
+\end{figure}
 \newpage
 
 \section{Implementation}
@@ -347,7 +494,43 @@ This section represents the functional and non-functional requirements of the Ge
 \section{Validation and testing}
 This chapter outlines what type of testing was used to ensure GetStanding's stability, functionality, and positive user experience. It also explains how each type of testing contributed to the final product.
 
-\subsection{Testing Methodology}
+\subsection{MoSCoW}
+\subsection{Must Have}
+\begin{itemize}
+    \item User can log in to their own account.
+    \item User can sign up and create a new account.
+    \item User can remove their account and information from the app.
+    \item User can connect the platform to the desk.
+    \item User can control the desk height from the interface.
+    \item User can log out from their account.
+    \item User cannot access the screens of the app when logged out.
+    \item App must have multiple user types.
+\end{itemize}
+\subsection{Should Have}
+\begin{itemize}
+    \item Endpoints secured from unauthorized access.
+    \item User can change their name.
+    \item User can add and log their meals and workouts.
+    \item User can see their own standing stats.
+\end{itemize}
+\subsection{Could Have}
+\begin{itemize}
+    \item User could add friends and see their feed.
+    \item User could receive email notifications about their progress.
+    \item App could be hosted on a VPS.
+    \item User could change their email and password.
+\end{itemize}
+\subsection{Won't Have}
+\begin{itemize}
+    \item App won't have a reward system.
+    \item App won't accept payments.
+    \item App won't have a newsletter.
+\end{itemize}
+
+
+\subsection{Sub-section}
+[Lorem ipsum]
+
 
 \subsubsection{Unit Testing}
 Uni Testing is used to verify whether individual pieces of code, mainly functions and methods, work correctly when isolated, so without depending on any external systems. Ideally, unit testing should be a continuous part of the development process to fully benefit from it, as it makes finding bugs easier and in general saves time when searching for which part of the existing code broke after adding changes. For future projects, mentioned benefits will be kept in mind from the start, rather than introducing it in later stages of the development, as it was in this case.\\\\

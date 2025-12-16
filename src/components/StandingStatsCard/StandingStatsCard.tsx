@@ -9,19 +9,20 @@ import {
 } from 'recharts';
 import styles from './StandingStatsCard.module.css';
 import { LampDesk } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface StandingStatsProps {
   data: { day: string; minutes: number }[];
 }
 
 const StandingStats = ({ data }: StandingStatsProps) => {
-
+  const { t } = useTranslation();
   return (
     <div className={styles.card}>
       <div className={styles.header}>
         <div className={styles.headerLeft}>
           <LampDesk className={styles.icon} />
-          <span className={styles.title}>Standing stats</span>
+          <span className={styles.title}>{t('standingStats.title')}</span>
         </div>
       </div>
       <div className={styles.content}>

@@ -2,8 +2,11 @@ import { useState } from "react";
 import Navbar from '../../components/Navbar/Navbar'
 import styles from './AboutUs.module.css'
 import aboutImage from '../../assets/about-team.jpg'
+import { apiFetch } from '../../services/api';
+import { useTranslation } from 'react-i18next';
 
 export default function AboutUs() {
+    const { t } = useTranslation();
 
     const [formData, setFormData] = useState({
         name: "",
@@ -22,7 +25,7 @@ export default function AboutUs() {
         setStatus("Sending...");
 
         try {
-            const res = await fetch("http://localhost:5000/api/contact", {
+            const res = await apiFetch("/api/contact", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
@@ -43,12 +46,12 @@ export default function AboutUs() {
             <div className={styles['about-us-page']}>
                 <div className={styles['content-wrapper']}>
                     <div className={styles['text-content']}>
-                        <h1 className={styles['about-title']}>About Us</h1>
+                        <h1 className={styles['about-title']}>{t('about.title')}</h1>
                         <div className={styles['about-body']}>
-                            <p> As a group of Software engineering students we realised an issue with how much of our day we spend sitting. This is not good for our health, and we wanted to figure out a way to fix this.</p>
-                            <p> That's how the idea of Get Standing came to us. Its the perfect way to look out for our own wellbeing. We made a way that tracking your calorie intake, workouts and the amount of time you spend sitting more fun.</p>
-                            <p> It is also much easier for the user to track, with our visualisers in place. We also think that a little bit of competition between friends is always good, so make sure you invite your friends to see how they are doing. </p>
-                            <p> Being part of our movement also puts the user on a leaderboard where placing higher up will get you coins that you can later exchange into different rewards.</p>
+                            <p> {t('about.paragraphs.0')}</p>
+                            <p> {t('about.paragraphs.1')}</p>
+                            <p> {t('about.paragraphs.2')} </p>
+                            <p> {t('about.paragraphs.3')}</p>
                         </div>
                     </div>
                     <div className={styles['image-content']}>
@@ -59,17 +62,17 @@ export default function AboutUs() {
 
             <div className={styles['contact-section']}>
                 <h2 className={styles['contact-title']}>
-                    Get In <span className={styles['highlight']}>Touch</span>
+                    {t('contact.title1')} <span className={styles['highlight']}>{t('contact.title2')}</span>
                 </h2>
                 <p className={styles['contact-description']}>
-                    Have questions or want to learn more about Get Standing? We'd love to hear from you!
+                    {t('contact.description')}
                 </p>
-              
+
 
                 <form className={styles['contact-form']} onSubmit={handleSubmit}>
                     <input
                         name="name"
-                        placeholder="Your Name"
+                        placeholder={t('contact.yourName')}
                         value={formData.name}
                         onChange={handleChange}
                         required
@@ -77,14 +80,14 @@ export default function AboutUs() {
                     <input
                         type="email"
                         name="email"
-                        placeholder="Your Email"
+                        placeholder={t('contact.yourEmail')}
                         value={formData.email}
                         onChange={handleChange}
                         required
                     />
                     <textarea
                         name="message"
-                        placeholder="Your Message"
+                        placeholder={t('contact.yourMessage')}
                         value={formData.message}
                         onChange={handleChange}
                         rows={5}
@@ -92,13 +95,13 @@ export default function AboutUs() {
                     ></textarea>
 
                     <button type="submit" className={styles['submit-btn']}>
-                        Send Message
+                        {t('contact.sendMessage')}
                     </button>
 
                     {status && <p className={styles['status-message']}>{status}</p>}
                 </form>
             </div>
         </div>
-        
+
     );
 }

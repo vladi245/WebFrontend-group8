@@ -7,7 +7,8 @@ import { apiFetch } from '../../services/api';
 
 // Fetch users from backend
 async function fetchUsers() {
-  return await apiFetch('/admin/users');
+  const res = await apiFetch('/admin/users');
+  return await res.json();
 }
 
 export default function UsersPage() {
@@ -38,11 +39,12 @@ export default function UsersPage() {
 
   const changeType = async (id: string, newType: string) => {
     try {
-      const res = await apiFetch(`/admin/users/${id}/type`, {
+      const response = await apiFetch(`/admin/users/${id}/type`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ type: newType })
       });
+      const res = await response.json();
       if (res && res.user) {
         setUsers(prev => prev.map(u => (u.id === id ? res.user : u)));
       }

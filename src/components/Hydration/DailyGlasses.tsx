@@ -1,4 +1,5 @@
 import styles from './DailyGlasses.module.css';
+import { useTranslation } from 'react-i18next';
 
 interface DailyGlassesProps {
   current: number;
@@ -9,7 +10,6 @@ interface DailyGlassesProps {
 //glass shape based on lucide glass water icon
 const GlassIcon = ({ fillPercent, index }: { fillPercent: number; index: number }) => {
   const p = Math.max(0, Math.min(1, fillPercent));
-  
   //glass interior dimensions for fill calculation
   const glassTop = 4;
   const glassBottom = 20;
@@ -25,9 +25,9 @@ const GlassIcon = ({ fillPercent, index }: { fillPercent: number; index: number 
   const clipId = `glassClip-${index}`;
 
   return (
-    <svg 
-      viewBox="0 0 24 24" 
-      className={styles.glassSvg} 
+    <svg
+      viewBox="0 0 24 24"
+      className={styles.glassSvg}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
     >
@@ -71,13 +71,13 @@ const GlassIcon = ({ fillPercent, index }: { fillPercent: number; index: number 
       {isFull && (
         <g className={styles.checkWrap}>
           <circle cx="12" cy="12" r="5" fill="#00C851" />
-          <path 
-            d="M9 12 L11 14 L15 10" 
-            stroke="#fff" 
-            strokeWidth="1.5" 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            fill="none" 
+          <path
+            d="M9 12 L11 14 L15 10"
+            stroke="#fff"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
           />
         </g>
       )}
@@ -86,6 +86,7 @@ const GlassIcon = ({ fillPercent, index }: { fillPercent: number; index: number 
 };
 
 const DailyGlasses = ({ current, total, glassMl }: DailyGlassesProps) => {
+  const { t } = useTranslation();
   //per-glass fill percent
   const glasses = Array.from({ length: total }, (_, i) => {
     const start = i * glassMl;
@@ -100,9 +101,9 @@ const DailyGlasses = ({ current, total, glassMl }: DailyGlassesProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h3 className={styles.title}>Daily Glasses</h3>
+        <h3 className={styles.title}>{t('dailyGlasses.dailyGlasses')}</h3>
         <span className={styles.progress}>
-          {completedCount}/{total} completed ({perGlassRounded} ml each)
+          {completedCount}/{total} {t('dailyGlasses.completed')} ({perGlassRounded} ml {t('dailyGlasses.each')})
         </span>
       </div>
 
