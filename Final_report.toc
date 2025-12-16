@@ -7,31 +7,27 @@
 \contentsline {subsection}{\numberline {2.1}Development Process and Collaboration}{6}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Technology Stack}{6}{subsection.2.2}%
 \contentsline {subsubsection}{\numberline {2.2.1}Frontend}{6}{subsubsection.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2}Backend}{7}{subsubsection.2.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.3}Data Storage and Infrastructure}{7}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.2}Backend}{6}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Data Storage and Infrastructure}{6}{subsubsection.2.2.3}%
 \contentsline {subsection}{\numberline {2.3}Version Control}{7}{subsection.2.3}%
 \contentsline {section}{\numberline {3}Problem Analysis}{8}{section.3}%
 \contentsline {paragraph}{}{8}{section.3}%
 \contentsline {paragraph}{}{8}{section.3}%
 \contentsline {paragraph}{}{8}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Scenarios}{8}{subsection.3.1}%
-\contentsline {paragraph}{Scenario A: Adjusting desk height}{8}{subsection.3.1}%
-\contentsline {paragraph}{Scenario B: Setting Sitting and Standing Preferences}{8}{Item.5}%
-\contentsline {paragraph}{Scenario 3: Desk Connection }{9}{Item.11}%
-\contentsline {subsection}{\numberline {3.2}Key Challenges}{10}{subsection.3.2}%
-\contentsline {paragraph}{}{10}{subsection.3.2}%
-\contentsline {paragraph}{}{10}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Sub-sub-section}{10}{subsubsection.3.2.1}%
-\contentsline {section}{\numberline {4}Requirements}{11}{section.4}%
-\contentsline {section}{\numberline {5}Design}{12}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Sub-section}{12}{subsection.5.1}%
-\contentsline {subsubsection}{\numberline {5.1.1}Sub-sub-section}{12}{subsubsection.5.1.1}%
-\contentsline {section}{\numberline {6}Implementation}{13}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Sub-section}{13}{subsection.6.1}%
-\contentsline {subsubsection}{\numberline {6.1.1}Sub-sub-section}{13}{subsubsection.6.1.1}%
-\contentsline {section}{\numberline {7}Validation}{14}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Sub-section}{14}{subsection.7.1}%
-\contentsline {subsubsection}{\numberline {7.1.1}Sub-sub-section}{14}{subsubsection.7.1.1}%
-\contentsline {section}{\numberline {8}Conclusion}{15}{section.8}%
-\contentsline {subsection}{\numberline {8.1}Summary}{15}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}Future Work}{15}{subsection.8.2}%
+\contentsline {subsection}{\numberline {3.1}Key Challenges}{8}{subsection.3.1}%
+\contentsline {paragraph}{}{8}{subsection.3.1}%
+\contentsline {paragraph}{}{8}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Sub-sub-section}{8}{subsubsection.3.1.1}%
+\contentsline {section}{\numberline {4}Requirements}{9}{section.4}%
+\contentsline {section}{\numberline {5}Design}{10}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Sub-section}{10}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Sub-sub-section}{10}{subsubsection.5.1.1}%
+\contentsline {section}{\numberline {6}Implementation}{11}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Sub-section}{11}{subsection.6.1}%
+\contentsline {subsubsection}{\numberline {6.1.1}Sub-sub-section}{11}{subsubsection.6.1.1}%
+\contentsline {section}{\numberline {7}Validation}{12}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Sub-section}{12}{subsection.7.1}%
+\contentsline {subsubsection}{\numberline {7.1.1}Sub-sub-section}{12}{subsubsection.7.1.1}%
+\contentsline {section}{\numberline {8}Conclusion}{13}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Summary}{13}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Future Work}{13}{subsection.8.2}%
