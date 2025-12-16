@@ -20,15 +20,15 @@ interface QueuedReminder {
   tone?: 'info' | 'warning' | 'success';
 }
 
-const COOL_DOWN_MS = 45 * 60 * 1000; // one reminder maximum every 45–60 minutes
+const COOL_DOWN_MS = 1 * 60 * 1000; // one reminder maximum every 45–60 minutes
 
 const PostureReminderContext = createContext<PostureReminderContextValue | null>(null);
 
 function deriveStandingTargetMinutes(sittingMinutes: number) {
-  if (sittingMinutes >= 120) return 45;
-  if (sittingMinutes >= 90) return 30;
-  if (sittingMinutes >= 40) return 20;
-  return 15; // default gentle target for shorter sessions
+  if (sittingMinutes >= 3) return 45;
+  if (sittingMinutes >= 2) return 30;
+  if (sittingMinutes >= 1) return 20;
+  return 1; // default gentle target for shorter sessions
 }
 
 export function PostureReminderProvider({ children }: { children: ReactNode }) {
@@ -144,21 +144,21 @@ export function PostureReminderProvider({ children }: { children: ReactNode }) {
       const sittingRules: Array<{ min: number; key: ReminderKey; message: string; title: string; tone: 'info' | 'warning' }> =
         [
           {
-            min: 40,
+            min: 1,
             key: 'sitting40',
             title: 'Time to change posture',
             tone: 'info',
             message: 'You’ve been sitting for 40 minutes. When convenient, consider standing for about 20 minutes.',
           },
           {
-            min: 90,
+            min: 2,
             key: 'sitting90',
             title: 'Long sitting session',
             tone: 'warning',
             message: 'You’ve been sitting for a long period. For better balance, standing for around 30 minutes is recommended.',
           },
           {
-            min: 120,
+            min: 3,
             key: 'sitting120',
             title: 'Health reminder',
             tone: 'warning',
