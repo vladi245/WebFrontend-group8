@@ -221,6 +221,165 @@ This section represents the functional and non-functional requirements of the Ge
     \item The system shall provide clear, user-friendly error messages (in plain English).
 \end{itemize}
 
+\subsection*{Use Cases}
+\subsubsection*{UC1 - Create Account}
+
+\textbf{Goal:} Allow a new user to create their personal account.\\
+\textbf{Primary actor:} New user\\
+\textbf{Preconditions:}
+\begin{itemize}
+    \item The email address is not already in use.
+\end{itemize}
+\textbf{Postconditions:}
+\begin{itemize}
+    \item A new account is created and stored in the system.
+    \item The user can log in with the new credentials.
+\end{itemize}
+
+\textbf{Main flow:}
+\begin{enumerate}
+    \item The user navigates to the web app sign-up page.
+    \item The user enters the required information (name, email, password) and accepts the terms and conditions.
+    \item The system validates the input.
+    \item The system creates a new account.
+    \item The system redirects the user to the login page.
+\end{enumerate}
+
+
+\subsubsection*{UC2 - Log In}
+
+\textbf{Goal:} Allow a user to access their personal smart desk settings and data.\\
+\textbf{Primary actor:} User\\
+\textbf{Preconditions:}
+\begin{itemize}
+    \item The user has an account.
+\end{itemize}
+\textbf{Postconditions:}
+\begin{itemize}
+    \item The user is authenticated.
+    \item The user sees their dashboard.
+\end{itemize}
+
+\textbf{Main flow:}
+\begin{enumerate}
+    \item The user navigates to the web app login page.
+    \item The user enters their email and password.
+    \item The system validates the credentials.
+    \item The system logs the user in and shows the dashboard.
+\end{enumerate}
+
+
+\subsubsection*{UC3 - Adjust Desk Height from Web App}
+
+\textbf{Goal:} Let the user set the current height of the desk via the web interface.\\
+\textbf{Primary actor:} User\\
+\textbf{Preconditions:}
+\begin{itemize}
+    \item The user is logged in.
+    \item A desk is connected to the system.
+\end{itemize}
+\textbf{Postconditions:}
+\begin{itemize}
+    \item The desk has moved to the requested height (or is in the process of moving).
+\end{itemize}
+
+\textbf{Main flow:}
+\begin{enumerate}
+    \item The user opens the desk control page.
+    \item The user chooses a target height.
+    \item The system sends the height command to the desk.
+    \item The system shows the updated height/state.
+\end{enumerate}
+
+
+\subsubsection*{UC4 - Get Recommended Desk Heights}
+
+\textbf{Goal:} Allow the user to enter their body height so the system can calculate and display recommended desk heights for both sitting and standing.\\
+\textbf{Primary actor:} User\\
+\textbf{Preconditions:}
+\begin{itemize}
+    \item The user is logged in.
+    \item A user profile or settings page is available.
+\end{itemize}
+\textbf{Postconditions:}
+\begin{itemize}
+    \item The user’s body height is stored in their profile.
+    \item Recommended sitting and standing desk heights are calculated and shown to the user.
+\end{itemize}
+
+\textbf{Main flow:}
+\begin{enumerate}
+    \item The user opens the Settings page in the web app.
+    \item The user enters their body height.
+    \item The system validates the input (checks it is within a realistic range).
+    \item The system calculates recommended sitting and standing desk heights based on the entered body height.
+    \item The system displays the recommended heights to the user on the desk page.
+    \item The system stores the body height in the user’s profile.
+\end{enumerate}
+
+
+\subsubsection*{UC5 - View Weekly Standing Statistics}
+
+\textbf{Goal:} Allow the user to see their weekly standing statistics in a graphical form on the dashboard.
+\textbf{Primary actor:} User\\
+\textbf{Preconditions:}
+\begin{itemize}
+    \item The user is logged in.
+    \item Standing/sitting usage data has been recorded for the user.
+\end{itemize}
+\textbf{Postconditions:}
+\begin{itemize}
+    \item The user has seen a visual overview of their standing time for the current week.
+\end{itemize}
+
+\textbf{Main flow:}
+\begin{enumerate}
+    \item The user opens the dashboard page.
+    \item The system retrieves the user’s standing/sitting data for the current week.
+    \item The system displays a graph showing the weekly standing statistics.
+    \item The user reviews the graph to understand their standing behaviour for the current week.
+\end{enumerate}
+
+
+\subsubsection*{UC6 - Manage User Accounts}
+
+\textbf{Goal:} Allow an admin to view user accounts and manage their access by changing account type or deleting accounts.\\
+\textbf{Primary actor:} Admin\\
+\textbf{Preconditions:}
+\begin{itemize}
+    \item The admin is logged in with admin rights.
+    \item Users exist in the system.
+\end{itemize}
+\textbf{Postconditions:}
+\begin{itemize}
+    \item User accounts may remain unchanged, be updated (account type), or be removed, depending on the admin’s actions.
+\end{itemize}
+
+\textbf{Main flow:}
+\begin{enumerate}
+    \item The admin navigates to the admin dashboard page.
+    \item The system displays a list of users (name, email, account type) with available actions for each user:
+    \begin{itemize}
+        \item Change account type
+        \item Delete account
+    \end{itemize}
+    \item The admin searches for or filters users if needed.
+    \item The admin locates the relevant user in the list.
+    \item The admin chooses one of the actions for that user:
+    \begin{enumerate}
+        \item[5a.] \textbf{Change account type}\\
+              The admin clicks the Change account type action for the selected user.\\
+              The admin selects a new account type (standard/premium).\\
+              The system updates the account type.
+        \item[5b.] \textbf{Delete account}\\
+              The admin clicks the Delete account action for the selected user.\\
+              The system asks for confirmation.\\
+              The admin confirms and the system deletes the account.
+    \end{enumerate}
+    \item The system updates the user list to reflect the changes.
+\end{enumerate}
+
+
 \newpage
 
 \section{Design}
@@ -332,8 +491,8 @@ Backend operates using ExpressJs and connects with the PostgreSQL database,  Vit
 
 \newpage
 
-\section{Validation}
-[Test cases, results, performance analysis.]
+\section{Validation and testing}
+This chapter outlines what type of testing was used to ensure GetStanding's stability, functionality, and positive user experience. It also explains how each type of testing contributed to the final product.
 
 \subsection{MoSCoW}
 \subsection{Must Have}
@@ -372,8 +531,44 @@ Backend operates using ExpressJs and connects with the PostgreSQL database,  Vit
 \subsection{Sub-section}
 [Lorem ipsum]
 
-\subsubsection{Sub-sub-section}
-[Lorem ipsum]
+
+\subsubsection{Unit Testing}
+Uni Testing is used to verify whether individual pieces of code, mainly functions and methods, work correctly when isolated, so without depending on any external systems. Ideally, unit testing should be a continuous part of the development process to fully benefit from it, as it makes finding bugs easier and in general saves time when searching for which part of the existing code broke after adding changes. For future projects, mentioned benefits will be kept in mind from the start, rather than introducing it in later stages of the development, as it was in this case.\\\\
+In GetStanding, the backend is covered by a set of unit tests, that were executed with the use of Jest, which is a JavaScript testing framework, designed primary for React applications. The database layer is mocked, therefore the testing can focus on the web application logic and validation rules. From a more detailed perspective, the test ensure that data is read and written in a consistent way, for example when changing desk height or storing desk usage records for later statistics, Additionally, they verify that creating, updating and deleting entities behave as expected. Moreover, they also test if validation rules act appropriately when they are given invalid input, for example unrealistic user height or unfilled required fields.\\\\
+This combination of functional and validation-focused unit tests strengthens the entire backend. Despite late implementation, unit testing proved to be valuable. It gave the team more confidence and stability regarding the web application's core logic, as well as enhanced the overall quality of GetStanding.
+
+\subsubsection{Integration Testing}
+Integration tests were used in order to validate how different parts of the system work together. This means that realistic HTTP requests were sent to the backend API to check how routing, controllers, validation and authentication worked together. The testing mainly covered typical scenarios, such as registering and logging in, updating user-related data, as well as performing admin actions. Again, the database layer was mocked so that the API could be tested without depending on a specific database setup. It also helped with verifying if the system responded with appropriate status codes and messages for both expected/normal and error situations.
+
+\subsubsection{Manual Testing}
+Manual testing was carried out to ensure that GetStanding functions properly from
+a user experience angle. It was an ongoing part of the development process and was carried out regularly throughout the project, whenever new features were implemented or code was merged. This practice helped with identifying edge cases, visual inconsistencies or UI/UX problems that may not have been caught by automated testing. Additionally, observing whether graphs and statistics were updating correctly was rather relevant, since GetStanding is a tracking web application after all. Overall, manual tests contributed to a smoother and more reliable user experience.
+
+
+\subsection{Test Results and Analysis}
+This section summarizes the outcome of carried out tests. Detailed test cases and their individual outcomes are listed in the Appendix.
+\subsubsection*{Unit Tests}
+All unit tests passed successfully, ensuring the functionality of individual units.
+\subsubsection*{Integration Tests}
+All integration tests passed, ensuring end-to-end API functionality, specifically:
+\begin{itemize}
+    \item authentication and authorization
+    \item  correct HTTP status codes 
+    \item protected route enforcement
+\end{itemize}
+\subsubsection*{Manual Tests}
+Manual testing revealed:
+\begin{itemize}
+    \item Inconsistent layout across different devices (phones, tablets)
+\end{itemize}
+
+\subsubsection*{Highlights}
+\begin{itemize}
+    \item 100\% backend test completion rate 
+\end{itemize}
+
+\subsection{Conclusion}
+Testing is crucial for delivering a reliable and quality product, which was the vision for GetStanding. By combining unit and integration tests with manual testing, the team was able to make sure that GetStanding's core functionality works as intended and that it offers an intuitive and positive user experience.
 
 \newpage
 
