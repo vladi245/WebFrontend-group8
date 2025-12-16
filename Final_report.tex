@@ -426,7 +426,7 @@ The flowchart displays the process of User Logging in and the flow of the Dasbho
 \includegraphics[width=0.7\textwidth]{flowchart}
 \end{figure}
 \subsubsection{Deployment Chart - LOOK AT THIS}
-As per univeristy plan for the project the team went through 3 main stages before the time for submission: Project Kickoff, Project Analysis and Project Development. During Project Kickoff the team was informed of this semesters project topic. In the Analysis phase, the team came up with the idea of GetStanding and started planning out the development plan for it. Lastly in development stage the team developed GetStanding.
+Following the university's project structure, the team went through 3 key stages. Starting with Project Kickoff, during which the team was introduced to the semester project topic and general requirements. Followed by Project Analysis, where the concept of GetStanding was established. This phase also included, outlining core functionalities, identifying the requirements and defining key objectives. The implementation, combined with iterative improvements and refinements was carried out in the final, Project Development stage.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{deployment}\\
@@ -434,14 +434,15 @@ Deployment Chart of GetStanding
 \end{figure}
 
 \subsubsection{DB design - LOOK AT THIS}
-The Database design works as an overview of the structure of the database beofre implementation. The graph helped with implementing the database. The user and their relationship with the desk is the main point of the db. \\
+Prior to implementation, the team introduced a database design to define its structure. It served as a guiding reference during the development stage by clearly specifying main entities and their relationships. \\
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{db-design}\\
 	Database design graph
 \end{figure}
 \subsubsection{Technology and Infrastructure - LOOK AT THIS}
-Backend operates using ExpressJS and connects with the PostgreSQL database running in Docker,  React Vite based Frontend and the Gateways. GetStanding includes two gateways one is inside the provided simulator and the other was made by the team using the PicoBoard which acts as the gateway. Every request made in frontend runs through the backend that either fetches the data from the db and provides it to the frontend or passes the modified desk state to the gateway and finally to the desk changing its state.
+Backend operates using Express.js witj Node.js, and connects with a PostgreSQL database running in Docker,  As for the frontend, it is developed using React and Vite. Additionally, GetStanding includes two gateways: one included within the provided desk simulator, and a second gateway developed by the team using the PicoBoard.\\
+All frontend requests are processed by the backend. Depending on the request, the backend either retrieves data from the database and returns it to the frontend, or forwards updated desk-state information to the gateway. The gateway then communicates the change to the desk and updates its state accordingly.\\
 \begin{figure}[H] 
 	\centering 
 	\includegraphics[width=0.7\textwidth]{uml}\\
