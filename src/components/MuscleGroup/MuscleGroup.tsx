@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import style from './MuscleGroup.module.css';
 
 // Muscle groups that can be targeted
@@ -74,6 +75,7 @@ const getIntensityColor = (intensity: number): string => {
 };
 
 const MuscleGroup = ({ completedExercises = [] }: MuscleGroupProps) => {
+    const { t } = useTranslation();
     // Calculate muscle activation based on completed exercises
     const muscleActivation = useMemo(() => {
         const activation: Record<MuscleGroupName, number> = {
@@ -404,12 +406,12 @@ const MuscleGroup = ({ completedExercises = [] }: MuscleGroupProps) => {
 
     // Legend data
     const legendItems = [
-        { color: 'rgba(100, 100, 100, 0.2)', label: 'Not targeted', border: true },
-        { color: '#22c55e', label: 'Light (1x)' },
-        { color: '#84cc16', label: 'Moderate (2x)' },
-        { color: '#eab308', label: 'Active (3x)' },
-        { color: '#f97316', label: 'Intense (4x)' },
-        { color: '#ef4444', label: 'Maximum (5x+)' },
+        { color: 'rgba(100, 100, 100, 0.2)', label: t('muscleGroup.notTargeted'), border: true },
+        { color: '#22c55e', label: t('muscleGroup.light') },
+        { color: '#84cc16', label: t('muscleGroup.moderate') },
+        { color: '#eab308', label: t('muscleGroup.active') },
+        { color: '#f97316', label: t('muscleGroup.intense') },
+        { color: '#ef4444', label: t('muscleGroup.maximum') },
     ];
 
     // Active muscles summary
@@ -420,14 +422,14 @@ const MuscleGroup = ({ completedExercises = [] }: MuscleGroupProps) => {
     return (
         <div className={style.muscleGroupContainer}>
             <div className={style.header}>
-                <h2 className={style.title}>Muscle Group Targeting</h2>
-                <p className={style.subtitle}>Visual representation of muscle activation from your workout</p>
+                <h2 className={style.title}>{t('muscleGroup.title')}</h2>
+                <p className={style.subtitle}>{t('muscleGroup.subtitle')}</p>
             </div>
 
             <div className={style.diagramWrapper}>
                 {/* Front View */}
                 <div className={style.viewContainer}>
-                    <h3 className={style.viewTitle}>Front View</h3>
+                    <h3 className={style.viewTitle}>{t('muscleGroup.frontView')}</h3>
                     <svg
                         viewBox="0 0 320 600"
                         className={style.bodyDiagram}
@@ -466,7 +468,7 @@ const MuscleGroup = ({ completedExercises = [] }: MuscleGroupProps) => {
 
                 {/* Back View */}
                 <div className={style.viewContainer}>
-                    <h3 className={style.viewTitle}>Back View</h3>
+                    <h3 className={style.viewTitle}>{t('muscleGroup.backView')}</h3>
                     <svg
                         viewBox="0 0 320 600"
                         className={style.bodyDiagram}
@@ -506,7 +508,7 @@ const MuscleGroup = ({ completedExercises = [] }: MuscleGroupProps) => {
 
             {/* Legend */}
             <div className={style.legend}>
-                <h4 className={style.legendTitle}>Intensity Scale</h4>
+                <h4 className={style.legendTitle}>{t('muscleGroup.intensity')}</h4>
                 <div className={style.legendItems}>
                     {legendItems.map((item, index) => (
                         <div key={index} className={style.legendItem}>
@@ -525,7 +527,7 @@ const MuscleGroup = ({ completedExercises = [] }: MuscleGroupProps) => {
             {/* Active Muscles Summary */}
             {activeMuscles.length > 0 && (
                 <div className={style.summary}>
-                    <h4 className={style.summaryTitle}>Active Muscle Groups</h4>
+                    <h4 className={style.summaryTitle}>{t('muscleGroup.active')}</h4>
                     <div className={style.muscleChips}>
                         {activeMuscles.map(([muscle, count]) => (
                             <div
@@ -546,7 +548,7 @@ const MuscleGroup = ({ completedExercises = [] }: MuscleGroupProps) => {
 
             {activeMuscles.length === 0 && (
                 <div className={style.emptyState}>
-                    <p>Complete exercises to see your muscle activation map!</p>
+                    <p>{t('muscleGroup.complete')}</p>
                 </div>
             )}
         </div>

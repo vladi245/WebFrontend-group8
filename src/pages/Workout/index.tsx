@@ -6,6 +6,7 @@ import Exercises from '../../components/Exercises/Exercises';
 import MuscleGroup from '../../components/MuscleGroup/MuscleGroup';
 import Navbar from '../../components/NavbarVertical/Navbar';
 import { apiFetch } from '../../services/api';
+import { useTranslation } from 'react-i18next';
 
 interface StatsData {
     totalWorkouts: number;
@@ -19,6 +20,7 @@ interface PerformanceData {
 }
 
 export default function Workout() {
+    const { t } = useTranslation();
     const [statsData, setStatsData] = useState<StatsData>({
         totalWorkouts: 0,
         caloriesBurned: 0,
@@ -30,14 +32,16 @@ export default function Workout() {
     useEffect(() => {
         const fetchWorkoutData = async () => {
             try {
-                const stats = await apiFetch('/api/workouts/stats');
-                const records = await apiFetch('/api/workouts');
+                const res = await apiFetch('/api/workouts/stats');
+                const stats = await res.json();
+                const res2 = await apiFetch('/api/workouts');
+                const records = await res2.json();
                 // Map stats to StatsData
                 const daysActiveCount = (stats.daily || []).filter((d: any) => Number(d.calories ?? d.calories_burned ?? 0) > 0).length;
                 const statsDataMapped: StatsData = {
                     totalWorkouts: stats.total_workouts,
                     caloriesBurned: stats.total_calories,
-                    daysActive: `${daysActiveCount} days active`
+                    daysActive: `${daysActiveCount} ${t('daysActive')}`
                 };
 
                 // Map daily to PerformanceData with short day labels (be permissive about field names)
@@ -79,8 +83,10 @@ export default function Workout() {
             // fetch fresh data (stats + today's records)
             (async () => {
                 try {
-                    const stats = await apiFetch('/api/workouts/stats');
-                    const records = await apiFetch('/api/workouts');
+                    const res = await apiFetch('/api/workouts/stats');
+                    const stats = await res.json();
+                    const res2 = await apiFetch('/api/workouts');
+                    const records = await res2.json();
                     const daysActiveCount = (stats.daily || []).filter((d: any) => Number(d.calories ?? d.calories_burned ?? 0) > 0).length;
                     setStatsData({
                         totalWorkouts: stats.total_workouts,
@@ -115,10 +121,12 @@ export default function Workout() {
 
     const handleAddCompleted = async (workout_id: number) => {
         try {
-            const res = await apiFetch('/api/workouts', {
+            const data = await apiFetch('/api/workouts', {
                 method: 'POST',
                 body: JSON.stringify({ workout_id })
             });
+
+            const res = await data.json();
             // res contains { record, stats }
             // POST response stats
             setCompletedRecords(prev => [res.record, ...prev]);
@@ -145,7 +153,10 @@ export default function Workout() {
 
     const handleRemoveCompleted = async (record_id: number) => {
         try {
-            const res = await apiFetch(`/api/workouts/${record_id}`, { method: 'DELETE' });
+            const data = await apiFetch(`/api/workouts/${record_id}`, { method: 'DELETE' });
+            const res = await data.json();
+
+
             // update local lists
             setCompletedRecords(prev => prev.filter(r => r.record_id !== record_id));
 

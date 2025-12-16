@@ -9,12 +9,14 @@ import {
 } from 'recharts';
 import styles from './WorkoutCard.module.css';
 import { Clock4, CircleFadingPlus } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface WorkoutCardProps {
   data: { day: string; minutes: number }[];
 }
 
 const WorkoutCard = ({ data }: WorkoutCardProps) => {
+  const { t } = useTranslation();
   const averageRaw = data.length ? data.reduce((sum, d) => sum + d.minutes, 0) / data.length : 0;
   const average = Number(averageRaw.toFixed(2));
 
@@ -24,13 +26,13 @@ const WorkoutCard = ({ data }: WorkoutCardProps) => {
       <div className={styles.header}>
         <div className={styles.headerLeft}>
           <Clock4 className={styles.icon} />
-          <span className={styles.title}>Workout Duration</span>
+          <span className={styles.title}>{t('workoutCard.duration')}</span>
         </div>
       </div>
 
 
       <div className={styles.content}>
-        <div className={styles.subtitle}>Your average workout time is <div className={styles.amount}>{average} min</div></div>
+        <div className={styles.subtitle}>{t('workoutCard.average')} <div className={styles.amount}>{average} min</div></div>
 
 
         <div className={styles.chartContainer}>

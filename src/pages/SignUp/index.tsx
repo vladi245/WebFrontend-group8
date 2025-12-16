@@ -3,8 +3,10 @@ import './SignUp.css'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { apiFetch } from '../../services/api'
+import { useTranslation } from "react-i18next";
 
 export default function SignUp() {
+    const { t } = useTranslation();
     const navigate = useNavigate();
 
     const [name, setName] = useState('');
@@ -22,15 +24,15 @@ export default function SignUp() {
         e.preventDefault();
         setError('');
         if (!name || !email || !password) {
-            setError('Name, email and password are required');
+            setError(t('signupPage.errors.required'));
             return;
         }
         if (password !== repeatPassword) {
-            setError('Passwords do not match');
+            setError(t('signupPage.errors.passwordsMismatch'));
             return;
         }
         if (!termsChecked) {
-            setError('You must agree to the terms');
+            setError(t('signupPage.errors.termsRequired'));
             return;
         }
 
@@ -44,7 +46,7 @@ export default function SignUp() {
             if (data.token) localStorage.setItem('token', data.token);
             if (data.user) localStorage.setItem('user', JSON.stringify(data.user));
 
-            navigate('/dashboard');
+            navigate('/login');
         } catch (err: any) {
             console.error('Register failed', err);
             setError(err?.error || err?.message || 'Registration failed');
@@ -59,11 +61,11 @@ export default function SignUp() {
                 </div>
                 <div className="welcome-content">
                     <h1 className="welcome-heading">
-                        <span className="hey-there">Hey There!</span>
-                        <span className="welcome-back">Join Us.</span>
+                        <span className="hey-there">{t('signupPage.heyThere')}</span>
+                        <span className="welcome-back">{t('signupPage.joinUs')}</span>
                     </h1>
                     <p className="welcome-subtext">
-                        Start tracking, monitoring and earn rewards by making progress!
+                        {t('signupPage.subtext')}
                     </p>
                     {/*all icons here are from this link https://icon-sets.iconify.design/material-symbols/page-3.html?icon-filter=pers  license is apache 2 so we are good*/}
                     <div className="feature-icons">
@@ -87,16 +89,16 @@ export default function SignUp() {
                         </div>
                     </div>
                     <div className="signup-section">
-                        <p className="signup-question">Already have an account?</p>
-                        <button className="signup-button" onClick={handleLoginRedirect}>Login</button>
+                        <p className="signup-question">{t('signupPage.alreadyHaveQuestion')}</p>
+                        <button className="signup-button" onClick={handleLoginRedirect}>{t('signupPage.loginButton')}</button>
                     </div>
                 </div>
             </div>
             <div className="right-column">
                 <div className="login-content">
                     <h1 className="login-heading">
-                        <span className="login-title">Login</span>
-                        <span className="to-account">To Your Account.</span>
+                        <span className="login-title">{t('signupPage.title')}</span>
+                        <span className="to-account">{t('signupPage.toAccount')}</span>
                     </h1>
                     <form className="login-form" onSubmit={handleSubmit}>
                         <div className="input-group">
@@ -105,7 +107,7 @@ export default function SignUp() {
                             </div>
                             <input
                                 type="text"
-                                placeholder="Enter your name"
+                                placeholder={t('signupPage.placeholders.name')}
                                 className="form-input"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
@@ -117,7 +119,7 @@ export default function SignUp() {
                             </div>
                             <input
                                 type="email"
-                                placeholder="Enter your email"
+                                placeholder={t('signupPage.placeholders.email')}
                                 className="form-input"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -129,7 +131,7 @@ export default function SignUp() {
                             </div>
                             <input
                                 type="password"
-                                placeholder="Create password"
+                                placeholder={t('signupPage.placeholders.password')}
                                 className="form-input"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -145,7 +147,7 @@ export default function SignUp() {
                             </div>
                             <input
                                 type="password"
-                                placeholder="Repeat password"
+                                placeholder={t('signupPage.placeholders.repeatPassword')}
                                 className="form-input"
                                 value={repeatPassword}
                                 onChange={(e) => setRepeatPassword(e.target.value)}
@@ -164,14 +166,14 @@ export default function SignUp() {
                                 onChange={(e) => setTermsChecked(e.target.checked)}
                             />
                             <label htmlFor="terms-checkbox" className="terms-label">
-                                I agree to terms and conditions
+                                {t('signupPage.checkboxLabel')}
                             </label>
                         </div>
                         {error && <p className="error-text">{error}</p>}
-                        <button type="submit" className="login-button">Sign Up</button>
+                        <button type="submit" className="login-button">{t('signupPage.button')}</button>
                     </form>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };

@@ -2,8 +2,10 @@ import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import style from './LogoutButton.module.css';
 import { logout } from '../../services/api';
+import { useTranslation } from 'react-i18next';
 
 const LogoutButton = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
 
     const handleLogout = useCallback(() => {
@@ -14,7 +16,7 @@ const LogoutButton = () => {
     return (
         <div className={style.buttonContainer}>
             <button className={style.LogoutButton} onClick={handleLogout}>
-                Logout
+                {t('logoutButton.Logout')}
             </button>
         </div>
     );
