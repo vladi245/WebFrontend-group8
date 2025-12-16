@@ -1,33 +1,57 @@
-\contentsline {paragraph}{}{3}{Doc-Start}%
+\contentsline {paragraph}{}{2}{Doc-Start}%
 \contentsline {section}{\numberline {1}Introduction}{5}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Motivation}{5}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}Objective}{5}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Delimitation}{5}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.3}Delimitation - LOOK AT THIS}{5}{subsection.1.3}%
 \contentsline {section}{\numberline {2}Methodology}{6}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Development Process and Collaboration}{6}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Technology Stack}{6}{subsection.2.2}%
 \contentsline {subsubsection}{\numberline {2.2.1}Frontend}{6}{subsubsection.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2}Backend}{6}{subsubsection.2.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.3}Data Storage and Infrastructure}{6}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.2}Backend}{7}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Data Storage and Infrastructure}{7}{subsubsection.2.2.3}%
 \contentsline {subsection}{\numberline {2.3}Version Control}{7}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Problem Analysis}{8}{section.3}%
-\contentsline {paragraph}{}{8}{section.3}%
-\contentsline {paragraph}{}{8}{section.3}%
-\contentsline {paragraph}{}{8}{section.3}%
+\contentsline {section}{\numberline {3}Problem Analysis - LOOK AT THIS }{8}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Key Challenges}{8}{subsection.3.1}%
-\contentsline {paragraph}{}{8}{subsection.3.1}%
-\contentsline {paragraph}{}{8}{subsection.3.1}%
-\contentsline {subsubsection}{\numberline {3.1.1}Sub-sub-section}{8}{subsubsection.3.1.1}%
-\contentsline {section}{\numberline {4}Requirements}{9}{section.4}%
-\contentsline {section}{\numberline {5}Design}{10}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Sub-section}{10}{subsection.5.1}%
-\contentsline {subsubsection}{\numberline {5.1.1}Sub-sub-section}{10}{subsubsection.5.1.1}%
-\contentsline {section}{\numberline {6}Implementation}{11}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Sub-section}{11}{subsection.6.1}%
-\contentsline {subsubsection}{\numberline {6.1.1}Sub-sub-section}{11}{subsubsection.6.1.1}%
-\contentsline {section}{\numberline {7}Validation}{12}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Sub-section}{12}{subsection.7.1}%
-\contentsline {subsubsection}{\numberline {7.1.1}Sub-sub-section}{12}{subsubsection.7.1.1}%
-\contentsline {section}{\numberline {8}Conclusion}{13}{section.8}%
-\contentsline {subsection}{\numberline {8.1}Summary}{13}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}Future Work}{13}{subsection.8.2}%
+\contentsline {section}{\numberline {4}Requirements}{8}{section.4}%
+\contentsline {subsection}{\numberline {4.1}MoSCoW}{9}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Must Have}{9}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Should Have}{9}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Could Have}{9}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Won't Have}{9}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Design - LOOK AT THIS}{10}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Scenarios}{10}{subsection.5.1}%
+\contentsline {paragraph}{Scenario A: Adjusting desk height}{10}{subsection.5.1}%
+\contentsline {paragraph}{Scenario B: Setting Sitting and Standing Preferences}{11}{Item.5}%
+\contentsline {paragraph}{Scenario 3: Desk Connection }{11}{Item.11}%
+\contentsline {subsection}{\numberline {5.2}Prototyping - LOOK AT THIS}{15}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Diagrams}{16}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}Sequence Diagram - LOOK AT THIS}{16}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}Flowchart Diagram - LOOK AT THIS}{16}{subsubsection.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.3}Deployment Chart - LOOK AT THIS}{17}{subsubsection.5.3.3}%
+\contentsline {subsubsection}{\numberline {5.3.4}DB design - LOOK AT THIS}{17}{subsubsection.5.3.4}%
+\contentsline {subsubsection}{\numberline {5.3.5}Technology and Infrastructure - LOOK AT THIS}{18}{subsubsection.5.3.5}%
+\contentsline {section}{\numberline {6}Implementation}{19}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Frontend}{19}{subsection.6.1}%
+\contentsline {subsubsection}{\numberline {6.1.1}Routing - src/App.tsx}{19}{subsubsection.6.1.1}%
+\contentsline {subsubsection}{\numberline {6.1.2}services/api.ts}{20}{subsubsection.6.1.2}%
+\contentsline {subsubsection}{\numberline {6.1.3}Styling - .module.css files}{20}{subsubsection.6.1.3}%
+\contentsline {subsection}{\numberline {6.2}Backend}{20}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {6.2.1}Routes}{20}{subsubsection.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.2}Models}{20}{subsubsection.6.2.2}%
+\contentsline {subsubsection}{\numberline {6.2.3}Controllers}{20}{subsubsection.6.2.3}%
+\contentsline {subsubsection}{\numberline {6.2.4}Authorisation - JWT}{20}{subsubsection.6.2.4}%
+\contentsline {subsubsection}{\numberline {6.2.5}Authentication - LOOK AT THIS}{21}{subsubsection.6.2.5}%
+\contentsline {subsection}{\numberline {6.3}Database}{21}{subsection.6.3}%
+\contentsline {subsubsection}{\numberline {6.3.1}Functions}{21}{subsubsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.4}Network Security}{21}{subsection.6.4}%
+\contentsline {subsubsection}{\numberline {6.4.1}External Edge Gateway - Raspberry Pi Pico}{22}{subsubsection.6.4.1}%
+\contentsline {subsubsection}{\numberline {6.4.2}Internal Device Gateway - Wifi2ble Desk API}{22}{subsubsection.6.4.2}%
+\contentsline {section}{\numberline {7}Validation and testing}{23}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Unit Testing}{23}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Integration Testing}{23}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Manual Testing}{23}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Test Results and Analysis}{24}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Conclusion}{24}{subsection.7.5}%
+\contentsline {section}{\numberline {8}Conclusion}{25}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Summary}{25}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Future Work - LOOK AT THIS}{25}{subsection.8.2}%
