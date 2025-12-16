@@ -15,7 +15,6 @@
 \graphicspath{{./graphs/}}
 
 % HEADER & FOOTER
-
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{[GetStanding]}
@@ -481,15 +480,64 @@ Backend operates using ExpressJs and connects with the PostgreSQL database,  Vit
 \newpage
 
 \section{Implementation}
-[Code, algorithms, libraries used.]
+The implementation of GetStanding was structured to ensure modularity, scalability, and maintainability. The project was divided into four key elements: the frontend, the backend, the database and the gateway bridge setup.\\\\
+The frontend and backend were developed hand in hand to ensure compatibility and a shared vision across the team. The database is built as a relational system, keeping all data organised, consistent, and easy to manage. The gateway setup adds an extra layer of security by clearly separating the external app logic from the internal day-to-day operations used within companies. This structure ensures reliability, security, and smooth functionality for both end users, GetStanding administrators and IT departments.
 
-\subsection{Sub-section}
-[Lorem ipsum]
+\subsection{Frontend}
+The frontend for GetStandind is built with React and Vite, resulting in a modular, component-based architecture. This approach made it easy to implement new ideas and quickly pivot by discarding features when necessary. Additionally, Vite’s development server with live refresh significantly improved the developer experience, allowing changes to be reflected instantly without needing to restart the application. On top of that use of Docker in later stages of the project made sure that all deployments were working on the correct versions of packages, and most importantly Node.js \\\\
+The project is split into pages stored in the folder page/ and components stored in the folder components/. The decision for this setup was to make a new page and component creation easier, where pages function as a “component of components” connected to a specific route.
 
-\subsubsection{Sub-sub-section}
-[Lorem ipsum]
+\subsubsection{Routing - src/App.tsx}
+Routing is handled using the react-router-dom package, with all routes managed in the App.tsx file. As mentioned earlier, this approach made it easier for the team to add new pages and routes. Additionally, it simplified the setup of a custom /404 page, ensuring lost users are redirected appropriately and do not get lost navigating the app.\\\\
+Centralizing routing enabled the team to implement a ProtectedRoute component, which manages client-side access control for dashboard subpages. Each route wrapped with ProtectedRoute is accessible only after a user logs in. Furthermore, this component supports a requiredType property, allowing specification of the account type necessary to access certain pages. For example, only an admin can read messages from the contact form, while features such as Meals are available exclusively to premium users of GetStanding.
 
-\newpage
+\subsubsection{services/api.ts}
+During development, the team recognized the need to centralize API calls. Previously, API requests were scattered across pages and components, leading to inconsistencies, especially when system ports were occupied on different operating systems. To address this, the team created a single entry point for all API connections in services/api.ts. This file stores the backend server address, making it easier to update API endpoints and ensuring that the JWT token (stored in local storage) is automatically included with every request made from the frontend.
+
+\subsubsection{Styling - .module.css files}
+The team opted not to use CSS frameworks like Tailwind. Instead, they chose to use separate CSS files for each component and page. To avoid conflicts and maintain flexibility, CSS Modules were employed. This approach allows for repeating class names across components without unintended overrides, ensuring a clean and maintainable styling system.
+
+\subsection{Backend}
+The backend was designed around the MVC (Model-View-Controller) architecture and a RESTful API. The team initially focused on developing the frontend with mock data to better understand the system’s requirements before diving into complex business logic. 
+
+\subsubsection{Routes}
+Similar to the frontend, the backend centralises route management in the app.js file. However, instead of defining routes directly, it imports them from separate files in the routes/ folder (e.g., routes/desk.js, routes/adminRoutes.js). This modular approach improves code clarity and maintainability, especially given the backend’s higher number of routes compared to the frontend. 
+
+\subsubsection{Models}
+In the MVC architecture, Models handle the core business logic and database interactions. They define functions to query the PostgreSQL database, ensuring data integrity and consistency.
+
+\subsubsection{Controllers}
+Controllers act as the intermediary between the View (frontend) and the Models. They handle user input, perform validation (checking if a user exists), and manage the flow of data between the frontend and backend.
+
+\subsubsection{Authorisation - JWT}
+User authentication is managed using JWT (JSON Web Tokens). Upon login, users receive a JWT token with an expiration time of 1 hour. This token is included in every API request to the backend, where it is validated. Requests without a valid token are automatically rejected, ensuring secure access to the system.\\\\
+The token is generated in src/middleware/authMiddleware.js and imported into every API endpoint as authMiddleware.
+
+\subsection{Database}
+The database for GetStanding was designed as a relational database, leveraging PostgreSQL for its robustness, scalability, and flexibility of JSON document based approaches. To ensure consistency across development, testing, and production environments, the database was containerized using Docker, simplifying deployment and reducing environment-specific issues. This setup allowed the team to maintain a structured and normalized schema, optimizing data integrity and minimizing redundancy when it comes to tables.
+
+\subsubsection{Functions}
+To ensure scalability and future-proofing, the team implemented PostgreSQL functions as a core part of the database architecture. These functions are designed to encapsulate specific business logic and are called directly from the backend models. This approach not only modularizes database operations but also enhances security by allowing granular control over access permissions. Instead of granting users broad access to entire tables, the team can now restrict permissions to individual functions, minimizing the risk of unauthorized data manipulation or exposure.\\\\
+During development, this strategy provided greater control and flexibility. By abstracting complex queries and operations into reusable functions, the team reduced redundancy, improved code maintainability, and streamlined debugging. Additionally, it allowed for consistent data handling, as all interactions with the database are funneled through these predefined functions, ensuring compliance to business rules and reducing the likelihood of errors. This design ensures that the system can easily accommodate future extensions, such as adding new features or integrating third-party services, without requiring significant refactoring or altering the access levels in the database (creating 
+database users).
+
+\subsection{Network Security}
+The system architecture intentionally employs a dual-gateway design consisting of an external (semi-trusted) gateway and an internal (trusted) gateway. This approach was selected to set clear trust boundaries between externally accessible components and internal business-critical systems. By separating these responsibilities, the architecture reduces the risk of a single point of compromise affecting the entire system and supports a defence-in-depth security strategy.\\\\
+The two gateways serve distinct roles and operate in different security contexts:
+
+\begin{itemize}
+	\item Raspberry Pi Pico acts as the External Edge Gateway, interfacing with the GetStanding application.
+	\item Wifi2ble functions as the Internal Device Gateway, handling communication with smart desks within the office network.
+\end{itemize}
+
+\subsubsection{External Edge Gateway - Raspberry Pi Pico}
+The Raspberry Pi Pico was selected to handle communication between the GetStanding application, operating on an external network, and the internal system. Its role is deliberately limited to enforcing a minimal and controlled connection to the outside world. The gateway physically and logically restricts access by exposing only a narrowly defined interface and allowing only predefined data to be forwarded to internal endpoints for further validation.\\\\
+The Pico gateway reads desk height adjustment requests exclusively from a single trusted source: the backend of the GetStanding application. By limiting data intake to this specific endpoint, the system reduces exposure to external threats such as DNS hijacking or API abuse. Even in the event that the application backend is compromised, the gateway ensures that only constrained and expected data can traverse into the internal network.\\\\
+This design choice was made to reduce the blast radius of potential attacks originating from external actors. Should the Pico gateway become unavailable due to overload or a targeted attack, internal desk functionality inside the workplace remains unaffected. Employees retain the ability to operate and adjust desks locally without reliance on the external application. The team identified that the GetStanding application is an optional productivity feature, not a mission-critical component, and therefore, its failure must not disrupt the core business operations.
+
+\subsubsection{Internal Device Gateway - Wifi2ble Desk API}
+The Wifi2ble gateway operates as the internal device gateway responsible for communication with the smart desks over Wi-Fi and BLE protocols. This component is provided and maintained by the desk manufacturer and was not modified as part of this project.\\\\
+Because the wifi2ble gateway resides entirely within the trusted internal network, it is intentionally not exposed to the external environment. Restriction of outside access is enforced at the network and router level, ensuring that only pre-approved internal traffic can reach the device gateway. This separation allows the system to leverage manufacturer-provided functionality while maintaining internal network isolation and security.
 
 \section{Validation and testing}
 This chapter outlines what type of testing was used to ensure GetStanding's stability, functionality, and positive user experience. It also explains how each type of testing contributed to the final product.
