@@ -126,6 +126,64 @@ decreased productivity. Also beck pain, shoulder stiffness, lower back pain, and
 \paragraph{}A study stated that people who predominantly sit at work have a 16 higher risk of mortality from all causes, and a 34\% higher risk of mortality from cardiovascular disease To counteract the increased risk, individuals who sit a lot at work would have to engage in an additional 15 to 30 minutes of physical activity per day to reduce their risk to that of individuals who do not predominantly sit, researchers estimated.
 \paragraph{} This project will serve as a preventive health solution, aiming to encourage the users to adopt healthier habits during their workday. GetStanding aims to track and monitor the duration of sitting and provide their standing habit insights over time. By seeing their weekly performance and tracking progress, users stay motivated and consistent. In addition to this, GetStanding encourage the user to stand up or take a break after long sitting periods. 
 
+
+
+\subsection{Scenarios}
+
+\paragraph{Scenario A: Adjusting desk height}
+
+\begin{description}
+    \item[\textbf{Actor:}] Logged-in user
+    \item[\textbf{Goal:}] Change the desk height to a comfortable level.
+    \item[\textbf{Context:}] User is on the Desk Details page.
+\end{description}
+
+\textbf{Main Flow:}
+\begin{enumerate}
+    \item The user opens the Desk Details page.
+    \item The system displays the current desk height.
+    \item The user drags the slider up or down to change the desk height.
+    \item The displayed numeric height updates in real time.
+    \item The desk moves accordingly to match the selected slider position.
+\end{enumerate}
+
+\paragraph{Scenario B: Setting Sitting and Standing Preferences}
+
+\begin{description}
+    \item[\textbf{Actor:}] Logged-in user
+    \item[\textbf{Goal:}] Configure preferred sitting and standing desk heights manually.
+    \item[\textbf{Context:}] The user is on the Desk Details page and wants to customize their position settings.
+\end{description}
+
+\textbf{Main Flow:}
+\begin{enumerate}
+    \item The user uses the toggle switch to select either "Sitting" or "Standing" mode.
+    \item Under "Preferred Sitting Height (cm) – Manual" or "Preferred Standing Height (cm) – Manual", 
+          the user presses the " + " or " - " buttons to adjust the numeric height value.
+    \item The system updates the displayed value with each button press.
+    \item The user clicks "Confirm" to save their new height setting.
+    \item A confirmation message is displayed to indicate successful saving.
+    \item The system stores the preferred sitting or standing height in the database.
+\end{enumerate}
+
+\paragraph{Scenario 3: Desk Connection }
+
+\begin{description}
+    \item[\textbf{Actor:}] Logged-in user
+    \item[\textbf{Goal:}] Understand why the desk cannot be controlled and receive clear feedback.
+    \item[\textbf{Context:}] The Desk Details page is open, but the system shows a red "Disconnected" status banner.
+\end{description}
+
+\textbf{Main Flow:}
+\begin{enumerate}
+    \item The user opens the Desk Details page.
+    \item The system attempts to connect to the desk simulator but fails.
+    \item A red banner appears displaying "Disconnected".
+    \item The user checks their network or simulator connection and refreshes the page. 
+    \item The system reconnects successfully, and displays a green "Connected" banner.
+\end{enumerate}
+
+\newpage
 \subsection{Key Challenges}
 \paragraph{} The most important challenge with this project is to get the user to follow up on their daily statistics on standing as well as to make changes to their daily behavior by providing encouragement. The process of developing new habits is based on the amount of time and effort it takes to develop new habits therefore, many users may ignore the daily stats if they are too busy or if they lack the motivation. This may decrease the effectiveness of the proposed solution. 
 \paragraph{} There are technical challenges in this project related to synchronizing data in real-time from the desk sensor, the user application, and the database. Synchronization delays or connectivity issues may prevent tracking stats from being sent, and thus decrease the overall effectiveness of the system. Addressing these challenges strategically will ensure that GetStanding effectively promotes a healthier and more productive workspace environment.
