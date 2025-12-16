@@ -1,33 +1,65 @@
 \contentsline {paragraph}{}{3}{Doc-Start}%
-\contentsline {section}{\numberline {1}Introduction}{5}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Motivation}{5}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Objective}{5}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Delimitation}{5}{subsection.1.3}%
-\contentsline {section}{\numberline {2}Methodology}{6}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Development Process and Collaboration}{6}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Technology Stack}{6}{subsection.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.1}Frontend}{6}{subsubsection.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2}Backend}{6}{subsubsection.2.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.3}Data Storage and Infrastructure}{6}{subsubsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.3}Version Control}{7}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Problem Analysis}{8}{section.3}%
-\contentsline {paragraph}{}{8}{section.3}%
-\contentsline {paragraph}{}{8}{section.3}%
-\contentsline {paragraph}{}{8}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Key Challenges}{8}{subsection.3.1}%
-\contentsline {paragraph}{}{8}{subsection.3.1}%
-\contentsline {paragraph}{}{8}{subsection.3.1}%
-\contentsline {subsubsection}{\numberline {3.1.1}Sub-sub-section}{8}{subsubsection.3.1.1}%
-\contentsline {section}{\numberline {4}Requirements}{9}{section.4}%
-\contentsline {section}{\numberline {5}Design}{10}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Sub-section}{10}{subsection.5.1}%
-\contentsline {subsubsection}{\numberline {5.1.1}Sub-sub-section}{10}{subsubsection.5.1.1}%
-\contentsline {section}{\numberline {6}Implementation}{11}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Sub-section}{11}{subsection.6.1}%
-\contentsline {subsubsection}{\numberline {6.1.1}Sub-sub-section}{11}{subsubsection.6.1.1}%
-\contentsline {section}{\numberline {7}Validation}{12}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Sub-section}{12}{subsection.7.1}%
-\contentsline {subsubsection}{\numberline {7.1.1}Sub-sub-section}{12}{subsubsection.7.1.1}%
-\contentsline {section}{\numberline {8}Conclusion}{13}{section.8}%
-\contentsline {subsection}{\numberline {8.1}Summary}{13}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}Future Work}{13}{subsection.8.2}%
+\contentsline {section}{\numberline {1}Introduction}{6}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Motivation}{6}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Objective}{6}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Delimitation}{6}{subsection.1.3}%
+\contentsline {section}{\numberline {2}Methodology}{7}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Development Process and Collaboration}{7}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Technology Stack}{7}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Frontend}{7}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Backend}{8}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Data Storage and Infrastructure}{8}{subsubsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.3}Version Control}{8}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Problem Analysis}{9}{section.3}%
+\contentsline {paragraph}{}{9}{section.3}%
+\contentsline {paragraph}{}{9}{section.3}%
+\contentsline {paragraph}{}{9}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Scenarios}{9}{subsection.3.1}%
+\contentsline {paragraph}{Scenario A: Adjusting desk height}{9}{subsection.3.1}%
+\contentsline {paragraph}{Scenario B: Setting Sitting and Standing Preferences}{9}{Item.5}%
+\contentsline {paragraph}{Scenario 3: Desk Connection }{10}{Item.11}%
+\contentsline {subsection}{\numberline {3.2}Key Challenges}{11}{subsection.3.2}%
+\contentsline {paragraph}{}{11}{subsection.3.2}%
+\contentsline {paragraph}{}{11}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Sub-sub-section}{11}{subsubsection.3.2.1}%
+\contentsline {section}{\numberline {4}Requirements}{12}{section.4}%
+\contentsline {section}{\numberline {5}Design}{17}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Scenarios}{17}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Use Cases}{17}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Prototyping}{18}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Diagrams}{19}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}Sequence Diagram}{19}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}Flowchart Diagram}{20}{subsubsection.5.4.2}%
+\contentsline {subsubsection}{\numberline {5.4.3}Deployment Chart}{20}{subsubsection.5.4.3}%
+\contentsline {subsubsection}{\numberline {5.4.4}DB design}{21}{subsubsection.5.4.4}%
+\contentsline {subsubsection}{\numberline {5.4.5}Technology and Infrastructure}{21}{subsubsection.5.4.5}%
+\contentsline {section}{\numberline {6}Implementation}{23}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Frontend}{23}{subsection.6.1}%
+\contentsline {subsubsection}{\numberline {6.1.1}Routing - src/App.tsx}{23}{subsubsection.6.1.1}%
+\contentsline {subsubsection}{\numberline {6.1.2}services/api.ts}{24}{subsubsection.6.1.2}%
+\contentsline {subsubsection}{\numberline {6.1.3}Styling - .module.css files}{24}{subsubsection.6.1.3}%
+\contentsline {subsection}{\numberline {6.2}Backend}{24}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {6.2.1}Routes}{24}{subsubsection.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.2}Models}{24}{subsubsection.6.2.2}%
+\contentsline {subsubsection}{\numberline {6.2.3}Controllers}{24}{subsubsection.6.2.3}%
+\contentsline {subsubsection}{\numberline {6.2.4}Authorisation - JWT}{24}{subsubsection.6.2.4}%
+\contentsline {subsection}{\numberline {6.3}Database}{25}{subsection.6.3}%
+\contentsline {subsubsection}{\numberline {6.3.1}Functions}{25}{subsubsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.4}Network Security}{25}{subsection.6.4}%
+\contentsline {subsubsection}{\numberline {6.4.1}External Edge Gateway - Raspberry Pi Pico}{26}{subsubsection.6.4.1}%
+\contentsline {subsubsection}{\numberline {6.4.2}Internal Device Gateway - Wifi2ble Desk API}{26}{subsubsection.6.4.2}%
+\contentsline {section}{\numberline {7}Validation and testing}{26}{section.7}%
+\contentsline {subsection}{\numberline {7.1}MoSCoW}{27}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Must Have}{27}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Should Have}{27}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Could Have}{27}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Won't Have}{27}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}Sub-section}{27}{subsection.7.6}%
+\contentsline {subsubsection}{\numberline {7.6.1}Unit Testing}{28}{subsubsection.7.6.1}%
+\contentsline {subsubsection}{\numberline {7.6.2}Integration Testing}{28}{subsubsection.7.6.2}%
+\contentsline {subsubsection}{\numberline {7.6.3}Manual Testing}{28}{subsubsection.7.6.3}%
+\contentsline {subsection}{\numberline {7.7}Test Results and Analysis}{29}{subsection.7.7}%
+\contentsline {subsection}{\numberline {7.8}Conclusion}{29}{subsection.7.8}%
+\contentsline {section}{\numberline {8}Conclusion}{30}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Summary}{30}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Future Work}{30}{subsection.8.2}%
