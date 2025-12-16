@@ -26,25 +26,34 @@
 
 % TITLE PAGE CONTENT 
 
+
 \begin{center}
-    {\Large \textbf{Semester Project 3 - 2025}} \\[1cm]
-    {\Huge \textbf{[GetStanding]}} \\[1cm]
-    {\Large [Group 8 - Device Name]} \\[1cm]
+    \begin{center}
+    {\Large \textbf{Semester Project 3 - 2025}}\\[2cm]
 
+    {\Huge \textbf{GetStanding}}\\[0.5em]
+    {\Large Smart Desk Control System}\\[1em]
 
+    {\large Semester Project: Distributed Software Systems with Embeded Elements (E25)}\\[0.5em]
+    {\large (SE3-PRO Internal Course Code/T630011401 Course ID)}\\[0.5em]
+    {\large University of Southern Denmark, The Faculty of Engineering, Sønderborg Campus}\\[0.5em]
+    {\large Semester 3, September - December 2025}\\[0.5em]
+    {\large BSc in Engineering (Software Engineering) - Sønderborg}\\[1.5em]
 
-    \textbf{Authors:}\\[0.5cm]
-Piotr Szczesny –piszc24@student.sdu.dk \\
- Vlad-Alexandru Ionita -vlion24@student.sdu.dk \\ 
-Karolina Malik -kamal24@student.sdu.dk \\ 
-Bartosz Bobkiewicz -babob24@student.sdu.dk \\ 
-Viktor Barabás -vibar24@student.sdu.dk \\ 
-Azra Talum -aztal24@student.sdu.dk\\[0.5cm]
-
-    \textbf{Supervisor:} 
+    {\Large \textbf{Group 8}}\\[1cm]
 \end{center}
 
-\newpage
+    \textbf{Authors:}\\[0.5cm]
+Piotr Szczesny – piszc24@student.sdu.dk \\
+Vlad-Alexandru Ionita - vlion24@student.sdu.dk \\ 
+Karolina Malik - kamal24@student.sdu.dk \\ 
+Bartosz Bobkiewicz - babob24@student.sdu.dk \\ 
+Viktor Barabás - vibar24@student.sdu.dk \\ 
+Azra Talum - aztal24@student.sdu.dk\\[0.5cm]
+
+    \textbf{Supervisor:} \\[0.5em]
+    Aleksandra Kril - alkri23@student.sdu.dk
+\end{center}
 
 
 
@@ -56,7 +65,9 @@ Adjustable desks have become an important part of modern workplaces by reducing 
 % ABSTRACT
 
 \section*{Abstract}
-\paragraph{} GetStanding addresses the growing need for healthier work environments by integrating reliable technology into adjustable desk systems provided by LINAK. The primary objective is to improve the functionality and user experience of adjustable desks through a web-based application. (WAITING FOR THE OTHER SECTIONS)
+In office environment, while spending most of the days in front of a computer and a desk people tend to forget about crucial breaks for their health. GetStanding addresses the growing need for healthier work environments by integrating reliable technology into adjustable desk systems provided by LINAK. 
+The application allows users to input their body height which used to calculate recommended sitting and standing desk height. Another key feature is ability to control and monitor a adjustable desk by communicating with the desk API. 
+It is done by connecting to the API attached to the desk and sending the HTTP requests to modify the position of the desk. The project was created a using modern tech stack, with a React based frontend, while the backend was implemented using Node.js and includes the integration of a Raspberry Pi Pico board as an external edge gateway.
 
 \newpage
 
@@ -79,9 +90,8 @@ Prolonged sitting can harm both wellbeing and productivity, yet people often for
 \subsection{Objective}
 The team's objective is to help people keep track of their habits. The way we do this is through GetStanding, an application that presents user given data in a clear, easy to understand, and intuitive format. Habits like workouts, time spent standing, and meals get tracked on graphs on a weekly basis.  Having the options for a user to select their own height and based on that, through an algorithm, GetStanding gives a recommended standing and sitting height. One of the most important objective for us was to get this done through one application. GetStanding, unlike other fitness tracking applications, also has the capability to connect to a sit and stand desk, to track the user's time spent standing or sitting. Another goal was to make a way for users to keep track of each other through a friends activity feature. This would ensure that a user would return to GetStanding on regular basis. And lastly, getting rewarded for keeping good habits, such as spending a certain amount of time standing, is also a good incentive. 
 
-\subsection{Delimitation - LOOK AT THIS}
-Most of our problems the team encountered were related to the time limitation. Previously planned features, such as a friends page and rewards, ended up not being implemented due to limited the time capacity to implement them.  As for the application itself, a limiting factor can be if the user is not constantly keeping track of their workouts, water and food consumption. In this case, the charts will not be able to present the improvement in their habits.
-
+\subsection{Delimitation}
+The problems encoured by the team during the project were mainly related to the time limitations. Initially the group wanted to add additional features, such as a friends page and rewards, but have decided that we do not have the time capacity to implement them. The team had to prioritize certain tasks within the system that needed more attention and were more important when it comes to the better outcome of the product. As for the application itself, the application requires user to keeping track of their workouts, water and food consumption. In this case, when the data is inconsistent or missing, visualizations and the graphs may not accurately show user's improvement over time.
 \newpage
 
 
@@ -99,15 +109,14 @@ By combining this gradual way of delivering the application with continuous inte
 \subsection{Technology Stack}
 
 \subsubsection{Frontend}
-
 For developing the frontend the team used React with Vite. Keeping the web application consistent across different pages was of great importance, therefore React, which is characterized by its component-based approach aligned with the teams vision. It made creating reusable user interface components possible, which made the development process easier by keeping the code clearer, easier to maintain and avoiding code repetition. Choosing Vite enabled the team to work in  a fast development environment with it's live development server, which provides feedback once the changes happen.\\
 Prior to writing any code, a design was vital, thus Figma was the starting point of every UI element. The process of designing took place inside a shared workspace, making it able for each team member to stay updated with each others' progress and potentially inspire new ideas within the team.
 \subsubsection{Backend}
-
 The backend was implemented using Node.js with Express.js. This set up was selected due to its simplicity and suitability for developing RESTful APIs. Additionally it is well-established in the field, offers a broad set of libraries and comes with wide community-support.
 
-\subsubsection{Data Storage and Infrastructure - LOOK AT THIS}
-For containerization purposes the team used Docker. It helped with keeping the environment consistent across different devices and reduced configuration problems. Most of the team had previous experience with mentioned tools from the last semester's project, therefore reusing them was a logical choice, that allowed the team members to build on prior experience.\\\\
+\subsubsection{Data Storage and Infrastructure}
+As the database management system, PostgreSQL is chosen due to being known for its reliability, flexibility, and support for relational data types. This allowed the safe storage and scaling of data using SQL skills gained through the Data Management course.\\\\
+For containerization purposes the team used Docker. It helped with keeping the environment consistent across different devices and reduced configuration problems. Most of the members had previous experience with mentioned tools, therefore reusing them was a logical choice, that allowed the team members to refine their skills with this popular development tool.\\\\
 One of the core requirements for this project was the integration of a Raspberry Pi Pico W board. The team was introduced to it during the Programming for Hardware Constrained Environments course, thus its use in the project provided an opportunity to apply the concepts learned there.
 
 \subsection{Version Control}
@@ -189,8 +198,9 @@ This section represents the functional and non-functional requirements of the Ge
 
 
 
-\section{Design - LOOK AT THIS}
-This section outlines the design of GetStanding application, focusing on the proccess of creating a software that fullfils the project requirements. During this phase the team focused on creating scenarios, use cases, prototyping and diagrams to provide better understanding of the system and how it is going to serve its purpose. Thanks to taking these steps during the design phase, there is a strong foundation for implementation.
+\section{Design}
+This section outlines the design of GetStanding application, outlining the process of creating a software that fullfils the project requirements. This phase involved team efforts focused on defining system behaviour through scenarios and use cases, establishing user-interface design via prototyping and establishing the architecture and  timeline through diffrent diagrams. Taking those steps has established a well-documented foundation for implementation and development of the system. \\\\
+
 \subsection{Scenarios}
 
 \paragraph{Scenario A: Adjusting desk height}
@@ -403,24 +413,31 @@ This section outlines the design of GetStanding application, focusing on the pro
     \item The system updates the user list to reflect the changes.
 \end{enumerate}
 
-\subsection{Prototyping  - LOOK AT THIS}
-Creating Frontend of GetStanding included two phases. During first phase each team member had 3 days to create his own prototype in Figma. When the 3 day mark passed the team decided which design they liked most and what elements they liked from other prototypes. After selecting the design the team inputed preffered elements into chosen design having the initial prototype finished. During course of developing the app, small details in the design were updated according to new project objectives.
+\subsection{Prototyping}
+The development of the frontend involved a two-phase prototyping process. During the initial phase, team members created prototypes using Figma within a three day period. Following that deadline, the team reviewed them and selected the favored design while identifying desirable elements from the alternative prototypes. These preferred elements were then integrated into the chosen design. Throughout the development process, minor details of the design were updateded and refined to align with project objectives.\\\\ 
+
 \begin{figure} [H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{prototype}\\
-	Initial prototype of GetStanding Home Page
+	\includegraphics[width=0.32\textwidth]{prototype}
+	\hfill
+	\includegraphics[width=0.32\textwidth]{bartekdesign}
+	\hfill
+	\includegraphics[width=0.32\textwidth]{piotrdesign}
+	\caption{Initial proposed prototypes}
 \end{figure}
 \subsection{Diagrams}
-\subsubsection{Sequence Diagram - LOOK AT THIS}
-In the sequence diagram, the whole process flow and connections between modules are displayed. The application first loads the desk page. After establishing connection with the desk, through changing the height of it either using the slider or confirming the changed height sends the information to the backend, which connects with the desk or simluator through a pico gateway and updates height to the one chosen by user.
+\subsubsection{Sequence Diagram}
+The sequence diagram provides a illustration of the system's flow and the interaction between its core modules. It details the process of adjusting the height of the desk. The proccess initiates when the application loads the desk page. Upon accomplishing a connection with the physical desk or the simulator, user actions such as dragging the height slider or setting their specific height preference trigger a request. This request is delivered to the backend which subsequently communicates with the desk or simulator using the dedicated Pico Gateway. This process results in the physical update of the desk's height to the value specified by the user.\\\\
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{sequence-1}\\
 	\includegraphics[width=0.7\textwidth]{sequence-2}\\
 	\includegraphics[width=0.7\textwidth]{sequence-3}
 \end{figure}
-\subsubsection{Flowchart Diagram - LOOK AT THIS}
-The flowchart displays the process of User Logging in and the flow of the Dasbhoard of GetStanding. User begins at home page. If it is their first time on GetStanding he first needs to register his account and after log in otherwise he goes straight into login. Then depending on his account type he accesses either the Premium or Standard dashboard.
+\subsubsection{Flowchart Diagram}
+The flowchart visually represents the process of user loging in and  the subsequent flow within the GetStanding Dashboard. The user's journey begins at the home page. If the user is new to the application then they are first required to register an account before procceding to log in, while existing users navigate directly to log in process. Upon succesful authentication the system directs the user to the appropriate dashboard either Premium or Standard based on their assigned account type. \\\\
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{flowchart}
@@ -481,11 +498,12 @@ In the MVC architecture, Models handle the core business logic and database inte
 Controllers act as the intermediary between the View (frontend) and the Models. They handle user input, perform validation (checking if a user exists), and manage the flow of data between the frontend and backend.
 
 \subsubsection{Authorisation - JWT}
-User authorisation is managed using JWT (JSON Web Tokens). Upon login, users receive a JWT token with an expiration time of 1 hour. This token is included in every API request to the backend, where it is validated. Requests without a valid token are automatically rejected, ensuring secure access to the system.\\\\
-The token is generated in src/middleware/authMiddleware.js and imported into every API endpoint as authMiddleware.
+User authorisation is managed using JWT (JSON Web Tokens) and permissions are set based on users account type. Upon login, users receive a JWT token with an expiration time of 1 hour. This token is included in every API request to the backend, where it is validated and correct data is sent back. Requests without a valid token are automatically rejected, ensuring secure access to the system.\\\\
+The token is checked using src/middleware/authMiddleware.js and imported into every API endpoint as authMiddleware.
 
-\subsubsection{Authentication - LOOK AT THIS}
-User login and signup is managed using
+\subsubsection{Authentication}
+User authentication is handled in controllers/authController.js. The login method verifies credentials by checking the submitted email against the database and comparing the submitted password hash with the stored hashed password. If both match, the user is authenticated and granted access to the GetStanding app.
+The register method follows a similar principle but focuses on creating a new user account instead of validating an existing one.
 
 \subsection{Database}
 The database for GetStanding was designed as a relational database, leveraging PostgreSQL for its robustness, scalability, and flexibility over JSON document based approaches. To ensure consistency across development, testing, and production environments, the database was containerized using Docker, simplifying deployment and reducing environment-specific issues. This setup allowed the team to maintain a structured and normalized schema, optimizing data integrity and minimizing redundancy when it comes to tables.
@@ -563,8 +581,9 @@ GetStanding was developed as a semester project in collaboration with LINAK, bas
 \subsection{Summary}
 Overall, it can be said that the outcome of the project was a success. GetStanding has provided us with valuable experince both in technical and teamwork scenarios. This will be a good foundation to build on in the future.
 
-\subsection{Future Work  - LOOK AT THIS}
-As for future improvements, functionalities that not have been added would be great improvements. For example the friends page,notifications or even a rewards system. These functions specifically would be really good to retain users for the website. As for the team, working on making things happen on time should be the first priority. Having better communication could be the key to this, so in the next semester this should be something everyone aims for.
+\subsection{Future Improvements}
+The team has designed GetStanding with extensibility in mind, ensuring the application can easily allow for future enhancements. For example, the friends system, initially planned but canceled due to time constraints, could be revisited and implemented. Another key improvement could involve enhancing database security by securing individual PostgreSQL functions (which were already implemented with this goal in mind) instead of relying on a single database account.\\\\
+In terms of teamwork and workflow, the team made significant progress in communication and workload distribution compared to the previous semester. However, there is still room for improvement in punctuality and setting and realising deadlines. Additionally, following to consistent commit and branch naming conventions would further streamline version control and collaboration.
 
 \newpage
 
