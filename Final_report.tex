@@ -51,10 +51,7 @@ Azra Talum -aztal24@student.sdu.dk\\[0.5cm]
 % SHORT HISTORY
 
 \section*{Short History}
-Adjustable desks have become an important part of modern workplaces by reducing the negative effects of sitting too long and increasing the general health and productivity of employees. Many design trends have changed the office environment over the years but recently integrating smart technologies such as IoT have become more popular. By connecting IoT technology with a smart desk, user can enjoy the convenience of pushing a button to achieve better ergonomics, health, and well-being while working at your desk. Our project, in collaboration with LINAK focuses on making the workspace smarter,healtier, and more productive. 
-
-\newpage
-
+Adjustable desks have become an important part of modern workplaces by reducing the negative effects of sitting too long and increasing the general health and productivity of employees. Many design trends have changed the office environment over the years but recently integrating smart technologies such as IoT have become more popular. By connecting IoT technology with a smart desk, user can enjoy the convenience of pushing a button to achieve better ergonomics, health, and well-being while working at their desk. The project, in collaboration with LINAK focuses on making the workspace smarter, healtier, and more productive. 
 
 % ABSTRACT
 
@@ -80,10 +77,10 @@ GetStanding is a web based application developed as part of a university course 
 Prolonged sitting can harm both wellbeing and productivity, yet people often forget to stand, stretch, or take short breaks throughout the day. Additionally, the lack of integration between work routines and fitness apps makes it difficult to accurately track and assess physical activity, limiting the ability to maintain a healthy, active lifestyle.
 
 \subsection{Objective}
-Our objective is to help people keep track of their habits. The way we do this is through GetStanding, an application that presents user given data in a clear, easy to understand, and intuitive format. Habits like workouts, time spent standing, and meals get tracked on graphs on a weekly basis.  Having the options for a user to select their own height and based on that, through an algorithm, GetStanding gives a recommended standing and sitting height. One of the most important objective for us was to get this done through one application. GetStanding, unlike other fitness tracking applications, also has the capability to connect to a sit and stand desk, to track the user's time spent standing or sitting. Another objective was to make a way for users to keep track of each other through a friends activity feature. This would ensure that a user would return to GetStanding. And lastly, getting rewarded for keeping good habits, such as spending a certain amount of time standing, is also a good incentive. 
+The team's objective is to help people keep track of their habits. The way we do this is through GetStanding, an application that presents user given data in a clear, easy to understand, and intuitive format. Habits like workouts, time spent standing, and meals get tracked on graphs on a weekly basis.  Having the options for a user to select their own height and based on that, through an algorithm, GetStanding gives a recommended standing and sitting height. One of the most important objective for us was to get this done through one application. GetStanding, unlike other fitness tracking applications, also has the capability to connect to a sit and stand desk, to track the user's time spent standing or sitting. Another goal was to make a way for users to keep track of each other through a friends activity feature. This would ensure that a user would return to GetStanding on regular basis. And lastly, getting rewarded for keeping good habits, such as spending a certain amount of time standing, is also a good incentive. 
 
-\subsection{Delimitation}
-Most of our problems were related to the time limitations we had. We wanted to add other features, such as a friends page and rewards, but have decided that we do not have the time capacity to implement them. Our planning was also not always the best, and because of this, some tasks ended up being delayed, making it harder to move forward with the project as a whole. As for the application itself, a limiting factor can be if the user is not constantly keeping track of their workouts, water and food consumption. In this case, the charts will not be able to present the improvement in their habits.
+\subsection{Delimitation - LOOK AT THIS}
+Most of our problems the team encountered were related to the time limitation. Previously planned features, such as a friends page and rewards, ended up not being implemented due to limited the time capacity to implement them.  As for the application itself, a limiting factor can be if the user is not constantly keeping track of their workouts, water and food consumption. In this case, the charts will not be able to present the improvement in their habits.
 
 \newpage
 
@@ -92,7 +89,8 @@ Most of our problems were related to the time limitations we had. We wanted to a
 \section{Methodology}
 
 \subsection{Development Process and Collaboration}
-Based on the knowledge the team has gained from as early as the first semester of software engineering studies and the hands-on experience from previous projects, following an Agile methodology, Scrum to be specific, was the obvious choice.\\\\
+The team based on combined experience from previous projects and other courses, has decided to follow an Agile methodology during the development of GetStanding.
+\\\\
 The development process was split into two-week sprints, with Jira used as a tool for organization and keeping all team members on track. To ensure smooth development, each sprint had clear objectives that were decided during sprint planning meetings. Throughout those sessions, the backlog was populated with work items, which were assigned to adequate epics and split between team members.\\
 During those two weeks the team combined online communication with in-person meetings, which frequency varied based on current needs. \\
 After each sprint finished, sprint review sessions were held. During those meetings the team could reflect on the progress that was made. They were essential for understanding how much workload is realistic to complete in the span of two weeks, which was crucial for improving upcoming development and avoiding setting unrealistic expectations.\\\\
@@ -102,33 +100,97 @@ By combining this gradual way of delivering the application with continuous inte
 
 \subsubsection{Frontend}
 
-For developing the frontend the team used React with Vite. Keeping the web application consistent across different pages was of great importance, therefore React, which is characterized by its component-based approach aligned with the teams vision. It made creating reusable user interface components possible, which made the development process easier by keeping the code clearer, easier to maintain and avoiding code repetition. Due to choosing Vite, the team was able to work in a fast development environment, since it provided quick feedback.\\
-Prior to writing any code, a design was vital, thus Figma was the starting point of every frontend element. The team used a shared folder for all the designs, which also played an important role. Because the team members could see each others' designs, the application achieved a cohesive look, despite having six developers working on it.
+For developing the frontend the team used React with Vite. Keeping the web application consistent across different pages was of great importance, therefore React, which is characterized by its component-based approach aligned with the teams vision. It made creating reusable user interface components possible, which made the development process easier by keeping the code clearer, easier to maintain and avoiding code repetition. Choosing Vite enabled the team to work in  a fast development environment with it's live development server, which provides feedback once the changes happen.\\
+Prior to writing any code, a design was vital, thus Figma was the starting point of every UI element. The process of designing took place inside a shared workspace, making it able for each team member to stay updated with each others' progress and potentially inspire new ideas within the team.
 \subsubsection{Backend}
 
 The backend was implemented using Node.js with Express.js. This set up was selected due to its simplicity and suitability for developing RESTful APIs. Additionally it is well-established in the field, offers a broad set of libraries and comes with wide community-support.
 
-\subsubsection{Data Storage and Infrastructure}
--postgresgl\\
+\subsubsection{Data Storage and Infrastructure - LOOK AT THIS}
 For containerization purposes the team used Docker. It helped with keeping the environment consistent across different devices and reduced configuration problems. Most of the team had previous experience with mentioned tools from the last semester's project, therefore reusing them was a logical choice, that allowed the team members to build on prior experience.\\\\
-One of the core requirements for this project was the integration of a Raspberry Pi Pico W board. The team was introduced to it during the Programming for Hardware Constrained Environments course, thus its use in the project provided an opportunity to apply the concepts learned there. Even though the Pico was not strictly required for the main idea of GetStanding to work, it was included to demonstrate how a small device can become a part of something bigger, in this case a larger system, and still play a meaningful role.
+One of the core requirements for this project was the integration of a Raspberry Pi Pico W board. The team was introduced to it during the Programming for Hardware Constrained Environments course, thus its use in the project provided an opportunity to apply the concepts learned there.
 
 \subsection{Version Control}
-Git and GitHub were the tools used throughout the whole development of GetStanding. To keep the codebase stable, work was carried out in separate branches rather than the main branch. In order to make the review process more manageable the team tried to stick to suitable and clear naming habits, that includes branches, commits, pull requests. GitHub was not only used to store code, but also as a way of receiving feedback. Each pull request was reviewed by at least one other member and comments were left if necessary. Also, the reviewing focused not only on whether the code was working, but also examined it from a maintainability and readability perspective.\\
+Git and GitHub were the tools used throughout the whole development of GetStanding. To keep the codebase stable, work was carried out in separate branches rather than the main branch. In order to make the review process more manageable the team tried to stick to suitable and clear naming habits, that includes branches, commits, pull requests. Each pull request was reviewed by at least one other member and comments were left if necessary. Also, the reviewing focused not only on whether the code was working, but also examined it from a maintainability and readability perspective.\\
 Collaborating this way and mutual support improved the team's spirit and contributed to the growth as developers.\\\\
 Overall, the selected way of working, tools, and technologies, combined with the experience from previous semesters and the new knowledge acquired this term, is what made designing and implementing GetStanding possible.
 
 
 \newpage
 
-\section{Problem Analysis}
-\paragraph{} Many studies have demonstrated that prolonged sedentary behavior increases health risks such as obesity, cardiovascular diseases as well as
-decreased productivity. Also beck pain, shoulder stiffness, lower back pain, and mental health issues have also been noted as common reasons for decreased work performance. 
-\paragraph{}A study stated that people who predominantly sit at work have a 16 higher risk of mortality from all causes, and a 34\% higher risk of mortality from cardiovascular disease To counteract the increased risk, individuals who sit a lot at work would have to engage in an additional 15 to 30 minutes of physical activity per day to reduce their risk to that of individuals who do not predominantly sit, researchers estimated.
-\paragraph{} This project will serve as a preventive health solution, aiming to encourage the users to adopt healthier habits during their workday. GetStanding aims to track and monitor the duration of sitting and provide their standing habit insights over time. By seeing their weekly performance and tracking progress, users stay motivated and consistent. In addition to this, GetStanding encourage the user to stand up or take a break after long sitting periods. 
+\section{Problem Analysis - LOOK AT THIS }
+Many studies have demonstrated that prolonged sedentary behavior increases health risks such as obesity, cardiovascular diseases as well as
+decreased productivity. Also back pain, shoulder stiffness, lower back pain, and mental health issues have also been noted as common reasons for decreased work performance. \\\\
+A study stated that people who predominantly sit at work have a 16 higher risk of mortality from all causes, and a 34\% higher risk of mortality from cardiovascular disease To counteract the increased risk, individuals who sit a lot at work would have to engage in an additional 15 to 30 minutes of physical activity per day to reduce their risk to that of individuals who do not predominantly sit, researchers estimated.\\\\
+This project serves as a preventive health solution, aiming to encourage the users to adopt healthier habits during their workday. GetStanding aims to track and monitor the duration of sitting and provide their standing habit insights over time. By seeing their weekly performance and tracking progress, users stay motivated and consistent.
+
+\subsection{Key Challenges}
+The most important challenge with this project is to get the user to follow up on their daily statistics on standing as well as to make changes to their daily behavior by providing encouragement. The process of developing new habits is based on the amount of time and effort it takes to develop new habits therefore, many users may ignore the daily stats if they are too busy or if they lack the motivation. This may decrease the effectiveness of the proposed solution. \\\\
+There are technical challenges in this project related to synchronizing data in real-time from the desk sensor, the user application, and the database. Synchronization delays or connectivity issues may prevent tracking stats from being sent, and thus decrease the overall effectiveness of the system. Addressing these challenges strategically will ensure that GetStanding effectively promotes a healthier and more productive workspace environment.
+
+\section{Requirements}
+This section represents the functional and non-functional requirements of the GetStanding application. Functional requirements describe the core requirements that the application must respect, while non-functional requirements focus on the performance, security and usability of the application, rather than what it is supposed to do. This set of requirements guides the development of the application to guarantee that it meets user needs.
+
+\subsection{MoSCoW}
+\subsection{Must Have}
+\begin{itemize}
+    \item User can log in to their own account.
+    \item User can sign up and create a new account.
+    \item User can remove their account and information from the app.
+    \item User can connect the platform to the desk.
+    \item User can control the desk height from the interface.
+    \item User can log out from their account.
+    \item User cannot access the screens of the app when logged out.
+    \item App must have multiple user types.
+\end{itemize}
+\subsection{Should Have}
+\begin{itemize}
+    \item Endpoints secured from unauthorized access.
+    \item User can change their name.
+    \item User can add and log their meals and workouts.
+    \item User can see their own standing stats.
+\end{itemize}
+\subsection{Could Have}
+\begin{itemize}
+    \item User could add friends and see their feed.
+    \item User could receive email notifications about their progress.
+    \item App could be hosted on a VPS.
+    \item User could change their email and password.
+\end{itemize}
+\subsection{Won't Have}
+\begin{itemize}
+    \item App won't have a reward system.
+    \item App won't accept payments.
+    \item App won't have a newsletter.
+\end{itemize}
+
+\subsection*{Functional Requirements}
+\begin{itemize}
+	\item Users shall be able to sign up and log in to the application.
+	\item Users shall be able to update their profile information, including username and height.
+	\item The UI shall allow input and editing of user data.
+	\item The system shall store and retrieve user information and desk preferrence data in a database.
+	\item The system shall log desk usage data, including sitting and standing durations.
+	\item The application should provide the user with data regarding their sitting time using graphs.
+	\item The system shall be able to control the desk’s height via the WIFI2BLE Box Web API.
+	\item The system shall retrieve and display the current desk height and position.
+	 \item Users shall be able to customize their desk settings, such as preferred standing and sitting heights.
+\end{itemize}
+
+\subsection*{Non-Functional Requirements}
+
+\begin{itemize}
+    \item The system shall support multiple users.
+    \item User data shall be protected with secure authentication.
+    \item The app shall be compatible with major modern browsers.
+    \item The system shall provide clear, user-friendly error messages (in plain English).
+\end{itemize}
 
 
 
+
+\section{Design - LOOK AT THIS}
+This section outlines the design of GetStanding application, focusing on the proccess of creating a software that fullfils the project requirements. During this phase the team focused on creating scenarios, use cases, prototyping and diagrams to provide better understanding of the system and how it is going to serve its purpose. Thanks to taking these steps during the design phase, there is a strong foundation for implementation.
 \subsection{Scenarios}
 
 \paragraph{Scenario A: Adjusting desk height}
@@ -183,42 +245,6 @@ decreased productivity. Also beck pain, shoulder stiffness, lower back pain, and
     \item The user checks their network or simulator connection and refreshes the page. 
     \item The system reconnects successfully, and displays a green "Connected" banner.
 \end{enumerate}
-
-\newpage
-\subsection{Key Challenges}
-\paragraph{} The most important challenge with this project is to get the user to follow up on their daily statistics on standing as well as to make changes to their daily behavior by providing encouragement. The process of developing new habits is based on the amount of time and effort it takes to develop new habits therefore, many users may ignore the daily stats if they are too busy or if they lack the motivation. This may decrease the effectiveness of the proposed solution. 
-\paragraph{} There are technical challenges in this project related to synchronizing data in real-time from the desk sensor, the user application, and the database. Synchronization delays or connectivity issues may prevent tracking stats from being sent, and thus decrease the overall effectiveness of the system. Addressing these challenges strategically will ensure that GetStanding effectively promotes a healthier and more productive workspace environment.
-
-\subsubsection{Sub-sub-section}
-[Lorem ipsum]
-
-\newpage
-
-\section{Requirements}
-This section represents the functional and non-functional requirements of the GetStanding application. Functional requirements describe the core requirements that the application must respect, while non-functional requirements focus on the performance, security and usability of the application, rather than what it is supposed to do. This set of requirements guides the development of the application to guarantee that it meets user needs.
-\subsection*{Functional Requirements}
-\begin{itemize}
-	\item Users shall be able to sign up and log in to the application.
-	\item Users shall be able to update their profile information, including username and height.
-	\item The UI shall allow input and editing of user data.
-	\item The system shall store and retrieve user information and desk preferrence data in a database.
-	\item The system shall log desk usage data, including sitting and standing durations.
-	\item The system shall generate health recommendations based on the tracked data.
-	\item The application should provide the user with data regarding their sitting time using graphs.
-	\item The system shall be able to control the desk’s height via the WIFI2BLE Box Web API.
-	\item The system shall retrieve and display the current desk height and position.
-	 \item Users shall be able to customize their desk settings, such as preferred standing and sitting heights.
-\end{itemize}
-
-\subsection*{Non-Functional Requirements}
-
-\begin{itemize}
-    \item The system shall support multiple users.
-    \item The User Interface shall be intuitive and user-friendly.
-    \item User data shall be protected with secure authentication.
-    \item The app shall be compatible with major modern browsers.
-    \item The system shall provide clear, user-friendly error messages (in plain English).
-\end{itemize}
 
 \subsection*{Use Cases}
 \subsubsection*{UC1 - Create Account}
@@ -298,7 +324,6 @@ This section represents the functional and non-functional requirements of the Ge
 \textbf{Preconditions:}
 \begin{itemize}
     \item The user is logged in.
-    \item A user profile or settings page is available.
 \end{itemize}
 \textbf{Postconditions:}
 \begin{itemize}
@@ -310,7 +335,7 @@ This section represents the functional and non-functional requirements of the Ge
 \begin{enumerate}
     \item The user opens the Settings page in the web app.
     \item The user enters their body height.
-    \item The system validates the input (checks it is within a realistic range).
+    \item The system validates the input (checks if it is within a realistic range).
     \item The system calculates recommended sitting and standing desk heights based on the entered body height.
     \item The system displays the recommended heights to the user on the desk page.
     \item The system stores the body height in the user’s profile.
@@ -319,7 +344,7 @@ This section represents the functional and non-functional requirements of the Ge
 
 \subsubsection*{UC5 - View Weekly Standing Statistics}
 
-\textbf{Goal:} Allow the user to see their weekly standing statistics in a graphical form on the dashboard.
+\textbf{Goal:} Allow the user to see their weekly standing statistics in a graphical form on the dashboard.\\
 \textbf{Primary actor:} User\\
 \textbf{Preconditions:}
 \begin{itemize}
@@ -378,62 +403,7 @@ This section represents the functional and non-functional requirements of the Ge
     \item The system updates the user list to reflect the changes.
 \end{enumerate}
 
-
-\newpage
-
-\section{Design}
-This section outlines the design of GetStanding application, focusing on the proccess of creating a software that fullfils the project requirements. During this phase the team focused on creating scenarios, use cases, prototyping and diagrams to provide better understanding of the system and how it is going to serve its purpose. Thanks to taking these steps during the design phase, there is a strong foundation for implementation.
-\subsection{Scenarios}
-[Lorem ipsum]
-
-\subsection{Use Cases}
-Use cases were created by the team at the start of the semester. During the brainstorming phase the team came up with functionalities that we would want GetStanding to offer. After laying out when would a use cases be considered a success, it helped with better understanding what to expect from each individual module. List of our use cases:\\\\
-\textbf{UC1 – Create Account} \\\\
-Goal: Allow a new user to create their personal account \\
-Primary actor:  New user \\
-Preconditions: \\
-The user (email) is not already in use\\ 
-Postconditions: \\
-A new account is created and stored in the system \\
-The user can log in with the new credentials\\
-Main flow: \\
-\begin{itemize}
-\item{User navigates  to the web app sign up page}
-\item{The user enters required info (name, email, password) and accepts terms and conditions}
-\item{The system validates the input}
-\item{The system creates a new account}
-\item{The system redirects the user to a log in page}\\
-\end{itemize}
-\textbf{UC2 – Log In }\\\\
-Goal: Allow a user to access their personal smart desk settings and data. \\
-Primary actor: User  \\
-Preconditions: User has an account. \\
-Postconditions: User is authenticated and sees their dashboard. \\
-Main flow: \\
-\begin{itemize}
-\item{User navigates to the web app log in page. }
-\item{User enters email and password.}
-\item{System validates credentials.}
-\item{System logs the user in and shows the dashboard.}
-\end{itemize}
-\textbf{UC3 – Adjust Desk Height From Web App} \\\\
-Goal: Let the user set the current height of the desk via the web interface. \\
-Primary actor: User \\
-Preconditions: \\
-User is logged in.\\
-A desk is connected.\\ 
-Postconditions: Desk has moved to the requested height (or is moving). \\
-Main flow: \\
-\begin{itemize}
-\item{User opens the desk control page.}
-\item{User chooses a target height (slider/ input).}
-\item{System sends the height command to the desk.}
-\item{Desk confirms the command.}
-\item{System shows the updated height/state.}
-\end{itemize}
- 
-
-\subsection{Prototyping}
+\subsection{Prototyping  - LOOK AT THIS}
 Creating Frontend of GetStanding included two phases. During first phase each team member had 3 days to create his own prototype in Figma. When the 3 day mark passed the team decided which design they liked most and what elements they liked from other prototypes. After selecting the design the team inputed preffered elements into chosen design having the initial prototype finished. During course of developing the app, small details in the design were updated according to new project objectives.
 \begin{figure} [H]
 	\centering
@@ -441,7 +411,7 @@ Creating Frontend of GetStanding included two phases. During first phase each te
 	Initial prototype of GetStanding Home Page
 \end{figure}
 \subsection{Diagrams}
-\subsubsection{Sequence Diagram}
+\subsubsection{Sequence Diagram - LOOK AT THIS}
 In the sequence diagram, the whole process flow and connections between modules are displayed. The application first loads the desk page. After establishing connection with the desk, through changing the height of it either using the slider or confirming the changed height sends the information to the backend, which connects with the desk or simluator through a pico gateway and updates height to the one chosen by user.
 \begin{figure}[H]
 	\centering
@@ -449,13 +419,13 @@ In the sequence diagram, the whole process flow and connections between modules 
 	\includegraphics[width=0.7\textwidth]{sequence-2}\\
 	\includegraphics[width=0.7\textwidth]{sequence-3}
 \end{figure}
-\subsubsection{Flowchart Diagram}
+\subsubsection{Flowchart Diagram - LOOK AT THIS}
 The flowchart displays the process of User Logging in and the flow of the Dasbhoard of GetStanding. User begins at home page. If it is their first time on GetStanding he first needs to register his account and after log in otherwise he goes straight into login. Then depending on his account type he accesses either the Premium or Standard dashboard.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{flowchart}
 \end{figure}
-\subsubsection{Deployment Chart}
+\subsubsection{Deployment Chart - LOOK AT THIS}
 As per univeristy plan for the project the team went through 3 main stages before the time for submission: Project Kickoff, Project Analysis and Project Development. During Project Kickoff the team was informed of this semesters project topic. In the Analysis phase, the team came up with the idea of GetStanding and started planning out the development plan for it. Lastly in development stage the team developed GetStanding.
 \begin{figure}[H]
 \centering
@@ -463,15 +433,15 @@ As per univeristy plan for the project the team went through 3 main stages befor
 Deployment Chart of GetStanding
 \end{figure}
 
-\subsubsection{DB design}
+\subsubsection{DB design - LOOK AT THIS}
 The Database design works as an overview of the structure of the database beofre implementation. The graph helped with implementing the database. The user and their relationship with the desk is the main point of the db. \\
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{db-design}\\
 	Database design graph
 \end{figure}
-\subsubsection{Technology and Infrastructure} 
-Backend operates using ExpressJs and connects with the PostgreSQL database,  Vite Frontend and the Gateway. GetStanding includes two gateways one is inside the provided simulator and the other was made by the team using the PicoBoard which acts as the gateway. Every request made in frontend runs through the backend that either fetches the data from the db and provides it to the frontend or passes the modified desk state to the gateway and finally to the desk changing its state.
+\subsubsection{Technology and Infrastructure - LOOK AT THIS}
+Backend operates using ExpressJS and connects with the PostgreSQL database running in Docker,  React Vite based Frontend and the Gateways. GetStanding includes two gateways one is inside the provided simulator and the other was made by the team using the PicoBoard which acts as the gateway. Every request made in frontend runs through the backend that either fetches the data from the db and provides it to the frontend or passes the modified desk state to the gateway and finally to the desk changing its state.
 \begin{figure}[H] 
 	\centering 
 	\includegraphics[width=0.7\textwidth]{uml}\\
@@ -484,8 +454,8 @@ The implementation of GetStanding was structured to ensure modularity, scalabili
 The frontend and backend were developed hand in hand to ensure compatibility and a shared vision across the team. The database is built as a relational system, keeping all data organised, consistent, and easy to manage. The gateway setup adds an extra layer of security by clearly separating the external app logic from the internal day-to-day operations used within companies. This structure ensures reliability, security, and smooth functionality for both end users, GetStanding administrators and IT departments.
 
 \subsection{Frontend}
-The frontend for GetStandind is built with React and Vite, resulting in a modular, component-based architecture. This approach made it easy to implement new ideas and quickly pivot by discarding features when necessary. Additionally, Vite’s development server with live refresh significantly improved the developer experience, allowing changes to be reflected instantly without needing to restart the application. On top of that use of Docker in later stages of the project made sure that all deployments were working on the correct versions of packages, and most importantly Node.js \\\\
-The project is split into pages stored in the folder page/ and components stored in the folder components/. The decision for this setup was to make a new page and component creation easier, where pages function as a “component of components” connected to a specific route.
+The frontend for GetStanding is built with React Vite, resulting in a modular, component-based architecture. This approach made it easy to implement new ideas and quickly pivot by discarding features when necessary. Additionally, Vite’s development server with live refresh significantly improved the developer experience, allowing changes to be reflected instantly without needing to restart the application. On top of that use of Docker in later stages of the project made sure that all deployments were working on the correct versions of packages, and most importantly Node.js. \\\\
+The project is split into pages stored in the folder pages/ and components stored in the folder components/. The decision for this setup was to make a new page and component creation easier, where pages function as a “component of components” connected to a specific route.
 
 \subsubsection{Routing - src/App.tsx}
 Routing is handled using the react-router-dom package, with all routes managed in the App.tsx file. As mentioned earlier, this approach made it easier for the team to add new pages and routes. Additionally, it simplified the setup of a custom /404 page, ensuring lost users are redirected appropriately and do not get lost navigating the app.\\\\
@@ -510,11 +480,14 @@ In the MVC architecture, Models handle the core business logic and database inte
 Controllers act as the intermediary between the View (frontend) and the Models. They handle user input, perform validation (checking if a user exists), and manage the flow of data between the frontend and backend.
 
 \subsubsection{Authorisation - JWT}
-User authentication is managed using JWT (JSON Web Tokens). Upon login, users receive a JWT token with an expiration time of 1 hour. This token is included in every API request to the backend, where it is validated. Requests without a valid token are automatically rejected, ensuring secure access to the system.\\\\
+User authorisation is managed using JWT (JSON Web Tokens). Upon login, users receive a JWT token with an expiration time of 1 hour. This token is included in every API request to the backend, where it is validated. Requests without a valid token are automatically rejected, ensuring secure access to the system.\\\\
 The token is generated in src/middleware/authMiddleware.js and imported into every API endpoint as authMiddleware.
 
+\subsubsection{Authentication - LOOK AT THIS}
+User login and signup is managed using
+
 \subsection{Database}
-The database for GetStanding was designed as a relational database, leveraging PostgreSQL for its robustness, scalability, and flexibility of JSON document based approaches. To ensure consistency across development, testing, and production environments, the database was containerized using Docker, simplifying deployment and reducing environment-specific issues. This setup allowed the team to maintain a structured and normalized schema, optimizing data integrity and minimizing redundancy when it comes to tables.
+The database for GetStanding was designed as a relational database, leveraging PostgreSQL for its robustness, scalability, and flexibility over JSON document based approaches. To ensure consistency across development, testing, and production environments, the database was containerized using Docker, simplifying deployment and reducing environment-specific issues. This setup allowed the team to maintain a structured and normalized schema, optimizing data integrity and minimizing redundancy when it comes to tables.
 
 \subsubsection{Functions}
 To ensure scalability and future-proofing, the team implemented PostgreSQL functions as a core part of the database architecture. These functions are designed to encapsulate specific business logic and are called directly from the backend models. This approach not only modularizes database operations but also enhances security by allowing granular control over access permissions. Instead of granting users broad access to entire tables, the team can now restrict permissions to individual functions, minimizing the risk of unauthorized data manipulation or exposure.\\\\
@@ -542,53 +515,15 @@ Because the wifi2ble gateway resides entirely within the trusted internal networ
 \section{Validation and testing}
 This chapter outlines what type of testing was used to ensure GetStanding's stability, functionality, and positive user experience. It also explains how each type of testing contributed to the final product.
 
-\subsection{MoSCoW}
-\subsection{Must Have}
-\begin{itemize}
-    \item User can log in to their own account.
-    \item User can sign up and create a new account.
-    \item User can remove their account and information from the app.
-    \item User can connect the platform to the desk.
-    \item User can control the desk height from the interface.
-    \item User can log out from their account.
-    \item User cannot access the screens of the app when logged out.
-    \item App must have multiple user types.
-\end{itemize}
-\subsection{Should Have}
-\begin{itemize}
-    \item Endpoints secured from unauthorized access.
-    \item User can change their name.
-    \item User can add and log their meals and workouts.
-    \item User can see their own standing stats.
-\end{itemize}
-\subsection{Could Have}
-\begin{itemize}
-    \item User could add friends and see their feed.
-    \item User could receive email notifications about their progress.
-    \item App could be hosted on a VPS.
-    \item User could change their email and password.
-\end{itemize}
-\subsection{Won't Have}
-\begin{itemize}
-    \item App won't have a reward system.
-    \item App won't accept payments.
-    \item App won't have a newsletter.
-\end{itemize}
-
-
-\subsection{Sub-section}
-[Lorem ipsum]
-
-
-\subsubsection{Unit Testing}
-Uni Testing is used to verify whether individual pieces of code, mainly functions and methods, work correctly when isolated, so without depending on any external systems. Ideally, unit testing should be a continuous part of the development process to fully benefit from it, as it makes finding bugs easier and in general saves time when searching for which part of the existing code broke after adding changes. For future projects, mentioned benefits will be kept in mind from the start, rather than introducing it in later stages of the development, as it was in this case.\\\\
-In GetStanding, the backend is covered by a set of unit tests, that were executed with the use of Jest, which is a JavaScript testing framework, designed primary for React applications. The database layer is mocked, therefore the testing can focus on the web application logic and validation rules. From a more detailed perspective, the test ensure that data is read and written in a consistent way, for example when changing desk height or storing desk usage records for later statistics, Additionally, they verify that creating, updating and deleting entities behave as expected. Moreover, they also test if validation rules act appropriately when they are given invalid input, for example unrealistic user height or unfilled required fields.\\\\
+\subsection{Unit Testing}
+Unit Testing is used to verify whether individual pieces of code, mainly functions and methods, work correctly when isolated, so without depending on any external systems. Ideally, unit testing should be a continuous part of the development process to fully benefit from it, as it makes finding bugs easier and in general saves time when searching for which part of the existing code broke after adding changes. For future projects, mentioned benefits will be kept in mind from the start, rather than introducing it in later stages of the development, as it was in this case.\\\\
+In GetStanding, the backend is covered by a set of unit tests, that were executed with the use of Jest, which is a JavaScript testing framework. The database layer is mocked, therefore the testing can focus on the web application logic and validation rules. From a more detailed perspective, the test ensure that data is read and written in a consistent way, for example when changing desk height or storing desk usage records for later statistics, Additionally, they verify that creating, updating and deleting entities behave as expected. Moreover, they also test if validation rules act appropriately when they are given invalid input.\\\\
 This combination of functional and validation-focused unit tests strengthens the entire backend. Despite late implementation, unit testing proved to be valuable. It gave the team more confidence and stability regarding the web application's core logic, as well as enhanced the overall quality of GetStanding.
 
-\subsubsection{Integration Testing}
+\subsection{Integration Testing}
 Integration tests were used in order to validate how different parts of the system work together. This means that realistic HTTP requests were sent to the backend API to check how routing, controllers, validation and authentication worked together. The testing mainly covered typical scenarios, such as registering and logging in, updating user-related data, as well as performing admin actions. Again, the database layer was mocked so that the API could be tested without depending on a specific database setup. It also helped with verifying if the system responded with appropriate status codes and messages for both expected/normal and error situations.
 
-\subsubsection{Manual Testing}
+\subsection{Manual Testing}
 Manual testing was carried out to ensure that GetStanding functions properly from
 a user experience angle. It was an ongoing part of the development process and was carried out regularly throughout the project, whenever new features were implemented or code was merged. This practice helped with identifying edge cases, visual inconsistencies or UI/UX problems that may not have been caught by automated testing. Additionally, observing whether graphs and statistics were updating correctly was rather relevant, since GetStanding is a tracking web application after all. Overall, manual tests contributed to a smoother and more reliable user experience.
 
@@ -621,13 +556,13 @@ Testing is crucial for delivering a reliable and quality product, which was the 
 \newpage
 
 \section{Conclusion}
-GetStanding was developed as a semester project in collaboration with LINAK, based on the scenarios given by them at the start of the sememster. The team chose to make an application to help people, with a focus on office workers, keep track of their habits. Despite some changes from the original plan for the application, the main functions were successfully implemented such as tracking of calorie intake, workouts and water consumption. The most important feature is that GetStanding can connect to a sit and stand desk, helping the user keep track of the time they spend standing throughout the day. While there were challanges throughout the developmet proces, such as delays that ended up affecting the teams progression. The communication inside the team was wery friendly most of time not serious even, this also affected our efficieny  For some of the team members this was the (outside of classes) first time working with multiple repositories and embedded elements like the Pico board, which added to the level of difficulty. 
+GetStanding was developed as a semester project in collaboration with LINAK, based on the scenarios given by them at the start of the sememster. The team chose to make an application to help people, with a focus on office workers, keep track of their habits. Despite some changes from the original plan for the application, the main functions were successfully implemented such as tracking of calorie intake, workouts and water consumption. The most important feature is that GetStanding can connect to a sit and stand desk, helping the user keep track of the time they spend standing throughout the day. While there were challanges throughout the developmet proces, such as delays that ended up affecting the teams progression. The communication inside the team was informal. For some of the team members this was the first time working with multiple repositories and embedded elements like the Pico board, which added to the level of difficulty. 
 
 
 \subsection{Summary}
 Overall, it can be said that the outcome of the project was a success. GetStanding has provided us with valuable experince both in technical and teamwork scenarios. This will be a good foundation to build on in the future.
 
-\subsection{Future Work}
+\subsection{Future Work  - LOOK AT THIS}
 As for future improvements, functionalities that not have been added would be great improvements. For example the friends page,notifications or even a rewards system. These functions specifically would be really good to retain users for the website. As for the team, working on making things happen on time should be the first priority. Having better communication could be the key to this, so in the next semester this should be something everyone aims for.
 
 \newpage
@@ -639,6 +574,17 @@ As for future improvements, functionalities that not have been added would be gr
 There are no sources in the current document.
 
 Follow IEEE citation format as described in the template.
+\begin{thebibliography}{9}
+
+\bibitem{lamport94}
+  Leslie Lamport,
+  \emph{\LaTeX: A Document Preparation System}.
+  Addison Wesley, Massachusetts,
+  2nd Edition,
+  1994.
+
+
+\end{thebibliography}
 
 \newpage
 
