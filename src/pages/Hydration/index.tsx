@@ -39,10 +39,11 @@ export default function Hydration() {
       }
 
       try {
-        const data = await apiFetch(`/api/hydration?userId=${userId}`);
+        const res = await apiFetch(`/api/hydration?userId=${userId}`);
+        const data = await res.json();
         setHydrationData({
-          waterGoal: data.goalMl || 2000,
-          currentIntake: data.currentMl || 0
+          waterGoal: data.goal_ml || data.goalMl || 2000,
+          currentIntake: data.current_ml || data.currentMl || 0
         });
       } catch (error) {
         console.error('Failed to fetch hydration data:', error);
@@ -60,28 +61,29 @@ export default function Hydration() {
 
     const previousIntake = hydrationData.currentIntake;
 
-  
+
     setHydrationData(prev => ({
       ...prev,
       currentIntake: prev.currentIntake + amount,
     }));
 
     try {
-      const data = await apiFetch('/api/hydration/add', {
+      const res = await apiFetch('/api/hydration/add', {
         method: 'POST',
         body: JSON.stringify({ amount, userId })
       });
+      const data = await res.json();
 
-      
-      if (data && typeof data.currentMl === 'number') {
+      const newIntake = data.currentMl ?? data.current_ml;
+      if (typeof newIntake === 'number') {
         setHydrationData(prev => ({
           ...prev,
-          currentIntake: data.currentMl
+          currentIntake: newIntake
         }));
       }
     } catch (error) {
       console.error('Failed to add water:', error);
-      
+
       setHydrationData(prev => ({
         ...prev,
         currentIntake: previousIntake,
@@ -96,21 +98,22 @@ export default function Hydration() {
     const previousIntake = hydrationData.currentIntake;
     const newAmount = Math.max(0, previousIntake - amount);
 
-  
+
     setHydrationData(prev => ({
       ...prev,
       currentIntake: newAmount,
     }));
 
     try {
-      const data = await apiFetch('/api/hydration/remove', {
+      const res = await apiFetch('/api/hydration/remove', {
         method: 'POST',
         body: JSON.stringify({ amount, userId })
       });
+      const data = await res.json();
 
       setHydrationData(prev => ({
         ...prev,
-        currentIntake: data.currentMl
+        currentIntake: data.current_ml ?? data.currentMl ?? prev.currentIntake
       }));
     } catch (error) {
       console.error('Failed to remove water:', error);
@@ -123,7 +126,7 @@ export default function Hydration() {
 
     const previousIntake = hydrationData.currentIntake;
 
-  
+
     setHydrationData(prev => ({
       ...prev,
       currentIntake: 0,
@@ -136,7 +139,7 @@ export default function Hydration() {
       });
     } catch (error) {
       console.error('Failed to reset hydration:', error);
-    
+
       setHydrationData(prev => ({
         ...prev,
         currentIntake: previousIntake,
@@ -150,7 +153,7 @@ export default function Hydration() {
 
     const previousGoal = hydrationData.waterGoal;
 
-  
+
     setHydrationData(prev => ({
       ...prev,
       waterGoal: newGoal
@@ -163,7 +166,7 @@ export default function Hydration() {
       });
     } catch (error) {
       console.error('Failed to update goal:', error);
- 
+
       setHydrationData(prev => ({
         ...prev,
         waterGoal: previousGoal
@@ -186,8 +189,8 @@ export default function Hydration() {
 
   //fish count based on progress 
   const progressPercent = Math.min((hydrationData.currentIntake / hydrationData.waterGoal) * 100, 100);
-  const fishCount = Math.floor(progressPercent / 5); 
-  const bubbleCount = Math.floor(progressPercent / 3); 
+  const fishCount = Math.floor(progressPercent / 5);
+  const bubbleCount = Math.floor(progressPercent / 3);
 
   //pseudo-random function based on index for consistent but mixed results
   const pseudoRandom = (seed: number) => {
@@ -207,20 +210,20 @@ export default function Hydration() {
     direction: pseudoRandom(i + 50) > 0.5 ? 'left' : 'right',
   }));
 
-  
+
   const bubbles = Array.from({ length: bubbleCount }, (_, i) => ({
     id: i,
     left: 10 + pseudoRandom(i + 100) * 80,
     delay: pseudoRandom(i + 110) * 5,
     duration: 5 + pseudoRandom(i + 120) * 4,
-    size: 0.2 + pseudoRandom(i + 130) * 0.6, 
+    size: 0.2 + pseudoRandom(i + 130) * 0.6,
   }));
 
   return (
     <div className={style.container} style={{ zoom: 0.85 }}>
       <Navbar />
 
-      
+
       <div className={style.fishContainer}>
         {fish.map((f) => (
           <span
@@ -236,7 +239,7 @@ export default function Hydration() {
             {f.emoji}
           </span>
         ))}
-       
+
         {bubbles.map((b) => (
           <span
             key={`bubble-${b.id}`}
@@ -255,9 +258,9 @@ export default function Hydration() {
 
       <div className={style.contentWrapper}>
         <div className={style.topRow}>
-          <HydrationStats 
-            data={hydrationData} 
-            onChangeGoal={handleGoalChange} 
+          <HydrationStats
+            data={hydrationData}
+            onChangeGoal={handleGoalChange}
           />
           <DailyGlasses
             current={hydrationData.currentIntake}

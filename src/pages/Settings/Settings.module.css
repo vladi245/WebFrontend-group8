@@ -1,19 +1,185 @@
-.settingsContainer {
-    padding-top: 200px;
-    display: grid;
-    place-items: center;
-
-}
-.settingsContainer > * + * {
-  margin-top: 2rem;
-}
-
-.settingsText {
-    display: grid;
-    place-items: center;
-
-}
-
 .zoomContainer {
     zoom: 0.85;
+    min-height: 100vh;
+    background-color: var(--background-color);
+    transition: background-color 0.3s ease;
+}
+
+.settingsContainer {
+    margin-left: 350px;
+    padding: 40px;
+    padding-top: 95px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 900px;
+}
+
+
+.card {
+    background-color: var(--card-background);
+    border: 1px solid var(--card-border-color);
+    border-radius: 12px;
+    padding: 24px 32px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Profile details card - ensure it has proper background */
+.card:first-of-type {
+    background-color: var(--card-background);
+}
+
+.cardTitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--card-text-color);
+    margin: 0 0 24px 0;
+    transition: color 0.3s ease;
+}
+
+.profileContent {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.userIcon {
+    color: #0096FF;
+    flex-shrink: 0;
+}
+
+.profileFields {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.fieldRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.input {
+    background-color: var(--input-background);
+    border: 1px solid var(--input-border-color);
+    border-radius: 8px;
+    padding: 10px 16px;
+    color: var(--input-text-color);
+    font-size: 14px;
+    min-width: 200px;
+    outline: none;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.input:focus {
+    border-color: var(--card-border-color);
+    color: var(--input-text-color);
+}
+
+.input::placeholder {
+    color: var(--input-placeholder-color);
+}
+
+.input:read-only {
+    cursor: default;
+}
+
+.editButton {
+    background-color: var(--button-background);
+    color: var(--card-text-color);
+    border: 1px solid var(--button-border-color);
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.editButton:hover {
+    background-color: var(--input-background);
+    border-color: var(--button-hover-border-color);
+}
+
+.editActions {
+    display: flex;
+    gap: 8px;
+}
+
+.saveButton {
+    background-color: var(--card-border-color);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.saveButton:hover {
+    opacity: 0.85;
+}
+
+.cancelButton {
+    background-color: var(--button-background);
+    color: var(--card-text-color);
+    border: 1px solid var(--button-border-color);
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.cancelButton:hover {
+    background-color: var(--input-background);
+    border-color: var(--button-hover-border-color);
+}
+
+.accountType {
+    margin-left: auto;
+    color: var(--card-text-color);
+    font-size: 16px;
+    font-weight: 500;
+    align-self: flex-start;
+    margin-top: 8px;
+    transition: color 0.3s ease;
+}
+
+.premiumText {
+    color: var(--card-border-color);
+    font-weight: 600;
+}
+
+.actionsRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+@media (max-width: 1024px) {
+    .settingsContainer {
+        margin-left: 0;
+        padding: 24px;
+    }
+
+    .profileContent {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .accountType {
+        margin-left: 0;
+        margin-top: 16px;
+    }
+
+    .actionsRow {
+        flex-direction: column;
+        gap: 16px;
+    }
 }

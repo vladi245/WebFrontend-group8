@@ -19,7 +19,8 @@ export default function ExercisesAdminPage() {
 
   useEffect(() => {
     async function fetchExercises() {
-      const data = await apiFetch('/admin/workouts');
+      const res = await apiFetch('/admin/workouts');
+      const data = await res.json();
       // Map workouts to Exercise interface
       setExercises(data.map((w: any) => ({
         id: w.id,
@@ -52,10 +53,11 @@ export default function ExercisesAdminPage() {
       reps: Number(newExercise.reps),
       muscle_group: newExercise.muscleGroups.split(',').map(m => m.trim()).filter(m => m)
     };
-    const created = await apiFetch('/admin/workouts', {
+    const res = await apiFetch('/admin/workouts', {
       method: 'POST',
       body: JSON.stringify(body)
     });
+    const created = await res.json();
     setExercises(prev => [...prev, {
       id: created.id,
       name: created.name,

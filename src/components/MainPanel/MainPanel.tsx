@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import style from './MainPanel.module.css';
+import { useTranslation } from 'react-i18next';
 
 const MainPanel = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
 
     const handleStartJourney = () => {
@@ -16,21 +18,19 @@ const MainPanel = () => {
         <div className={style.mainpanel}>
             <div className={style.content}>
                 <h1 className={style.title}>
-                    Are You Ready To <span className={style.highlight}> <br />Get Standing?</span>
+                    {t('hero.title1')} <span className={style.highlight}> <br />{t('hero.title2')}</span>
                 </h1>
 
                 <p className={style.description}>
-                    Join The GetStanding Community And Take Charge Of Your Health. With Guided
-                    Movement Breaks, Smart Reminders, And Science-Backed Tips, We Make It Easier Than
-                    Ever To Sit Less And Live More. Ready To Stand Up For Your Wellbeing?
+                    {t('hero.description')}
                 </p>
 
                 <div className={style.buttonContainer}>
                     <button className={style.primaryButton} onClick={handleStartJourney}>
-                        Start Your Journey
+                        {t('hero.startButton')}
                     </button>
                     <button className={style.secondaryButton} onClick={handleExplorePrograms}>
-                        Explore Programs
+                        {t('hero.exploreButton')}
                     </button>
                 </div>
             </div>
