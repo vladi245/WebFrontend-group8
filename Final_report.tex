@@ -480,11 +480,12 @@ In the MVC architecture, Models handle the core business logic and database inte
 Controllers act as the intermediary between the View (frontend) and the Models. They handle user input, perform validation (checking if a user exists), and manage the flow of data between the frontend and backend.
 
 \subsubsection{Authorisation - JWT}
-User authorisation is managed using JWT (JSON Web Tokens). Upon login, users receive a JWT token with an expiration time of 1 hour. This token is included in every API request to the backend, where it is validated. Requests without a valid token are automatically rejected, ensuring secure access to the system.\\\\
-The token is generated in src/middleware/authMiddleware.js and imported into every API endpoint as authMiddleware.
+User authorisation is managed using JWT (JSON Web Tokens) and permissions are set based on users account type. Upon login, users receive a JWT token with an expiration time of 1 hour. This token is included in every API request to the backend, where it is validated and correct data is sent back. Requests without a valid token are automatically rejected, ensuring secure access to the system.\\\\
+The token is checked using src/middleware/authMiddleware.js and imported into every API endpoint as authMiddleware.
 
-\subsubsection{Authentication - LOOK AT THIS}
-User login and signup is managed using
+\subsubsection{Authentication}
+User authentication is handled in controllers/authController.js. The login method verifies credentials by checking the submitted email against the database and comparing the submitted password hash with the stored hashed password. If both match, the user is authenticated and granted access to the GetStanding app.
+The register method follows a similar principle but focuses on creating a new user account instead of validating an existing one.
 
 \subsection{Database}
 The database for GetStanding was designed as a relational database, leveraging PostgreSQL for its robustness, scalability, and flexibility over JSON document based approaches. To ensure consistency across development, testing, and production environments, the database was containerized using Docker, simplifying deployment and reducing environment-specific issues. This setup allowed the team to maintain a structured and normalized schema, optimizing data integrity and minimizing redundancy when it comes to tables.
