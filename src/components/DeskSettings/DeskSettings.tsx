@@ -25,8 +25,8 @@ const DeskSettings: React.FC<DeskSettingsProps> = ({ onHeightChange, onModeChang
 
     const position = isStanding ? t('deskSettings.positionStanding') : t('deskSettings.positionSitting');
 
-    const recommendedSittingHeight = userHeight ? Math.round((((0.4739 * userHeight) - 17 + (0.5538 * userHeight - 24)) / 2) * 10) : t('deskSettings.heightnotset');
-    const recommendedStandingHeight = userHeight ? Math.round((((0.6 * userHeight) + (0.64 * userHeight) + 6) / 2) * 10) : t('deskSettings.heightnotset');
+    const recommendedSittingHeight = userHeight ? Math.round((0.198 * userHeight) + 39.27) : t('deskSettings.heightnotset');
+    const recommendedStandingHeight = userHeight ? Math.round(0.628 * userHeight) : t('deskSettings.heightnotset');
     // Fetch user height from the backend
     const fetchUserHeight = async () => {
         try {
