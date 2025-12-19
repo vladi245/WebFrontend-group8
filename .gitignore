@@ -24,4 +24,9 @@ dist-ssr
 *.sw?
 
 *.pdf
+*.out
+*.toc
+*.fdb_latexmk
+*.fls
+*.aux
 *.synctex.gz
