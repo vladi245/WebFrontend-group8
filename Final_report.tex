@@ -54,7 +54,7 @@ Azra Talum - aztal24@student.sdu.dk\\[0.5cm]
     \textbf{Supervisor:} \\[0.5em]
     Aleksandra Kril - alkri23@student.sdu.dk
 \end{center}
-
+\newpage
 
 
 % SHORT HISTORY
@@ -101,7 +101,7 @@ The problems encountered by the team during the project were mainly related to t
 \subsection{Development Process and Collaboration}
 The team based on combined experience from previous projects and other courses, has decided to follow an Agile methodology during the development of GetStanding.
 \\\\
-The development process was split into two-week sprints, with Jira used as a tool for organization and keeping all team members on track. To ensure smooth development, each sprint had clear objectives that were decided during sprint planning meetings. Throughout those sessions, the backlog was populated with work items, which were assigned to adequate epics and split between team members.\\
+The development process was split into two-week sprints, with Jira used as a tool for organisation and keeping all team members on track. To ensure smooth development, each sprint had clear objectives that were decided during sprint planning meetings. Throughout those sessions, the backlog was populated with work items, which were assigned to adequate epics and split between team members.\\
 During those two weeks the team combined online communication with in-person meetings, which frequency varied based on current needs. \\
 After each sprint finished, sprint review sessions were held. During those meetings the team could reflect on the progress that was made. They were essential for understanding how much workload is realistic to complete in the span of two weeks, which was crucial for improving upcoming development and avoiding setting unrealistic expectations.\\\\
 In practice the process of developing GetStanding was iterative. Starting from early sprints that focused on establishing the base structure of the web application, and ending with later sprints that focused on adding additional features and refinements. Moreover, feedback was not limited to formal meetings. Frequent informal conversations, short check-ins, group coding sessions were an integral part of how the project was carried out. This approach made solving encountered issues easier, as it was an opportunity to share knowledge, exchange ideas, and decide on how to move forward together.\\
@@ -109,14 +109,14 @@ By combining this gradual way of delivering the application with continuous inte
 \subsection{Technology Stack}
 
 \subsubsection{Frontend}
-For developing the frontend the team used React with Vite. Keeping the web application consistent across different pages was of great importance, therefore React, which is characterized by its component-based approach aligned with the teams vision. It made creating reusable user interface components possible, which made the development process easier by keeping the code clearer, easier to maintain and avoiding code repetition. Choosing Vite enabled the team to work in  a fast development environment with it's live development server, which provides feedback once the changes happen.\\
+For developing the frontend the team used React with Vite. Keeping the web application consistent across different pages was of great importance, therefore React, which is characterised by its component-based approach aligned with the teams vision. It made creating reusable user interface components possible, which made the development process easier by keeping the code clearer, easier to maintain and avoiding code repetition. Choosing Vite enabled the team to work in  a fast development environment with it's live development server, which provides feedback once the changes happen.\\
 Prior to writing any code, a design was vital, thus Figma was the starting point of every UI element. The process of designing took place inside a shared workspace, making it able for each team member to stay updated with each others' progress and potentially inspire new ideas within the team.
 \subsubsection{Backend}
 The backend was implemented using Node.js with Express.js. This set up was selected due to its simplicity and suitability for developing RESTful APIs. Additionally it is well-established in the field, offers a broad set of libraries and comes with wide community-support.
 
 \subsubsection{Data Storage and Infrastructure}
 As the database management system, PostgreSQL is chosen due to being known for its reliability, flexibility, and support for relational data types. This allowed the safe storage and scaling of data using SQL skills gained through the Data Management course.\\\\
-For containerization purposes the team used Docker. It helped with keeping the environment consistent across different devices and reduced configuration problems. Most of the members had previous experience with mentioned tools, therefore reusing them was a logical choice, that allowed the team members to refine their skills with this popular development tool.\\\\
+For containerisation purposes the team used Docker. It helped with keeping the environment consistent across different devices and reduced configuration problems. Most of the members had previous experience with mentioned tools, therefore reusing them was a logical choice, that allowed the team members to refine their skills with this popular development tool.\\\\
 One of the core requirements for this project was the integration of a Raspberry Pi Pico W board. The team was introduced to it during the Programming for Hardware Constrained Environments course, thus its use in the project provided an opportunity to apply the concepts learned there.
 
 \subsection{Version Control}
@@ -136,7 +136,6 @@ This project serves as a preventive health solution, aiming to encourage the use
 \subsection{Key Challenges} 
 One of the the primary challenges with this project is to encourage users to keep track of their daily time spent standing, and adopt lasting behavioral changes. The process of habit formation requires sustained time and effort, many users may ignore the daily stats if they are too busy or if they lack the motivation. This may decrease the effectiveness of the proposed solution. \\\\
 
-
 \section{Requirements}
 This section represents the functional and non-functional requirements of the GetStanding application. Functional requirements describe the core requirements that the application must respect, while non-functional requirements focus on the performance, security and usability of the application, rather than what it is supposed to do. This set of requirements guides the development of the application to guarantee that it meets user needs.
 
@@ -154,10 +153,10 @@ This section represents the functional and non-functional requirements of the Ge
 \end{itemize}
 \subsection{Should Have}
 \begin{itemize}
-    \item Endpoints secured from unauthorized access.
+    \item Endpoints secured from unauthorised access.
     \item User can change their name.
     \item User can add and log their meals and workouts.
-    \item User can see their own standing stats.
+    \item User can see their own standing statistics.
 \end{itemize}
 \subsection{Could Have}
 \begin{itemize}
@@ -178,12 +177,13 @@ This section represents the functional and non-functional requirements of the Ge
 	\item Users shall be able to sign up and log in to the application.
 	\item Users shall be able to update their profile information, including username and height.
 	\item The UI shall allow input and editing of user data.
-	\item The system shall store and retrieve user information and desk preferrence data in a database.
+	\item The system shall store and retrieve user information and desk preference data in a database.
 	\item The system shall log desk usage data, including sitting and standing durations.
 	\item The application should provide the user with data regarding their sitting time using graphs.
 	\item The system shall be able to control the desk’s height via the WIFI2BLE Box Web API.
 	\item The system shall retrieve and display the current desk height and position.
-	 \item Users shall be able to customize their desk settings, such as preferred standing and sitting heights.
+	 \item Users shall be able to customise their desk settings, such as preferred standing and sitting heights.
+	\item The system shall provide periodic notifications regarding sitting time.
 \end{itemize}
 
 \subsection*{Non-Functional Requirements}
@@ -193,6 +193,7 @@ This section represents the functional and non-functional requirements of the Ge
     \item User data shall be protected with secure authentication.
     \item The app shall be compatible with major modern browsers.
     \item The system shall provide clear, user-friendly error messages (in plain English).
+    \item The notifications shall be non-invasive.
 \end{itemize}
 
 
@@ -440,7 +441,7 @@ The flowchart visually represents the process of user loging in and  the subsequ
 \centering
 \includegraphics[width=0.7\textwidth]{flowchart}
 \end{figure}
-\subsubsection{Deployment Chart - LOOK AT THIS}
+\subsubsection{Deployment Chart}
 Following the university's project structure, the team went through 3 key stages. Starting with Project Kickoff, during which the team was introduced to the semester project topic and general requirements. Followed by Project Analysis, where the concept of GetStanding was established. This phase also included, outlining core functionalities, identifying the requirements and defining key objectives. The implementation, combined with iterative improvements and refinements was carried out in the final, Project Development stage.
 \begin{figure}[H]
 \centering
@@ -448,14 +449,14 @@ Following the university's project structure, the team went through 3 key stages
 Deployment Chart of GetStanding
 \end{figure}
 
-\subsubsection{DB design - LOOK AT THIS}
+\subsubsection{DB design}
 Prior to implementation, the team introduced a database design to define its structure. It served as a guiding reference during the development stage by clearly specifying main entities and their relationships. \\
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{db-design}\\
 	Database design graph
 \end{figure}
-\subsubsection{Technology and Infrastructure - LOOK AT THIS}
+\subsubsection{Technology and Infrastructure}
 Backend operates using Express.js witj Node.js, and connects with a PostgreSQL database running in Docker,  As for the frontend, it is developed using React and Vite. Additionally, GetStanding includes two gateways: one included within the provided desk simulator, and a second gateway developed by the team using the PicoBoard.\\
 All frontend requests are processed by the backend. Depending on the request, the backend either retrieves data from the database and returns it to the frontend, or forwards updated desk-state information to the gateway. The gateway then communicates the change to the desk and updates its state accordingly.\\
 \begin{figure}[H] 
