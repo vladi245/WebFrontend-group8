@@ -1,7 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
+import '../i18n'
 import App from './App.tsx'
+import { ToastProvider } from './context/ToastContext'
+import { PostureReminderProvider } from './context/PostureReminderContext'
 
 
 const token = localStorage.getItem('token');
@@ -21,6 +24,10 @@ if (token) {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <ToastProvider>
+      <PostureReminderProvider>
+        <App />
+      </PostureReminderProvider>
+    </ToastProvider>
   </StrictMode>,
 )

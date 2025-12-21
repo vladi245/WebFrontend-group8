@@ -2,8 +2,10 @@ import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import style from './DeleteButton.module.css';
 import { apiFetch, logout } from '../../services/api';
+import { useTranslation } from 'react-i18next';
 
 const DeleteButton = () => {
+    const { t } = useTranslation();
     const [showModal, setShowModal] = useState(false);
 
     const handleDeleteClick = () => {
@@ -58,7 +60,7 @@ const DeleteButton = () => {
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M7 21q-.825 0-1.412-.587T5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413T17 21zm2-4h2V8H9zm4 0h2V8h-2z" />
                     </svg>
-                    Delete account
+                    {t('deleteButton.DeleteAccount')}
                 </button>
             </div>
 
@@ -66,18 +68,18 @@ const DeleteButton = () => {
                 <div className={style.modalOverlay} onClick={handleCancel}>
                     <div className={style.modalContent} onClick={(e) => e.stopPropagation()}>
                         <h2 className={style.modalTitle}>
-                            You're about to cancel your account. Are You Sure?
+                            {t('deleteButton.WarningMessage')}
                         </h2>
                         <div className={style.modalButtons}>
                             <button className={style.cancelButton} onClick={handleCancel}>
-                                Cancel
+                                {t("settings.cancel")}
                             </button>
                             <button
                                 className={style.confirmDeleteButton}
                                 onClick={() => handleConfirmDelete(userId)}
                                 disabled={loading}
                             >
-                                {loading ? 'Deleting…' : 'Delete Account'}
+                                {loading ? 'Deleting…' : t('deleteButton.DeleteAccount')}
                             </button>
                         </div>
                         {error && <p className={style.errorText}>{error}</p>}

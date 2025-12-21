@@ -6,6 +6,7 @@ import Exercises from '../../components/Exercises/Exercises';
 import MuscleGroup from '../../components/MuscleGroup/MuscleGroup';
 import Navbar from '../../components/NavbarVertical/Navbar';
 import { apiFetch } from '../../services/api';
+import { useTranslation } from 'react-i18next';
 
 interface StatsData {
     totalWorkouts: number;
@@ -19,6 +20,7 @@ interface PerformanceData {
 }
 
 export default function Workout() {
+    const { t } = useTranslation();
     const [statsData, setStatsData] = useState<StatsData>({
         totalWorkouts: 0,
         caloriesBurned: 0,
@@ -39,7 +41,7 @@ export default function Workout() {
                 const statsDataMapped: StatsData = {
                     totalWorkouts: stats.total_workouts,
                     caloriesBurned: stats.total_calories,
-                    daysActive: `${daysActiveCount} days active`
+                    daysActive: `${daysActiveCount} ${t('daysActive')}`
                 };
 
                 // Map daily to PerformanceData with short day labels (be permissive about field names)
