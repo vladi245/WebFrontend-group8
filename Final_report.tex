@@ -475,10 +475,10 @@ The project is split into pages stored in the folder pages/ and components store
 
 \subsubsection{Routing - src/App.tsx}
 Routing is handled using the react-router-dom package, with all routes managed in the App.tsx file. As mentioned earlier, this approach made it easier for the team to add new pages and routes. Additionally, it simplified the setup of a custom /404 page, ensuring lost users are redirected appropriately and do not get lost navigating the app.\\\\
-Centralizing routing enabled the team to implement a ProtectedRoute component, which manages client-side access control for dashboard subpages. Each route wrapped with ProtectedRoute is accessible only after a user logs in. Furthermore, this component supports a requiredType property, allowing specification of the account type necessary to access certain pages. For example, only an admin can read messages from the contact form, while features such as Meals are available exclusively to premium users of GetStanding.
+Centralising routing enabled the team to implement a ProtectedRoute component, which manages client-side access control for dashboard subpages. Each route wrapped with ProtectedRoute is accessible only after a user logs in. Furthermore, this component supports a requiredType property, allowing specification of the account type necessary to access certain pages. For example, only an admin can read messages from the contact form, while features such as Meals are available exclusively to premium users of GetStanding.
 
 \subsubsection{services/api.ts}
-During development, the team recognized the need to centralize API calls. Previously, API requests were scattered across pages and components, leading to inconsistencies, especially when system ports were occupied on different operating systems. To address this, the team created a single entry point for all API connections in services/api.ts. This file stores the backend server address, making it easier to update API endpoints and ensuring that the JWT token (stored in local storage) is automatically included with every request made from the frontend.
+During development, the team recognised the need to centralise API calls. Previously, API requests were scattered across pages and components, leading to inconsistencies, especially when system ports were occupied on different operating systems. To address this, the team created a single entry point for all API connections in services/api.ts. This file stores the backend server address, making it easier to update API endpoints and ensuring that the JWT token (stored in local storage) is automatically included with every request made from the frontend.
 
 \subsubsection{Styling - .module.css files}
 The team opted not to use CSS frameworks like Tailwind. Instead, they chose to use separate CSS files for each component and page. To avoid conflicts and maintain flexibility, CSS Modules were employed. This approach allows for repeating class names across components without unintended overrides, ensuring a clean and maintainable styling system.
@@ -504,7 +504,7 @@ User authentication is handled in controllers/authController.js. The login metho
 The register method follows a similar principle but focuses on creating a new user account instead of validating an existing one.
 
 \subsection{Database}
-The database for GetStanding was designed as a relational database, leveraging PostgreSQL for its robustness, scalability, and flexibility over JSON document based approaches. To ensure consistency across development, testing, and production environments, the database was containerized using Docker, simplifying deployment and reducing environment-specific issues. This setup allowed the team to maintain a structured and normalized schema, optimizing data integrity and minimizing redundancy when it comes to tables.
+The database for GetStanding was designed as a relational database, leveraging PostgreSQL for its robustness, scalability, and flexibility over JSON document-based approaches. To ensure consistency across development, testing, and production environments, the database was containerized using Docker, simplifying deployment and reducing environment-specific issues. This setup allowed the team to maintain a structured and normalized schema, optimizing data integrity and minimizing redundancy when it comes to tables.
 
 \subsubsection{Functions}
 To ensure scalability and future-proofing, the team implemented PostgreSQL functions as a core part of the database architecture. These functions are designed to encapsulate specific business logic and are called directly from the backend models. This approach not only modularizes database operations but also enhances security by allowing granular control over access permissions. Instead of granting users broad access to entire tables, the team can now restrict permissions to individual functions, minimizing the risk of unauthorized data manipulation or exposure.\\\\
@@ -598,13 +598,6 @@ Wayne Gao, Mattia Sanna, Yea-Hung Chen, et al.
  "Occupational Sitting Time, Leisure Physical Activity, and All-Cause and Cardiovascular Disease Mortality".
 Available:\url{https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2814094?}
 2024.
-
-\bibitem{lamport94}
-  Leslie Lamport,
-  \emph{\LaTeX: A Document Preparation System}.
-  Addison Wesley, Massachusetts,
-  2nd Edition,
-  1994.
 
 %\bibitem{recheigt1}
 %Gordon, C. C., Blackwell, C. L., Bradtmiller, B., Parham, J. L., Barrientos, P., Paquette, S. P.,Kristensen, S
