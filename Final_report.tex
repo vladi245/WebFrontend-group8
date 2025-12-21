@@ -200,7 +200,7 @@ This section represents the functional and non-functional requirements of the Ge
 
 
 \section{Design}
-This section outlines the design of GetStanding application, outlining the process of creating a software that fullfils the project requirements. This phase involved team efforts focused on defining system behaviour through scenarios and use cases, establishing user-interface design via prototyping and establishing the architecture and  timeline through diffrent diagrams. Taking those steps has established a well-documented foundation for implementation and development of the system. \\\\
+This section outlines the design of GetStanding application, outlining the process of creating a software that fulfils the project requirements. This phase involved team efforts focused on defining system behaviour through scenarios and use cases, establishing user-interface design via prototyping and establishing the architecture and  timeline through different diagrams. Taking those steps has established a well-documented foundation for implementation and development of the system. \\\\
 
 \subsection{Scenarios}
 
@@ -415,7 +415,7 @@ This section outlines the design of GetStanding application, outlining the proce
 \end{enumerate}
 
 \subsection{Prototyping}
-The development of the frontend involved a two-phase prototyping process. During the initial phase, team members created prototypes using Figma within a three day period. Following that deadline, the team reviewed them and selected the favored design while identifying desirable elements from the alternative prototypes. These preferred elements were then integrated into the chosen design. Throughout the development process, minor details of the design were updateded and refined to align with project objectives.\\\\ 
+The development of the frontend involved a two-phase prototyping process. During the initial phase, team members created prototypes using Figma within a three day period. Following that deadline, the team reviewed them and selected the favoured design while identifying desirable elements from the alternative prototypes. These preferred elements were then integrated into the chosen design. Throughout the development process, minor details of the design were updated and refined to align with project objectives.\\\\ 
 
 \begin{figure} [H]
 	\centering
@@ -428,14 +428,14 @@ The development of the frontend involved a two-phase prototyping process. During
 \end{figure}
 \subsection{Diagrams}
 \subsubsection{Sequence Diagram}
-The sequence diagram provides a illustration of the system's flow and the interaction between its core modules. It details the process of adjusting the height of the desk. The proccess initiates when the application loads the desk page. Upon accomplishing a connection with the physical desk or the simulator, user actions such as dragging the height slider,setting their specific height preference or switching poisition of the desk trigger a request. This request is delivered to the backend which subsequently communicates with the desk or simulator using the dedicated Pico Gateway. This process results in the physical update of the desk's height to the value specified by the user.\\\\
+The sequence diagram provides a illustration of the system's flow and the interaction between its core modules. It details the process of adjusting the height of the desk. The process initiates when the application loads the desk page. Upon establishin a connection with the physical desk or the simulator, user actions such as dragging the height slider,setting their specific height preference or switching position of the desk trigger a request. This request is delivered to the backend which subsequently communicates with the desk or simulator using the dedicated Pico Gateway. This process results in the physical update of the desk's height to the value specified by the user.\\\\
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{sequence}\\
 \end{figure}
 \subsubsection{Flowchart Diagram}
-The flowchart visually represents the process of user loging in and  the subsequent flow within the GetStanding Dashboard. The user's journey begins at the home page. If the user is new to the application then they are first required to register an account before procceding to log in, while existing users navigate directly to log in process. Upon succesful authentication the system directs the user to the appropriate dashboard either Premium or Standard based on their assigned account type. \\\\
+The flowchart visually represents the process of user logging in and  the subsequent flow within the GetStanding Dashboard. The user's journey begins at the home page. If the user is new to the application then they are first required to register an account before proceeding to log in, while existing users navigate directly to log in process. Upon successful authentication the system directs the user to the appropriate dashboard either Premium or Standard based on their assigned account type. \\\\
 
 \begin{figure}[H]
 \centering
@@ -457,7 +457,7 @@ Prior to implementation, the team introduced a database design to define its str
 	Database design graph
 \end{figure}
 \subsubsection{Technology and Infrastructure}
-Backend operates using Express.js witj Node.js, and connects with a PostgreSQL database running in Docker,  As for the frontend, it is developed using React and Vite. Additionally, GetStanding includes two gateways: one included within the provided desk simulator, and a second gateway developed by the team using the PicoBoard.\\
+Backend operates using Express.js with Node.js, and connects with a PostgreSQL database running in Docker,  As for the frontend, it is developed using React and Vite. Additionally, GetStanding includes two gateways: one included within the provided desk simulator, and a second gateway developed by the team using the PicoBoard.\\
 All frontend requests are processed by the backend. Depending on the request, the backend either retrieves data from the database and returns it to the frontend, or forwards updated desk-state information to the gateway. The gateway then communicates the change to the desk and updates its state accordingly.\\
 \begin{figure}[H] 
 	\centering 
@@ -483,6 +483,24 @@ During development, the team recognised the need to centralise API calls. Previo
 
 \subsubsection{Styling - .module.css files}
 The team opted not to use CSS frameworks like Tailwind. Instead, they chose to use separate CSS files for each component and page. To avoid conflicts and maintain flexibility, CSS Modules were employed. This approach allows for repeating class names across components without unintended overrides, ensuring a clean and maintainable styling system.
+
+\subsection{Desk Height Recommendation Algorithm}
+% the formula
+According to Don B. Chaffin and Gunnar B.J Andersson\cite{recheight2} in their work Occupational Biomechanics, to determine the correct desk height you need to look into the biomechanical relationship betwen the user's stature and their seated elbow height. To achieve an ergonomically neutral posture that minimises muscle stress the following formulas and principles should be applied:\\\\
+\textbf{Sitting Height:}\\ 
+H = (0.198 * height) + 39.27\\\\
+Where:
+\begin{itemize}
+	\item 0.198 - The multiplier represents the antrhopometric ratio of how seated elbow height scales with total body height.
+	\item 39.27 - The constant that accounts for the baseline variables including avarage chair seat height, pelvic thickness and the necessarry clearence for the thigs.
+\end{itemize}
+\textbf{Standing Height:}\\
+H = (0.628*height)\\\\
+Where:
+\begin{itemize}
+\item 0.628 - This is the anthropometric constant for standing elbow height. The avarage persons elbow is located at approximately 62.8\% of their total height.\\\\
+\end{itemize}
+The team decided to follow their approach when giving the recommendation to the user.  In order to avoid floting point numbers the team decided to round the value recieved from the formula.
 
 \subsection{Backend}
 The backend was designed around the MVC (Model-View-Controller) architecture and a RESTful API. The team initially focused on developing the frontend with mock data to better understand the system’s requirements before diving into complex business logic. 
@@ -617,22 +635,7 @@ Chaffin, D. B., Andersson, G. B. J., \& Martin, B. J. (2006). Occupational Biome
 % APPENDIX
 
 \section*{Appendix A}
-% the formula
-According to Don B. Chaffin and Gunnar B.J Andersson\cite{recheight2} in their wokr Occupational Biomechanics, to determine the correct desk height you need to look into the biomechanical relationship betwen the user's stature and their seated elbow height. To achieve an ergonomically neutral posture that minizmies musculoskeletal stress the following formulas and principles should be applied:\\\\
-\textbf{Sitting Height:}\\ 
-H = (0.198 * height) + 39.27\\\\
-Where:
-\begin{itemize}
-	\item 0.198 - The multiplier represents the antrhopometric ratio of how seated elbow height scales with total body height.
-	\item 39.27 - The constant that accounts for the baseline variables including avarage chair seat height, pelvic thickness and the necessarry clearence for the thigs.
-\end{itemize}
-\textbf{Standing Height:}\\
-H = (0.628*height)\\\\
-Where:
-\begin{itemize}
-\item 0.628 - This is the anthropometric constant for standing elbow height. The avarage persons elbow is located at approximately 62.8\% of their total height.\\\\
-\end{itemize}
-The team decided to follow their approach when giving the recommendation to the user.  In order to avoid floting point numbers the team decided to round the value recieved from the formula.
+
 
 
 \end{document}
