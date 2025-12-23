@@ -535,18 +535,18 @@ The system architecture intentionally employs a dual-gateway design consisting o
 The two gateways serve distinct roles and operate in different security contexts:
 
 \begin{itemize}
-	\item Raspberry Pi Pico acts as the External Edge Gateway, interfacing with the GetStanding application.
+	\item Raspberry Pi Pico acts as the External Edge Gateway, connecting with the GetStanding application.
 	\item Wifi2ble functions as the Internal Device Gateway, handling communication with smart desks within the office network.
 \end{itemize}
 
 \subsubsection{External Edge Gateway - Raspberry Pi Pico}
-The Raspberry Pi Pico was selected to handle communication between the GetStanding application, operating on an external network, and the internal system. Its role is deliberately limited to enforcing a minimal and controlled connection to the outside world. The gateway physically and logically restricts access by exposing only a narrowly defined interface and allowing only predefined data to be forwarded to internal endpoints for further validation.\\\\
+The Raspberry Pi Pico was selected to handle communication between the GetStanding application, operating on an external network (GetStanding severs), and the internal system (desks in the office). Its role is to limit the connection with the outside world to be minimal and controlled. The gateway physically and logically restricts access by exposing only a narrowly defined interface and allowing only predefined data to be forwarded to internal endpoints for further validation.\\\\
 The Pico gateway reads desk height adjustment requests exclusively from a single trusted source: the backend of the GetStanding application. By limiting data intake to this specific endpoint, the system reduces exposure to external threats such as DNS hijacking or API abuse. Even in the event that the application backend is compromised, the gateway ensures that only constrained and expected data can traverse into the internal network.\\\\
 This design choice was made to reduce the blast radius of potential attacks originating from external actors. Should the Pico gateway become unavailable due to overload or a targeted attack, internal desk functionality inside the workplace remains unaffected. Employees retain the ability to operate and adjust desks locally without reliance on the external application. The team identified that the GetStanding application is an optional productivity feature, not a mission-critical component, and therefore, its failure must not disrupt the core business operations.
 
 \subsubsection{Internal Device Gateway - Wifi2ble Desk API}
 The Wifi2ble gateway operates as the internal device gateway responsible for communication with the smart desks over Wi-Fi and BLE protocols. This component is provided and maintained by the desk manufacturer and was not modified as part of this project.\\\\
-Because the wifi2ble gateway resides entirely within the trusted internal network, it is intentionally not exposed to the external environment. Restriction of outside access is enforced at the network and router level, ensuring that only pre-approved internal traffic can reach the device gateway. This separation allows the system to leverage manufacturer-provided functionality while maintaining internal network isolation and security.
+Because the wifi2ble gateway resides entirely within the trusted internal network, it is intentionally not exposed to the external environment. Restriction of outside access is enforced at the network and router level, ensuring that only pre-approved internal traffic can reach the device gateway. This separation allows the system to use manufacturer-provided functionality while maintaining internal network isolation and security.
 
 \section{Validation and testing}
 This chapter outlines what type of testing was used to ensure GetStanding's stability, functionality, and positive user experience. It also explains how each type of testing contributed to the final product.
