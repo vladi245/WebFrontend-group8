@@ -12,7 +12,9 @@
 \usepackage{tocloft}
 \usepackage{float}
 \usepackage{placeins}
+\usepackage{caption}
 \graphicspath{{./graphs/}}
+
 
 % HEADER & FOOTER
 \pagestyle{fancy}
@@ -602,13 +604,6 @@ In terms of teamwork and workflow, the team made significant progress in communi
 
 \newpage
 
-
-% REFERENCES
-
-\section*{References}
-There are no sources in the current document.
-
-Follow IEEE citation format as described in the template.
 \begin{thebibliography}{9}
 \bibitem{study}
 Wayne Gao, Mattia Sanna, Yea-Hung Chen, et al.
@@ -633,7 +628,35 @@ Chaffin, D. B., Andersson, G. B. J., \& Martin, B. J. (2006). Occupational Biome
 % APPENDIX
 
 \section*{Appendix A}
+\captionsetup{font=footnotesize}
+\section*{Teamwork \& Process}
 
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.3\textwidth]{allsprints.png}\\
+    \caption{  All Sprint planning, review, and retrospective documentation through the project development.}
+\end{figure}
+
+
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.4\textwidth]{sprint4.png}\\
+    \caption{Sprint 4 planning document outlining sprint goals, team roles, and backlog items. }
+\end{figure}
+
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{sprint3.png}
+	\includegraphics[width=0.5\textwidth]{sprint3c.png}
+    \caption{Sprint 3 review, including sprint metrics, burndown chart, completed backlog items, and team reflection. }
+\end{figure}
+
+
+\begin{figure} [H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{jira.png}
+    \caption{Jira sprint backlog with completed tasks, task distribution, and collaboration. }
+\end{figure}
 
 
 \end{document}
