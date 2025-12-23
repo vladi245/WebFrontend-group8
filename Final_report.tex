@@ -487,13 +487,12 @@ During development, the team recognised the need to centralise API calls. Previo
 The team opted not to use CSS frameworks like Tailwind. Instead, they chose to use separate CSS files for each component and page. To avoid conflicts and maintain flexibility, CSS Modules were employed. This approach allows for repeating class names across components without unintended overrides, ensuring a clean and maintainable styling system.
 
 \subsection{Desk Height Recommendation Algorithm}
-% the formula
-When trying to establish the reccmoneded height of the desk for the user, the team research various approaches. Most of the sources did not include a direct formula. As for GetStanding a formula was neccessary, the decision was made to choose formulas from websites and not research papers. The team found a formula made by Kushagra Agarwal \cite{recheightstand} for the standing desk height and followed the formula from a article posted by Weberburo \cite{recheightsit} for the sitting desk height. The multiplication by 10 is done to convert the height from cm to mm.\\
+% the formula 
 \textbf{Sitting Height:}\\ 
 H = ((0.198 * height) + 39.27)*10\\\\
 \textbf{Standing Height:}\\
 H = (0.6*height + 2.54)*10\\\\
-
+\cite{recheightstand}, \cite{recheightsit}, \cite{ergonomics}, \cite{mayoclinic}, \cite{cornell}, \cite{uplift}, \cite{cand}
 \subsection{Backend}
 The backend was designed around the MVC (Model-View-Controller) architecture and a RESTful API. The team initially focused on developing the frontend with mock data to better understand the system’s requirements before diving into complex business logic. 
 
@@ -604,7 +603,17 @@ Available:\url{https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2814
 \bibitem{recheightstand}
 Kushagra Agarwal,"Standing Desk Height Calculator: Exact Settings for Your Height". Available:\url{https://lookaway.com/blog/2025/12/04/standing-desk-height-calculator-exact-settings-for-your-height/}. December 4th, 2025 
 \bibitem{recheightsit}
-Weberburo. "How do I optimally set up the height of my desk?" Available: \url{https://weberbuero.ch/en/blogs/magazine/optimally-set-up-desk-height?srsltid=AfmBOooQSWkMKOCxk5xiON8jlGTQjURZHNtLHJg0bsEVdwa2QWrcniYC}
+Weberburo. "How do I optimally set up the height of my desk?", Available: \url{https://weberbuero.ch/en/blogs/magazine/optimally-set-up-desk-height?srsltid=AfmBOooQSWkMKOCxk5xiON8jlGTQjURZHNtLHJg0bsEVdwa2QWrcniYC}
+\bibitem{ergonomics}
+Kushagra Agarwal, "Work From Home Ergonomics: Your Ultimate Setup Checklist", Available: \url{https://lookaway.com/blog/2025/06/19/work-from-home-ergonomics-your-ultimate-setup-checklist/} June 19th, 2025 
+\bibitem{mayoclinic}
+Mayo Clinic Staff, "Office ergonomics: Your how-to guide", Available: \url{https://www.mayoclinic.org/healthy-lifestyle/adult-health/in-depth/office-ergonomics/art-20046169}
+\bibitem{cornell}
+Cornell University Ergonomics Web "Sitting and Standing at Work, Available: \url{https://ergo.human.cornell.edu/CUESitStand.html}
+\bibitem{uplift}
+UPLIFT Desk, "Ergonomic Calculator" , Available: \url{https://www.upliftdesk.com/ergonomic-calculator/}
+\bibitem{cand}
+Canadian Centre for Occupational Health and Safety, "Office Ergonomics - Working in a Standing Position", Available: \url{https://www.ccohs.ca/oshanswers/ergonomics/standing/standing_basic.html}
 \end{thebibliography}
 
 \newpage
