@@ -84,7 +84,7 @@ Since the project consists of 5 repositories co-existing toghterer to have full 
 
 ### 2. The `.env` File
 ```env
-VITE_API_URL='http://localhost:5000'
+VITE_API_URL='http://localhost:5002'
 ```
 - Must start with `VITE_` or Vite won't expose it
 - If your backend runs on a diffrent port/host change the url.

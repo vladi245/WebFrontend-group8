@@ -128,13 +128,13 @@ Overall, the selected way of working, tools, and technologies, combined with the
 \newpage
 
 \section{Problem Analysis}
-Many studies have demonstrated that prolonged sedentary behavior increases health risks such as obesity, cardiovascular diseases as well as
+Many studies have demonstrated that prolonged sedentary behaviour increases health risks such as obesity, cardiovascular diseases, as well as
 decreased productivity. Issues such as back pain, shoulder stiffness, lower back pain, and mental health concerns have been noted as common reasons for decreased work performance. \\\\
 A study~\cite{study} reports that people who predominantly sit at work have a 16\%  higher risk of mortality from all causes, and a 34\% higher risk of mortality from cardiovascular disease. To counteract the increased risk, sedentary individuals would have to engage in an additional 15 to 30 minutes of physical activity per day. \\\\
-This project serves as a preventive health solution, aiming to encourage the users to adopt healthier habits during their workday. GetStanding aims to track and monitor the duration of sitting and provide users insight into their standing habits over time. By visualizing weekly performance and tracking progress, GetStanding helps users stay motivated and consistent.
+This project serves as a preventive health solution, aiming to encourage users to adopt healthier habits during their workday. GetStanding aims to track and monitor the duration of sitting and provide users insight into their standing habits over time. By sending reminder notifications, visualising weekly performance and tracking progress, GetStanding helps users stay motivated and consistent.
 
 \subsection{Key Challenges} 
-One of the the primary challenges with this project is to encourage users to keep track of their daily time spent standing, and adopt lasting behavioral changes. The process of habit formation requires sustained time and effort, many users may ignore the daily stats if they are too busy or if they lack the motivation. This may decrease the effectiveness of the proposed solution. \\\\
+One of the primary challenges with this project is to encourage users to keep track of their daily time spent standing and adopt lasting behavioural changes. The process of habit formation requires sustained time and effort, many users may ignore the daily stats if they are too busy or if they lack motivation. This may decrease the effectiveness of the proposed solution. \\\\
 
 \section{Requirements}
 This section represents the functional and non-functional requirements of the GetStanding application. Functional requirements describe the core requirements that the application must respect, while non-functional requirements focus on the performance, security and usability of the application, rather than what it is supposed to do. This set of requirements guides the development of the application to guarantee that it meets user needs.
@@ -200,7 +200,7 @@ This section represents the functional and non-functional requirements of the Ge
 
 
 \section{Design}
-This section outlines the design of GetStanding application, outlining the process of creating a software that fullfils the project requirements. This phase involved team efforts focused on defining system behaviour through scenarios and use cases, establishing user-interface design via prototyping and establishing the architecture and  timeline through diffrent diagrams. Taking those steps has established a well-documented foundation for implementation and development of the system. \\\\
+This section outlines the design of GetStanding application, outlining the process of creating a software that fulfils the project requirements. This phase involved team efforts focused on defining system behaviour through scenarios and use cases, establishing user-interface design via prototyping and establishing the architecture and  timeline through different diagrams. Taking those steps has established a well-documented foundation for implementation and development of the system. \\\\
 
 \subsection{Scenarios}
 
@@ -226,7 +226,7 @@ This section outlines the design of GetStanding application, outlining the proce
 \begin{description}
     \item[\textbf{Actor:}] Logged-in user
     \item[\textbf{Goal:}] Configure preferred sitting and standing desk heights manually.
-    \item[\textbf{Context:}] The user is on the Desk Details page and wants to customize their position settings.
+    \item[\textbf{Context:}] The user is on the Desk Details page and wants to customise their position settings.
 \end{description}
 
 \textbf{Main Flow:}
@@ -415,7 +415,7 @@ This section outlines the design of GetStanding application, outlining the proce
 \end{enumerate}
 
 \subsection{Prototyping}
-The development of the frontend involved a two-phase prototyping process. During the initial phase, team members created prototypes using Figma within a three day period. Following that deadline, the team reviewed them and selected the favored design while identifying desirable elements from the alternative prototypes. These preferred elements were then integrated into the chosen design. Throughout the development process, minor details of the design were updateded and refined to align with project objectives.\\\\ 
+The development of the frontend involved a two-phase prototyping process. During the initial phase, team members created prototypes using Figma within a three day period. Following that deadline, the team reviewed them and selected the favoured design while identifying desirable elements from the alternative prototypes. These preferred elements were then integrated into the chosen design. Throughout the development process, minor details of the design were updated and refined to align with project objectives.\\\\ 
 
 \begin{figure} [H]
 	\centering
@@ -435,7 +435,7 @@ The sequence diagram provides an illustration of the system's flow and the inter
 	\includegraphics[width=1\textwidth]{sequence}\\
 \end{figure}
 \subsubsection{Flowchart Diagram}
-The flowchart visually represents the process of user loging in and  the subsequent flow within the GetStanding Dashboard. The user's journey begins at the home page. If the user is new to the application then they are first required to register an account before procceding to log in, while existing users navigate directly to log in process. Upon succesful authentication the system directs the user to the appropriate dashboard either Premium or Standard based on their assigned account type. \\\\
+The flowchart visually represents the process of user logging in and  the subsequent flow within the GetStanding Dashboard. The user's journey begins at the home page. If the user is new to the application then they are first required to register an account before proceeding to log in, while existing users navigate directly to log in process. Upon successful authentication the system directs the user to the appropriate dashboard either Premium or Standard based on their assigned account type. \\\\
 
 \begin{figure}[H]
 \centering
@@ -457,7 +457,7 @@ Prior to implementation, the team introduced a database design to define its str
 	Database design graph
 \end{figure}
 \subsubsection{Technology and Infrastructure}
-Backend operates using Express.js witj Node.js, and connects with a PostgreSQL database running in Docker,  As for the frontend, it is developed using React and Vite. Additionally, GetStanding includes two gateways: one included within the provided desk simulator, and a second gateway developed by the team using the PicoBoard.\\
+Backend operates using Express.js with Node.js, and connects with a PostgreSQL database running in Docker,  As for the frontend, it is developed using React and Vite. Additionally, GetStanding includes two gateways: one included within the provided desk simulator, and a second gateway developed by the team using the PicoBoard.\\
 All frontend requests are processed by the backend. Depending on the request, the backend either retrieves data from the database and returns it to the frontend, or forwards updated desk-state information to the gateway. The gateway then communicates the change to the desk and updates its state accordingly.\\
 \begin{figure}[H] 
 	\centering 
@@ -476,13 +476,31 @@ The project is split into pages stored in the folder pages/ and components store
 
 \subsubsection{Routing - src/App.tsx}
 Routing is handled using the react-router-dom package, with all routes managed in the App.tsx file. As mentioned earlier, this approach made it easier for the team to add new pages and routes. Additionally, it simplified the setup of a custom /404 page, ensuring lost users are redirected appropriately and do not get lost navigating the app.\\\\
-Centralizing routing enabled the team to implement a ProtectedRoute component, which manages client-side access control for dashboard subpages. Each route wrapped with ProtectedRoute is accessible only after a user logs in. Furthermore, this component supports a requiredType property, allowing specification of the account type necessary to access certain pages. For example, only an admin can read messages from the contact form, while features such as Meals are available exclusively to premium users of GetStanding.
+Centralising routing enabled the team to implement a ProtectedRoute component, which manages client-side access control for dashboard subpages. Each route wrapped with ProtectedRoute is accessible only after a user logs in. Furthermore, this component supports a requiredType property, allowing specification of the account type necessary to access certain pages. For example, only an admin can read messages from the contact form, while features such as Meals are available exclusively to premium users of GetStanding.
 
 \subsubsection{services/api.ts}
-During development, the team recognized the need to centralize API calls. Previously, API requests were scattered across pages and components, leading to inconsistencies, especially when system ports were occupied on different operating systems. To address this, the team created a single entry point for all API connections in services/api.ts. This file stores the backend server address, making it easier to update API endpoints and ensuring that the JWT token (stored in local storage) is automatically included with every request made from the frontend.
+During development, the team recognised the need to centralise API calls. Previously, API requests were scattered across pages and components, leading to inconsistencies, especially when system ports were occupied on different operating systems. To address this, the team created a single entry point for all API connections in services/api.ts. This file stores the backend server address, making it easier to update API endpoints and ensuring that the JWT token (stored in local storage) is automatically included with every request made from the frontend.
 
 \subsubsection{Styling - .module.css files}
 The team opted not to use CSS frameworks like Tailwind. Instead, they chose to use separate CSS files for each component and page. To avoid conflicts and maintain flexibility, CSS Modules were employed. This approach allows for repeating class names across components without unintended overrides, ensuring a clean and maintainable styling system.
+
+\subsection{Desk Height Recommendation Algorithm}
+% the formula
+According to Don B. Chaffin and Gunnar B.J Andersson\cite{recheight2} in their work Occupational Biomechanics, to determine the correct desk height you need to look into the biomechanical relationship betwen the user's stature and their seated elbow height. To achieve an ergonomically neutral posture that minimises muscle stress the following formulas and principles should be applied:\\\\
+\textbf{Sitting Height:}\\ 
+H = (0.198 * height) + 39.27\\\\
+Where:
+\begin{itemize}
+	\item 0.198 - The multiplier represents the antrhopometric ratio of how seated elbow height scales with total body height.
+	\item 39.27 - The constant that accounts for the baseline variables including avarage chair seat height, pelvic thickness and the necessarry clearence for the thigs.
+\end{itemize}
+\textbf{Standing Height:}\\
+H = (0.628*height)\\\\
+Where:
+\begin{itemize}
+\item 0.628 - This is the anthropometric constant for standing elbow height. The avarage persons elbow is located at approximately 62.8\% of their total height.\\\\
+\end{itemize}
+The team decided to follow their approach when giving the recommendation to the user.  In order to avoid floting point numbers the team decided to round the value recieved from the formula.
 
 \subsection{Backend}
 The backend was designed around the MVC (Model-View-Controller) architecture and a RESTful API. The team initially focused on developing the frontend with mock data to better understand the system’s requirements before diving into complex business logic. 
@@ -505,7 +523,7 @@ User authentication is handled in controllers/authController.js. The login metho
 The register method follows a similar principle but focuses on creating a new user account instead of validating an existing one.
 
 \subsection{Database}
-The database for GetStanding was designed as a relational database, leveraging PostgreSQL for its robustness, scalability, and flexibility over JSON document based approaches. To ensure consistency across development, testing, and production environments, the database was containerized using Docker, simplifying deployment and reducing environment-specific issues. This setup allowed the team to maintain a structured and normalized schema, optimizing data integrity and minimizing redundancy when it comes to tables.
+The database for GetStanding was designed as a relational database, leveraging PostgreSQL for its robustness, scalability, and flexibility over JSON document-based approaches. To ensure consistency across development, testing, and production environments, the database was containerized using Docker, simplifying deployment and reducing environment-specific issues. This setup allowed the team to maintain a structured and normalized schema, optimizing data integrity and minimizing redundancy when it comes to tables.
 
 \subsubsection{Functions}
 To ensure scalability and future-proofing, the team implemented PostgreSQL functions as a core part of the database architecture. These functions are designed to encapsulate specific business logic and are called directly from the backend models. This approach not only modularizes database operations but also enhances security by allowing granular control over access permissions. Instead of granting users broad access to entire tables, the team can now restrict permissions to individual functions, minimizing the risk of unauthorized data manipulation or exposure.\\\\
@@ -517,18 +535,18 @@ The system architecture intentionally employs a dual-gateway design consisting o
 The two gateways serve distinct roles and operate in different security contexts:
 
 \begin{itemize}
-	\item Raspberry Pi Pico acts as the External Edge Gateway, interfacing with the GetStanding application.
+	\item Raspberry Pi Pico acts as the External Edge Gateway, connecting with the GetStanding application.
 	\item Wifi2ble functions as the Internal Device Gateway, handling communication with smart desks within the office network.
 \end{itemize}
 
 \subsubsection{External Edge Gateway - Raspberry Pi Pico}
-The Raspberry Pi Pico was selected to handle communication between the GetStanding application, operating on an external network, and the internal system. Its role is deliberately limited to enforcing a minimal and controlled connection to the outside world. The gateway physically and logically restricts access by exposing only a narrowly defined interface and allowing only predefined data to be forwarded to internal endpoints for further validation.\\\\
+The Raspberry Pi Pico was selected to handle communication between the GetStanding application, operating on an external network (GetStanding severs), and the internal system (desks in the office). Its role is to limit the connection with the outside world to be minimal and controlled. The gateway physically and logically restricts access by exposing only a narrowly defined interface and allowing only predefined data to be forwarded to internal endpoints for further validation.\\\\
 The Pico gateway reads desk height adjustment requests exclusively from a single trusted source: the backend of the GetStanding application. By limiting data intake to this specific endpoint, the system reduces exposure to external threats such as DNS hijacking or API abuse. Even in the event that the application backend is compromised, the gateway ensures that only constrained and expected data can traverse into the internal network.\\\\
 This design choice was made to reduce the blast radius of potential attacks originating from external actors. Should the Pico gateway become unavailable due to overload or a targeted attack, internal desk functionality inside the workplace remains unaffected. Employees retain the ability to operate and adjust desks locally without reliance on the external application. The team identified that the GetStanding application is an optional productivity feature, not a mission-critical component, and therefore, its failure must not disrupt the core business operations.
 
 \subsubsection{Internal Device Gateway - Wifi2ble Desk API}
 The Wifi2ble gateway operates as the internal device gateway responsible for communication with the smart desks over Wi-Fi and BLE protocols. This component is provided and maintained by the desk manufacturer and was not modified as part of this project.\\\\
-Because the wifi2ble gateway resides entirely within the trusted internal network, it is intentionally not exposed to the external environment. Restriction of outside access is enforced at the network and router level, ensuring that only pre-approved internal traffic can reach the device gateway. This separation allows the system to leverage manufacturer-provided functionality while maintaining internal network isolation and security.
+Because the wifi2ble gateway resides entirely within the trusted internal network, it is intentionally not exposed to the external environment. Restriction of outside access is enforced at the network and router level, ensuring that only pre-approved internal traffic can reach the device gateway. This separation allows the system to use manufacturer-provided functionality while maintaining internal network isolation and security.
 
 \section{Validation and testing}
 This chapter outlines what type of testing was used to ensure GetStanding's stability, functionality, and positive user experience. It also explains how each type of testing contributed to the final product.
@@ -572,15 +590,15 @@ Testing is crucial for delivering a reliable and quality product, which was the 
 \newpage
 
 \section{Conclusion}
-GetStanding was developed as a semester project in collaboration with LINAK, based on the scenarios given by them at the start of the sememster. The team chose to make an application to help people, with a focus on office workers, keep track of their habits. Despite some changes from the original plan for the application, the main functions were successfully implemented such as tracking of calorie intake, workouts and water consumption. The most important feature is that GetStanding can connect to a sit and stand desk, helping the user keep track of the time they spend standing throughout the day. While there were challanges throughout the developmet proces, such as delays that ended up affecting the teams progression. The communication inside the team was informal. For some of the team members this was the first time working with multiple repositories and embedded elements like the Pico board, which added to the level of difficulty. 
+GetStanding was developed as a semester project in collaboration with LINAK, based on the scenarios given by them at the start of the semester. The team chose to make an application to help people, with a focus on office workers, keep track of their habits. Despite some changes from the original plan for the application, the main functions were successfully implemented such as tracking of calorie intake, workouts and water consumption. The most important feature is that GetStanding can connect to a sit and stand desk, helping the user keep track of the time they spend standing throughout the day. While there were challenges throughout the developmet process, such as delays that ended up affecting the team's progression. The communication inside the team was informal. For some of the team members this was the first time working with multiple repositories and embedded elements like the Pico board, which added to the level of difficulty. 
 
 
 \subsection{Summary}
-Overall, it can be said that the outcome of the project was a success. GetStanding has provided us with valuable experince both in technical and teamwork scenarios. This will be a good foundation to build on in the future.
+Overall, it can be said that the outcome of the project was a success. GetStanding has provided us with valuable experience both in technical and teamwork scenarios. This will be a good foundation to build on in the future.
 
 \subsection{Future Improvements}
-The team has designed GetStanding with extensibility in mind, ensuring the application can easily allow for future enhancements. For example, the friends system, initially planned but canceled due to time constraints, could be revisited and implemented. Another key improvement could involve enhancing database security by securing individual PostgreSQL functions (which were already implemented with this goal in mind) instead of relying on a single database account.\\\\
-In terms of teamwork and workflow, the team made significant progress in communication and workload distribution compared to the previous semester. However, there is still room for improvement in punctuality and setting and realising deadlines. Additionally, following to consistent commit and branch naming conventions would further streamline version control and collaboration.
+The team has designed GetStanding with extensibility in mind, ensuring the application can easily allow for future enhancements. For example, the friends system, initially planned but cancelled due to time constraints, could be revisited and implemented. Another key improvement could involve enhancing database security by securing individual PostgreSQL functions (which were already implemented with this goal in mind) instead of relying on a single database account.\\\\
+In terms of teamwork and workflow, the team made significant progress in communication and workload distribution compared to the previous semester. However, there is still room for improvement in punctuality and setting and realising deadlines. Additionally, following consistent commit and branch naming conventions would further streamline version control and collaboration.
 
 \newpage
 
@@ -597,13 +615,6 @@ Wayne Gao, Mattia Sanna, Yea-Hung Chen, et al.
  "Occupational Sitting Time, Leisure Physical Activity, and All-Cause and Cardiovascular Disease Mortality".
 Available:\url{https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2814094?}
 2024.
-
-\bibitem{lamport94}
-  Leslie Lamport,
-  \emph{\LaTeX: A Document Preparation System}.
-  Addison Wesley, Massachusetts,
-  2nd Edition,
-  1994.
 
 %\bibitem{recheigt1}
 %Gordon, C. C., Blackwell, C. L., Bradtmiller, B., Parham, J. L., Barrientos, P., Paquette, S. P.,Kristensen, S
@@ -622,22 +633,7 @@ Chaffin, D. B., Andersson, G. B. J., \& Martin, B. J. (2006). Occupational Biome
 % APPENDIX
 
 \section*{Appendix A}
-% the formula
-According to Don B. Chaffin and Gunnar B.J Andersson\cite{recheight2} in their wokr Occupational Biomechanics, to determine the correct desk height you need to look into the biomechanical relationship betwen the user's stature and their seated elbow height. To achieve an ergonomically neutral posture that minizmies musculoskeletal stress the following formulas and principles should be applied:\\\\
-\textbf{Sitting Height:}\\ 
-H = (0.198 * height) + 39.27\\\\
-Where:
-\begin{itemize}
-	\item 0.198 - The multiplier represents the antrhopometric ratio of how seated elbow height scales with total body height.
-	\item 39.27 - The constant that accounts for the baseline variables including avarage chair seat height, pelvic thickness and the necessarry clearence for the thigs.
-\end{itemize}
-\textbf{Standing Height:}\\
-H = (0.628*height)\\\\
-Where:
-\begin{itemize}
-\item 0.628 - This is the anthropometric constant for standing elbow height. The avarage persons elbow is located at approximately 62.8\% of their total height.\\\\
-\end{itemize}
-The team decided to follow their approach when giving the recommendation to the user.  In order to avoid floting point numbers the team decided to round the value recieved from the formula.
+
 
 
 \end{document}
