@@ -488,21 +488,11 @@ The team opted not to use CSS frameworks like Tailwind. Instead, they chose to u
 
 \subsection{Desk Height Recommendation Algorithm}
 % the formula
-According to Don B. Chaffin and Gunnar B.J Andersson\cite{recheight2} in their work Occupational Biomechanics, to determine the correct desk height you need to look into the biomechanical relationship betwen the user's stature and their seated elbow height. To achieve an ergonomically neutral posture that minimises muscle stress the following formulas and principles should be applied:\\\\
+When trying to establish the reccmoneded height of the desk for the user, the team research various approaches. Most of the sources did not include a direct formula. As for GetStanding a formula was neccessary, the decision was made to choose formulas from websites and not research papers. The team found a formula made by Kushagra Agarwal for the standing desk height and followed the formula from a article posted by Weberburo for the sitting desk height. The multiplication by 10 is done to convert the height from cm to mm.\\
 \textbf{Sitting Height:}\\ 
-H = (0.198 * height) + 39.27\\\\
-Where:
-\begin{itemize}
-	\item 0.198 - The multiplier represents the antrhopometric ratio of how seated elbow height scales with total body height.
-	\item 39.27 - The constant that accounts for the baseline variables including avarage chair seat height, pelvic thickness and the necessarry clearence for the thigs.
-\end{itemize}
+H = ((0.198 * height) + 39.27)*10\\\\
 \textbf{Standing Height:}\\
-H = (0.628*height)\\\\
-Where:
-\begin{itemize}
-\item 0.628 - This is the anthropometric constant for standing elbow height. The avarage persons elbow is located at approximately 62.8\% of their total height.\\\\
-\end{itemize}
-The team decided to follow their approach when giving the recommendation to the user.  In order to avoid floting point numbers the team decided to round the value recieved from the formula.
+H = (0.6*height + 2.54)*10\\\\
 
 \subsection{Backend}
 The backend was designed around the MVC (Model-View-Controller) architecture and a RESTful API. The team initially focused on developing the frontend with mock data to better understand the system’s requirements before diving into complex business logic. 
@@ -611,10 +601,10 @@ Wayne Gao, Mattia Sanna, Yea-Hung Chen, et al.
 Available:\url{https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2814094?}
 2024.
 
-\bibitem{recheight2}
-Chaffin, D. B., Andersson, G. B. J., \& Martin, B. J. (2006). Occupational Biomechanics (4th ed.). Hoboken, NJ: John Wiley \& Sons
-
-
+\bibitem{recheightstand}
+Kushagra Agarwal,"Standing Desk Height Calculator: Exact Settings for Your Height". Available:\url{https://lookaway.com/blog/2025/12/04/standing-desk-height-calculator-exact-settings-for-your-height/}. December 4th, 2025 
+\bibitem{recheightsit}
+Weberburo. "How do I optimally set up the height of my desk?" Available: \url{https://weberbuero.ch/en/blogs/magazine/optimally-set-up-desk-height?srsltid=AfmBOooQSWkMKOCxk5xiON8jlGTQjURZHNtLHJg0bsEVdwa2QWrcniYC}
 \end{thebibliography}
 
 \newpage
