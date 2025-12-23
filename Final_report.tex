@@ -448,7 +448,7 @@ Following the university's project structure, the team went through 3 key stages
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{deployment}\\
-Deployment Chart of GetStanding
+\caption{Deployment Chart of GetStanding}
 \end{figure}
 
 \subsubsection{DB design}
@@ -456,7 +456,7 @@ Prior to implementation, the team introduced a database design to define its str
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{db-design}\\
-	Database design graph
+	\caption{Database design graph}
 \end{figure}
 \subsubsection{Technology and Infrastructure}
 Backend operates using Express.js with Node.js, and connects with a PostgreSQL database running in Docker,  As for the frontend, it is developed using React and Vite. Additionally, GetStanding includes two gateways: one included within the provided desk simulator, and a second gateway developed by the team using the PicoBoard.\\
@@ -464,7 +464,7 @@ All frontend requests are processed by the backend. Depending on the request, th
 \begin{figure}[H] 
 	\centering 
 	\includegraphics[width=0.7\textwidth]{uml}\\
-	Technology and Infrastructure of GetStanding
+	\caption{Technology and Infrastructure of GetStanding}
 \end{figure}
 \newpage
 
@@ -562,7 +562,7 @@ This combination of functional and validation-focused unit tests strengthens the
 Integration tests were used in order to validate how different parts of the system work together. This means that realistic HTTP requests were sent to the backend API to check how routing, controllers, validation and authentication worked together. The testing mainly covered typical scenarios, such as registering and logging in, updating user-related data, as well as performing admin actions. Again, the database layer was mocked so that the API could be tested without depending on a specific database setup. It also helped with verifying if the system responded with appropriate status codes and messages for both expected/normal and error situations.
 
 \subsection{Manual Testing}
-Manual testing was carried out using the TestRail platform to ensure that GetStanding functions properly from a user experience angle. It was an ongoing part of the development process and was carried out regularly throughout the project, whenever new features were implemented or code was merged. This practice helped with identifying edge cases, visual inconsistencies or UI/UX problems that may not have been caught by automated testing. Additionally, observing whether graphs and statistics were updating correctly was rather relevant, since GetStanding is a tracking web application after all. Overall, manual tests contributed to a smoother and more reliable user experience.
+Manual testing was carried out using the TestRail (\ref{fig:manual-tests})  platform to ensure that GetStanding functions properly from a user experience angle. It was an ongoing part of the development process and was carried out regularly throughout the project, whenever new features were implemented or code was merged. This practice helped with identifying edge cases, visual inconsistencies or UI/UX problems that may not have been caught by automated testing. Additionally, observing whether graphs and statistics were updating correctly was rather relevant, since GetStanding is a tracking web application after all. Overall, manual tests contributed to a smoother and more reliable user experience.
 
 \subsection{Test Results and Analysis}
 This section summarizes the outcome of carried out tests. Detailed test cases and their individual outcomes are listed in the Appendix.
@@ -611,11 +611,6 @@ Wayne Gao, Mattia Sanna, Yea-Hung Chen, et al.
 Available:\url{https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2814094?}
 2024.
 
-%\bibitem{recheigt1}
-%Gordon, C. C., Blackwell, C. L., Bradtmiller, B., Parham, J. L., Barrientos, P., Paquette, S. P.,Kristensen, S
-%Anthropometric Survey of U.S. Army Personnel: Methods and Summary Statistics (Technical Report NATICK/TR-15/007). Natick, MA: %U.S. Army Natick Soldier Research, Development and Engineering Center.Anthropometric Survey of U.S. Army Personnel: Methods %and Summary Statistics (Technical Report NATICK/TR-15/007). Natick, MA: U.S. Army Natick Soldier Research, Development and %Engineering Center, 2012.
-%Available:\url{https://apps.dtic.mil/sti/tr/pdf/ADA611869.pdf}
-
 \bibitem{recheight2}
 Chaffin, D. B., Andersson, G. B. J., \& Martin, B. J. (2006). Occupational Biomechanics (4th ed.). Hoboken, NJ: John Wiley \& Sons
 
@@ -626,8 +621,17 @@ Chaffin, D. B., Andersson, G. B. J., \& Martin, B. J. (2006). Occupational Biome
 
 
 % APPENDIX
+\section*{Appendix}
+\subsection*{Manual Test Results}
+\label{tests}
 
-\section*{Appendix A}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{testing}
+    \caption{Manual test cases and results in TestRail}
+    \label{fig:manual-tests}
+\end{figure}
+
 \captionsetup{font=footnotesize}
 \section*{Teamwork \& Process}
 
@@ -657,6 +661,5 @@ Chaffin, D. B., Andersson, G. B. J., \& Martin, B. J. (2006). Occupational Biome
 	\includegraphics[width=0.5\textwidth]{jira.png}
     \caption{Jira sprint backlog with completed tasks, task distribution, and collaboration. }
 \end{figure}
-
 
 \end{document}
